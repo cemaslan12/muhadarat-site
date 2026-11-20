@@ -1,4 +1,4 @@
-/* Muhadarat tanıtım sitesi: haberler, karakter seçici, bölüm listesi, gezinme. */
+/* Aşkın Bedeli tanıtım sitesi: haberler, karakter seçici, bölüm listesi, gezinme. */
 (function () {
   'use strict';
   const $ = (s) => document.querySelector(s);

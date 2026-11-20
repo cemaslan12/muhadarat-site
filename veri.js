@@ -1,4 +1,4 @@
-/* Muhadarat tanıtım sitesi: içerik.
+/* Aşkın Bedeli tanıtım sitesi: içerik.
    Haber eklemek için HABERLER dizisinin başına yeni bir kayıt ekleyin (en yeni üstte). */
 
 window.HABERLER = [
@@ -6,7 +6,7 @@ window.HABERLER = [
     tarih: '2026-11-20',
     baslik: 'Sitemiz açıldı',
     resim: 'gorsel/sahne/piyano.webp',
-    metin: 'Muhadarat artık kendi evinde. Karakterleri tanıyın, bölümleri gezin, kaldığınız yerden oynamaya devam edin. İlerlemeniz bu tarayıcıda saklanır.',
+    metin: 'Aşkın Bedeli artık kendi evinde. Karakterleri tanıyın, bölümleri gezin, kaldığınız yerden oynamaya devam edin. İlerlemeniz bu tarayıcıda saklanır.',
   },
   {
     tarih: '2026-11-19',
