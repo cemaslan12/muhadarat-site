@@ -26,12 +26,12 @@ window.KARAKTERLER = [
   {
     id: 'feride', ad: 'Feride', unvan: 'Kahramanımız', renk: '#b8863b',
     kunye: [['Yaş', '18'], ['Bilir', 'Fransızca, piyano, resim'], ['Boynunda', 'Annesinin "B" harfli madalyonu'], ['Zaafı', 'Kardeşi Şefik']],
-    metin: 'Sait Efendi\'nin ilk evliliğinden kızı; annesi Behiye Hanım\'ı küçük yaşta kaybetti. Ağırbaşlı ve sabırlıdır, ama iş kardeşine ya da onuruna gelince susmaz. Üvey annesinin gözü her an üstündeyken cevap vermekle yetinmez, kendi küçük planını kurar.',
+    metin: 'Konakta çoğu şeye susmayı öğrendi. Ama iş kardeşine ya da onuruna gelince Feride susmaz; cevap vermekle de yetinmez, kendi küçük planını kurar.',
   },
   {
     id: 'kenan', ad: 'Kenan', unvan: 'Sözlüsü', renk: '#5a6b4e',
     kunye: [['Annesi', 'Münevver Hanım'], ['Feride\'yle', 'Bir yıldır sözlü'], ['İmzası', '—K.'], ['Saklar', '"Bu senindir" yazan masal kitabı']],
-    metin: 'Münevver Hanım\'ın tek oğlu, Feride\'nin çocukluk arkadaşı. Dokuz yaşındaki Feride ona bir masal kitabı vermişti; Ada vapurundaki martıları ikisi de unutmadı. Terbiyeli ve utangaçtır. Bir yıldır sözlüler, ama o günden beri yüz yüze getirilmediler.',
+    metin: 'Feride ona dokuz yaşındayken bir masal kitabı vermişti; Kenan o kitabı hâlâ saklıyor. Bir yıldır sözlüler, ama o günden beri birbirlerini yalnız başkalarının ağzından duydular.',
   },
   {
     id: 'suha', ad: 'Süha', unvan: 'Konağın hekimi', renk: '#3b3f5c',
@@ -41,7 +41,7 @@ window.KARAKTERLER = [
   {
     id: 'remzi', ad: 'Remzi', unvan: 'Talip', renk: '#6b3a2e',
     kunye: [['Serveti', 'Babasından miras'], ['Sever', 'Atlar, vals, gösteriş'], ['Huyu', 'Her şeye fiyat biçer'], ['Yengesi', 'Sadberk Hanım']],
-    metin: 'Zengin bir tacirin oğlu; mirasla girdiği kibar dünyasında herkesin gözünü kamaştırmak ister. Yakışıklıdır, son moda giyinir, vapurla at getirtir. Neyin kaç liraya alındığını unutmaz; bir gün Feride\'ye de fiyat biçip biçmeyeceği merak konusudur.',
+    metin: 'Babasından kalan servetle girdiği kibar dünyasında herkesin gözünü kamaştırmak ister. Atlarını vapurla getirtir ve neyin kaça alındığını hiç unutmaz. Feride\'ye baktığında da bir fiyat düşünüyor gibidir.',
   },
   {
     id: 'perihan', ad: 'Perihan Hanım', unvan: 'Üvey anne', renk: '#8c2f3f',
@@ -61,7 +61,7 @@ window.KARAKTERLER = [
   {
     id: 'sefik', ad: 'Şefik', unvan: 'Küçük kardeş', renk: '#2f4a5a',
     kunye: [['Yaşı', '11'], ['Benzer', 'Annesine'], ['Sever', 'Resim, piyano, kitaplar'], ['Ablası', 'Feride']],
-    metin: 'Feride\'nin on bir yaşındaki kardeşi; sarı saçıyla, mavi gözüyle annesine benzer. Zeki ve hassastır, ablasına çok bağlıdır. Feride\'nin konaktaki en büyük zaafı odur; onun için verilen her söz, Feride\'yi daha tehlikeli bir pazarlığa sokar.',
+    metin: 'Annesinin yüzünü en çok o taşır. Ablasının peşinden bir gölge gibi gelir; Feride\'nin onun için verdiği her söz de Feride\'yi daha tehlikeli bir pazarlığa sokar.',
   },
   {
     id: 'hatice', ad: 'Hatice', unvan: 'Evlatlık', renk: '#7a4a5e',
