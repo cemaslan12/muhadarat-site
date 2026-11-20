@@ -25,43 +25,43 @@ window.HABERLER = [
 window.KARAKTERLER = [
   {
     id: 'feride', ad: 'Feride', unvan: 'Kahramanımız', renk: '#b8863b',
-    kunye: [['Yaş', '18'], ['Evi', 'Sait Efendi Konağı'], ['Sever', 'Kitaplar, piyano, Ada'], ['Saklar', 'Annesinin madalyonu']],
-    metin: 'Sait Efendi\'nin kızı. Annesi Behiye Hanım\'dan geriye kalan, üstünde "B" harfi olan siyah taşlı madalyonu boynundan çıkarmaz. Üvey annesinin gözü her an üstünde; Feride ise cevap vermekle yetinmez, kendi küçük planlarını kurar.',
+    kunye: [['Yaş', '18'], ['Bilir', 'Fransızca, piyano, resim'], ['Boynunda', 'Annesinin "B" harfli madalyonu'], ['Zaafı', 'Kardeşi Şefik']],
+    metin: 'Sait Efendi\'nin ilk evliliğinden kızı; annesi Behiye Hanım\'ı küçük yaşta kaybetti. Ağırbaşlı ve sabırlıdır, ama iş kardeşine ya da onuruna gelince susmaz. Üvey annesinin gözü her an üstündeyken cevap vermekle yetinmez, kendi küçük planını kurar.',
   },
   {
     id: 'kenan', ad: 'Kenan', unvan: 'Sözlüsü', renk: '#5a6b4e',
-    kunye: [['Annesi', 'Münevver Hanım'], ['İmzası', '—K.'], ['Sever', 'Martılar, eski masallar'], ['Sevmez', 'Söylenti']],
-    metin: 'Feride\'yle çocukluklarını birlikte geçirdiler; dokuz yaşındaki Feride ona "Bu senindir" yazan bir masal kitabı vermişti. Bir yıldır sözlüler ama o günden beri bir kez bile yüz yüze getirilmediler.',
+    kunye: [['Annesi', 'Münevver Hanım'], ['Feride\'yle', 'Bir yıldır sözlü'], ['İmzası', '—K.'], ['Saklar', '"Bu senindir" yazan masal kitabı']],
+    metin: 'Münevver Hanım\'ın tek oğlu, Feride\'nin çocukluk arkadaşı. Dokuz yaşındaki Feride ona bir masal kitabı vermişti; Ada vapurundaki martıları ikisi de unutmadı. Terbiyeli ve utangaçtır. Bir yıldır sözlüler, ama o günden beri yüz yüze getirilmediler.',
   },
   {
-    id: 'suha', ad: 'Süha', unvan: 'Genç hekim', renk: '#3b3f5c',
-    kunye: [['Mesleği', 'Hekim (bir aydır)'], ['Akrabası', 'Perihan Hanım'], ['Sever', 'Kazanmayı'], ['Tehlike', 'Yüksek']],
-    metin: 'Perihan Hanım\'ın amcasının oğlu; Feride ona çocukluktan kalma bir alışkanlıkla "dayı" der ama aralarında kan bağı yoktur. Hekimliği yenidir, dili keskindir. Yardım eder, ama karşılığını da bir gün ister.',
+    id: 'suha', ad: 'Süha', unvan: 'Konağın hekimi', renk: '#3b3f5c',
+    kunye: [['Mesleği', 'Hekim (bir aydır)'], ['Akrabası', 'Perihan Hanım\'ın amcazadesi'], ['Feride ona', '"Dayı" der'], ['Huyu', 'Ölçülü, alaycı, hesapçı']],
+    metin: 'Perihan Hanım\'ın amcasının oğlu; Feride ona çocukluktan kalma bir alışkanlıkla "dayı" der, ama aralarında kan bağı yoktur. Hekimliği yenidir, sözü keskindir. Yardım eder, ama karşılığını da bir gün ister.',
   },
   {
     id: 'remzi', ad: 'Remzi', unvan: 'Talip', renk: '#6b3a2e',
-    kunye: [['Serveti', 'Göz kamaştırıcı'], ['Sever', 'Atlar, vals, gösteriş'], ['Bilir', 'Her şeyin fiyatını'], ['Annesi', 'Sadberk Hanım']],
-    metin: 'Yakışıklı, cömert görünmeyi seven, vapurla at getirten bir talip. Kırk liralık yelpazeleri, odalarının sayısını unutmaz; Feride\'nin nişanı bozulursa ondan bir vals istemekten de geri durmaz.',
+    kunye: [['Serveti', 'Babasından miras'], ['Sever', 'Atlar, vals, gösteriş'], ['Huyu', 'Her şeye fiyat biçer'], ['Yengesi', 'Sadberk Hanım']],
+    metin: 'Zengin bir tacirin oğlu; mirasla girdiği kibar dünyasında herkesin gözünü kamaştırmak ister. Yakışıklıdır, son moda giyinir, vapurla at getirtir. Neyin kaç liraya alındığını unutmaz; bir gün Feride\'ye de fiyat biçip biçmeyeceği merak konusudur.',
   },
   {
     id: 'perihan', ad: 'Perihan Hanım', unvan: 'Üvey anne', renk: '#8c2f3f',
-    kunye: [['Konumu', 'Konağın hanımı'], ['Bilir', 'Fransızca, her sırrı'], ['Kızı', 'Nazlı'], ['Sırdaşı', 'Hatice']],
-    metin: 'Sait Efendi\'nin ikinci eşi. Misafirlere tatlı, kapı kapanınca soğuktur. Konakta olan biten her şeyden haberi vardır ve Feride\'nin nişanı onun hesaplarına hiç uymaz.',
+    kunye: [['Konumu', 'Konağın hanımı'], ['Kızı', 'Nazlı'], ['Kardeşi', 'Nabi'], ['Sırdaşı', 'Hatice']],
+    metin: 'Sait Efendi\'nin ikinci eşi. Misafirlere tatlı, kapı kapanınca soğuktur; istediği an ağlar, istediği an bayılır. Konakta olan biten her şeyden haberi vardır ve Feride\'nin nişanı onun hesaplarına hiç uymaz.',
   },
   {
     id: 'leyla', ad: 'Leyla', unvan: 'Can dostu', renk: '#4f6f8a',
-    kunye: [['Huyu', 'Neşeli, açık sözlü'], ['Sever', 'Roman okumayı'], ['Zaafı', 'Biraz şımarık'], ['Silahı', 'Gözyaşı']],
-    metin: 'Feride\'nin en yakın arkadaşı, varlıklı bir ailenin tek kızı. Âşıklara acıyan bir hayalperest; düğün bahçesinde ilk fısıltıyı getiren de, en tehlikeli fikri ortaya atan da odur.',
+    kunye: [['Ailesi', 'Varlıklı; tek kız'], ['Huyu', 'Neşeli, takılgan, açık sözlü'], ['Okur', 'Eugène Sue romanları'], ['Zaafı', 'Ne isterse gözyaşıyla alır']],
+    metin: 'Feride\'nin en yakın arkadaşı, kardeşi gibidir. Biraz şımarıktır; romanlardaki âşıklara acıyan bir hayalperesttir. Düğün bahçesinde Kenan\'ın geldiği haberini Feride\'nin kulağına ilk fısıldayan odur.',
   },
   {
     id: 'munevver', ad: 'Münevver Hanım', unvan: 'Kenan\'ın annesi', renk: '#5a2e44',
-    kunye: [['Oğlu', 'Kenan'], ['Huyu', 'Ağırbaşlı, adil'], ['Güvendiği', 'Nimet Kalfa'], ['Elinde', 'Kadife bir kutu']],
-    metin: 'Feride\'yi çocukluğundan beri tanır ve ona annesinin yokluğunda sahip çıkan birkaç kişiden biridir. Söylentilere kulak asmaz, ama bir kez karar verdiğinde geri dönmez.',
+    kunye: [['Oğlu', 'Kenan'], ['Dostu', 'Merhum Behiye Hanım'], ['Huyu', 'Akıllı, mert, adil'], ['Feride ona', '"Nineciğim" der']],
+    metin: 'Varlıklı bir dul; Feride\'nin annesi Behiye Hanım\'ın en yakın dostuydu. Feride\'ye annesinin yokluğunda sahip çıkar. Sözünü atasözleriyle, dolaylı ama nazik söyler; Perihan Hanım ondan çekinir.',
   },
   {
     id: 'sefik', ad: 'Şefik', unvan: 'Küçük kardeş', renk: '#2f4a5a',
-    kunye: [['Ablası', 'Feride'], ['Sever', 'Ablasını'], ['Sağlığı', 'Narin'], ['Hekimi', 'Süha']],
-    metin: 'Feride\'nin küçük kardeşi ve konaktaki en büyük zaafı. Onun için verilen her söz, Feride\'yi bir adım daha tehlikeli bir pazarlığa sokar.',
+    kunye: [['Yaşı', '11'], ['Benzer', 'Annesine'], ['Sever', 'Resim, piyano, kitaplar'], ['Ablası', 'Feride']],
+    metin: 'Feride\'nin on bir yaşındaki kardeşi; sarı saçıyla, mavi gözüyle annesine benzer. Zeki ve hassastır, ablasına çok bağlıdır. Feride\'nin konaktaki en büyük zaafı odur; onun için verilen her söz, Feride\'yi daha tehlikeli bir pazarlığa sokar.',
   },
   {
     id: 'hatice', ad: 'Hatice', unvan: 'Evlatlık', renk: '#7a4a5e',
@@ -70,13 +70,13 @@ window.KARAKTERLER = [
   },
   {
     id: 'nimet', ad: 'Nimet Kalfa', unvan: 'Dadı', renk: '#3f5a46',
-    kunye: [['Konumu', 'Dadı, kalfa'], ['Sadakati', 'Feride ve Şefik\'e'], ['Huyu', 'Açık sözlü, cesur'], ['Sözü', '"Varsın kovsun!"']],
-    metin: 'Feride\'nin annesinin zamanından kalma, eski ve sadık bir kalfa. Feride dışarı çıkarken yanındadır; Perihan Hanım ona "hain kadın" der, ama Nimet Kalfa hiçbir şeyden korkmaz.',
+    kunye: [['Konumu', 'Dadı, kalfa'], ['Sadakati', 'Feride ve Şefik\'e'], ['Huyu', 'Açık sözlü, cesur'], ['Güvenen', 'Münevver Hanım']],
+    metin: 'Feride\'nin annesinin zamanından kalma, sadık bir kalfa. Feride dışarı çıkarken yanındadır. Perihan Hanım\'ın gözüne batar, ama Nimet Kalfa kovulmaktan da korkmaz.',
   },
   {
     id: 'josephine', ad: 'Madam Josephine', unvan: 'Mürebbiye', renk: '#26324a',
-    kunye: [['Memleketi', 'Fransa'], ['Ders verir', 'Fransızca, resim'], ['Huyu', 'Yufka yürekli'], ['Odası', 'Feride\'nin yanında']],
-    metin: 'Feride\'ye ders veren Fransız mürebbiye. Odası Feride\'ninkine bir kapıyla bağlıdır; sadıktır ama herkese, özellikle de genç hekime fazla güvenir.',
+    kunye: [['Memleketi', 'Fransa'], ['Ders verir', 'Fransızca, resim'], ['Huyu', 'Sadık, yufka yürekli'], ['Odası', 'Feride\'ninkine bitişik']],
+    metin: 'Feride\'ye ders veren Fransız mürebbiye. Odası Feride\'ninkine bir kapıyla bağlıdır. Sadıktır, ama herkese, özellikle de genç hekime fazla güvenir.',
   },
 ];
 
@@ -85,7 +85,7 @@ window.BOLUMLER = [
   { no: 101, ad: 'Düğün Evi', ozet: 'Bir düğün bahçesi, bir fısıltı ve bir yıldır görmediğin sözlün.' },
   { no: 102, ad: 'Konak Akşamı', ozet: 'Piyanonun başında herkes seni izliyor. Hangi şarkıyı çalacaksın?' },
   { no: 103, ad: 'Gerdanlık', ozet: 'Kadife kutuda bir hediye ve onu kimin takacağı sorusu.' },
-  { no: 104, ad: 'Pakt', ozet: 'Leyla\'yla yapılan gizli anlaşma: tehlikeli ama tatlı.' },
+  { no: 104, ad: 'Pakt', ozet: 'Kızların gizli paktı ve Şefik\'in cebinde unutulan bir not.' },
   { no: 105, ad: 'Hekim', ozet: 'Kapın dışarıdan mandallı. İçeri giren tek kişi genç hekim.' },
   { no: 106, ad: 'Topuk ve Nabız', ozet: 'Çardakta bir topuk izi, bilekte hızlanan bir nabız.' },
   { no: 107, ad: 'Ada Vapuru', ozet: 'Güvertede bir perde, rüzgârda bir şal ve tanıdık bir bakış.' },
