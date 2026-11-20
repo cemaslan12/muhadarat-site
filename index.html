@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muhadarat · Fatma Aliye Hanım'ın romanından bir oyun</title>
+<meta name="description" content="1890'ların İstanbul'unda geçen, seçimlerinizle ilerleyen bir aşk ve entrika oyunu. Fatma Aliye Hanım'ın Muhadarat romanından uyarlandı. Tarayıcıda ücretsiz oynayın.">
+<meta name="theme-color" content="#1b1420">
+<meta property="og:title" content="Muhadarat">
+<meta property="og:description" content="1890'ların İstanbul'unda seçimlerinizle ilerleyen bir aşk ve entrika oyunu.">
+<meta property="og:image" content="gorsel/arka/giris.webp">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+
+<!-- Sağ kenarda bölüm sekmeleri -->
+<nav class="sekmeler" aria-label="Bölümler">
+  <a href="#giris" data-renk="kagit">Ana sayfa</a>
+  <a href="#haberler" data-renk="murekkep">Haberler</a>
+  <a href="#karakterler" data-renk="bordo">Karakterler</a>
+  <a href="#hikaye" data-renk="altin">Hikâye</a>
+  <a href="#bolumler" data-renk="zumrut">Bölümler</a>
+  <a href="#roman" data-renk="lacivert">Roman</a>
+</nav>
+
+<!-- Her an görünen oyna mührü -->
+<a class="muhur" href="oyun/" aria-label="Oyna">
+  <span class="muhur-harf">M</span>
+  <span class="muhur-yazi">Oyna</span>
+</a>
+
+<main>
+
+<!-- ============ GİRİŞ ============ -->
+<section id="giris" class="bolum giris">
+  <div class="giris-arka" style="background-image:url(gorsel/arka/giris.webp)"></div>
+  <div class="giris-ic">
+    <div class="levha">
+      <div class="levha-ust">Fatma Aliye Hanım'ın romanından</div>
+      <h1 class="logo">Muhadarat</h1>
+      <div class="levha-cizgi" aria-hidden="true"><span></span>❦<span></span></div>
+      <p class="levha-alt">İstanbul, 1890'lar. Bir yalı, bir sözlü, bir üvey anne ve kimsenin yüksek sesle söylemediği sırlar.</p>
+      <p>On sekiz yaşındaki Feride'nin hayatına sen yön ver. Her seçim bir kapıyı açar, bir başkasını kapatır: kime güveneceğine, kimi seveceğine ve neyi saklayacağına sen karar ver.</p>
+      <a class="dugme dugme-ana" href="oyun/" id="giris-oyna">Oyna</a>
+      <div class="devam-notu" id="devam-notu" hidden></div>
+      <div class="levha-kucuk">Ücretsiz · Tarayıcıda oynanır · Telefonda yatay tutun</div>
+    </div>
+
+    <div class="tablolar" aria-hidden="true">
+      <figure class="tablo tablo-sol"><img src="gorsel/karakter/kenan.webp" alt=""><figcaption>Kenan</figcaption></figure>
+      <figure class="tablo tablo-orta"><img src="gorsel/karakter/feride.webp" alt=""><figcaption>Feride</figcaption></figure>
+      <figure class="tablo tablo-sag"><img src="gorsel/karakter/suha.webp" alt=""><figcaption>Süha</figcaption></figure>
+    </div>
+  </div>
+  <a class="asagi" href="#haberler" aria-label="Aşağı kaydır">⌄</a>
+</section>
+
+<!-- ============ HABERLER ============ -->
+<section id="haberler" class="bolum haberler">
+  <div class="bolum-arka" style="background-image:url(gorsel/arka/salon.webp)"></div>
+  <div class="kagit kagit-haber">
+    <h2 class="baslik">Konaktan Haberler</h2>
+    <div class="haber-listesi" id="haber-listesi"></div>
+  </div>
+</section>
+
+<!-- ============ KARAKTERLER ============ -->
+<section id="karakterler" class="bolum karakterler">
+  <div class="bolum-arka" style="background-image:url(gorsel/arka/bahce.webp)"></div>
+  <div class="kar-ic">
+    <div class="kar-kart">
+      <h2 class="baslik baslik-kucuk">Karakterler</h2>
+      <p class="kar-giris">Konağın her odasında başka bir hesap var. Kime güveneceksin?</p>
+      <div class="kar-ad-satiri">
+        <span class="kar-unvan" id="kar-unvan"></span>
+        <h3 class="kar-ad" id="kar-ad"></h3>
+      </div>
+      <dl class="kunye" id="kar-kunye"></dl>
+      <p class="kar-metin" id="kar-metin"></p>
+    </div>
+    <div class="kar-sahne">
+      <div class="kar-filigran" id="kar-filigran" aria-hidden="true"></div>
+      <button class="ok ok-sol" id="kar-geri" aria-label="Önceki karakter">‹</button>
+      <figure class="tablo tablo-buyuk"><img id="kar-resim" src="gorsel/karakter/feride.webp" alt=""></figure>
+      <button class="ok ok-sag" id="kar-ileri" aria-label="Sonraki karakter">›</button>
+    </div>
+  </div>
+  <div class="madalyonlar" id="madalyonlar" role="tablist" aria-label="Karakter seç"></div>
+</section>
+
+<!-- ============ HİKÂYE ============ -->
+<section id="hikaye" class="bolum hikaye">
+  <div class="bolum-arka" style="background-image:url(gorsel/arka/limonluk.webp)"></div>
+  <div class="hikaye-ic">
+    <div class="kagit kagit-hikaye">
+      <h2 class="baslik">Seçimlerin hikâyeyi yazar</h2>
+      <p>Muhadarat bir okuma değil, bir yaşama oyunu. Her bölümde on beşe yakın karar verirsin ve her kararın izi sonraki satırda, sahne resminde, defterinde görünür.</p>
+      <ul class="ozellikler">
+        <li><b>Gönül</b><span>Kenan mı, Süha mı, yoksa Remzi mi? Her talibin sana ilgisi senin sözlerinle büyür ya da söner.</span></li>
+        <li><b>Koz</b><span>Kapı aralığında duyduğun, gözünle gördüğün her sır bir koz olur. Ne zaman açacağını sen seçersin.</span></li>
+        <li><b>Gardrop</b><span>Gök mavisi ipekli mi, gösterişli tafta mı? Ne giydiğin, salonda nasıl karşılanacağını değiştirir.</span></li>
+        <li><b>Albüm</b><span>Seçimlerine göre açılan anlar yağlı boya tablolar olarak albümünde birikir.</span></li>
+      </ul>
+    </div>
+    <div class="kolaj" aria-hidden="true">
+      <figure class="tablo kolaj-1"><img src="gorsel/sahne/vapur.webp" alt=""></figure>
+      <figure class="tablo kolaj-2"><img src="gorsel/sahne/mehtap.webp" alt=""></figure>
+      <figure class="tablo kolaj-3"><img src="gorsel/sahne/nabiz.webp" alt=""></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BÖLÜMLER ============ -->
+<section id="bolumler" class="bolum bolumler">
+  <div class="bolum-arka" style="background-image:url(gorsel/arka/iskele.webp)"></div>
+  <div class="bolumler-ic">
+    <h2 class="baslik baslik-acik">Birinci Sezon</h2>
+    <p class="bolumler-alt" id="bolumler-alt">On altı bölüm. Her bölüm 10–15 dakika.</p>
+    <div class="bolum-izgara" id="bolum-izgara"></div>
+  </div>
+</section>
+
+<!-- ============ ROMAN ============ -->
+<section id="roman" class="bolum roman">
+  <div class="bolum-arka" style="background-image:url(gorsel/arka/oda.webp)"></div>
+  <div class="roman-ic">
+    <figure class="tablo tablo-roman"><img src="gorsel/sahne/roman.webp" alt="Lamba ışığında roman okuyan genç kız"></figure>
+    <div class="kagit kagit-roman">
+      <h2 class="baslik">Romandan oyuna</h2>
+      <p><b>Fatma Aliye Hanım</b> (1862–1936), Türk edebiyatının ilk kadın romancılarındandır. <i>Muhadarat</i>, 1892'de yayımlandı ve konak hayatını, kadınların sesini, evlilik pazarlığını ve bir genç kızın onuru için verdiği mücadeleyi anlattı.</p>
+      <p>Bu oyun romandan serbestçe uyarlandı. Bazı adlar ve olaylar değişti, Feride'ye romandakinden daha çok söz hakkı verildi. Ama ruhu aynı: bir genç kız, ona biçilen hayatı sorgulamaya başlıyor.</p>
+      <a class="dugme" href="oyun/">Hikâyeye başla</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="alt">
+  <div class="alt-logo">Muhadarat</div>
+  <div class="alt-cizgi" aria-hidden="true">❦</div>
+  <nav class="alt-baglantilar" aria-label="Alt bağlantılar">
+    <a href="#giris">Ana sayfa</a>
+    <a href="#karakterler">Karakterler</a>
+    <a href="#bolumler">Bölümler</a>
+    <a href="oyun/">Oyna</a>
+    <button type="button" class="baglanti" id="gizlilik-ac">Gizlilik</button>
+  </nav>
+  <p class="alt-kucuk">© 2026 Muhadarat · Fatma Aliye Hanım'ın <i>Muhadarat</i> (1892) romanından uyarlanmıştır.</p>
+</footer>
+
+<dialog id="gizlilik" class="pencere">
+  <h2>Gizlilik</h2>
+  <p>Bu site çerez kullanmaz ve sizden kişisel bilgi toplamaz. Oyundaki ilerlemeniz yalnız bu tarayıcıda (yerel depolamada) saklanır; başka bir yere gönderilmez. Tarayıcı verilerini silerseniz kaydınız da silinir.</p>
+  <form method="dialog"><button class="dugme">Tamam</button></form>
+</dialog>
+
+<script src="veri.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
