@@ -408,17 +408,18 @@
            endişeli, mahzun → endişeli), elbise değişmesin; (4) gülme ifadesi ya da ana'sı gülmeyen sette setin ana'sı;
            (5) temel set aynı zincirle; (6) setin ana'sı. */
         const setId = portreSet, g = alt.gorsel;
-        // Tur 35: çıkıkçı sardıktan sonra kol, sonraki bölümlerde de askıda kalır.
-        if (S.bayrak && S.bayrak.p14_aski) {
-          const aski = gor(g, S.bayrak.p15_aski === 'sakla' ? 'sargili_sal' : 'sargili');
-          if (aski) return saydamla(aski);
-        }
         // Tur 35: takı ve madalyon hâli ifade değişiminden bağımsızdır. Yalnız kayıtlı çeşitler kullanılır.
         const t35 = S.taki && S.taki !== 'madalyon' ? S.taki : null, bf35 = S.bayrak || {};
         const hal35 = bf35.madalyon_kural === 'elbise'
           ? (S.giyili === 'nisan_yadigar' ? 'acik' : 'sakli')
           : (bf35.madalyon_hal || 'acik');
         const durum35 = hal35 === 'yok' ? 'sakli' : hal35;
+        // Askı, şal ve madalyon hâli birlikte çözülür.
+        if (bf35.p14_aski) {
+          const askiAd = bf35.p15_aski === 'sakla' ? 'sargili_sal' : 'sargili';
+          const aski = gor(g, askiAd + '_' + durum35) || gor(g, askiAd);
+          if (aski) return saydamla(aski);
+        }
         const yuzler35 = [ifade || 'ana'].concat(ifadeAdaylari(ifade || 'ana')).filter((x, i, a) => a.indexOf(x) === i);
         const anahtar35 = [];
         for (const yuz of yuzler35) {
