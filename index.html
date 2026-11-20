@@ -10,6 +10,11 @@
 <meta property="og:description" content="1890'ların İstanbul'unda seçimlerinizle ilerleyen bir aşk ve entrika oyunu.">
 <meta property="og:image" content="gorsel/arka/giris.webp">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="gorsel/simge/simge-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Aşkın Bedeli">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -28,7 +33,7 @@
 </nav>
 
 <!-- Her an görünen oyna mührü -->
-<a class="muhur" href="oyun/" aria-label="Oyna">
+<a class="muhur" href="giris.html" aria-label="Oyna">
   <span class="muhur-harf">A</span>
   <span class="muhur-yazi">Oyna</span>
 </a>
@@ -45,9 +50,10 @@
       <div class="levha-cizgi" aria-hidden="true"><span></span>❦<span></span></div>
       <p class="levha-alt">İstanbul, 1890'lar. Bir yalı, bir sözlü, bir üvey anne ve kimsenin yüksek sesle söylemediği sırlar.</p>
       <p>On sekiz yaşındaki Feride'nin hayatına sen yön ver. Her seçim bir kapıyı açar, bir başkasını kapatır: kime güveneceğine, kimi seveceğine ve neyi saklayacağına sen karar ver.</p>
-      <a class="dugme dugme-ana" href="oyun/" id="giris-oyna">Oyna</a>
+      <a class="dugme dugme-ana" href="giris.html" id="giris-oyna">Oyna</a>
       <div class="devam-notu" id="devam-notu" hidden></div>
       <div class="levha-kucuk">Ücretsiz · Tarayıcıda oynanır · Telefonda yatay tutun</div>
+      <button class="dugme-ekle" id="ekle-dugme" type="button" hidden>＋ Ana ekrana ekle</button>
     </div>
 
     <div class="tablolar" aria-hidden="true">
@@ -133,7 +139,7 @@
       <h2 class="baslik">Romandan oyuna</h2>
       <p><b>Fatma Aliye Hanım</b> (1862–1936), Türk edebiyatının ilk kadın romancılarındandır. <i>Muhadarat</i>, 1892'de yayımlandı ve konak hayatını, kadınların sesini, evlilik pazarlığını ve bir genç kızın onuru için verdiği mücadeleyi anlattı.</p>
       <p>Aşkın Bedeli bu romandan esinlendi. Bazı adlar ve olaylar değişti, Feride'ye romandakinden daha çok söz hakkı verildi. Ama ruhu aynı: bir genç kız, ona biçilen hayatı sorgulamaya başlıyor.</p>
-      <a class="dugme" href="oyun/">Hikâyeye başla</a>
+      <a class="dugme" href="giris.html">Hikâyeye başla</a>
     </div>
   </div>
 </section>
@@ -147,7 +153,7 @@
     <a href="#giris">Ana sayfa</a>
     <a href="#karakterler">Karakterler</a>
     <a href="#bolumler">Bölümler</a>
-    <a href="oyun/">Oyna</a>
+    <a href="giris.html">Oyna</a>
     <button type="button" class="baglanti" id="gizlilik-ac">Gizlilik</button>
   </nav>
   <p class="alt-kucuk">© 2026 Aşkın Bedeli · Fatma Aliye Hanım'ın <i>Muhadarat</i> (1892) romanından esinlenmiştir.</p>
@@ -155,10 +161,23 @@
 
 <dialog id="gizlilik" class="pencere">
   <h2>Gizlilik</h2>
-  <p>Bu site çerez kullanmaz ve sizden kişisel bilgi toplamaz. Oyundaki ilerlemeniz yalnız bu tarayıcıda (yerel depolamada) saklanır; başka bir yere gönderilmez. Tarayıcı verilerini silerseniz kaydınız da silinir.</p>
+  <p>Bu site reklam ya da izleme çerezi kullanmaz.</p>
+  <p><b>Misafir olarak</b> oynarsanız ilerlemeniz yalnız bu tarayıcıda saklanır; başka bir yere gönderilmez.</p>
+  <p><b>Google ya da Apple ile</b> girerseniz adınız, e-posta adresiniz ve oyun kaydınız, ilerlemeniz cihazlar arasında korunsun diye Google Firebase sunucularında saklanır. Bu bilgiler başka bir amaçla kullanılmaz ve kimseyle paylaşılmaz. Hesabınızı ve kaydınızı giriş sayfasındaki "Hesabımı sil" ile istediğiniz an silebilirsiniz.</p>
   <form method="dialog"><button class="dugme">Tamam</button></form>
 </dialog>
 
+<dialog id="ekle-ios" class="pencere">
+  <h2>Ana ekrana ekle</h2>
+  <ol class="ekle-adim">
+    <li>Safari'nin altındaki <b>Paylaş</b> düğmesine dokunun <span aria-hidden="true">(□↑)</span>.</li>
+    <li>Listeden <b>Ana Ekrana Ekle</b>'yi seçin.</li>
+    <li>Sağ üstteki <b>Ekle</b>'ye dokunun.</li>
+  </ol>
+  <form method="dialog"><button class="dugme">Tamam</button></form>
+</dialog>
+
+<script src="pwa.js"></script>
 <script src="veri.js"></script>
 <script src="site.js"></script>
 </body>

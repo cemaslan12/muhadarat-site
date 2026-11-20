@@ -16,6 +16,10 @@
     });
     /* Tur 28: kıyafet çeşidi resmi geldiyse (an_x_aksam, an_x_gecelik, an_x_nisan_*) ve temel an kayıtlıysa çeşit
        kendiliğinden kaydolur; bölüm dosyasında ayrıca kayıt gerekmez (anResmi bu kayıtları giyilen kıyafete göre seçer). */
+    // Tur 35: askıyı saklayan şallı görücü tablosu aynı anın fiziksel çeşididir.
+    if (V.cizimResimleri.an_yelpaze_sal && V.cizimler.an_yelpaze) {
+      V.cizimler.an_yelpaze_sal = Object.assign({}, V.cizimler.an_yelpaze, { gorsel: V.cizimResimleri.an_yelpaze_sal });
+    }
     const CESIT_SONEK = /^(.+)_(nisan_sade|nisan_gosterisli|nisan_yadigar|aksam|gecelik|ziyaret|dugun|ferace)$/;
     Object.keys(V.cizimResimleri).forEach(function (id) {
       if (V.cizimler[id]) return;
@@ -405,12 +409,12 @@
            (5) temel set aynı zincirle; (6) setin ana'sı. */
         const setId = portreSet, g = alt.gorsel;
         // Tur 35: çıkıkçı sardıktan sonra kol, sonraki bölümlerde de askıda kalır.
-        if (S.bayrak.p14_aski) {
+        if (S.bayrak && S.bayrak.p14_aski) {
           const aski = gor(g, S.bayrak.p15_aski === 'sakla' ? 'sargili_sal' : 'sargili');
           if (aski) return saydamla(aski);
         }
         // Tur 35: takı ve madalyon hâli ifade değişiminden bağımsızdır. Yalnız kayıtlı çeşitler kullanılır.
-        const t35 = S.taki || null, bf35 = S.bayrak || {};
+        const t35 = S.taki && S.taki !== 'madalyon' ? S.taki : null, bf35 = S.bayrak || {};
         const hal35 = bf35.madalyon_kural === 'elbise'
           ? (S.giyili === 'nisan_yadigar' ? 'acik' : 'sakli')
           : (bf35.madalyon_hal || 'acik');
@@ -470,7 +474,7 @@
     const k = V.karakterler[id];
     if (!k || !k.gorsel) return null;
     // Tur 35: Remzi gecesindeki hayırda Perihan beyaz ipek ve mavi kurdele taşır.
-    if (id === 'calibe' && S && S.bolum === 116 && S.bayrak.p16_hayir === 'gece') {
+    if (id === 'calibe' && S && S.bolum === 116 && S.bayrak && S.bayrak.p16_hayir === 'gece') {
       const geceYuz = gor(k.gorsel, (ifade || k.varsayilan || 'ana') + '_aksam') || gor(k.gorsel, 'ana_aksam');
       if (geceYuz) return saydamla(geceYuz);
     }
@@ -1204,6 +1208,10 @@
       const t = C[aid];
       return (t && t.gorsel) ? { gorsel: t.gorsel, anahtar: aid } : null;
     };
+    if (id === 'an_yelpaze' && S && S.bayrak && S.bayrak.p15_aski === 'sakla') {
+      const sal = bul('an_yelpaze_sal');
+      if (sal) return sal;
+    }
     const r = bul(id);
     if (r) return r;
     const y = AN_YEDEK[id];

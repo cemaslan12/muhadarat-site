@@ -117,7 +117,7 @@
     else if (b.no === acik) { durum = simdiki ? 'Devam et' : 'Başla'; sinif = 'siradaki'; }
     else { durum = 'Kilitli'; sinif = 'kilitli'; }
     const kart = el(sinif === 'kilitli' ? 'div' : 'a', 'bolum-kart ' + sinif + (b.no === 116 ? ' final' : ''));
-    if (kart.tagName === 'A') kart.href = 'oyun/';
+    if (kart.tagName === 'A') kart.href = 'giris.html';
     const img = el('img');
     img.src = 'gorsel/bolum/' + String(sira).padStart(2, '0') + '.webp';
     img.alt = '';
