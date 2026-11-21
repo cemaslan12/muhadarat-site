@@ -1206,6 +1206,10 @@
   function anResmi(id, giyili, hal) {
     const C = V.cizimler || {};
     const var_ = (a) => C[a] && C[a].gorsel ? { gorsel: C[a].gorsel, anahtar: a } : null;
+    if (S && C[id] && C[id].cesitSec) {
+      const secilen = var_(C[id].cesitSec(S, giyili));
+      if (secilen) return secilen;
+    }
     const bul = (aid) => {
       for (const k of (giyili ? (CESIT_YAKIN[giyili] || [giyili]) : [])) {
         // Tur 28: takı durumu (madalyon açık/saklı) resmi ayırıyorsa önce o tür: an_x_<kıyafet>_<hal>
@@ -2701,6 +2705,12 @@
   function cizimAl(id) {
     const c0 = V.cizimler[id] || {};
     const k = S && S.cizimCesit && S.cizimCesit[id];
+    // Eski kayıtlarda yalnız kıyafet yazılıdır. O günkü seçimi ve kayıtlı kıyafeti birlikte çöz.
+    if (S && c0.cesitSec) {
+      const giyili = k && k.startsWith(id + '_') ? k.slice(id.length + 1) : null;
+      const r = anResmi(id, giyili);
+      if (r) return Object.assign({}, c0, { gorsel: r.gorsel });
+    }
     const c = k && V.cizimler[k];
     const kendi = k && (k === id || k.indexOf(id + '_') === 0);
     // Yedekle açılmış an kendi resmine kavuştuysa artık yedeği değil kendi resmini göster

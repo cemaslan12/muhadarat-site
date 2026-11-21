@@ -695,3 +695,18 @@ body.plan-modu #ust-cubuk > * { pointer-events: auto; }
 .cizim-kart .cizim-yakin img { border: 0; box-shadow: none; transform: scale(1.7); display: block; }
 .cizim-galeri .cizim-yakin { border-width: .2cqw; box-shadow: none; }
 .cizim-galeri .cizim-yakin img { border: 0; transform: scale(1.7); }
+
+/* Geniş ekran (telefon yatay, 19.5:9 vb.): yazı ve düğmeler 16:9 alanda kalır (çentiğe girmez),
+   resim katmanları ekranın iki yanına taşar; siyah şerit kalmaz. Üst ve alttan biraz kırpılır.
+   Dosyanın sonunda durmalı: önceki inset:0 kurallarını ezer. */
+@media (min-aspect-ratio: 16/9) {
+  #cerceve { overflow: hidden; }
+  #sahne, #anlati { overflow: visible; }
+  #arkaplan, #arkaplan-yedek, .gecis-fon, #isik-perde, #isik-lamba, #anlati img, #anlati .anlati-golge {
+    left: calc(50% - 50vw); right: auto; width: 100vw;
+  }
+  #anlati { box-shadow: 0 0 0 100vw #0d0a10; }
+  #baslik-ekrani { box-shadow: 0 0 0 100vw #0d090f; }
+  #kart { box-shadow: 0 0 0 100vw rgba(10, 6, 12, .92); }
+  #panel { box-shadow: 0 0 0 100vw rgba(5, 3, 6, .7); }
+}

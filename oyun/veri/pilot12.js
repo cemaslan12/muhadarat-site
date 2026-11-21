@@ -770,9 +770,9 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             /* Tur 33 (t33 B12 anlatı 5): fincanlar bir gece kalmaz; kaldırılmış, tabakları unutulmuş */
             { eger: (S) => b(S).p11_acis === 'seslen', ise: [
-              ['an', 'Buluşma yerini Feride seçmişti: dün iki sesi duyduğu oda. Sehpada iki fincan duruyordu.'],
+              ['an', 'Buluşma yerini Feride seçmişti: dün iki sesi duyduğu oda. Sehpada iki boş tabak duruyordu.'],
             ], degilse: [
-              ['an', 'Buluşma yerini Feride seçmişti: dün sırrın açıldığı oda. Sehpada iki fincan duruyordu.'],
+              ['an', 'Buluşma yerini Feride seçmişti: dün sırrın açıldığı oda. Sehpada iki boş tabak duruyordu.'],
             ] },
           ] }] },
           /* 11. bölüm: çekilen pim */

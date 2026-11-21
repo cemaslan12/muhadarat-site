@@ -100,6 +100,14 @@ window.BOLUMLER = window.BOLUMLER || {};
 
 (function () {
   var V = window.OYUN_VERISI;
+  // El tutuşu yalnız "el" seçiminin anıdır. Eski kıyafet çeşitlerinde eller ayrıdır.
+  V.cizimler.an_duvar_temassiz = Object.assign({}, V.cizimler.an_duvar, { temelAn: 'an_duvar' });
+  V.cizimler.an_duvar.cesitSec = function (S, giyili) {
+    if ((S.bayrak || {}).p9_duvar === 'el') return 'an_duvar';
+    if (giyili === 'ziyaret') giyili = 'nisan_yadigar';
+    if (giyili === 'nisan_yadigar' || giyili === 'nisan_gosterisli') return 'an_duvar_' + giyili;
+    return 'an_duvar_temassiz';
+  };
   // Yeni mekânların kendi görseli gelene kadar en yakın eski fon
   // (gündüz sofa: konağın gündüz sofası; bahçe duvarı: Ada bahçesi; mutfak: konak mutfağı, alacakaranlık)
   var YEDEK = { ada_sofa_gunduz: 'konak_sofa_gunduz', ada_duvar: 'ada_bahce', ada_mutfak: 'mutfak',

@@ -77,6 +77,12 @@ window.BOLUMLER = window.BOLUMLER || {};
         if (!V.cizimler[id + c]) V.cizimler[id + c] = { ad: ANLAR27[id].ad, alt: ANLAR27[id].alt };
       });
     });
+    // Törenin kendi kararı galeride de geçerlidir. Pembe ve mavi tören resimlerinde madalyon açıktır.
+    V.cizimler.an_gerdanlik_kenan.cesitSec = function (S, giyili) {
+      if ((S.bayrak || {}).p3_madalyon !== 'ikisi') return 'an_gerdanlik_kenan_sakli';
+      if (giyili === 'nisan_yadigar' || giyili === 'nisan_gosterisli') return 'an_gerdanlik_kenan_' + giyili;
+      return 'an_gerdanlik_kenan';
+    };
     ['_nisan_gosterisli', '_nisan_yadigar'].forEach(function (c) {
       var t = V.cizimler.an_kilit;
       if (t && !V.cizimler['an_kilit' + c]) V.cizimler['an_kilit' + c] = { ad: t.ad, alt: t.alt };

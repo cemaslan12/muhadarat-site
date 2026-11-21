@@ -89,6 +89,9 @@
   try { const a = JSON.parse(localStorage.getItem('muhadarat_ses') || 'null'); if (a) { ayar.muzik = a.muzik !== false; ayar.efekt = a.efekt !== false; } } catch (e) { /* yok */ }
   function ayarKaydet() { try { localStorage.setItem('muhadarat_ses', JSON.stringify(ayar)); } catch (e) { /* yok */ } }
 
+  // iPhone: Safari Web Audio'yu sessiz düğmesiyle susturur; 'playback' oturumu sesi sessiz modda da çaldırır
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) { /* desteklenmiyor */ }
+
   // Tarayıcılar sesi ancak ilk dokunuştan sonra açar
   function uyandir() {
     if (!ctx) {

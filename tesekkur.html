@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teşekkürler · Aşkın Bedeli</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1b1420">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css?v=6">
+</head>
+<body class="giris-sayfasi">
+<main class="bolum giris-kapi">
+  <div class="giris-arka" style="background-image:url(gorsel/arka/giris.webp)"></div>
+  <div class="levha kapi-levha">
+    <div class="levha-ust">Aşkın Bedeli</div>
+    <h1 class="logo">Teşekkürler</h1>
+    <div class="levha-cizgi" aria-hidden="true"><span></span>❦<span></span></div>
+    <p class="levha-alt">Desteğiniz bize ulaştı.</p>
+    <p>Sezonun kalan bölümleri artık sizin. Feride sizi kaldığınız yerde bekliyor; ikinci sezon da biraz sizin sayenizde yazılacak.</p>
+    <a class="dugme dugme-ana" href="oyun/">Oyuna dön</a>
+    <p class="kapi-kucuk" style="margin-top:16px">Bir sorun olursa ya da bölümler açılmazsa bu sayfayı yeniden açmanız yeterli.</p>
+  </div>
+</main>
+<script src="firebase-ayar.js?v=6"></script>
+<script src="olcum.js?v=6"></script>
+<script>
+  // Ödeme sayfası buraya döner. Destek kaydı bu tarayıcıya yazılır (kilit tarayıcıdadır; Cemil'in kararı).
+  try {
+    const ilk = localStorage.getItem('muhadarat_destek') !== '1';
+    localStorage.setItem('muhadarat_destek', '1');
+    localStorage.removeItem('muhadarat_bekle');
+    if (ilk) {
+      const tutar = Number(new URLSearchParams(location.search).get('tutar')) || 0;
+      const gonder = () => window.olcum && window.olcum('odeme_tamamlandi', { value: tutar, currency: 'TRY' });
+      // Ölçüm izni verilmişse gtag yüklenince gönder
+      setTimeout(gonder, 1500);
+    }
+  } catch (e) { /* yok */ }
+</script>
+</body>
+</html>

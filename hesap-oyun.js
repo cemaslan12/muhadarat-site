@@ -12,6 +12,10 @@ if (!t) {
     H.kullanici().then((u) => {
       if (!u) { H.turYaz(null); location.replace('../giris.html'); return; }
       H.esitlemeyiBaslat(u);
+      // Ödeme sunucusu hesaba "sezon1" yazdıysa bu cihazda da kilidi aç
+      H.sezonAcik(u).then((acik) => {
+        if (acik) { try { localStorage.setItem('muhadarat_destek', '1'); } catch (e) { /* yok */ } if (window.destekDenetle) window.destekDenetle(); }
+      }).catch(() => {});
     }).catch(() => { /* çevrimdışı: oyun yerel kayıtla sürer */ });
   }
   bolumleriIzle();
