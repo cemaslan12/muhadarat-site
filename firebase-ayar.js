@@ -1,7 +1,14 @@
 /* Firebase proje ayarı (gizli değildir; her Firebase web uygulamasında sayfada görünür).
    Firebase konsolu → Proje ayarları → Uygulamalarınız → Web uygulaması → "firebaseConfig" nesnesini
    aşağıya yapıştırın. Boş (null) kaldıkça Google ve Apple düğmeleri "yakında" görünür; misafir girişi çalışır. */
-window.FIREBASE_AYAR = null;
+window.FIREBASE_AYAR = {
+  apiKey: 'AIzaSyCcwoaHSfAiBLWatz8DcOmedjEo_KxSyIM',
+  authDomain: 'askin-bedeli.firebaseapp.com',
+  projectId: 'askin-bedeli',
+  storageBucket: 'askin-bedeli.firebasestorage.app',
+  messagingSenderId: '1081044279332',
+  appId: '1:1081044279332:web:a021a5630a9e177c11b8b1',
+};
 
 /* Apple ile giriş, Apple Developer üyeliği ve Firebase'de Apple sağlayıcısı açılınca true yapılır. */
 window.APPLE_ACIK = false;
