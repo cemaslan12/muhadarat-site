@@ -291,7 +291,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['suha', 'Yarın ezan vakti, sarı odada. Orada duvarlar kalın.', 'alayci'],
           { efekt: 'kapi_kapa' }, { gizle: 'calibe' },
           /* Tur 32 (t32 B11 anlatı 1): saatin kızın duyacağı sesle söylendiği görünür (12. bölümün "gösteri"sinin tohumu) */
-          ['an', 'Süha Bey saati, karanlıkta duyulacak kadar yüksek söylemişti. Dönüp Feride’ye baktı.'],
           /* İlk karar yola göre (GPT Tur 19 ek, cevap 2) */
           { eger: kabul, ise: [
             ['suha', 'Gizli evetiniz bende. Sabah babanızdan isterim.', 'soguk'],
@@ -590,7 +589,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ], degilse: [{ eger: (S) => b(S).p10_teklif === 'ret' || ['hayir', 'gonder', 'geri'].indexOf(b(S).p11_baba) >= 0, ise: [
                 ['ic', 'Limon kolonyası, biraz tütün. Hayırımı ben söyledim; ellerini de ben istedim.', 'utanmis'],
               ], degilse: [
-                ['ic', 'Limon kolonyası, biraz tütün. Kalbim beni dinlemiyor.', 'utanmis'],
+                ['ic', 'Limon kolonyası, biraz tütün.', 'utanmis'],
               ] }] }] },
             ] },
             { m: '“Ceketinizi Perihan Hanım\'a götürün. Ezana kadar üşümesin.”', etki: { vakar: 1 }, bayrak: { p11_vapur: 'perihan' }, iz: 'Süha, gece kapıda onu duyduğunu anladı.', adimlar: [
@@ -767,7 +766,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Babam merdivene bakıyor. Sarı odada kimin olduğunu biliyorum.', secim: [
             { m: '“Ben çağırırım babacığım.”', bayrak: { p11_cagri: 'ben' }, adimlar: [
               { eger: (S) => b(S).p11_perihan === 'igne', ise: [
-                ['ic', 'Sofraya hekimi ben getireceğim.', 'kararli'],
+                ['ic', 'Babam sandalyeyi boş bıraktı.', 'kararli'],
               ], degilse: [
                 ['sai', 'Çağır kızım. Beklemeyi sevmem.', 'notr'],
               ] },
@@ -814,7 +813,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: (S) => !muk(S) && b(S).p10_dakika2 === 'el', ise: [
             ['ic', 'Dün gece elimi eşikte tutan adam, şimdi Perihan Hanım\'ın eşiğinde.', 'mahzun'],
           ], degilse: [{ eger: muk, ise: [
-            ['ic', 'Kenan\'ın adını kirleten iki ses, aynı eşikte. Adını temizleyecek söz de bu odada.', 'kararli'],
           ], degilse: [
             ['ic', 'Dün gece kapımda bekleyen adam, şimdi Perihan Hanım\'ın eşiğinde.', 'mahzun'],
           ] }] },
@@ -826,7 +824,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { m: 'Kapıyı açmadan babanın çağrısını ilet.', bayrak: { p11_acis: 'seslen', p11_soz: 'cagri' }, iz: 'Kapıyı açmadın; içeridekileri görmeden sofraya döndün.', adimlar: [
               ['f', 'Perihan Hanım, babam sizi sofraya çağırıyor.', 'kararli'],
               ['calibe', 'Geliyorum kızım.', 'soguk'],
-              'Kapı açılmadan merdivene döndüm.',
+              'Merdivende arkamdan gelen olmadı.',
             ] },
             { m: 'Tıklat ve bekle.', bayrak: { p11_acis: 'tikla' }, iz: 'Kapıyı tıklattın; toparlanacak vakit buldular, yine de gördün.', adimlar: [
               { efekt: 'kapi_tik' }, // Tur 32 (t32 B11 ses 2): tıklatma; kanat sesi açılınca
@@ -1037,7 +1035,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* GPT T28 11-O1: görüleni düz söylemek de bir taktik (koz kilidi; bedeli Perihan'ın açık karşı saldırısı) */
             { m: '“Nabzınızı değil, belinizi tutuyordu. Kapı açıldığında gördüm babacığım.”', kozGerek: ESIK, kosul: (S) => var_(S, ESIK), etki: { calibe_suphe: 2, baba_guven: -1 }, bayrak: { p11_sofra: 'gordum' }, iz: 'Gördüğünü babanın önünde düz söyledin; Perihan artık açıktan karşında.', adimlar: [
               { eger: (S) => b(S).p11_soz === 'madam', ise: [
-                ['f', 'Madam da gördü babacığım.', 'kararli'],
+                ['f', 'Madam da gördü babacığım.', 'endiseli'],
                 ['sai', 'Madam\'ı sabah dinlerim. Sofrada hüküm vermem.', 'ciddi'],
               ], degilse: [
                 ['sai', 'Yalnız sen gördün kızım. Sofrada buna dayanıp hüküm veremem.', 'ciddi'],
@@ -1056,7 +1054,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Tur 27b (GPT B11-A1/D1): ters tepen iğnenin karşılığı — sabah kazanılan söz bozulunca anılır; ret ya da
                  Kenan yolunda sesli itiraz; yalnız Süha'ya yakın kızda bilinçli gülümseme, hareketle */
               { eger: (S) => !!b(S).p11_baba_soz, ise: [
-                ['f', 'Son sözü benden dinleyecektiniz babacığım.', 'kararli'],
+                ['f', 'Son sözü benden dinleyecektiniz babacığım.', 'mahzun'],
                 ['sai', 'Dinlerim kızım. Önce hanım söylesin.', 'notr'],
                 ['ic', 'Sabahki söz sofrada döndü. Süha Bey ikimize birden baktı.', 'mahzun'],
               ], degilse: [{ eger: yakin, ise: [
@@ -1238,7 +1236,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         delik: 'Sarı odayı anahtar deliğinden gördüm',
         it: 'Pimini çektiğim sarı oda kapısını ittim',
       }[f.p11_acis] || 'Sarı odanın kapısını açtım') + '; ' + ({
-        cagri: 'içeridekileri görmeden sofraya döndüm.',
+        cagri: 'sofraya döndüm.',
         baba: 'görmemiş gibi babamın çağrısını söyledim.',
         kapi: 'kapılarını kapamalarını yüzlerine söyledim.',
         fincan: 'iki fincanı ellerine verdim.',

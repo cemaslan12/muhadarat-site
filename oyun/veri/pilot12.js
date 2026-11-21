@@ -442,7 +442,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       /* 11. bölüm gece kapının altından giren kâğıtla bitti; sabah hemen karşılanır (anlatıcı sesi, doruk söylenmez) */
       { anlati: { gorsel: 'konak_sofa_gunduz', baslik: 'Diz Çöken Adam', satirlar: [
         /* Tur 33 (t33 B12 diyalog 1, anlatı 1): "sıcak kâğıt" mecazı ve üçüncü kez yinelenen istek sahnesi kalktı */
-        'Sait Efendi sabah kahvesini selamlıkta içerdi. Süha Bey’in dünkü isteğine de fincan bitince cevap verecekti.',
+        'Sabah selamlıkta kahve pişti. Fincanı Sait Efendi’nin önüne koydular.',
         /* Sürükleyicilik T1 (S4): bölümün tek sorusu ilk ekranda. Tur 27 (B12 anlatı 1): vurucu an (diz) söylenmez */
         'Feride babasının yanına yetişmek için merdivene yöneldi.',
       ] } },
@@ -638,7 +638,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
           ] },
           { eger: function (S) { return b(S).p12_perihan === 'in'; }, ise: [
-            ['an', 'Perihan Hanım tek kelime kaçırmamıştı; şimdi sıra ondaydı.'],
+            ['an', 'Perihan Hanım fincanını yerine bıraktı.'],
           ], degilse: [{ eger: function (S) { return !!b(S).p12_v_nazli; }, ise: [
             /* Oynanış T1 B6: kahve vaktinde riskli geçidin bedeli (Nazlı gördü) */
             ['an', 'Perihan Hanım sonradan geldi; Nazlı eteğine yapışmış, parmağıyla Feride\'yi gösteriyordu.'],
@@ -675,7 +675,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* Tur 27 (B12 anlatı 2 / oynanış 4): Remzi ipliği kopmasın (15. bölümün Remzi kapısı); istemeye gelenlerin saati */
           ['calibe', 'Remzi Bey daha kuşluk olmadan kapıya adam yollamış efendi.', 'sinsi'],
-          ['sai', 'Parası kapımı satın almaz.', 'ciddi'],
+          ['sai', 'Adamına söyleyin. Kızım cevap vermeden bu kapıya gelmesin.', 'ciddi'],
           { eger: function (S) { return (S.gonul.remzi || 0) >= 10 || b(S).p11_remzi === 'salon' || b(S).p11_remzi === 'nabi'; }, ise: [
             ['ic', 'Remzi Bey her şeye fiyat biçer. Bana bir kez biçmemişti.', 'tebessum'],
           ] },
@@ -1448,7 +1448,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Tur 29 (t29 B12 anlatı 1, oynanış 2): Kenan yolunda suçlama doğru (Selanik'ten Şefik'in adına tel geliyor);
                kanıtsız kıza dürüst savunma — inkâr değil, açıklık. GUCLU'ya girmez: suçlama babada tutar, ama yalan
                söylemeyen kızın sözü olarak (babanın cevabı aşağıda). p12_v_karsi 'acik' yalnız bu bölüm okur. */
-            { m: '“Şefik\'in adına Selanik\'ten tel geliyor babacığım. Gizlim yok; utancım da yok.”', kosul: function (S) { return muk(S) && !kanitli(S); }, etki: { vakar: 1 }, bayrak: { p12_v_karsi: 'acik' }, iz: 'Suçlamayı inkâr etmedin; doğrusunu babanın önünde kendin söyledin.', adimlar: [
+            { m: '“Tel Şefik’in adına geldi babacığım. Okuyayım mı?”', kosul: function (S) { return muk(S) && !kanitli(S); }, etki: { vakar: 1 }, bayrak: { p12_v_karsi: 'acik' }, iz: 'Suçlamayı inkâr etmedin; doğrusunu babanın önünde kendin söyledin.', adimlar: [
               ['sai', 'Gizlin yok; bunu bilirim. Ama kapım kapalı kızım.', 'mahzun'],
             ] },
             { m: '“İnanmayın babacığım.”', bayrak: { p12_v_karsi: 'inkar' }, adimlar: [
@@ -1638,7 +1638,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['sai', 'Süha, bu iş aydınlanana kadar kızımla yalnız görüşmeyeceksin.', 'ciddi'],
             { soru: 'Babam nikâhı durdurdu. Kazandığım sözü nasıl kaydedeceğim?', secim: [
               { m: '“Nikâhın durduğunu siz de yazın babacığım.”', bayrak: { p12_son: 'teyit' }, adimlar: [
-                ['sai', 'Yazarım. Şahitlerin önünde verdiğim sözü geri almam.', 'ciddi'],
+                ['sai', 'Yazarım kızım. Hokkayı yanıma koy.', 'ciddi'],
               ] },
               { m: '“O gün de kararımı ben vereceğim.”', bayrak: { p12_son: 'sus', p12_riza: false, p12_karar: 'karar_hakki' }, adimlar: [
                 ['sai', 'O gün sana sorulacak. Bugün nikâhı durdurdum.', 'mahzun'],
@@ -1771,7 +1771,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       }
       c.unshift(({ madam: 'Sabah Madam gördüğünü babama söyledi', baba: 'Sabah Süha Bey\'i babamın önünde dinledim', yalniz: 'Sabahı babama açmadım' }[f.p12_sabah] || 'Sabah babam kahvesini içti') + '.');
         /* Tur 29 (t29 B12 anlatı 1): Kenan yolunda Selanik'le haberleşme gerçek — "iftira" değil "suçlama"; açık savunma ayrı */
-        var aksam = f.p12_v_karsi === 'acik' ? 'Mektupları inkâr etmeyince' : f.p12_iftira === 'tuttu' ? 'Mektup sözü babamda tutunca' : 'Mektup sözü boşa çıkınca';
+        var aksam = f.p12_v_karsi === 'acik' ? 'Teli sofrada anlatınca' : f.p12_iftira === 'tuttu' ? 'Mektup sözü babamda tutunca' : 'Mektup sözü boşa çıkınca';
       /* GPT T23 Remzi 12C: ailelerin sözü ile Feride'nin kişisel sözü ayrı (10. bölüm vedası p10_son) */
       /* Sürükleyicilik T1: defter soruyla bitmez; Feride'nin sofradaki sözü */
       /* Cemil 18 Kasım: üçüncü cümle hükümden önceki son hamleyi (p12_son) anar */

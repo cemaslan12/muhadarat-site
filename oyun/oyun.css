@@ -645,9 +645,8 @@ body.plan-modu #ust-cubuk > * { pointer-events: auto; }
   #vakit-bant.plan .vakit-kural { display: none; }
   #vakit-bant .vakit-bitirir { font-size: 14px; }
   .harita-not { display: none; }
-  /* Tur 22 (GPT 2): gezinirken üst araçlar tek sırada kalsın; takat/para sayacı, atla ve geçmiş gezinmede işe
-     yaramaz (menüde ve sahne dönünce yine görünür) */
-  body.plan-modu .ust-sag .sayac, body.plan-modu #atla-dugme, body.plan-modu .ust-sag [data-panel="gecmis"] { display: none; }
+  /* Haritada Geçmiş erişilebilir kalır; sayaç ve metin atlama sahneye dönünce görünür. */
+  body.plan-modu .ust-sag .sayac, body.plan-modu #atla-dugme { display: none; }
   body.plan-modu .ust-sag { flex-wrap: nowrap; }
   #vakit-bant.plan { top: 56px; max-width: 36cqw; padding: 4px 10px; }
   #vakit-bant.plan .vakit-yer, #vakit-bant.plan .vakit-hedef { display: block; margin: 2px 0 0; }
@@ -708,6 +707,21 @@ body.plan-modu #ust-cubuk > * { pointer-events: auto; }
 .cizim-kart .cizim-yakin img { border: 0; box-shadow: none; transform: scale(1.7); display: block; }
 .cizim-galeri .cizim-yakin { border-width: .2cqw; box-shadow: none; }
 .cizim-galeri .cizim-yakin img { border: 0; transform: scale(1.7); }
+
+/* Yükleme ekranı: oyuna girişte ve bölüm başında tam ekran (motor.js hazirlikBekle) */
+#yukleme-ekrani {
+  position: absolute; inset: 0; z-index: 60; display: grid; place-items: center; text-align: center;
+  background: radial-gradient(ellipse at 50% 35%, #3d2a3e 0%, #1b1420 55%, #0d090f 100%);
+  box-shadow: 0 0 0 100vw #0d090f; opacity: 1; transition: opacity .3s;
+}
+#yukleme-ekrani[hidden] { display: none; }
+#yukleme-ekrani.kapan { opacity: 0; }
+.yukleme-ad { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: max(30px, 7cqw); color: var(--altin-acik); letter-spacing: .08em; text-shadow: 0 0 3cqw rgba(201,162,74,.35); }
+.yukleme-bolum { margin-top: 1cqh; min-height: 1.4em; font-size: max(13px, 1.9cqw); color: var(--altin); letter-spacing: .18em; text-transform: uppercase; }
+.yukleme-cubuk { width: min(56cqw, 420px); height: 6px; margin: 6cqh auto 0; background: rgba(232, 207, 138, .2); border-radius: 3px; overflow: hidden; }
+.yukleme-cubuk i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--altin), var(--altin-acik)); transition: width .25s; }
+.yukleme-yazi { margin-top: 2.4cqh; font-size: max(14px, 1.9cqw); font-style: italic; color: var(--kagit); opacity: .9; }
+.yukleme-yazi b { font-style: normal; font-weight: 600; }
 
 /* Açılış yükleme: betikler inene kadar "Yükleniyor…", bölüm resimleri inerken ilerleme çubuğu */
 #acilis-yukleme, #hazirlik { margin-top: 5cqh; font-size: max(13px, 1.7cqw); font-style: italic; color: var(--altin-acik); opacity: .85; }

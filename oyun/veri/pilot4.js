@@ -719,10 +719,10 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['nabi', 'Ben… kulüpte bir dost…', 'mahcup'],
               ['sai', 'Hangi dost Nabi? Adını söyle.', 'ciddi'],
             ] },
-            { m: '“Remzi Bey\'e kırk lira borcunuz kapandı mı?”', etki: { baba_guven: 1, itibar: -2 }, bayrak: { p4_hamle: 'borc' }, iz: 'Kumar borcunu sofraya koydun. Nabi Bey\'in yüzü kül oldu.', adimlar: [
+            { m: '“Remzi Bey\'e kırk lira borcunuz kapandı mı?”', etki: { baba_guven: 1, itibar: -2 }, bayrak: { p4_hamle: 'borc' }, iz: 'Kumar borcunu sofraya koydun.', adimlar: [
               CIK,
               ['f', 'Remzi Bey\'e kırk lira borcunuz kapandı mı Nabi Bey?', 'kararli'],
-              'Nabi Bey\'in yüzü kül rengi oldu.',
+              'Nabi Bey fincanını tabağına oturtamadı.',
               { eger: (S) => !!b(S).p3_remzi_goruldu, ise: [
                 ['calibe', 'Remzi Bey\'le çitin ardında konuşuyordu efendi. Ben gördüm.', 'soguk'],
               ], degilse: [
@@ -1259,8 +1259,8 @@ window.BOLUMLER = window.BOLUMLER || {};
           { efekt: 'kagit' }, // Tur 28 (B4 ses 4)
           'Yelek cebinden katlı bir kâğıt çıkardı.',
           ['remzi', 'Nabi\'nin senedi, kırk lira, altında kendi imzası. Dün gece vadesi doldu.', 'kararli'],
-          ['f', 'Her şeyi satın alan adam söz de satın alır mı?', 'tebessum'],
-          ['remzi', 'Söz pahalı malım değildir hanımefendi. Kâğıt ucuz ama dili uzun.', 'gulumser'],
+          ['f', 'Nabi Bey buna benim baktığımı bilse?', 'tebessum'],
+          ['remzi', 'Borcunu inkâr eder. Elimde kalacak kırk lirayı varın siz hesap edin.', 'gulumser'],
           { soru: 'Senedi uzatıyor. Alırsam ertesi gün benden ne isteyecek?', secim: [
             { m: '“Bana verin.”', etki: { remzi: 6 }, bayrak: { p4_remzi: 'aldi' }, iz: 'Senedi bir teşekküre aldın. Remzi Bey ömründe bu kadar ucuza satmamıştı.', adimlar: [
               ['f', 'Bana verin.', 'kararli'],
@@ -1326,7 +1326,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { eger: (S) => b(S).p3_kutu === 'el' && !b(S).p3_kutu_cek, ise: [
               'Dizinde açık bir kitap, gözü kapıda. Dün parmaklarımız değmişti, bugün eldivenlerim elimde.',
             ], degilse: [
-              'Dizinde açık bir kitap. Gözü sayfada değil, kapıda.',
+              'Kapı açılınca dizindeki kitabın sayfası kıvrıldı.',
             ] },
             /* Oynanış T1 (B5): 3. bölümde karşı pencereye bakan (p3_k_pencere) bu kitabı tanır */
             /* Tur 29 (B4 anlatı 2): an_basamak'ta kitap düz ve açık; şaka resimle çelişmez */
@@ -1382,7 +1382,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { eger: (S) => b(S).p4_remzi === 'aldi', ise: [
               /* GPT T25 Kenan (B4 A2): senet iftirayı çürütmez; Nabi'nin çıkarını ve şahitliğinin değerini gösterir */
               /* Tur 27 (B4 diyalog 4) */
-              ['f', 'Elimde Nabi Bey\'in kumar senedi var. Babam borçlu bir şahidi dinlemez.', 'kararli'],
+              ['f', 'Elimde Nabi Bey\'in kumar senedi var. Babam imzasını tanır.', 'kararli'],
             ], degilse: [{ eger: (S) => b(S).p4_remzi === 'baba', ise: [
               ['f', 'Remzi Bey senedini babama götürecek. Borçlu bir adamın sözü artık kolay dinlenmez.', 'kararli'],
             ], degilse: [{ eger: (S) => b(S).p4_yalan === 'curudu', ise: [
@@ -1859,9 +1859,9 @@ window.BOLUMLER = window.BOLUMLER || {};
       /* Tur 28 (GPT A4-2): akşam senetle çürüyen yalan "kahve soğumadan" yazılmaz */
       /* Tur 28b (kök 4): senet şahidi düşürür; hükmün basamağı özette de ayrı (tek şahit düştü / ikinci şahit bekliyor) */
       var yalan = f.p4_yalan_aksam && f.p4_yalan === 'curudu'
-        ? 'akşam babama ulaşan senet yalanın tek ayağını, Nabi Bey\'in şahitliğini düşürdü.'
+        ? 'babam senedi okuyunca Nabi sustu.'
         : f.p4_yalan_aksam && f.p4_yalan === 'askida'
-        ? 'akşam senet Nabi Bey\'in şahitliğini düşürdü, ama hekimin “gördüm”ü babamın önünde hâlâ bekliyor.'
+        ? 'babam Nabi’yi susturdu. Hekimi daha dinleyecek.'
         : ({ curudu: 'Nabi Bey\'in yalanı kahve soğumadan öldü.', askida: 'yalan askıda, babam Münevver Hanım\'a soracak.' }[f.p4_yalan]
         || 'yalan şimdilik ayakta. Babam iki sözü de tartacak.');
       /* GPT T26 Süha (öncelik 5): gecenin pazarlığı kahvedeki hamleyi özetten silmez */

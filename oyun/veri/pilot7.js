@@ -514,7 +514,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ada: 'Feride Kenan\'a bir vade vermişti: “Ada\'da.” Vade o sabah başlıyordu.',
             sohbet: 'Dün mabeynde Ada’yı konuşmuşlardı. Kenan şimdi ona iskeleyi gösterebilirdi.',
             /* Tur 27b (GPT B6-O3): mabeyn kapısında yakınlığı kesen kıza alın yakınlığı yazılmaz */
-            cik: 'Kenan mabeynde yolunu kesmemişti.',
+            cik: 'Kenan sözünü tuttu. Mabeyn boştu.',
           }[b(S).p6_yakin] || 'Mabeyn kapısında Kenan alnını Feride\'nin alnına dayamış, öpmemişti. Feride bunu bir eksiklik değil, bir söz gibi saklamıştı.')
           : ({
             yaklas: 'Çardakta Feride\'nin tuttuğu el, o sabah aynı vapura binecekti.',
@@ -775,9 +775,9 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             /* Kesintisiz karşılık: kimse bölmez */
             ['mukaddem', 'Siz dokuz yaşındaydınız. Ada vapurunda martılardan korkardınız.', 'mahzun'],
-            ['f', 'Siz de simidinizi onlara atardınız. Korkum geçsin diye.', 'gulumseyen'],
+            ['f', 'Simidi siz atınca hepsi sizin tarafa üşüşürdü.', 'gulumseyen'],
             ['mukaddem', 'Geçti mi?', 'utangac'],
-            ['f', 'Martı korkusu geçti. Bu kez simidi ben atıyorum.', 'tebessum'],
+            ['f', 'Bu kez simidi ben atıyorum.', 'tebessum'],
             /* GPT T26 (öncelik 10): an resminde elbise çeşidi yok; renkli elbisede ferace kapanır, kadraj elbiseyi öne almaz */
             { eger: (S) => giy(S) !== 'sade', ise: [
               'Feracemi göğsümde kavuşturdum, rengini bir kez görmesi yeter.',
@@ -1388,7 +1388,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { gizle: 'sai' }, { gizle: 'calibe' }, { gizle: 'mukaddem' },
           /* Serbest vakit: yemekten sonra, beyler sahildeyken; hedef oda. Önceden kısa ipucu (GPT öneri 3). */
-          ['an', 'Yemekten sonra beyler sahile indi, Hatice de misafir yatağına koyuldu.'],
+          ['an', 'Beyler sahile inerken Sait Efendi kapıdan seslendi. Bir saate döneceklerdi.'],
           { gorev: 5 }, { vakit: VAKIT_GECE },
         ],
       },
@@ -1409,7 +1409,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 27 (anlatı 3): romantik sahneden önceki durum satırları azaldı; misafir sofrası yolunda köşk satırı yok */
           { eger: (S) => b(S).p7_sofra === 'vals', ise: [
             /* Tur 29 (B7 anlatı 8): şart bozulmadı; vals borcu kesinleşmiş sayılmaz */
-            'Karşı köşkte orkestra çalıyor. Babam gitmedi, vals borcum doğmadı; Remzi Bey yine de çaldırıyor.',
+            'Babam daveti geri çevirdi. Karşı köşkte Remzi Bey, parasını verdiği valsi tek başına dinliyor.',
           ], degilse: [{ eger: (S) => b(S).p7_sofra === 'perde', ise: [
             /* İkindi vaktinde pencereye gerilen şal */
             { eger: (S) => b(S).p7_v_pencere === 'sal', ise: [
@@ -1490,7 +1490,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               'Döşeme gıcırdadı. Misafir odası tam altımda.',
             ] },
             { efekt: 'adim' },
-            'Ayak sesi: pencereye, kapıya, pencereye. O da uyumuyor.',
+            'Altta üç adım, bir duraklama. Yeniden üç adım.',
             { soru: 'Bu kez perde yok, yalnız bir kat tahta.', secim: [
               { m: 'Saç fırçanla döşemeye üç kez vur.', etki: { mukaddem: 5 }, bayrak: { p7_tavan: 'uc' }, adimlar: [
                 /* Tur 29 (B7 ses 3): Kenan yolunun imza anı duyulur */
@@ -1559,7 +1559,8 @@ window.BOLUMLER = window.BOLUMLER || {};
               { mekan: 'ada_sofa' },
               { goster: ['reftar', 'korkmus'] },
                 /* Tur 29 (t29_b05_08 B7 görsel 5): metin an_tepsi resmine uydu (tepside şişe ve kadeh) */
-                'Tepsiyi aldım. Şişenin mührü sağlamdı.',
+                ['reftar', 'Bırakın küçük hanım. Sabah tıpayı sorarsa ben ne derim?', 'korkmus'],
+                ['f', 'Mührü benim elimde gördüğünü söyle.', 'kararli'],
                 /* Tur 28 (B7 görsel 1): an_tepsi'de kristal bir şişe; delilin mührü tıpada (yeniden çizim üretim listesinde) */
                 /* ORTAK: an_tepsi mühürlü şişeyle yeniden çiziliyor; satır iki resme de uyar */
                 /* Diyalog T1 (7.14): Hatice Feride'ye "küçük hanım" der */
@@ -1567,7 +1568,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 /* Misafir odası alt katta, selamlığın yanında: tepsiyle merdiveni inerim */
                 /* Anlatı T2 (mercek_doz §2b): genel "gece yarısı kız" kuralı yerine bu gecenin kendi tehlikesi */
                 { ara: { mekan: 'ada_selamlik', yer: 'Ada evi · alt kat, gece', satirlar: [
-                  'Feride tepsiyi arka verandaya indirdi. Şişenin tıkırtısıyla kapı açıldı.',
+                  'Feride arka verandaya inince kadeh şişeye değdi. Kenan kapıyı açtı.',
                   /* Tur 29 (B7 görsel 5): an_tepsi'de kapı arka verandaya açılıyor; metin resme uyduruldu */
                 ] } },
                 /* 7.10: Şefik Kenan'ın yanında yatıyorsa kapı açılırken o da anılır */
@@ -1583,9 +1584,13 @@ window.BOLUMLER = window.BOLUMLER || {};
                 /* Tur 29 (t29_b05_08 B7 anlatı 7): konyak misafire teslim edilmez; kartın "delil elimde"si ekranda görünür */
                 { cizim: 'an_tepsi' },
                 /* Tur 28 (B7 diyalog 1): çıplak "Feride" sonraki bölümlere saklı; yarıda kesilen hitap */
-                ['mukaddem', 'Feride Ha—', 'utangac'],
+                ['mukaddem', 'Bana mı getirdiniz?', 'endiseli'],
                 /* Tur 29 (B7 diyalog (b)): "Yarın." somut bir şey bırakır */
-                ['f', 'Yarın söyleyin. Bu gece kapınızı kimseye açmayın.', 'kararli'],
+                { eger: (S) => b(S).p7_hizmet === 'sefik', ise: [
+                  ['f', 'Şefik burada yatsın. Sabah o sizi anlatır, ben babama mührü gösteririm.', 'kararli'],
+                ], degilse: [
+                  ['f', 'Şefik benim yanımda, size şahitlik edemez. Sabah babama şişeyi açılmadan göstereceğim.', 'kararli'],
+                ] },
                 { gizle: 'mukaddem' },
                 /* Tur 33 (B7 ses 2): tehlike kancası romantik temayla yumuşamaz */
                 { efekt: 'kapi_kapa' }, { muzik: 'gece' },
@@ -1597,7 +1602,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                   ['an', 'Yukarıda bir lamba yandı.'],
                 ] },
                 /* Tur 32 (B7 sürük 3): kart envanter değil his taşır */
-                { kart: 'Kenan’ın kapısı kapandı. Şişeyi vermedim.' },
+                { kart: 'Kapı kapandığında şişenin mührü hâlâ avucumdaydı.' },
               ] },
               { m: 'Nimet\'i uyandır: merdivende otursun.', kosul: nimetVar, etki: { mehves: 1 }, bayrak: { p7_son: 'bekci' },
                 iz: 'Ön merdiveni tuttun. Konyak başka yoldan inecek.', adimlar: [
@@ -1617,12 +1622,10 @@ window.BOLUMLER = window.BOLUMLER || {};
                    (bir kez); anlatıcı lekeyi, kart lambayı, kanca lambanın sahibini söyler (8. bölüm açılışı ortak notunda) */
                 { eger: (S) => b(S).p7_kapi === 'surgu', ise: [
                   { efekt: 'surgu' },
-                  ['an', 'Feride sürgüsünü çekti. Ön merdiven tutulmuştu; lekenin gösterdiği yolu ise kimse tutmamıştı.'],
-                ], degilse: [
-                  ['an', 'Ön merdiven tutulmuştu; lekenin gösterdiği yolu ise kimse tutmamıştı.'],
+                  ['an', 'Feride sürgüsünü çekti.'],
                 ] },
                 { muzik: 'sessiz' },
-                { kart: 'Ön merdiven benim. Selamlıkta bir lamba yandı.' },
+                { kart: 'Selamlığın lambası yandığında damla hâlâ ikinci basamaktaydı.' },
               ] },
               { m: 'Madam\'ı uyandır: merdivende otursun.', kosul: (S) => !nimetVar(S), etki: { josephine: 1 }, bayrak: { p7_son: 'bekci' },
                 iz: 'Ön merdiveni tuttun. Konyak başka yoldan inecek.', adimlar: [
@@ -1636,12 +1639,10 @@ window.BOLUMLER = window.BOLUMLER || {};
                 { cizim: 'an_bekci_madam' },
                 { eger: (S) => b(S).p7_kapi === 'surgu', ise: [
                   { efekt: 'surgu' },
-                  ['an', 'Feride sürgüsünü çekti. Ön merdiven tutulmuştu; lekenin gösterdiği yolu ise kimse tutmamıştı.'],
-                ], degilse: [
-                  ['an', 'Ön merdiven tutulmuştu; lekenin gösterdiği yolu ise kimse tutmamıştı.'],
+                  ['an', 'Feride sürgüsünü çekti.'],
                 ] },
                 { muzik: 'sessiz' },
-                { kart: 'Ön merdiven boş. Selamlıkta bir lamba yandı.' },
+                { kart: 'Selamlığın lambası yandığında damla hâlâ ikinci basamaktaydı.' },
               ] },
               /* Tur 27 (sürük. 2): izleyen kız da sesli bir hamle yapar; Hatice eşikte kalır (8. ve 10. bölüm 'izle'yi böyle okur) */
               { m: 'Merdivenin başından izle; Hatice seni görsün.', bayrak: { p7_son: 'izle' }, iz: 'Eşiği gözünden kaçırmadın, Hatice de seni gördü. Sabah tanık sensin.', adimlar: [

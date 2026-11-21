@@ -396,7 +396,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 'Yeniden katladım. Bir katını bile bile yanlış katladım.',
                 ['ic', 'Bir yıl o sustu. Bu gece de ben susayım.', 'dusunceli'],
               ] },
-              { m: 'Hiçbir şey yazma. Pusulayı yastığının altına sakla.', bayrak: { p2_pusula: 'sustu', p2_not_yer: 'yastik' }, iz: 'Pusulayı yastığının altına sakladın. Yastıklar kaldırılır.', adimlar: [
+              { m: 'Hiçbir şey yazma. Pusulayı yastığının altına sakla.', bayrak: { p2_pusula: 'sustu', p2_not_yer: 'yastik' }, iz: 'Pusula yastığının altında.', adimlar: [
                 ['ic', 'Cevap vermedim. Ama atmadım da.', 'utanmis'],
               ] },
             ] },
@@ -814,7 +814,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['calibe', 'Feride, sofrada laf yarıştırılmaz.', 'soguk'],
               ['sai', 'Kahveyi de bırak hanım. Kızın cevabını verdi.', 'gulumser'],
             ] },
-            { m: '“Kendine gülebilen adam az bulunur.”', bayrak: { p2_remzi_haber_bekliyor: true, p2_remzi: 'ilgi' }, iz: 'Remzi Bey\'i sofrada övdün. Perihan Hanım bunu not etti.', adimlar: [
+            { m: '“Kendine gülebilen adam az bulunur.”', bayrak: { p2_remzi_haber_bekliyor: true, p2_remzi: 'ilgi' }, adimlar: [
               ['f', 'Kendine gülebilen adam az bulunur.', 'tebessum'],
               ['calibe', 'Duydunuz mu efendi? Kızımız beğendi.', 'sinsi'],
               ['ic', 'Babamın önünde fincanıma biraz daha kahve koydu.', 'endiseli'],
@@ -979,8 +979,8 @@ window.BOLUMLER = window.BOLUMLER || {};
              (piyano_anne/_vals/_romans üretilene dek huzun / vals / piyano) */
           { muzik: 'sessiz' },
           { efekt: 'piyano_tus' },
-          { soru: 'Parmaklarım tuşların üstünde.', secim: [
-            { m: 'Annemin sevdiği şarkıyı.', etki: { baba_guven: 3, calibe_suphe: 1 }, bayrak: { p2_piyano: 'anne' }, iz: 'Annenin şarkısını yıllar sonra o salonda sen çaldın.', adimlar: [
+          { soru: 'İlk notayı kime duyurayım?', secim: [
+            { m: 'Babama annemin şarkısını çal.', etki: { baba_guven: 3, calibe_suphe: 1 }, bayrak: { p2_piyano: 'anne' }, iz: 'Annenin şarkısını yıllar sonra o salonda sen çaldın.', adimlar: [
               { muzik: 'huzun' },
               'İlk notada babam başını eğdi.',
               /* GPT T23 (Kenan 2b-2): sofrada sahiplenilen söz ile annenin şarkısı bağlanır */
@@ -988,18 +988,16 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['sai', 'Annen de sözlendiği akşam bunu çalmıştı.', 'mahzun'],
               ] },
               ['calibe', 'Bu şarkı bu salonda yıllardır çalınmazdı.', 'soguk'],
-              ['ic', 'Artık çalınıyor.', 'kararli'],
             ] },
-            { m: 'Bir vals. Şefik gülsün.', etki: { sefik: 1 }, bayrak: { p2_piyano: 'vals' }, adimlar: [
+            { m: 'Şefik için valse başla.', etki: { sefik: 1 }, bayrak: { p2_piyano: 'vals' }, adimlar: [
               { muzik: 'vals' },
               { eger: (S) => S.bayrak.p2_mefharet === 'babaya', ise: [
                 'Şefik kalktı, halıda tek başına döndü. Yukarıda Nazlı\'nın kapısı kapalı kaldı.',
               ], degilse: [
                 'Şefik kalktı, Nazlı\'yı da çağırdı. İkisi halıda döndü, mürekkep unutuldu.',
               ] },
-              ['calibe', 'Bak, ne tatlı.', 'sinsi'],
             ] },
-            { m: 'Fransız bir romans.', etki: { suha: 4 }, bayrak: { p2_piyano: 'romans' }, adimlar: [
+            { m: 'Penceredeki hekime bir romans çal.', etki: { suha: 4 }, bayrak: { p2_piyano: 'romans' }, adimlar: [
               { muzik: 'piyano' },
               'İkinci cümlede Süha Bey pencereden ayrıldı.', // Tur 28 (GPT B2 SE1): sözsüz icra
               ['ic', 'Sözlerini biliyor. Dudakları kıpırdadı, sesi çıkmadı.', 'saskin'],
@@ -1258,7 +1256,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['ic', 'Defterime arabadaki cevabımı yazdım: “Ben de sayıyorum.” İki günün biri bu gece bitiyor.', 'kararli'],
           ], degilse: [{ eger: (S) => S.bayrak.p_defter === 'remzi', ise: [
             /* Tur 27 (B1 oynanış 10'a): arabadaki dördüncü cevap */
-            ['ic', 'Defterime arabadaki sorumu yazdım: “Kapıdaki beyin annesi mi?” Perihan Hanım kapıda bey görmediğini söylemişti.', 'tebessum'],
+            ['ic', 'Kapıda bey görmedim, dedi. Annesini görmüş oysa.', 'dusunceli'],
           ], degilse: [{ eger: (S) => S.bayrak.p_defter === 'suha', ise: [
             ['ic', 'Defterime arabadaki cevabımı yazdım: “Camları pek temizmiş.” Kimin baktığını ikimiz biliyoruz.', 'kararli'],
           ], degilse: [{ eger: muk, ise: [
@@ -1434,9 +1432,9 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* GPT T23 (Süha 2): "be" Behiye'nin son değil ilk hecesi; ipucu yeni adlara göre kuruldu */
               ['suha', '…Pardonne-moi, Be…', 'mahzun'], // Tur 27b: yasın sesi, alay yok,
               /* Tur 27 (GPT D3): Fransızca bilmeyen oyuncu da af istendiğini duysun; kimlik açılmaz */
-              ['ic', '“Affet beni” dedi. Sonra bir ad başladı: “Be…”', 'mahzun'],
+              ['ic', 'Fransızca af diliyor. Kimden?', 'mahzun'],
               { efekt: 'tahta' }, // Tur 28: tek kuru döşeme gıcırtısı; konuşmayı keser
-              'Tahta ayağımın altında gıcırdadı. İçerideki ses sustu.',
+              'İçerideki ses sustu. Ayağımı kaldıramadım.',
               /* Tur 27 (B2 sürük 1): vurucu anda Süha'nın görüntüsü */
               ['an', 'Kapının aralığında Süha Bey\'in gölgesi doğruldu. Elinde bir resim çerçevesi vardı, yüzü lambaya dönük değildi.'],
               /* Tur 27 (B2 ses 1; GPT S4): mum, tek seferlik doruk; Perihan'ın tek repliği, Feride'nin cevabı, kart */

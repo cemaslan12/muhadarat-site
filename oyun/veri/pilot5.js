@@ -498,7 +498,7 @@ window.BOLUMLER = window.BOLUMLER || {};
 { efekt: 'dokulme' }, 'Şurubu leğene döktüm, şişeye vişne şerbeti doldurdum. Rengi aynı.',
 ['ic', 'Akşam tadını tanıyacak mı?', 'tebessum'],
             ] },
-            { m: 'Şişeyi sakla; günü gelince koz olur.', etki: { calibe_suphe: 1 }, bayrak: { p5_degis: 'sakla' }, iz: 'Şişe sandığında. Ama kaybolan şişeyi akşam biri soracak.', adimlar: [
+            { m: 'Şişeyi sandığına kaldır.', etki: { calibe_suphe: 1 }, bayrak: { p5_degis: 'sakla' }, iz: 'Şişe sandığında. Ama kaybolan şişeyi akşam biri soracak.', adimlar: [
               'Şişeyi sandığımın dibine, annemin şallarının arasına gömdüm.',
               { koz: SISE, kaynak: 'Şişe sandığımda', alt: 'Hekim eliyle odama gelen şişe. Fransızca etiketi: Sirop de pavot.' },
             ] },
@@ -609,7 +609,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 29 (B5 anlatı 4): eşyayı veren kişi sahnede görünür (Süha yolunda Şefik bu sahnede yoktu) */
           { eger: (S) => b(S).madalyon_hal === 'yok', ise: [
             { goster: ['sefik', 'notr'] },
-            'Şefik başını kapıdan uzatıp annemin madalyonunu avucuma bıraktı. Ona “Bugün sen taşı” demiştim; geri getirmiş.',
+            'Şefik başını kapıdan uzatıp annemin madalyonunu avucuma bıraktı.',
             { gizle: 'sefik' },
             { bayrak: { madalyon_hal: 'acik' } },
           ] },
@@ -1012,7 +1012,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 29 (B5 ses 2): bastonun taşa vuruşu duyulur */
           { efekt: 'kapi_tik' },
           { soru: 'Remzi Bey bastonuyla kapının taşına vurdu. Eczacının defteri konuşursa adım “hasta”ya çıkar.', secim: [
-            { m: '“Haberin bedeli ne Remzi Bey?”', etki: { remzi: 5 }, bayrak: { p5_remzi: 'bedel' }, iz: 'Remzi Bey haberi bedava verdi. Bedelini sonra soracak.', adimlar: [
+            { m: '“Haberin bedeli ne Remzi Bey?”', etki: { remzi: 5 }, bayrak: { p5_remzi: 'bedel' }, iz: 'Remzi Bey bu defa ücret istemedi.', adimlar: [
               ['f', 'Haberin bedeli ne Remzi Bey?', 'gulumseyen'],
               ['remzi', 'Size bedava. Başkasına iki şişe fiyatına.', 'gulumser'],
               ['f', 'Hesabı kime çıkaracaksınız Remzi Bey?', 'gulumseyen'],
@@ -1614,7 +1614,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               'Karşı pencerede kandil yine yandı. Geçen sefer ben söndürmüştüm, o yine de soruyor.',
             ], degilse: [
               /* mercek_sureklilik B1: kandiller 3. bölümde konuşmuştu; "ilk kez" değil */
-              'Karşı pencerede kandil yine yandı. Gerdanlıktan önceki gecenin dilini unutmamış.',
+              'Karşı pencerede kandil yine yandı.',
             ] }] }] },
             { efekt: 'kandil' },
             { soru: 'Kandil bir söndü, bir yandı. Soruyor.', secim: [
@@ -1775,7 +1775,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Diyalog T1 (b5_8 5.15): kapı ile eşik aynı yerdi; iş bölümü belirginleşti (6. bölüm: Nimet kapıya sırtını dayar) */
               /* Tur 28 (B5 diyalog 3): plan satırı öfkeyle değil */
               /* Tur 30 (B5 sürük 1): karar kartı ("Lambayı ben tutacağım…") bu satırı yinelemesin; burada iş bölümü ve pencere */
-              ['f', 'Sen kapıya sırtını ver Nimet. Ben pencerede kalır, fener nereye dönerse görürüm.', 'kararli'],
+              ['f', 'Sen kapıda kal Nimet. Feneri ben gözlerim.', 'kararli'],
               KAPANIS,
               /* Sürükleyicilik T1 (b4_5_6 5.8): kart sahnede görüleni yinelemez. Tur 28 (B5 sürük 1): 4. bölüm tehlikeyle
                  bittiği için iki yol karar türünde kapanır (6. bölüm: fener eşikte, lamba Feride'de) */

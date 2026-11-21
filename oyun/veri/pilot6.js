@@ -438,7 +438,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['nabi', 'Leyla evet dedi! Sen aracı olmadın; ben kendim hallettim.', 'gulumser'],
           ] },
           ['f', 'Tebrik ederim.', 'kararli'],
-          ['nabi', '“Tebrik ederim” mi? “Kıskandım” de, dilin kopmaz.', 'ofkeli'],
+          ['nabi', '“Tebrik ederim” derken yüzüme de baksaydın!', 'ofkeli'],
           { soru: 'Fener yüzümde. Nefesi rakı kokuyor.', secim: [
             { m: '“Kıskanmak için beğenmek lazım.”', etki: { vakar: 1 }, bayrak: { p6_cevap: 'igne' }, iz: 'Nabi Bey\'in gururuna iğneyi sen batırdın; fener biraz titredi.', adimlar: [
               ['f', 'Kıskanmak için önce beğenmek lazım Nabi Bey.', 'kararli'],
@@ -838,7 +838,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 28 (B6 ses 1): karar sahnesi hüzünle acındırılmaz; mum başında sessizlik */
           { muzik: 'sessiz' },
           { eger: (S) => b(S).p2_hitap === 'bey', ise: [
-            ['ic', 'Süha Bey\'e “dayı” demeyi çoktan bırakmıştım. Şimdi sebebini biliyorum.', 'mahzun'],
+            ['ic', 'Süha Bey\'e “dayı” demeyi çoktan bırakmıştım.', 'mahzun'],
           ] },
           /* Tur 29 (B6 anlatı 7): soru sonucu (sürgü) önceden söylemez; üç seçeneğe de açık */
           { soru: 'Mumu söndürmedim. Sabah bu geceye ne cevap vereceğim?', secim: [
@@ -904,7 +904,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             ['calibe', 'Başım kazan gibi. Dün gece ne içtiysem…', 'endiseli'],
           ] },
-          { goster: ['nabi', 'notr'] },
+          { goster: ['nabi', 'mahcup'] },
           { eger: (S) => b(S).p6_topuk === 'alin', ise: [
             'Nabi Bey fesini kaşlarına kadar indirmiş; altından sarı bir iz görünüyor.',
           /* Tur 29 (B6 anlatı 2): bahçede topuk çardak direğine inmişti */
@@ -1228,7 +1228,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { soru: 'Kırbacıyla çizmesine vurup cevabımı tartıyor.', secim: [
             /* defter masadayken köşk şakası tek seçenekte kalır (seçenek kalabalığı) */
-            { m: '“Yüz lira fazla mı? Pazarlık bilmiyorsunuz.”', kosul: (S) => b(S).p5_remzi !== 'defter', etki: { remzi: 4 }, bayrak: { p6_remzi: 'pazarlik' }, iz: 'Remzi Bey Ada\'da tam karşında olacak. Pencereni gözleyecek.', adimlar: [
+            { m: 'Köşkün fiyatına takıl.', kosul: (S) => b(S).p5_remzi !== 'defter', etki: { remzi: 4 }, bayrak: { p6_remzi: 'pazarlik' }, iz: 'Remzi Bey Ada\'da tam karşında olacak. Pencereni gözleyecek.', adimlar: [
               ['f', 'Yüz lira fazla mı? Pazarlık bilmiyorsunuz Remzi Bey.', 'gulumseyen'],
               /* Sürükleyicilik T1 (mercek_romantik B6 b2): Remzi'nin en çekici sözü bu dalda da duyulur */
               ['remzi', 'Bilirim. Karşıdan pencerenizi göreceğim, yüz lira ona az.', 'gulumser'],
@@ -1335,7 +1335,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ], degilse: [
                 ['f', 'Sıska değilsiniz. İncesiniz, kalem gibi.', 'gulumseyen'],
               ] },
-              ['mukaddem', 'Kalem iyi. Kalemle size yazılır.', 'gulumser'],
+              ['mukaddem', 'Öyleyse ilk mektubu size yazarım.', 'gulumser'],
             ] },
             { m: '“Topuğum sizin yerinize cevap verdi.”', kosul: topuk, etki: { mukaddem: 6 }, bayrak: { p6_siska: 'topuk' }, adimlar: [
               ['f', 'Topuğum sizin yerinize cevap verdi.', 'gulumseyen'],
@@ -1390,7 +1390,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { soru: 'O adımı atmıyor. Atacak olan benim.', secim: [
               { m: '“Sağ olun Kenan Bey.” Eşikten çık.', etki: { vakar: 1 }, bayrak: { p6_yakin: 'cik' }, iz: 'Yakınlığı bu ikindi sen kestin. Kenan söz istemedi, bekleyecek.', adimlar: [
                 ['f', 'Sağ olun Kenan Bey. Babam bekler.', 'mahzun'],
-                ['mukaddem', 'Bekler. Ben de beklerim, alıştım.', 'mahzun'],
+                ['mukaddem', 'Acelesi yok. Ben alışığım.', 'mahzun'],
               ] },
               { m: '“Biraz daha oturun. Ada’yı anlatın.”', bayrak: { p6_yakin: 'sohbet' }, iz: 'İskarpinini kendin giydin. Kenan’la konuşmayı sürdürdün.', adimlar: [
                 ['mukaddem', 'Anlatırım. Neresinden başlayayım?', 'gulumser'],
@@ -1641,11 +1641,11 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Tur 27 (diyalog 4): kandilin sorusuna cevap */
               { m: 'Lambayı bir kez indir, kaldır: “İyiyim. Yarın.”', kosul: (S) => !!b(S).p3_v_isaret, etki: { mukaddem: 4 }, bayrak: { p6_kandil: 'iyi' }, adimlar: [
                 { efekt: 'kandil' },
-                'İndirdim, kaldırdım: iyiyim, yarın. Karşıda kandil bir kez, uzun, parladı.',
+                'Karşıda kandil bir kez parladı.',
               ] },
               { m: 'İki kez kıs, aç: “Yarın.”', kosul: (S) => !b(S).p3_v_isaret, etki: { mukaddem: 4 }, bayrak: { p6_kandil: 'iyi' }, adimlar: [
                 { efekt: 'kandil' },
-                'Kıstım, açtım. Karşıda kandil bir kez, uzun, parladı.',
+                'Karşıdan tek bir ışık geldi.',
               ] },
               { m: 'Lambayı yüzüne tut. Görünsün.', etki: { mukaddem: 6, itibar: -1 }, bayrak: { p6_kandil: 'yuz' }, adimlar: [
                 'Lambayı yüzüme tuttum. Karşıda bir gölge cama yaklaştı, o da yüzünü gösterdi.',

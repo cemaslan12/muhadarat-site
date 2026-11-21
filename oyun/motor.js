@@ -761,32 +761,56 @@
   }
   /* Açılış yükleme ekranı: bölümün ilk sahnesi için şart olan resimler inene kadar başlık ekranında ilerleme
      çubuğu gösterilir (en çok 12 sn; ağ çok yavaşsa oyun yine başlar, resimler geldikçe yerine oturur). */
+  /* Yükleme ekranı (Cemil, 21 Kasım 2026: "gösterge değil, doğrudan yükleme ekranı"). Oyuna girerken ve her
+     bölümün başında, o bölümün ilk sahnesinin resimleri ve açılış müziği hazır olana dek tam ekran gösterilir.
+     En çok 15 sn bekler; ağ çok yavaşsa oyun yine açılır, kalanlar geldikçe yerine oturur. */
   let hazirlaniyor = false;
+  const sesIsitilan = new Set(); // önbelleği ısıtılmış müzik dosyaları
+  function yuklemeEkrani() {
+    let k = $('#yukleme-ekrani');
+    if (!k) {
+      k = document.createElement('div'); k.id = 'yukleme-ekrani'; k.hidden = true;
+      k.setAttribute('role', 'status'); k.setAttribute('aria-live', 'polite');
+      k.innerHTML = '<div class="yukleme-ic"><div class="yukleme-ad">Aşkın Bedeli</div>' +
+        '<div class="yukleme-bolum"></div><div class="yukleme-cubuk"><i></i></div>' +
+        '<div class="yukleme-yazi">Yükleniyor… <b>0</b>%</div></div>';
+      ($('#sahne') || document.body).appendChild(k);
+    }
+    return k;
+  }
   async function hazirlikBekle(no, durum) {
+    const b = BOLUMLER[no];
     let liste;
     try { liste = bolumKaynaklari(no, durum).ilk.filter((s) => !hazirMi(s)); } catch (e) { liste = []; }
-    if (!liste.length) return;
+    // Bölümün açılış müziği: dosyayı önceden indir ki ilk sahne sessiz başlamasın (ses yoksa/engelliyse atlanır)
+    const isler = liste.map((s) => () => gorselHazir(s, 15000));
+    try {
+      const parca = b && window.SES && SES.ortam ? SES.ortam(no, (durum && durum.faz) || b.ilkFaz) : null;
+      if (parca && !sesIsitilan.has(parca) && window.fetch) {
+        sesIsitilan.add(parca);
+        isler.push(() => Promise.race([fetch('ses/' + parca + '.mp3').then((r) => r.blob()).catch(() => {}), new Promise((r) => setTimeout(r, 8000))]));
+      }
+    } catch (e) { /* ses bilgisi yoksa yalnız resimler beklenir */ }
+    if (!isler.length) return;
     kuyrugaEkle(liste, true);
-    const ic = $('#baslik-ekrani .baslik-ic'), dugmeler = $('#baslik-ekrani .baslik-dugmeler');
-    let kutu = $('#hazirlik');
-    if (!kutu && ic) {
-      kutu = document.createElement('div'); kutu.id = 'hazirlik';
-      kutu.setAttribute('role', 'status');
-      kutu.innerHTML = '<span>Bölüm hazırlanıyor…</span><div class="hazirlik-cubuk"><i></i></div>';
-      ic.insertBefore(kutu, dugmeler ? dugmeler.nextSibling : null);
-    }
-    $('#baslik-ekrani').hidden = false;
-    if (dugmeler) dugmeler.style.visibility = 'hidden';
-    if (kutu) kutu.hidden = false;
+    const k = yuklemeEkrani();
+    k.querySelector('.yukleme-bolum').textContent = b && b.baslik ? String(b.baslik).replace('Yeni ', '') : '';
     let biten = 0;
-    const ciz = () => { const i = kutu && kutu.querySelector('i'); if (i) i.style.width = Math.round(100 * biten / liste.length) + '%'; };
+    const ciz = () => {
+      const y = Math.round(100 * biten / isler.length);
+      k.querySelector('i').style.width = y + '%'; k.querySelector('b').textContent = y;
+    };
     ciz();
-    await Promise.race([
-      Promise.all(liste.map((s) => gorselHazir(s, 12000).then(() => { biten++; ciz(); }))),
-      new Promise((r) => setTimeout(r, 12000)),
-    ]);
-    if (kutu) kutu.hidden = true;
-    if (dugmeler) dugmeler.style.visibility = '';
+    const hepsi = Promise.all(isler.map((f) => f().then(() => { biten++; ciz(); })));
+    // Her şey zaten önbellekteyse ekran hiç görünmesin (yanıp sönmesin)
+    const hizli = await Promise.race([hepsi.then(() => true), new Promise((r) => setTimeout(() => r(false), 180))]);
+    if (hizli) return;
+    k.hidden = false; k.classList.remove('kapan');
+    await Promise.race([hepsi, new Promise((r) => setTimeout(r, 15000))]);
+    biten = isler.length; ciz();
+    k.classList.add('kapan');
+    await new Promise((r) => setTimeout(r, 320));
+    k.hidden = true;
   }
 
   /* Tur 33 (envanter M5): boydan setin konuşma portresi yüzün çevresinden büyütülür (PORTRE_KIRP). Ölçek yüzün
@@ -2790,6 +2814,8 @@
   /* ------------------------------------------------------------------ */
   async function bolumBaslat(no) {
     const b = BOLUMLER[no];
+    // Bölümün ilk sahnesi hazır değilse yükleme ekranı (oyuna girişte beklenmişse hemen geçer)
+    try { await hazirlikBekle(no, S); } catch (e) { /* yükleme ekranı şart değil */ }
     // Bölüm başı kaydı: "Bölümü baştan başlat" önceki bölümlerin kararlarını silmesin diye
     // Bölüm başı durumu kaydın İÇİNDE de tutulur (basDurum): kayıt koduyla dönen oyuncu "öbür yol"da
     // tarayıcıdaki başka bir oyunun bölüm başına düşmesin (Tur 18, öneri 5)
@@ -2835,14 +2861,16 @@
     // Eski kayıtlarda yalnız kıyafet yazılıdır. O günkü seçimi ve kayıtlı kıyafeti birlikte çöz.
     if (S && c0.cesitSec) {
       let giyili = k && k.startsWith(id + '_') ? k.slice(id.length + 1).replace(/_sakli$/, '') : null;
-      if (id === 'an_gerdanlik_kenan' && (!giyili || giyili === 'sakli')) {
-        const kararlar = (S.kararlar || {})[103] || [];
+      if (id === 'an_duvar' && giyili && giyili.startsWith('el_')) giyili = giyili.slice(3);
+      if ((id === 'an_duvar' || id === 'an_gerdanlik_kenan') && (!giyili || giyili === 'sakli')) {
+        const kararlar = (S.kararlar || {})[id === 'an_duvar' ? 109 : 103] || [];
         giyili = ['nisan_yadigar', 'nisan_gosterisli', 'nisan_sade'].find(elbise =>
           kararlar.some(karar => karar.m === 'Giydiğin: ' + V.kiyafetler[elbise].ad));
       }
+      if (id === 'an_duvar' && !giyili && (S.bayrak || {}).p9_duvar === 'el') return Object.assign({}, c0, { gorsel: null });
       const r = anResmi(id, giyili, k && k.endsWith('_sakli') ? 'sakli' : null);
       if (r) return Object.assign({}, c0, { gorsel: r.gorsel });
-      if (id === 'an_gerdanlik_kenan') return Object.assign({}, c0, { gorsel: null });
+      if (id === 'an_gerdanlik_kenan' || id === 'an_duvar') return Object.assign({}, c0, { gorsel: null });
     }
     const c = k && V.cizimler[k];
     const kendi = k && (k === id || k.indexOf(id + '_') === 0);

@@ -390,7 +390,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* Diyalog T1 (14-1): Perihan'ın yalancı yalvarışı elin kalkmasından sonra.
              T29 (b13_16 B14 SÜRÜK-2): dayak Feride'nin seçimi değil; gerilim sürer, doruk yeminde (Feride'nin anı) */
-          ['calibe', 'Aman efendi, daha çocuk! Sonra üvey anası sesini çıkarmadı derler.', 'endiseli'],
+          ['calibe', 'Aman efendi, daha çocuk! Komşuların da kulağı var efendi.', 'endiseli'],
           { goster: ['sefik', 'aglamakli'] },
           /* 11. bölüm: "Gölgem ol" */
           { eger: (S) => b(S).p11_sefik === 'yanimda', ise: [
@@ -566,7 +566,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* GPT T23 okur B14 10/1: Şefik'in küçük isteği; ateşte yarım döner */
             'Şefik “Lambayı söndürme abla” deyip uyudu. Kâğıt koynumda, buruşuk ve terli.',
           ], degilse: [
-            'Şefik “Lambayı söndürme abla” deyip uyudu. Kâğıt sarı odanın mangalında, belki henüz yanmadı.',
+            'Şefik “Lambayı söndürme abla” deyip uyudu.',
           ] },
           /* T27b (GPT B14-A2): sahte teslim yazarı kanıtlamaz; araştırma yönü */
           /* T32 (b13_16 O5, B14 DİYALOG-5): 13. bölümde yapılmış çıkarım tekrarlanmaz */
@@ -645,7 +645,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Diyalog T1 (14-12): belirsiz "bedel" ve başı eğik adamın bakışı çelişkisi giderildi */
               'Yaşlar çeneme indi. Silmedim, görsün.',
               { goster: ['suha', 'mahzun'] },
-              ['an', 'Süha Bey\'in gözleri doldu, bakışını Feride\'nin yüzünden çekmedi.'],
+              ['an', 'Şefik kıpırdayınca Süha Bey ona döndü.'],
             ] },
             { m: 'Yutkun, başını kaldır.', etki: { vakar: 1 }, bayrak: { p14_gozyasi: 'sakla' }, adimlar: [
               /* GPT T26 (öncelik 10): an_yemin resmi yanakta tek damla gösterir; metin resimle uyuşur */
@@ -703,7 +703,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Diyalog T1 (B1, K5): Feride Süha'ya "siz" der. Süha yeminde bilerek "sen"e geçer (romandan;
                "Senin başına yemin ederim ki" benzetim çapası); yemin cümlesinin içinde "sen" tutarlı,
                ardından gelen ayrı satırda yine "siz". */
-            { m: '“Yalnız kardeşimi kurtarın. Başka hiçbir şey istemem.”', bayrak: { p14_yemin: 'sefik' }, iz: 'Süha yalnız Şefik için yemin etti. Borcunu sonra soracak.', adimlar: [
+            { m: '“Şimdi yalnız kardeşime bakın.”', bayrak: { p14_yemin: 'sefik' }, iz: 'Süha yalnız Şefik için yemin etti. Borcunu sonra soracak.', adimlar: [
               ['suha', 'Senin başına yemin ederim ki kardeşin sabahı görecek.', 'mahzun'],
               ['suha', 'Başka bir şey istemediniz. Ben istemeyi unutmam.', 'soguk'],
             ] },
@@ -946,7 +946,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       {
         id: 'p14_sabah', mekan: 'selamlik_sofa', tetik: 'giris', kosul: (S) => S.gorev === 3, sahne: [],
         adimlar: [
-          { eger: (S) => b(S).p14_gece === 'birak', ise: [['an', 'Gece kâğıdın peşini bırakıp kardeşine dönmüştü. Sabah babasının karşısına Şefik’le çıktı.']], degilse: [['an', 'Selamlığın sabah ışığı gecenin hiçbir izini saklamadı. Şefik\'in yüzü kâğıt gibiydi.']] },
+          { eger: (S) => b(S).p14_gece === 'birak', ise: [['an', 'Sabah Şefik ablasının eteğinden ayrılmadı.']], degilse: [['an', 'Selamlığın sabah ışığı gecenin hiçbir izini saklamadı. Şefik\'in yüzü kâğıt gibiydi.']] },
           { goster: ['sai', 'mahzun'] },
           { eger: dayak, ise: [
             'Babam sargılı koluma bakmadı.',
@@ -1125,6 +1125,9 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* 15. bölümün görücüsü burada haber olur (kanca ve iç ses "görücü" der) */
           ['calibe', 'Yarın ikindi görücü gelecek efendi, iç güveysinden iyisi. Kızın askısı o vakte şalın altında dursun.', 'soguk'],
+          { eger: (S) => b(S).p13_remzi_selam === 'ver', ise: [
+            ['ic', 'Dün avludan selamımı aldı. Yarın da onu kapıda mı bırakacaklar?', 'dusunceli'],
+          ] },
           ['calibe', 'Efendi, bu çocuk konağın havasında hasta oluyor. Leyli askerî mektebe verin.', 'soguk'],
           /* Anlatı T2b (GPT okur 14-3): kararın nedeni babanın gecesinde; "Bugün gidiyor" takvim kararı (A3) */
           /* T27 (SÜRÜK 10'a): vedanın süresi aynı satırda (seçim arası 13 satır) */
@@ -1133,8 +1136,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* T30 (D14-1): takvim net, Sait kısa */
           /* T32 (b13_16 B14 ANLATI-3): özür ile hüküm arasındaki bağ kurulur */
           /* T33 (b13_16 B14 ANLATI): ceza çocuğa kesilmiş gibi okunmasın; gerekçe Şefik'in gecesi */
-          ['sai', 'Şefik, dün geceyi bir daha burada geçirmek ister misin? Mektebe gitmek istersen seni dinlerim.', 'pisman'],
-          ['sai', 'Araba öğlen gelir.', 'ciddi'],
+          ['sai', 'Araba öğlen gelir oğlum. Mektebe gitmek ister misin, yoksa burada mı kalacaksın?', 'pisman'],
           { goster: ['sefik', 'notr'] },
           { soru: 'Şefik bana bakıyor, babam da.', secim: [
             { m: '“Gitsin babacığım. Buradan uzakta iyileşir.”', bayrak: { p14_sefik: 'mektep' }, iz: 'Şefik askerî mektebe gidiyor. Konakta gölgen kalmadı.', adimlar: [
@@ -1189,6 +1191,14 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['ic', 'Şefik yanımda. Şimdi o kâğıdı kimin yazdığını bulmalıyım.', 'kararli'],
           ] },
           { gizle: 'calibe' }, { gizle: 'sefik' }, { gizle: 'sai' },
+          { eger: (S) => b(S).p13_remzi_selam === 'ver' && yemin(S) === 'sefik', ise: [
+            { eger: muk, ise: [['an', 'O sabah Münevver Hanım’ın evinden Selanik’e bir tel çekildi.']] },
+            { eger: (S) => b(S).p14_sefik === 'mektep', ise: [
+              { kart: 'Yarın görücüler bu basamaktan geçecek. Şefik’in ilk mektubunu burada bekleyeceğim.' },
+            ], degilse: [
+              { kart: 'Şefik bu gece yanımda kalacak. Yarın ikindiye kadar odamız ikimizin.' },
+            ] },
+          ], degilse: [
           { eger: (S) => b(S).p14_sefik === 'mektep', ise: [
             /* T29 (b13_16 B14 SÜRÜK 10'a 1): veda ile Süha'nın merdiveni arasında nefes (ara sayfa) */
             { ara: { mekan: 'selamlik_sofa', yer: 'Harem merdiveni · öğleye doğru', satirlar: [
@@ -1230,6 +1240,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             { kart: 'Süha Bey beni istemekten vazgeçti. “Siz istemedikçe.”' },
           ] }] }] },
+          ] },
           { bolumSonu: true },
         ],
       },

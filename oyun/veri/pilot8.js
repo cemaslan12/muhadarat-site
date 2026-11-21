@@ -519,7 +519,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           tepsi: 'Kenan\'la Perihan Hanım\'ın arasında, elinde mühürlü bir şişeyle, Feride duruyordu.',
           /* Tur 30 (t30_b05_08 B7 sürük. 1, B8 sürük. 3): 7. bölümün kartını ve kancasını (konyak, hizmet merdiveni,
              selamlık lambası) yinelemez; kancanın açtığı yerden bir adım ileri gider */
-          bekci: 'Kenan\'ın kapısına o gece tepsi hiç varmadı. Asıl iş alt katta, Feride\'nin göremediği yerde dönüyordu.',
+          bekci: 'Kenan\'ın kapısına o gece tepsi hiç varmadı. Üst katta tepsinin sesini duyan olmadı.',
           izle: 'Hatice tepsisiyle hâlâ Kenan\'ın eşiğindeydi.',
           /* Tur 30 (ORTAK, t30 B7 §5): Süha'nın son sözünü ("Sabah boş şişe konuşacak") yinelemez; yeni bilgi karşılıklı tanıklık */
           in: 'Sabah babası inmeden o boş şişeye yeniden ulaşması gerekecekti. Feride onu boşaltan eli görmüştü; elin sahibi de Feride\'yi.',
@@ -1299,7 +1299,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         adimlar: [
           /* Anlatı T2 (mercek_yay B8 (b)): öpücüğün artçısı merdivende soğumadan taşınır (dudaktan öpüşme dallarında) */
           { eger: (S) => b(S).p8_opus === 'sen' || b(S).p8_opus === 'evet', ise: [
-            'Dudaklarım hâlâ çamlıkta. Merdiven karanlık, basamaklar buz gibi.',
+            'Soğuk basamağa basınca şalıma sarıldım.',
           ], degilse: [
             'Merdiven karanlık, ikinci basamağın gıcırdadığını biliyorum.',
           ] },
@@ -1399,7 +1399,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['calibe', 'Sabah ben “gördüm” derim, sen “şaşırmıştım” dersin. Gerisini hekim anlatır.', 'sinsi'],
           { soru: 'Sabahın ezberi kapının ardında.', secim: [
             { m: 'Dinle. Sonuna kadar.', bayrak: { p8_kapi: 'dinle', p8_ezber: true }, adimlar: [
-              ['calibe', '“Şaşırmıştım” de; fazlasını söyleme. Ağlamak yeter.', 'sinsi'],
+              ['calibe', 'Mendilini elinde tut kızım. Baktılar mı yüzünü örtersin.', 'sinsi'],
               ['ic', 'Ezberlerini duydum. Sabah bu oyunu dışarıdan seyretmeyeceğim.', 'kararli'],
             ] },
             { m: 'Kapıyı tıklat: “Hatice\'ye su lazım mı?”', etki: { vakar: 1, calibe_suphe: 1 }, bayrak: { p8_kapi: 'tiklat' }, adimlar: [
@@ -1459,7 +1459,7 @@ window.BOLUMLER = window.BOLUMLER || {};
              Tur 27 (B8 görsel 1): "şafaktan sabaha" motor zamanOku'da 'şafak' kalıbına düşüp akşam süzgeci ve gece
              ortamı getiriyordu; etiket "sabah" (gündüz) */
           { ara: { mekan: 'ada_oda', yer: 'Ada evi · sabah', satirlar: [
-            'Sabaha iki saat vardı. Feride onları uyuyarak değil, söylenecek yalanları birer birer tartarak geçirdi.',
+            'Sabaha iki saat kalmıştı. Feride uzanınca bile ayaklarını yorganın altına çekmedi.',
             /* Tur 29 (t29_b05_08 B8 sürük. 10'a 1): öpücükle doruk arasındaki düzlüğe karşı yanın gerilimi; mendil keşfini besler */
             'Üst katta bir lamba sabaha kadar yandı. Perihan Hanım o gece yatağına hiç girmedi.',
             /* Tur 30 (t30 B8 anlatı 3): vapur saati raporu kalktı; vapur sabah sahnede öter (gidenle kalan orada görünür) */
@@ -1480,7 +1480,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: (S) => muk(S) && b(S).p8_plan !== 'kal', ise: [
             { efekt: 'vapur' },
             'Sekiz buçuk vapurunun çanı çaldı. Güvertede Kenan Bey, gözü penceremde.',
-            ['ic', 'Perdenin ardında durdum. Görse dönerdi, dönmesin diye durdum.', 'mahzun'],
+            ['ic', 'Vapur kalkana kadar perdeyi açmadım.', 'mahzun'],
           ], degilse: [{ eger: (S) => !muk(S) && b(S).p8_kenan === 'git', ise: [
             { efekt: 'vapur' },
             'Sekiz buçuk vapurunun çanı çaldı. Kenan Bey pencereme bakmadan gitti.',
@@ -2249,7 +2249,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 iz: 'Remzi\'nin şahitliğini açtın. Kenan\'ı kurtaran dürbün seni de gördü.', adimlar: [
                 ['f', 'Remzi Bey de gördü babacığım: Kenan Bey gece ayıktı.', 'kararli'],
                 ASMA,
-                ['sai', 'Remzi mi? Gece yarısı çamlığı dürbünle mi seyrediyor?', 'ofkeli'],
+                ['sai', 'Dürbünüyle kızımı seyreden adamı bir daha soframa çağırmam.', 'ofkeli'],
                 { goster: ['calibe', 'sinsi'] },
                 ['calibe', 'Kızı da görmüş demek efendi.', 'sinsi'],
                 { eger: kenanVar, ise: [
@@ -2423,8 +2423,8 @@ window.BOLUMLER = window.BOLUMLER || {};
       var f = S.bayrak, c = [], m = f.p_rota === 'mukaddem';
       // 1) Sabah: açtığım kanıt ya da kahvede açtığım prova
       var prova = {
-        acik: 'Hatice’nin sözlerini dün gece de duyduğumu söyledim. Babam şahitleri ayrı dinleyecek, Perihan Hanım dinlendiğini biliyor.',
-        yalniz: 'Kahvede Hatice\'ye ezber öğretildiğini söyledim. Babam onu yalnız dinledi, Perihan Hanım dinlendiğini biliyor.',
+        acik: 'Babam Hatice’yi asmanın öbür ucuna götürdü. Orada ne söylediğini duyamadım.',
+        yalniz: 'Kahvede Hatice’ye ezber öğretildiğini söyledim. Babam onu yalnız dinledi.',
       }[f.p8_prova];
       var defter = f.p6_defter === 'remzi' ? 'Eczacının defterini Remzi Bey babama kendi eliyle verdi'
         : (f.p8_kart === 'cikti' ? 'Kartı çıkarıp eczacının defterini kendi notumla babama verdim' : 'Eczacının defterini Remzi Bey\'in kartıyla babama yolladım');

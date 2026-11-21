@@ -102,9 +102,19 @@ window.BOLUMLER = window.BOLUMLER || {};
   var V = window.OYUN_VERISI;
   // El tutuşu yalnız "el" seçiminin anıdır. Eski kıyafet çeşitlerinde eller ayrıdır.
   V.cizimler.an_duvar_temassiz = Object.assign({}, V.cizimler.an_duvar, { temelAn: 'an_duvar' });
+  for (var elbise of ['nisan_yadigar', 'nisan_gosterisli']) {
+    var elResmi = 'an_duvar_el_' + elbise;
+    if (V.cizimResimleri && V.cizimResimleri[elResmi]) {
+      V.cizimler[elResmi] = Object.assign({}, V.cizimler.an_duvar, { gorsel: V.cizimResimleri[elResmi], temelAn: 'an_duvar' });
+    }
+  }
   V.cizimler.an_duvar.cesitSec = function (S, giyili) {
-    if ((S.bayrak || {}).p9_duvar === 'el') return 'an_duvar';
     if (giyili === 'ziyaret') giyili = 'nisan_yadigar';
+    if ((S.bayrak || {}).p9_duvar === 'el') {
+      if (!['nisan_gosterisli', 'nisan_yadigar'].includes(giyili)) return 'an_duvar';
+      var id = 'an_duvar_el_' + giyili;
+      return V.cizimler[id] && V.cizimler[id].gorsel ? id : null;
+    }
     if (giyili === 'nisan_yadigar' || giyili === 'nisan_gosterisli') return 'an_duvar_' + giyili;
     return 'an_duvar_temassiz';
   };
@@ -348,7 +358,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             ['remzi', 'Dürbünüm dün gece çok şey gördü. Bugün dil satın alıyorum.', 'ana'],
           ] }] }] }] }] }] },
-          ['remzi', 'İskelede dört kahvehane var, bugün hepsi benden içer. Ne konuşacaklarını siz söyleyin.', 'gulumser'],
+          ['remzi', 'İskeleye şimdi yetişiriz. Vapur yanaşırsa kahvedekiler evlerine dağılır. Dört kahvenin masrafı benden.', 'gulumser'],
           { soru: 'Ada\'nın dili satılık.', secim: [
             { m: '“Ismarlayın. Söz şu olsun: ‘Misafir ayıktı.’”', etki: { remzi: 4, itibar: 1 }, bayrak: { p9_v_camlik: 'kahve' }, iz: 'İskele kahvelerinde ikindiye kadar senin sözün dolaşacak; parası Remzi Bey\'den.', adimlar: [
               ['remzi', 'Ayıktı. Ben söylesem pahalıya gelirdi, kahveyle ucuza geldi.', 'gulumser'],
@@ -458,7 +468,6 @@ window.BOLUMLER = window.BOLUMLER || {};
         'Bohçanın düğümünü çözdü.',
         ['reftar', 'Bu evde bana ilk kez “kal” diyen siz oldunuz.', 'duygulu'], // Tur 28 (B9 diyalog 10'a)
         ['reftar', 'Kalırım. Kovmaya kalkarlarsa önce siz konuşun, sonra ben bildiğimi söylerim.', 'kararli'], // Tur 30 (t30 B9 diyalog 3)
-        ['ic', 'Kovmaya kalkarlarsa babamın kapısını önce ben çalacağım. Ona söz verdim.', 'kararli'],
       ] },
     ] },
   ];
@@ -1080,7 +1089,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['calibe', 'Kapıyı ben açarım; “Efendi evde yok” derim. Sen ağlarsın.', 'sinsi'],
           ] },
           { eger: (S) => !!b(S).p8_ezber, ise: [
-            ['ic', 'Bu ezberi gece kapısının ardından dinlemiştim. Kelimesi değişmemiş.', 'dusunceli'],
+            ['ic', 'Dün gece de burada Hatice’nin sesini beklemişti.', 'dusunceli'],
           /* Tur 28 (B9 sürükleyicilik 1): öğle köprüsünün karşılığı */
           ], degilse: [{ eger: (S) => b(S).p9_v_bos === 'dinle', ise: [
             ['ic', 'Provanın başını sofadan duymuştum; sonu da başı gibi çıktı.', 'dusunceli'],
@@ -1365,7 +1374,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [{ eger: (S) => vv(S, 'itibar') < 45, ise: [
             ['munevver', 'Ada’da senin hakkında da konuşuyorlar kızım. Sözünü doğrulayacak ne gösterebilirsin?', 'endiseli'],
           ], degilse: [
-            ['munevver', 'Elinde bir şey var mı kızım? Söz yetmez.', 'endiseli'],
+            ['munevver', 'Elinde ne var kızım?', 'endiseli'],
           ] }] },
           /* Tur 28 (B9 oynanış 10'a): dusen'in kuralı seçimden önce görünür — babam kapının ardında mı */
           { eger: babaDuyar, ise: [
@@ -1505,7 +1514,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* Tur 32 (t32 B9 anlatı 2): öfke portresi gelene kadar anlatıcı gösterir */
           ['an', 'Münevver Hanım ayağa kalktı; şalı omzundan kaydı, düzeltmedi.'],
-          ['munevver', 'Bunlar hep senin oyunun Perihan Hanım. Ama yanına kalmaz.', 'ofkeli'],
+          ['munevver', 'Bunlar hep senin oyunun Perihan Hanım. Hatice’yi bir de yalnız dinleyeceğim.', 'ofkeli'],
           { soru: 'Perihan Hanım\'ın sözü sofada asılı kaldı.', secim: [
             { m: 'Münevver Hanım\'ın elini öp. Kimin gelini olduğunu herkes görsün.', etki: { munevver: 2 }, bayrak: { p9_kismet: 'el' }, iz: 'Münevver Hanım\'ın elini öptün; başını kaldırmadın. Kimin gelini olduğunu herkes gördü.', adimlar: [
               /* "başımı kaldırmadım" 10. bölümdeki "Bu kez başımı kaldırdım" satırıyla bağlı; korunur */
@@ -1588,7 +1597,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Tur 29 (t29 B9 oynanış 3): metin resme uydu — duvar göğüs hizasında, asmanın salkımı zaten duvarın üstünde */
             { soru: 'Duvar göğsüme kadar; üstünde asmadan düşmüş bir salkım.', secim: [
               { m: 'Elini duvarın üstünden uzat.', etki: { mukaddem: 6 }, bayrak: { p9_duvar: 'el' }, adimlar: [
-                'Elimi uzattım. Parmaklarımı taşın üstünde tuttu, bırakmadı.',
+                'Parmaklarımı taşın üstünde tuttu, bırakmadı.',
                 { cizim: 'an_duvar' },
               ] },
               { m: 'Duvardaki salkımı ona uzat.', etki: { mukaddem: 5 }, bayrak: { p9_duvar: 'salkim' }, adimlar: [
@@ -1881,7 +1890,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               'Elim ensemdeki kilide gitti. Kilidi Kenan seçmişti, kolay açılmasın diye.',
             ], degilse: [
               /* Anlatı T2b (GPT T24b 9, 10'a): doruktan önce kısa kişisel durak */
-              'Elim ensemdeki kilide gitti. İkinci kez asılmadım.',
+              'Kilidi bir kez yokladım. Elim ensemde kaldı.',
             ] },
           ], degilse: [{ eger: (S) => b(S).p9_gerdanlik === 'sandik', ise: [
             { goster: ['calibe', 'sinsi'] },

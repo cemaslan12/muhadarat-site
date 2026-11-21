@@ -103,6 +103,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     an_kavusma_gizli: ['Tek kandilin ışığında nikâh', 'Yüzleşme ve Son · Kenan'],
     an_hayir:         ['Selamlıkta kendi hayırı', 'Yüzleşme ve Son · Süha'],
     /* T28b (ORTAK: resim bağlandı): Remzi'ye giden gecenin hayırı (HAYIR_GECE); baba başı eğik, Perihan kapıda */
+    an_remzi_nikah:   ['İmamın önünde', 'Yüzleşme ve Son · Üçüncü Kapı'],
     an_hayir_nikah:   ['İmamın kapanan defteri', 'Yüzleşme ve Son · Nikâhta ret'],
     an_hayir_gece:    ['Gece selamlıkta, kimsenin desteği olmadan', 'Yüzleşme ve Son · Üçüncü kapı'],
   };
@@ -1288,10 +1289,10 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* Remzi kapısında evet dün verildi: pazarlık evetin geri alınmaması üstünedir (Tur 2 B16-5) */
           { eger: (S) => kapi(S) === 'remzi', ise: [
-            ['calibe', 'Üç talip, bir kız. Sen en akıllısını seçtin: Remzi.', 'sinsi'],
+            ['calibe', 'Dünkü kahveden memnun kalktı annesi. Sen de evetini verdin.', 'sinsi'],
             ['calibe', 'Evetinden dönme. Kenan\'ın adı da, Süha\'nın sırrı da bu odada kalır.', 'soguk'],
           ], degilse: [
-            ['calibe', 'Üç talip, bir kız. Hangisine evet diyeceğini bu akşam ben söyleyeceğim.', 'sinsi'],
+            ['calibe', 'Dün kahvesini içen hanımı bugün kapından çeviremezsin kızım.', 'sinsi'],
             ['calibe', 'Remzi\'ye evet de. Kenan\'ın adı da, Süha\'nın sırrı da bu odada kalır.', 'soguk'],
           ] },
           /* Diyalog T1 (b16 #8, D4): yüksek sesle söylenecek cümle (babanın önünde) burada önden harcanmaz; "pazarlık" Süha'nın */
@@ -2369,7 +2370,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       {
         id: 'p16_remzi_nikah', mekan: 'buyuk_salon', tetik: 'giris', kosul: (S) => S.gorev === 3, sahne: [],
         adimlar: [
-          ['an', 'Remzi Bey salona damat gibi değil, pazarlığı bitmiş bir müşteri gibi girdi. Kapı açık kaldı.'],
+          ['an', 'Remzi Bey saatini kapayıp salona girdi. Kapı açık kaldı.'],
           { goster: ['remzi', 'ana'] },
           { eger: (S) => b(S).p16_liste === 'yaz', ise: [
             ['remzi', 'Annem “Gönül: fiyatı yok” satırını okudu. Fiyatı olmayan bir şey… Hiç düşünmemiştim.', 'mahcup'],
@@ -2433,10 +2434,14 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] }] }] },
           /* Sarı odadaki güç bu yolda da görünür (c9): baba evetin sahibine sorar */
           /* T29 (b13_16 B16 SÜRÜK-3): nikâh anlatıcıyla geçmez; imamın sorusu ekranda, evet (ya da susturulan ses) bedelli */
+          { eger: (S) => b(S).p10_sahit === 'remzi' && b(S).p10_teslim !== 'gizli', ise: [
+            ['remzi', 'İskelede sözümü söyledim, babanız selamlığı kapattı. Bugün sıra sizde Feride Hanım.', 'kararli'],
+          ] },
           ['an', 'İmam iznini Feride’ye sordu.'],
           { soru: 'İmam cevabımı bekliyor.', secim: [
             { m: '“Evet, kendi isteğimle.”', bayrak: { p16_remzi_riza: 'evet' }, adimlar: [
               ['f', 'Evet, kendi isteğimle.', 'kararli'],
+              { cizim: 'an_remzi_nikah' },
               ['an', 'Nikâh kıyıldı.'],
             ] },
             { m: '“Hayır, Remzi Bey’e varmam.”', etki: { vakar: 2, remzi: -3 }, bayrak: { p16_remzi_riza: 'hayir', p16_son: 'son_hayir', p16_hayir: 'nikah', p16_red: 'imam' }, iz: 'İmamın sorusuna hayır dedin. Nikâh kıyılmadı.', adimlar: HAYIR_NIKAH.concat([{ kart: GECE_KANCA }], kapanis()) },
@@ -2525,17 +2530,19 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['an', 'Münevver Hanım kalabalığa karıştı. Feride gözünü silmedi, kumaşçının tezgâhına kendisi yürüdü.'],
           { gizle: 'munevver' },
           /* T27 (ANLATI): birazdan açılacak kartı önceden söylemez */
-          ['an', 'Kumaşçı tezgâhın altından bir bohça çıkardı. Düğümü yabancı bir eldendi.'],
-          { kart: 'Bohçada bir kâğıt', alt: '“Behiye Hanım\'ın kızına. Remzi Bey\'in borcu bu ipekle ödenmez. —Şebib”' },
+          ['an', 'Kumaşçı tezgâhın altından bir bohça çıkardı. Düğümün ipi kumaşa gömülmüştü.'],
+          { kart: 'Bohçanın üstünde', alt: '“Behiye Hanım’ın kızına.”' },
           { soru: 'Bohçanın düğümü elimde.', secim: [
             { m: 'Bohçayı aç.', bayrak: { p16_sebib: 'ac' }, adimlar: [
+              { kart: 'Bohçada bir kâğıt', alt: '“Behiye Hanım\'ın kızına. Remzi Bey\'in borcu bu ipekle ödenmez. —Şebib”' },
               'Lacivert bir ipek, üstünde sarı yollar. Beyrut işi.',
             ] },
             { m: 'Bohçayı kumaşçıya geri ver.', etki: { vakar: 1 }, bayrak: { p16_sebib: 'geri' }, adimlar: [
-              ['ic', 'Bohçayı geri verdim. Kocamın borcu için benden söz alamazlar.', 'ofkeli'],
+              ['ic', 'Annemin adını yazmakla beni tanımış sayılmaz.', 'ofkeli'],
             ] },
           ] },
-          { kart: KANCA.son_remzi },
+          { eger: (S) => b(S).p16_sebib === 'ac', ise: [{ kart: KANCA.son_remzi }],
+            degilse: [{ kart: 'Bohçayı yollayan adresimi kimden aldı?' }] },
         ].concat(kapanis()),
       },
     ],
@@ -2587,7 +2594,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           : ({ baba: 'Sahte mektubu yazan adama hayır dedim, sabah onu babamın yanında karşıladım.',
             avlu: 'Sahte mektubu yazan adama hayır dedim, sabah onu bütün konağın gözü önünde karşıladım.' }[f.p16_sabah]
           || 'Sahte mektubu yazan adama hayır dedim, bildiğimi o bilmiyor.'),
-        son_remzi: 'Bohçadaki kâğıtta annemin adı vardı.',
+        son_remzi: f.p16_sebib === 'geri' ? 'Kumaşçı bohçayı tezgâhın altına kaldırdı.' : 'İpeğin arasındaki kâğıdı Şebib imzalamış.',
       }[f.p16_son] || 'Beyrut\'tan gelen bir ad beni bekliyor: Şebib.');
       return c.join(' ');
     },
@@ -2596,6 +2603,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       an_kavusma_o: 'Kenan yolunda: rızalı nikâhta duvağı Kenan kaldırırsa.',
       an_kavusma_gizli: 'Kenan yolunda: Münevver Hanım\'ın arabasıyla Leyla\'ların konağında gizli nikâh.',
       an_hayir: 'Süha yolunda: selamlıkta Süha Bey\'e de hayır dersen.',
+      an_remzi_nikah: 'İmamın önünde Remzi’ye kendi isteğinle evet verdiğinde.',
       an_hayir_nikah: 'İmam rızanı sorduğunda kendi cevabını verirsen.',
       an_hayir_gece: 'Remzi Bey\'e varılacak gece babana desteksiz hayır dersen.',
       an_ayrilik: 'Kenan yolunda: sabah avluda, kafesin aralığından sokağın başına bakan kız.',
@@ -2611,6 +2619,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       an_kavusma_gizli: function (S) { return S.bayrak.p16_son === 'son_kavusma' && S.bayrak.p16_secim === 'gizli'; },
       an_ayrilik: function (S) { return S.bayrak.p16_son === 'son_umutlu_ayrilik' || bagimsiz(S); },
       an_hayir: function (S) { return S.bayrak.p16_son === 'son_hayir' && S.bayrak.p16_hayir === 'hayir'; },
+      an_remzi_nikah: (S) => S.bayrak.p16_remzi_riza === 'evet',
       an_hayir_nikah: (S) => S.bayrak.p16_hayir === 'nikah',
       an_hayir_gece: function (S) { return geceHayir(S); },
       an_iki_kagit: function (S) { return S.bayrak.p16_son === 'son_tehlikeli_evet' || (S.bayrak.p16_son === 'son_hayir' && S.bayrak.p16_hayir === 'hayir'); },

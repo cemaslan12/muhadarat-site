@@ -507,7 +507,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         /* Anlatı denetimi T1 (rehber §1): açılış anlatıcı sesinde; önceki gecenin sonunu karşılar */
         /* Anlatı T2 (b1_2_3 #13, doz B3 #1): önce önceki gecenin sonu; irade damgası yerine bölümün sorusu */
         (S) => (gorulen(S)
-          ? 'Dün gece koridorda Feride bir hece duymuş, duyarken de görülmüştü. Bu konakta görülen, er geç sorulurdu.'
+          ? 'Dün gece koridorda Feride bir hece duymuş, duyarken de görülmüştü.'
           /* Tur 27: 2. bölümde Kenan yolunda kapıyı dinlemeden geçen kız Perihan'ı görmedi (p2_koridor_kenan) */
           : (b(S).p2_koridor_kenan
             ? 'Dün gece Feride o aralık kapının önünden durmadan geçmişti. Ardından gelen Perihan Hanım ise orada bir ad duymuştu.'
@@ -608,7 +608,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { gorev: 1 },
           { ara: { mekan: 'konak_sofa', yer: 'Sait Efendi\'nin konağı · öğle', satirlar: [
             'Öğle ezanı okunurken konağın kapısı yabancı birine açıldı.',
-            'Yabancı mürebbiyeler konaklara bir dil getirirdi, çoğu zaman da dışarının havasını.',
+            'Perihan Hanım sandığın getirildiğini görünce Feride’yi yanına çağırdı.',
           ] } },
         ],
       },
@@ -861,7 +861,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ], degilse: [{ eger: (S) => S.giyili === 'nisan_sade', ise: [
               ['mehves', 'Sade olsun hanımcığım. Bugün sizin yerinize gerdanlık konuşsun.', 'kararli'],
             ], degilse: [
-              ['mehves', 'Pembe tafta! Bugün yüzünüz de gülsün, eteğiniz de.', 'ana'],
+              ['mehves', 'Şu pembeye bakın hanımcığım.', 'ana'],
             ] }] },
           ] },
           { eger: (S) => S.giyili === 'nisan_yadigar', ise: [
@@ -1275,7 +1275,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] } },
           ['calibe', '{i}Evvelki gece ölüden af diliyordun. Behiye\'den.{/i}', 'soguk'],
           { goster: ['suha', 'notr'] },
-          ['suha', '{i}Ölüler af eder. Siz etmezsiniz.{/i}', 'soguk'],
+          ['suha', '{i}Ölüler affeder. Siz etmezsiniz.{/i}', 'soguk'],
           { muzik: 'huzun' }, // Tur 33 (B3 ses 3): bölümün en ağır bilgisi sessiz geçmez
           { eger: (S) => b(S).p2_koridor_hece === 'be', ise: [
             ['ic', '“Be…”: Behiye. Annemin adı.', 'aglamakli'],
@@ -1429,7 +1429,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] }] },
           { soru: 'Çit on adım ötede. Üst katın pencereleri bahçeye bakıyor.', secim: [
             { m: 'Çite yaklaş.', etki: { remzi: 4, itibar: -1 }, bayrak: { p3_remzi_yer: 'cit' }, adimlar: [
-              'Beş adım attım. Kalan beşi yeter.',
+              'Biraz yaklaşınca sesini duydum.',
             ] },
             { m: 'Köşkün kafesinin ardından konuş.', bayrak: { p3_remzi_yer: 'kafes' }, adimlar: [
               'Bahçe köşkünün kafesine geçtim. Beni görmüyor, sesimi duyuyor.',
@@ -1666,11 +1666,9 @@ window.BOLUMLER = window.BOLUMLER || {};
                   ['ic', 'Üç kez işaret etti. Not ulaştı mı, Nimet dönmeden bilemem.', 'endiseli'],
                   'Nimet yarım saatte döndü, kapıda fısıldadı: “Aldı hanımcığım.”',
                 ] },
-                ['an', 'Feride lambasını söndürmedi. Yazdığı iki satırın arkasında, sabah da duracaktı.'],
                 { kart: 'Pusulam yola çıktı. Sabah Perihan Hanım’dan önce kime ulaşacak?' },
               ], degilse: [
                 'Nimet yarım saat sonra şalını açtı. Kâğıt yoktu.',
-                ['an', 'Feride lambasını söndürmedi. Yazdığı iki satırın arkasında, sabah da duracaktı.'],
                 { kart: 'Pusulam yola çıktı. Sabah Perihan Hanım’dan önce kime ulaşacak?' },
               ] }] },
             ] },

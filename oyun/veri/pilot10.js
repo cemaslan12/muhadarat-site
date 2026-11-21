@@ -773,7 +773,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Diyalog T1 (D3, 10-2): "…anlamına gelmez" çağdaş çeviri kalıbı; dönemin yazı dilinde "demek değildir" */
           { soru: 'İkinci satıra ne yazacağım?', secim: [
             /* Tur 32 (t32 B10 oynanış 1, diyalog 1): seçenek fiil cümlesi; not Feride'nin birinci tekil sesi */
-            { m: 'Suçu kabul etmediğimi yaz: “Gerdanlığı geri veriyorum; hakkımda söylenenleri kabul ettiğimden değil.”', bayrak: { p10_not: 'ad' }, iz: 'Notun, taşı geri vermenin suçu kabul etmek olmadığını söylüyor.' },
+            { m: 'Suçu kabul etmeden teslim ettiğini yaz.', bayrak: { p10_not: 'ad' }, iz: 'Notun, taşı geri vermenin suçu kabul etmek olmadığını söylüyor.' },
             { m: 'Kenan\'a sözümün sürdüğünü yaz: “Gerdanlığı geri veriyorum; verdiğim söz bittiğinden değil.”', bayrak: { p10_not: 'koru' }, iz: 'Notun, Kenan\'a verdiğin sözün sürdüğünü söylüyor.' },
             { m: 'Nişanı benim bitirdiğimi yaz: “Bu nişanı aileler değil, ben bitirdim. —Feride”', etki: { vakar: 1 }, bayrak: { p10_not: 'bitir' }, iz: 'Nişanın son sözünü kendin söyledin: bitiren sensin.' },
           ] },
@@ -797,7 +797,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* GPT T23 (Remzi 10A): vals pazarlığı yapılmamış yolda "daha" yok */
             ['remzi', 'Şahit lazımsa buradayım. Karşılığında bir vals; çok mu?', 'ana'],
           ] }] }] },
-          ['remzi', 'Şahidin kahvesi benden.', 'gulumser'],
           /* Tur 22 ek (öneri 4): kalan Hatice iskelede; şahit seçeneği onun için açılır */
           { eger: haticeKal, ise: ['Kahvenin ardında Hatice; bohçasız, bana bakıyor.'] },
           /* 9. bölüm: Ada kahvelerine ısmarlanan söz */
@@ -1342,7 +1341,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] }] }] },
             { soru: 'Kâğıt elimde; lamba yanık.', secim: [
               { m: 'Yastığının altına koy.', bayrak: { p10_kenan_not: 'sakla' }, adimlar: [
-                ['ic', 'Babam okumasın. Ben her gece okurum.', 'utanmis'],
+                ['ic', 'Babam bulmasın. Yastığımın altında kalsın.', 'utanmis'],
               ] },
               { m: 'Ezberle, lambada yak.', bayrak: { p10_kenan_not: 'yak' }, adimlar: [
                 'Kâğıt lambada kıvrıldı. Ezberledim, kimse bulamaz.',
@@ -1374,7 +1373,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [{ eger: (S) => b(S).p10_not === 'koru' && !['ayri', 'mektup'].includes(b(S).p10_son), ise: [
             'Münevver Hanım’ın imzaladığı notu sandığıma kilitledim. Taş gitti; sözüm bende kaldı.',
           ], degilse: [
-            'Münevver Hanım’ın imzaladığı notu da sandığıma kilitledim.',
+            'Teslim kâğıdını ayrı tuttum. Sandığım kilitli.',
           ] }] }] },
           /* Anlatı T2 (b10_11_12 10-7, GPT T24 10.3): Süha'nın "Onun gözünden"ü kapı açıldıktan sonra eşik anını
              bölüyordu (an resmiyle art arda iki tam ekran); tıklatmadan önceye, "Aynı saatlerde" sayfası oldu */
@@ -1702,7 +1701,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['suha', 'Cevabınızı babanızın kapısında beklerim.', 'soguk'],
               ], degilse: [
                 ['suha', 'Sırrımı aldınız. Artık beni yakabilirsiniz; bu da bir çeşit evet.', 'alayci'],
-                ['f', 'Sırrınızı aldım Süha Bey. Cevabımı değil.', 'kararli'], // Tur 33 (t33 B10 diyalog 6): aforizma kalıbı 12. bölümle yinelenmesin
+                ['f', 'Cevabımı vermedim Süha Bey.', 'kararli'], // Tur 33 (t33 B10 diyalog 6): aforizma kalıbı 12. bölümle yinelenmesin
               ] },
             ] },
             /* Tur 33 (t33 B10 anlatı 2): "dayım değilseniz" ters anlaşılıyordu */

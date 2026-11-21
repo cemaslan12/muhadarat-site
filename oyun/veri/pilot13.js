@@ -91,6 +91,11 @@ window.BOLUMLER = window.BOLUMLER || {};
     if (V.cizimler && !V.cizimler[id]) V.cizimler[id] = { ad: 'Madam\'ın sandığında nişan resmi', alt: 'Yanan Resim' };
   });
 
+  ['', '_nisan_gosterisli', '_nisan_yadigar'].forEach(function (ek) {
+    V.cizimler['an_leyla_bohca' + ek] = { ad: 'Nimet’in bohçasında', alt: 'Yanan Resim' };
+    V.cizimler['an_leyla_kitap' + ek] = { ad: 'Şefik’in kitabında', alt: 'Yanan Resim' };
+  });
+
   var TALIP = 'Süha Bey\'in talip planı';
   var b = function (S) { return S.bayrak; };
   var muk = function (S) { return S.bayrak.p_rota === 'mukaddem'; };
@@ -427,7 +432,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['calibe', 'Ada\'da kapısında yatan da oydu.', 'sinsi'],
           ] }] },
           ['calibe', 'Nimet bu akşam gidecek.', 'soguk'],
-          ['ic', 'Önce Nimet, sonra sıra bende.', 'endiseli'],
           { soru: 'Nimet tepsiyi göğsüne bastırdı.', secim: [
             { m: '“Nimet annemin dadısıydı. Annemin hatırı için kalsın babacığım.”', bayrak: { p13_v_nimet: 'baba' }, adimlar: [
               /* Babanın kulağı iftiraya açıksa Perihan'ın sözü geçer */
@@ -515,7 +519,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { m: '“Münevver Hanım\'a git. Olanı ondan saklama.”', kosul: muk, bayrak: { p13_nimet_yer: 'munevver' }, iz: 'Nimet Münevver Hanım\'a gidiyor, konakta olanı o da bilecek.', adimlar: [
                 ['mehves', 'Olan biteni Hanımefendiye bir bir anlatırım.', 'kararli'],
               ] },
-              { m: '“Leyla\'lara git. Leyla seni tutar.”', bayrak: { p13_nimet_yer: 'leyla' }, iz: 'Nimet Leyla\'lara gidiyor, akşam kapılarında olur.', adimlar: [
+              { m: '“Leyla\'lara git. Seni kapıda bırakmaz.”', bayrak: { p13_nimet_yer: 'leyla' }, iz: 'Nimet Leyla\'lara gidiyor, akşam kapılarında olur.', adimlar: [
                 ['mehves', 'Leyla Hanım\'ın kapısından size haberi eksik etmem hanımcığım.', 'notr'],
               ] },
               { m: '“Köyüne dön. Kimseye bir şey söyleme.”', bayrak: { p13_nimet_yer: 'koy' }, adimlar: [
@@ -802,13 +806,15 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['josephine', 'Sandığımın dibine. Paris diplomamın altına.', 'kararli'],
               { cizim: 'an_yanan_resim_emanet' },
               /* T32 (ifade envanteri 2a-14): vazgeçmenin acısı, gülüş değil */
-              ['ic', 'Madam resmi kitabın arasına koydu. Nerede olduğunu biliyorum.', 'mahzun'],
+              ['an', 'Madam diplomasını resmin üstüne serip sandığı kapattı.'],
             ] },
             { m: 'Leyla\'ya gönder.', kosul: (S) => !leylaAcik(S), bayrak: { p13_resim: 'emanet', p13_emanet: 'leyla' }, iz: 'Resim Leyla\'ya gidiyor. Onu artık Leyla saklayacak.', adimlar: [
               { eger: (S) => b(S).p13_nimet_yer === 'leyla', ise: [
                 'Resmi Nimet\'in bohçasına sardım. Akşam Leyla\'lara giderken o götürecek.',
+                { cizim: 'an_leyla_bohca' },
               ], degilse: [
                 'Resmi bir kitaba koydum. Şefik ders dönüşü Leyla\'nın eline verecek.',
+                { cizim: 'an_leyla_kitap' },
               ] },
               /* Anlatı T2b (GPT okur 13-3): 6. bölümde şurup haberiyle kilitlenen çekmece unutulmaz */
               { eger: (S) => b(S).p4_pakt === 'mektup' && b(S).p5_fev === 'surup', ise: [
@@ -853,6 +859,17 @@ window.BOLUMLER = window.BOLUMLER || {};
         id: 'p13_ikindi', mekan: 'konak_sofa', tetik: 'giris', kosul: (S) => S.gorev === 3, sahne: [],
         adimlar: [
           /* Diyalog T1 (13-16): süre anlatıda; iç ses planı kurar. T32: iç seste "koz" yok */
+          { eger: (S) => b(S).p10_sahit === 'remzi' && b(S).p10_teslim !== 'gizli', ise: [
+            ['an', 'Remzi Bey avlu kapısında durmuştu. Selamlığa çıkan uşağın peşinden gitmedi.'],
+            { soru: 'Başını kaldırınca beni gördü.', secim: [
+              { m: 'Eğilip ona selam ver.', bayrak: { p13_remzi_selam: 'ver' }, adimlar: [
+                ['an', 'Remzi Bey elini göğsüne götürdü. Feride doğrulana kadar orada bekledi.'],
+              ] },
+              { m: 'Sofadan içeri çekil.', bayrak: { p13_remzi_selam: 'cekil' }, adimlar: [
+                ['an', 'Feride içeri geçince avlu kapısı kapandı.'],
+              ] },
+            ] },
+          ] },
           { vakit: VAKIT_IKINDI },
           { gorev: 4 },
         ],
@@ -1061,7 +1078,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { m: '“Babacığım, ya Süha Bey\'den geçersiniz ya benden.”', etki: { vakar: 2, baba_guven: -2 }, bayrak: { p13_ret: 'acik' }, iz: 'Babana açıkça hayır dedin.', adimlar: [
                 /* Diyalog T1 (13-24): babanın tepkisi ültimatomun hemen ardından; kayıt satırı ondan sonra */
                 ['sai', 'Babanı kendinle mi tehdit ediyorsun?', 'ofkeli'],
-                ['f', 'Tehdit değil babacığım. Hayır diyorum; bu kez kendi sesimle.', 'kararli'],
+                ['f', 'Hayır babacığım. Bunu yüzünüze söylüyorum.', 'kararli'],
                 KAYIT_SOZU,
               ] },
               { m: '“Kenan Bey\'den dönmem babacığım. Süha Bey\'e varmam.”', etki: { vakar: 2, baba_guven: -2 }, bayrak: { p13_ret: 'acik', p13_v_bag: 'kenan' }, iz: 'Babana açıkça hayır dedin, Kenan\'dan dönmeyeceğini de.', adimlar: [
@@ -1464,6 +1481,8 @@ window.BOLUMLER = window.BOLUMLER || {};
       an_ret_sessiz: function (S) { return S.bayrak.p13_ret === 'sessiz' && (S.bayrak.p13_v_iftira !== true && S.bayrak.p12_nikah_ertelendi !== true); },
       an_yanan_resim_yak: function (S) { return S.bayrak.p13_resim === 'yak'; },
       an_yanan_resim_sakla: function (S) { return S.bayrak.p13_resim === 'sakla'; },
+      an_leyla_bohca: (S) => S.bayrak.p13_emanet === 'leyla' && S.bayrak.p13_nimet_yer === 'leyla',
+      an_leyla_kitap: (S) => S.bayrak.p13_emanet === 'leyla' && S.bayrak.p13_nimet_yer !== 'leyla',
       an_yanan_resim_emanet: function (S) { return S.bayrak.p13_emanet === 'madam'; },
     },
     anIpuclari: {
@@ -1473,6 +1492,8 @@ window.BOLUMLER = window.BOLUMLER || {};
       an_ret_sessiz: 'Akşam selamlıkta babanın önünde susar, başını eğmezsen.',
       an_yanan_resim_yak: 'Madam\'ın odasında Kenan\'ın resmini sobaya atarsan.',
       an_yanan_resim_sakla: 'Kenan\'ın resmini koynuna saklarsan: kapı aralığında Nazlı.',
+      an_leyla_bohca: 'Resmi Leyla’ya Nimet’in bohçasında gönderdiğinde.',
+      an_leyla_kitap: 'Resmi Leyla’ya Şefik’in kitabında gönderdiğinde.',
       an_yanan_resim_emanet: 'Kenan\'ın resmini Madam\'a emanet edersen: sandığın dibinde.',
     },
     // Kanca yola özel (motor.js, kanca işlevse durumla çağırır).

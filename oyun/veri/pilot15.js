@@ -953,7 +953,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     { eger: R_ARAC, ise: [
       ['ic', 'Bahçe kapısında şartımı dinleyeceğine söz verdi.', 'tebessum'],
     ], degilse: [
-      ['ic', 'Elimde şart yok. En kolay yolun hesabı sonra sorulur.', 'mahzun'],
+      ['ic', 'Babam sözümü olduğu gibi götürecek mi?', 'mahzun'],
     ] },
     { soru: 'Babam Remzi Bey\'e ne diyeceğini soruyor.', secim: [
       { m: '“Evet deyin babacığım. Şartsız.”', bayrak: { p15_v_rsart: 'sartsiz' }, iz: 'Remzi\'ye şartsız evet dedin.', adimlar: [
@@ -1261,7 +1261,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['remzi_anne', 'Oğlum bir gördü, beğendi. Biz de beğenirsek iş biter.', 'gulumser'],
           ] },
           ['calibe', 'Kızımız piyano da çalar, Fransızca da bilir.', 'gulumser'],
-          ['sadberk', 'Bizim evde benimle Türkçe konuşur.', 'alayci'],
+          ['sadberk', 'Bizim evde mutfağa Fransızca laf anlatamazsın kızım.', 'alayci'],
           { eger: kahve, ise: [
             ['calibe', 'Kahvesini kızımız kendi pişirdi.', 'gulumser'],
           ], degilse: [
@@ -1276,7 +1276,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { efekt: 'fincan' },
           { soru: 'Kahveyi önce kime vereceğim?', secim: [
             { m: 'Usulünce: önce Remzi Bey\'in annesine, orta şekerli.', etki: { itibar: 1 }, bayrak: { p15_kahve: 'usul' }, adimlar: [
-              ['remzi_anne', 'Eli titremiyor. Bizim eve el lazım.', 'gulumser'],
+              ['remzi_anne', 'Oğlum kahvesini böyle ister. Fincanına bir damla taşırmadan.', 'gulumser'],
             ] },
             /* Sabah mutfakta öğrenilen: hanım şekersiz içer */
             { m: 'Şekersizini ona ver: tatlı sevmediğini biliyorum.', kosul: R_TANIK, etki: { itibar: 1 }, bayrak: { p15_kahve: 'sekersiz' }, iz: 'Mutfakta öğrendiğin görücüyü şaşırttı.', adimlar: [
@@ -1293,7 +1293,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: function (S) { return itibar(S) >= 55; }, ise: [
             ['remzi_anne', 'Mahallede adını soran övgüden başka söz duymamış. Biz de onu duyduk.', 'gulumser'],
           ], degilse: [{ eger: function (S) { return itibar(S) < 45; }, ise: [
-            ['sadberk', 'Mahallede adın çok konuşuluyor kızım. Biz yine de geldik.', 'alayci'],
+            ['sadberk', 'Bizim evde kapıya gelenin sözü taşlıktan içeri girmez kızım.', 'alayci'],
           ] }] },
           /* Tartılan kız bir kez tartar: görücünün evinde gelinin payı */
           ['f', 'Sizin evde bir gelin neye kendi başına karar verir, hanımefendi?', 'tebessum'],
@@ -1305,7 +1305,11 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* T27b (GPT B15-SE1): istenmeyen hediye parlak ödül sesiyle açılmasın; fiyat anında Perihan'ın koyu teması
              (an sesi piyano akoruna döner, ses.js KOYU), Leyla gelince ev temasına dönülür */
           { muzik: 'perihan' },
-          ['remzi_anne', 'Paris işi. Kırk lira verdik, oğlum bunun on katını verir.', 'gulumser'],
+          { eger: (S) => b(S).p10_sahit === 'remzi' && b(S).p10_teslim !== 'gizli', ise: [
+            ['remzi_anne', 'Kırk lira verdim kızım. İskeledeki sözünden beri oğlum babanızın kapısında kalır.', 'ana'],
+          ], degilse: [
+            ['remzi_anne', 'Paris işi. Kırk lira verdik, oğlum bunun on katını verir.', 'gulumser'],
+          ] },
           { kesif: { x: 40, y: 34, w: 18, h: 24, ad: 'Yelpazenin kurdelesi', adimlar: [
             /* T28 (b13_16 GÖRSEL): Paris dükkânı Türkçe fiyat yazmaz; görücünün yalanı ve dönem dokusu */
             /* T28b (GPT A15-2): etiket üretim yerini kanıtlamaz; çıkarım gösterdiği kadar */
@@ -1314,13 +1318,13 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] } },
           /* 6. bölüm: Remzi'nin salondaki sepetle yollattığı yelpaze */
           { eger: function (S) { return b(S).p6_v_yelpaze === 'al'; }, ise: [
-            ['ic', 'İkinci yelpaze. O ev hep iki kez öder.', 'tebessum'],
+            ['ic', 'İkinci yelpaze. İlki hâlâ bende.', 'tebessum'],
           ], degilse: [{ eger: function (S) { return b(S).p6_v_yelpaze === 'geri'; }, ise: [
             ['ic', 'Sepetiyle gelen birini geri yollamıştım. Bu kez annesi getirdi.', 'tebessum'],
           ] }] },
           { cizim: 'an_yelpaze' },
           { soru: 'Yelpaze bana uzanmış duruyor.', secim: [
-            { m: '“Kırk lira mı? Fiyatı yelpazeden önce geldi.”', etki: { vakar: 1, itibar: -1 }, bayrak: { p15_yelpaze: 'fiyat' }, iz: 'Fiyatı yüzlerine okudun. Annesi seni dilli buldu.', adimlar: [
+            { m: '“Yelpazeyi açmadan fiyatını öğrendik.”', etki: { vakar: 1, itibar: -1 }, bayrak: { p15_yelpaze: 'fiyat' }, iz: 'Fiyatı yüzlerine okudun. Annesi seni dilli buldu.', adimlar: [
               /* Etiketi yalnız kurdeleye bakan kız anar */
               { eger: function (S) { return b(S).p15_k_etiket === 'bakti'; }, ise: [
                 ['f', 'Etiketi de sökmeyi unutmuşsunuz.', 'tebessum'],
@@ -1445,7 +1449,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       {
         id: 'p15_sofra', mekan: 'yemek_salonu', tetik: 'giris', kosul: (S) => S.gorev === 2, sahne: [],
         adimlar: [
-          ['an', 'Sofradaki herkes aynı şeyi düşünüyor, kimse adını anmıyordu.'],
+          ['an', 'Sofrada kimse Remzi Bey’in adını ağzına almadı.'],
           /* Aile sofrası: portreler ilk replikleriyle tek tek */
           { goster: ['sai', 'ciddi'] },
           /* Vakitte ödenen bedeller aynı akşam anılır (en çok biri) */
@@ -1873,7 +1877,8 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [{ eger: (S) => kapi(S) === 'suha', ise: [
             { kart: 'Üç kapı vardı. Süha Bey\'inkini açtım, ama kendi şartımla.' },
           ], degilse: [{ eger: (S) => kapi(S) === 'remzi', ise: [
-            { kart: 'Remzi Bey’e evet dedim. Şartımı onun evinde de söylerim.' },
+            { eger: (S) => b(S).p15_v_rsart === 'sartsiz', ise: [{ kart: 'Remzi Bey’e evet dedim. Babam sözüme hiçbir şart katmayacak.' }],
+              degilse: [{ kart: 'Remzi Bey’e evet dedim. Şartımı onun evinde de söylerim.' }] },
           ], degilse: [
             { kart: 'Kimseye evet demedim. Sabah babamdan önce kendi sözümü söyleyeceğim.' },
           ] }] }] }] },
@@ -1906,7 +1911,8 @@ window.BOLUMLER = window.BOLUMLER || {};
           ev: 'Remzi Bey\'e evet dedim, şartım ayrı ev.',
           sefik: 'Remzi Bey\'e evet dedim, Şefik\'in mektebini onun sözüne bağladım.',
           beyoglu: 'Remzi Bey\'e evet dedim, Beyoğlu\'ndaki evi kapatması şartıyla.',
-        }[f.p15_v_rsart] || 'Remzi Bey\'e evet dedim, en açık kapı oydu.',
+          sartsiz: 'Babamın önünde Remzi Bey’e şartsız evet dedim.',
+        }[f.p15_v_rsart] || 'Babamın önünde Remzi Bey’e evet dedim.',
         yok: 'Bu gece hiçbir kapıya evet demedim, sözümü sabaha sakladım.',
       }[f.p15_kapi] || 'Yatsıda babamın önünde durdum.');
       var baba = { ikna: 'babam ikna oldu', kararsiz: 'babam kararsız', karsi: 'babam karşımda' }[f.p15_baba] || 'babam sustu';
@@ -1920,7 +1926,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         suha: ({ kabul: 'Süha Bey\'in şartına şartla karşılık verdim, gerekirse ondan dönebilecek miyim?',
           sakla: 'Süha Bey\'in fısıltısını kendime sakladım, gerekirse ondan dönebilecek miyim?' })[f.p15_v_fisilti] ||
           'Süha Bey\'in fısıltısını babama duyurdum, gerekirse ondan dönebilecek miyim?',
-        remzi: 'Remzi Bey\'in evinde gönül mü sayılacak, fiyat mı?',
+        remzi: f.p10_sahit === 'remzi' && f.p10_teslim !== 'gizli' ? 'İskelede benim için söylediklerini evinde de söyler mi?' : 'O evde sözümü kendim söyleyebilecek miyim?',
         yok: f.p15_v_gece === 'sus' ? 'Lambamı söndürürken babama hâlâ bir ad vermemiştim.' : 'Sabahı bekliyorum, babama hâlâ bir ad vermedim.',
       }[f.p15_kapi] || 'Sabah kim karar verecek?');
       return c.join(' ');
