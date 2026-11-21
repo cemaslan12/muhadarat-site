@@ -275,7 +275,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             : (muk(S)
               ? 'Merdivende olanı Sait Efendi henüz duymamıştı. Akşam sofrasında bunu ona kimin, nasıl anlatacağı belli değildi.'
               : 'Limonlukta olanı Sait Efendi henüz duymamıştı. Akşam sofrasında bunu ona kimin, nasıl anlatacağı belli değildi.'))),
-        'Feride sofraya susmak için inmeyecekti. Babası o akşam ne duyacaksa, onun ağzından da duyacaktı.',
       ] } },
     ],
 
@@ -320,7 +319,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['mehves', 'Kâhya, Şefik Bey’in düğünde unuttuğu kitabı da getirmiş.', 'ana'],
           { goster: ['kitap', 'ana'] },
           { eger: muk, ise: [
-            ['mehves', 'Kenan Bey kitabı bu gece geri istiyormuş. Bahane hanımcığım; kâhya aşağıda, içine konacak cevabı bekliyor.', 'ana'],
+            ['mehves', 'Kenan Bey kitabı bu gece geri istiyormuş. Kâhya aşağıda cevabınızı bekliyor.', 'ana'],
             /* --- Kenan yolu: kitabın içindeki pusula --- */
             { goster: ['mukaddem_not', 'ana'] },
             { muzik: 'romantik' }, // Tur 27 (B2 ses 3): Kenan yolunun romantik basamağı "ev" müziğinde kalmaz
@@ -347,7 +346,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['ic', 'Yazmış, sonra kazımış. Bir yıl böyle geçmiş.', 'mahzun'],
               { bayrak: { p2_k_ithaf: true } },
             ] } },
-            { soru: 'Bir yıl tek satır yoktu. Kâhya aşağıda bekliyor; kitap bu gece geri gidecek.', secim: [
+            { soru: 'Bir yıl tek satır yoktu. Kitap bu gece geri gidecek.', secim: [
               { m: 'Pusulanın altına bir satır yaz.', bayrak: { p2_pusula: 'yazdi' }, iz: 'Kenan\'ın pusulasına kendi cevabını yazdın.', adimlar: [
                 { efekt: 'kalem' },
                 'Annemin gümüş kalemini buldum. Nimet görmüyormuş gibi pencereye döndü.',
@@ -1003,7 +1002,6 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['sai', 'Annen de sözlendiği akşam bunu çalmıştı.', 'mahzun'],
               ] },
               ['calibe', 'Bu şarkı bu salonda yıllardır çalınmazdı.', 'soguk'],
-              ['ic', 'Artık çalınıyor.', 'kararli'],
             ] },
             { m: 'Şefik için bir vals çal.', etki: { sefik: 1 }, bayrak: { p2_piyano: 'vals' }, adimlar: [
               { muzik: 'vals' },
@@ -1042,7 +1040,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] }] }] }] },
           { soru: 'Notaya elini uzatmadı, bekliyor.', secim: [
             { m: '“Buyurun.”', etki: { suha: 6 }, bayrak: { p2_sayfa: 'suha' }, adimlar: [
-              'Her sayfayı parmağım oraya varmadan çevirdi. Eli bir kez bile benimkine yaklaşmadı.',
+              'Her sayfayı tam vaktinde çevirdi. Eli bir kez bile benimkine yaklaşmadı.',
               /* Diyalog T1 (D8): değmeyen el anlatıda kalmasın; Süha alt metni kendi ağzıyla, tehlikeli söyler */
               ['suha', 'Hep bir sayfa önünüzdeyim Feride Hanım. Alışın.', 'soguk'],
               /* Tur 27 (GPT B2 D 10'a-1): tehdit iç sesle açıklanmaz; Feride'nin cevabı hareket */
@@ -1071,7 +1069,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { m: '“Kapağa yazdığınız kız için mi? Çevirin, ama yalnız sayfaları.”', kosul: (S) => !!S.bayrak.p2_k_kapak, etki: { suha: 7 }, bayrak: { p2_sayfa: 'suha', p2_kapak_soru: true }, iz: 'Kapaktaki satırı Süha Bey\'in yüzüne okudun. İzni de sınırı da sen koydun.', adimlar: [
               ['f', 'Kapağa yazdığınız kız için mi çevireceksiniz Süha Bey? Çevirin, ama yalnız sayfaları.', 'kararli'],
               ['suha', 'Okudunuz demek. Peki, yalnız sayfaları.', 'alayci'],
-              'Her sayfayı parmağım oraya varmadan çevirdi. Eli bir kez bile benimkine yaklaşmadı.',
+              'Her sayfayı tam vaktinde çevirdi. Eli bir kez bile benimkine yaklaşmadı.',
             ] },
           ] },
           { eger: muk, ise: [
@@ -1224,7 +1222,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { m: '“Sevinçliyim.”', kosul: muk, bayrak: { p2_gerdanlik: 'sevinc' }, adimlar: [
               ['f', 'Sevinçliyim.', 'gulumseyen'],
               ['mehves', 'Öyleyse aynadan gözünüzü niye kaçırıyorsunuz hanımcığım?', 'duygulu'],
-              ['ic', 'Kaçırdım, çünkü pusula aklımdaydı. Bunu Nimet\'e söylemedim.', 'utanmis'],
+              ['ic', 'Aklım kâhyanın götürdüğü kitaptaydı. Bunu Nimet\'e söylemedim.', 'utanmis'],
             ] },
             /* Tur 27 (B2 oynanış 4): Süha yolunda gerdanlık sorusu boşa düşmesin.
                Tur 28 (GPT A2/O3; kural 2): samimi sevinç p_rota'ya yenilmez; iç ses açık iradeden (bu seçim, p2_suha_sinir)
@@ -1383,7 +1381,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           { muzik: 'huzun' },
           /* Tur 27 (GPT A4): fon ve etiket koridorda; ilk satır odadan duymayı değil, koridora çıkışı anlatır */
           'Hıçkırığı duyunca kapımı açtım. Şefik koridorda, resmi göğsündeydi.',
-          ['an', 'Şefik ağlamayı annesinin öldüğü yıl öğrenmişti: geceleri, kimseyi uyandırmadan.'],
           { goster: ['sefik', 'aglamakli'] },
           { eger: (S) => S.bayrak.p2_mefharet === 'sefik', ise: [
             ['sefik', 'Leke gece büyümüş abla.', 'aglamakli'],
@@ -1597,7 +1594,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       if (muk(S)) {
         /* GPT T29 (B2-S1): Kenan yolunda koridorda heceyi duyan kızın kancası iki soruyu tek plana bağlar */
         /* Tur 33 (B2 sürük 2): soru kancası karar kancasına döndü; B3'ün sarı odasına bağlanır */
-        if (b.p2_koridor_hece === 'be') return 'Kenan Bey\'in bir sonraki satırını Perihan Hanım\'ın eline geçmeden almalıyım. Yarın konakta ne fısıldanırsa da önce ben duyacağım.';
+        if (b.p2_koridor_hece === 'be') return 'Kenan Bey\'in bir sonraki satırını Perihan Hanım\'ın eline geçmeden almalıyım.';
         if (b.p2_nesne_calibede) return 'Kenan Bey’den bana kalanı Perihan Hanım cebine koydu. Bir sonraki onun eline geçmeden almalıyım.';
         if (b.p2_satir === 'soru') return 'Kenan Bey’e yirmi dördüncü sayfayı sordum. Cevabı yarın gelirse Perihan Hanım\'dan önce okuyabilecek miyim?';
         if (b.p2_pusula === 'sustu') return 'Bu gece Kenan Bey’e susarak cevap verdim. Öbür gün gerdanlıkla birlikte onun satırı da gelecek mi?';

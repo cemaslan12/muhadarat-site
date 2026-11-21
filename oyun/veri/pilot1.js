@@ -70,7 +70,7 @@ window.BOLUMLER[101] = {
       'O yıllarda İstanbul\'da bir kızın sözünü ailesi keserdi; kıza soran olmazdı. Feride\'ninki bir yıl önce, Münevver Hanım\'ın oğlu Kenan\'a kesilmişti.',
       'Çocukken aynı bahçede büyümüşlerdi. Söz kesildiği günden beri ise ikisini bir kez olsun yüz yüze getirmemişlerdi; âdet böyleydi.',
       'Bugün ikisi de aynı düğüne davetliydi. Hanımlar bir yıldır bu karşılaşmayı bekliyordu; en çok da o an Feride\'nin yüzünde ne göreceklerini merak ediyorlardı.',
-      'Feride onlara görecek bir şey bırakmamaya kararlıydı.',
+      'Feride heyecanını belli etmemeye kararlıydı.',
     ] } },
     /* Anlatı rehberi (notlar/anlati_rehberi.md): sahneler arası anlatıcının ara sayfası */
     { ara: { mekan: 'fazila_oda', yer: 'Sait Efendi\'nin konağı · sabah', satirlar: [
@@ -412,7 +412,7 @@ window.BOLUMLER[101] = {
         { efekt: 'adim' },
         'Merdivenin ilk basamağında durdum. Yukarıdan bir ses geliyor.',
         ['ses', '“…Kadı sormuş: Bu eşek kimin? Hoca demiş: Anırsın, sahibi sesinden tanır.”'],
-        ['an', 'Şefik\'in kahkahası merdivenden aşağı yuvarlandı. On bir yaşındaydı; kendisine kitap getiren herkese gönlünü verirdi.'],
+        ['an', 'Şefik\'in kahkahası merdivenden aşağı yuvarlandı. Kendisine kitap getiren herkese gönlünü verirdi.'],
         ['ic', 'Öbür sesi tanıyorum. Çocukken bana masal okuyan ses bu, yalnız kalınlaşmış.', 'utanmis'],
         { goster: ['sefik', 'sevincli'] },
         ['sefik', 'Abla! Bak kim gelmiş!', 'sevincli'],
@@ -452,7 +452,7 @@ window.BOLUMLER[101] = {
           { m: '“Yazınız güzelleşmiş Kenan Bey.”', etki: { mukaddem: 8 }, bayrak: { p1_kenan_istek: true }, adimlar: [
             ['f', 'Yazınız güzelleşmiş Kenan Bey.', 'tebessum'],
             ['mukaddem', 'Güzel yazmaya çalıştım. Kimin okuyacağını bildiğim için.', 'utangac'],
-            ['ic', 'İthaf Şefik\'e yazılmış. Okuyacak olan ben miymişim?', 'utanmis'],
+            ['ic', 'Parmağım Şefik\'in adında kaldı.', 'utanmis'],
           ] },
           { m: '“Kardeşimi şımartıyorsunuz Kenan Bey.”', etki: { mukaddem: 7 }, adimlar: [
             ['f', 'Kardeşimi şımartıyorsunuz Kenan Bey.', 'tebessum'],
@@ -847,7 +847,7 @@ window.BOLUMLER[101] = {
         ['an','Yaldızlı bir kupa, Sait Efendi\'nin arabasının önüne yan durmuştu.'],
         'Arabamıza bindim. Perdenin aralığından yalnız yaldız görünüyor.',
         ['arabaci', 'Yol verin beyim, hanımlar bekliyor.'],
-        ['an', 'Kupadan genç bir adam indi. Remzi Bey\'in adını bilen azdı; babasının parasını bilmeyen yoktu.'],
+        ['an', 'Kupadan genç bir adam indi.'],
         { goster: ['remzi', 'ana'] },
         /* Tur 29 (B1 diyalog 10'a): gösterişin fiyatı söylenir */
         ['remzi', 'Al şunu, sus. Bir mecidiye, beklemenin parası.', 'ana'],
@@ -921,7 +921,7 @@ window.BOLUMLER[101] = {
         { ortam: null },
         { muzik: 'sessiz' },
         /* Tur 32 (B1 anlatı 6): tedbirli Perihan'ın perde dibinde konuşmasının gerekçesi */
-        'Perdenin öbür yanında iki ses durdu. Gözlerimi kapadım; uyuyan kızın yanında rahat konuşurlar.',
+        'Perdenin hemen dışında iki kişi durdu. Gözlerimi kapadım; uyuyan kızın yanında rahat konuşurlar.',
         /* Anlatı T2 (b1_2_3 #4; karar A2): perde ardındaki hanım bahçedeki yabancıya bağlanır (Remzi'nin annesi; B15'te tanınır) */
         /* GPT T26 Süha (B1 anlatı 10'a-1): sabah "Perihan'ı izleyeceğim" diyen Feride sesleri kendisi tanır */
         { eger: (S) => S.bayrak.p_tavir === 'tetik', ise: [
@@ -993,7 +993,7 @@ window.BOLUMLER[101] = {
           ] },
           /* Tur 28 (B1 sürük 3, oynanış 1): Kenan yolunda doruğa üçüncü strateji (gönülden); annenin adı.
              p_defter 'calibe' (2. bölüm geriye uyumlu), p1_defter_anne 2. bölüm gece defterinde ve sonNotu'nda okunur */
-          { m: 'Annenin gelin yolunu sor.', kosul: (S) => S.bayrak.p_rota === 'mukaddem', etki: { calibe_suphe: 1 }, bayrak: { p_defter: 'calibe', p1_defter_anne: true }, iz: 'Arabada Perihan Hanım\'a annenin adını andırdın.', adimlar: [
+          { m: 'Annenin gelin giderken geçtiği yolu sor.', kosul: (S) => S.bayrak.p_rota === 'mukaddem', etki: { calibe_suphe: 1 }, bayrak: { p_defter: 'calibe', p1_defter_anne: true }, iz: 'Arabada Perihan Hanım\'a annenin adını andırdın.', adimlar: [
             ['f', 'Annem de gelin giderken bu yokuştan mı geçmişti efendim?', 'mahzun'],
             /* Tur 29 (B1 diyalog 10'a): Perihan'ın atasözü kalıbı */
             ['calibe', 'Ölüyü yolda anan kız, düğünde ağlar kızım.', 'soguk'],
@@ -1086,7 +1086,7 @@ window.BOLUMLER[101] = {
     }[b.p_tavir] || 'Sabah aynaya “gözüm Perihan Hanım\'ın üstünde” dedim. Gün boyu da ondan ayırmadım.');
     /* Sürükleyicilik T1: defter soruyla değil, Feride'nin eylemiyle biter.
        GPT T25 Kenan (B1 sürük kart): arabadaki hamle seçilene göre; doruk satırı yeniden yazılmaz */
-    if (b.p_defter === 'mukaddem' && b.p_rota === 'mukaddem') c.push('Arabada Perihan Hanım\'a gerdanlık gününü, Kenan Bey\'i sorarak hatırlattım.');
+    if (b.p_defter === 'mukaddem' && b.p_rota === 'mukaddem') c.push('Arabada Perihan Hanım\'a gerdanlık günü Kenan Bey de gelir mi diye sordum. Yelpazesi durdu.');
     else if (b.p_defter === 'mukaddem') c.push('Arabada Perihan Hanım\'dan Münevver Hanım\'a selamımı istedim, götürmeyeceğini bilerek.');
     else if (b.p_defter === 'suha') c.push('Arabada Perihan Hanım\'a limonluğun camlarını hatırlattım. O da benim yanımdaki perdeyi indirdi.');
     else if (b.p_defter === 'remzi') c.push('Arabada Perihan Hanım\'a kapıdaki beyin annesini sordum. Kapıda bey görmediğini söyledi.');

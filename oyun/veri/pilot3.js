@@ -511,7 +511,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 27: 2. bölümde Kenan yolunda kapıyı dinlemeden geçen kız Perihan'ı görmedi (p2_koridor_kenan) */
           : (b(S).p2_koridor_kenan
             ? 'Dün gece Feride, Süha Bey\'in aralık kapısının önünden durmadan geçmişti. Ardından gelen Perihan Hanım ise orada durmuş, bir ad duymuştu.'
-            : 'Dün gece Feride, Süha Bey\'in aralık kapısının önünden görünmeden geçmişti. Dönüp baktığında o kapıyı dinleyen Perihan Hanım\'ı görmüştü.')),
+            : 'Dün gece Feride, Süha Bey\'in aralık kapısının önünden sessizce geçmeye çalışmıştı. Dönüp baktığında o kapıyı dinleyen Perihan Hanım\'ı görmüştü.')),
         /* GPT T25 Kenan (B3 S1): tek soru — taş takılmadan Perihan'ın hamlesi; Behiye adı bu sorunun dönüşü olur */
         /* Tur 27 (B3 sürük 1): soru taş takıldıktan sonra cevap bulduğu için "taş takılmadan" kalktı */
         /* Tur 28 (B3 anlatı 1): 2. bölümün "o adı kimseye söylemedi" hükmüyle çelişmez */
@@ -591,7 +591,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { soru: 'Kime sorayım?', secim: [
               { m: 'Nimet\'e: “Perihan Hanım gece ne yaptı?”', etki: { mehves: 1 }, bayrak: { p3_sabah: 'nimet' }, iz: 'Nimet\'ten öğrendin: sır sarı odada.', adimlar: [
                 ['mehves', 'Sabaha kadar lambası yandı. Sabah ilk iş sarı odayı açtırdı.', 'endiseli'],
-                ['ic', 'Sarı odaya misafir girmez, sır girer. Bu sabah kimin için açtırdı?', 'endiseli'],
+                ['ic', 'Sarı odayı misafire bile açmazdı. Bu sabah kimin için açtırdı?', 'endiseli'],
               ] },
               { m: 'Şefik\'e. Odası o koridorda.', etki: { sefik: 1 }, bayrak: { p3_sabah: 'sefik' }, iz: 'Şefik gece bir erkeğin ağladığını duymuş.', adimlar: [
                 { goster: ['sefik', 'korkmus'] },
@@ -667,7 +667,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { gizle: 'calibe' },
           /* Diyalog T1 (3.8): Madam'ın sorusu cevapsız kalmaz; ittifakın ilk adımı sesli */
           ['josephine', '{i}Başka kim Fransızca bilir burada?{/i}', 'notr'],
-          ['f', '{i}Süha Bey, Perihan Hanım, bir de ben. Burada sır Fransızca saklanmaz, Madam.{/i}', 'tebessum'],
+          ['f', '{i}Süha Bey, Perihan Hanım. Bir de ben.{/i}', 'tebessum'],
           { gizle: 'josephine' }, { gizle: 'sefik' },
           /* Serbest vakit: akşama kadar evde dolaşılır; hedef rotaya göre oda ya da salon */
           { eger: muk, ise: [{ vakit: VAKIT_OGLE_MUK }], degilse: [{ vakit: VAKIT_OGLE_SUHA }] },
@@ -884,7 +884,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Madalyon ne olacak?', secim: [
             /* Tur 28: madalyon_hal an resmi çeşidini seçer (ortak istek; 'yok' da _sakli gibi madalyonsuz) */
             { m: 'Kalsın. İkisi birlikte dursun.', etki: { vakar: 1 }, bayrak: { p3_madalyon: 'ikisi', madalyon_hal: 'acik' }, adimlar: [
-              ['ic', 'Biri annemden, biri yarından. Boynum ikisini de taşır.', 'kararli'],
+              ['ic', 'Biri annemden, biri yarından.', 'kararli'],
             ] },
             { m: 'Yakamın içine sakla.', bayrak: { p3_madalyon: 'gizli', madalyon_hal: 'sakli' }, adimlar: [
               ['ic', 'Zincir tenimde. Gerdanlık üstünde olacak, annem altında.', 'mahzun'],
@@ -898,7 +898,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { gizle: 'reftar' }, { gizle: 'mehves' },
           { efekt: 'adim' },
-          'Merdivenden inerken salonun uğultusu yükseldi; her basamakta biraz daha gelin oldum.',
+          'Merdivenden inerken salonun uğultusu yükseldi.',
           { gorev: 4 },
           { ara: { mekan: 'buyuk_salon', yer: 'Büyük salon · ikindi', satirlar: [
             'İkindi namazından sonra salon doldu. Kızlar gelinin yüzüne, hanımlar boynuna bakıyordu; Perihan Hanım ise herkesin yüzüne.',
@@ -1395,7 +1395,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { temizle: true },
           /* Artçı (mercek_artci 20): sırdan sonra misafir yüzüne dönüş */
           /* GPT T24b Süha (B3-2): gezinme sarı odadan başlar; anlatıcı yürüyüşü bitirmez */
-          ['an', 'Feride sarı odadan ayrılmadan yüzünü düzeltti. Aşağıda son misafirler ondan bir gelin yüzü bekliyordu.'],
+          ['an', 'Feride derin bir soluk aldı. Aşağıda hâlâ misafir vardı; ondan bir gelin yüzü bekliyorlardı.'],
           /* Serbest vakit: törenden sonra akşamüstü; hedef bahçe */
           { gorev: 6 }, { vakit: VAKIT_AKSAMUSTU },
         ],
@@ -1426,9 +1426,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] }] },
           ['remzi', 'Nabi Bey\'den kırk lira alacağım var, kumar borcu. Adamımı üç gündür kapıda bekletiyor.', 'kararli'],
           /* Önceki serbest vakitlerden: Nimet'in arka kapıdaki uşağı, sofada duyulan Perihan planı */
-          { eger: (S) => !!b(S).p3_v_borc, ise: [
-            ['ic', 'Nimet\'in dediği kırk lira. Uşağı yollayan buymuş.', 'saskin'],
-          ], degilse: [{ eger: (S) => b(S).p2_v_sofa === 'sakladi', ise: [
+          { eger: (S) => !!b(S).p3_v_borc, ise: [], degilse: [{ eger: (S) => b(S).p2_v_sofa === 'sakladi', ise: [
             ['ic', 'Rıfkı\'nın oğlu. Perihan Hanım\'ın beni satacağı alıcı bu.', 'ofkeli'],
           ] }] },
           { soru: 'Çit on adım ötede. Üst katın pencereleri bahçeye bakıyor.', secim: [
@@ -1497,7 +1495,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             { bayrak: { p3_josephine_kulak: true } },
           ] },
-          ['remzi', 'Bu haberi deftere yazmadım. Bedava verdim; alışkın değilim.', 'notr'],
           { eger: (S) => b(S).p3_remzi_yer === 'cit', ise: [
             ['an', 'Remzi Bey atını çevirdi. Üst katta bir perde kıpırdadı.'],
             { bayrak: { p3_remzi_goruldu: true } },

@@ -257,7 +257,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           KACIS,
           { bayrak: { p9_v_dis: 'bahce', p9_v_karsila: true } },
           'Şefik çamların dibinde kozalak topluyor; cepleri dolmuş.',
-          ['f', 'Şefik, Münevver Hanım\'ı Perihan Hanım\'dan önce sen karşıla, doğru bana getir.', 'tebessum'],
+          ['f', 'Şefik, ikindi vapurunu iskelede bekle. Münevver Hanım\'ı Perihan Hanım görmeden doğru bana getir.', 'tebessum'],
           { eger: (S) => b(S).p7_hizmet === 'sefik', ise: [
             ['sefik', 'Eteğinden tutarım! Kenan abinin odasında yattığımı da söylerim!', 'sevincli'],
           ], degilse: [
@@ -295,11 +295,11 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Diyalog T1 (D2): telgraf Münevver Hanım'a; Kenan onun oğlu ("damadınız" değil) */
           /* Tur 29 (t29 B9 ses 1): 'tik' satır ilerletme sesiydi (ayırt edilmiyordu); delilin bulunuşu kalemle */
           { efekt: 'kagit' }, // Tur 30 (t30 B9 ses 1): Feride kâğıdı görüyor, kimse yazmıyor
-          'Masada Perihan Hanım\'ın müsveddesi: “Oğlunuz sarhoş.” Saati yedi; kahve dokuzdaydı.',
+          'Masada Perihan Hanım\'ın müsveddesi duruyor: “Oğlunuz sarhoş.” Üstündeki saat yedi; kahve sofrası dokuzda kuruldu.',
           /* Oynanış B5: sabah fincanın altında görülen makbuz burada karşılık bulur (satır sayısı aynı) */
           { eger: (S) => !!b(S).p9_k_makbuz, ise: [
             /* Tur 28b (kök 4): iki kâğıt saati gösterir; yalanı değil */
-            ['ic', 'Fincanın altındaki makbuzda da saat yedi yazıyordu; hekim o vakit daha ağzını açmamıştı.', 'kararli'],
+            ['ic', 'Fincan tabağının altındaki makbuzda da saat yedi yazıyordu; hekim o vakit daha ağzını açmamıştı.', 'kararli'],
           ], degilse: [{ eger: (S) => b(S).p9_hukum === 'yazma', ise: [
             ['ic', '“Kalemim yok” demişti. Telgrafçısı varmış.', 'tebessum'],
           ], degilse: [
@@ -358,7 +358,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             ['remzi', 'Dürbünüm dün gece çok şey gördü. Bugün dil satın alıyorum.', 'ana'],
           ] }] }] }] }] }] },
-          ['remzi', 'İskeleye şimdi yetişiriz. Vapur yanaşırsa kahvedekiler evlerine dağılır. Dört kahvenin masrafı benden.', 'gulumser'],
+          ['remzi', 'İskelede dört kahve var; vapur yanaşmadan hepsine benden ısmarlanır. Ne konuşacaklarını siz söyleyin.', 'gulumser'],
           { soru: 'Ada\'nın dili satılık.', secim: [
             { m: '“Ismarlayın. Söz şu olsun: ‘Misafir ayıktı.’”', etki: { remzi: 4, itibar: 1 }, bayrak: { p9_v_camlik: 'kahve' }, iz: 'İskele kahvelerinde ikindiye kadar senin sözün dolaşacak; parası Remzi Bey\'den.', adimlar: [
               ['remzi', 'Ayıktı. Ben söylesem pahalıya gelirdi, kahveyle ucuza geldi.', 'gulumser'],
@@ -372,7 +372,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                yalnız 'kahve'yi okur, öbürleri gibi sessiz geçer) */
             { m: '“Ada\'nın dilini alın; benimkini alamazsınız.”', etki: { remzi: -3, vakar: 1 }, bayrak: { p9_v_camlik: 'ret' }, iz: 'Remzi Bey\'in pazarlığını yüzüne geri verdin; bozuldu.', adimlar: [
               { goster: ['remzi', 'kararli'] },
-              ['remzi', 'Satılık olmayan tek şey sizsiniz demek. Bunu da bir gün fiyatıyla söylerim.', 'kararli'],
+              ['remzi', 'Satılık olmayan tek şey sizsiniz demek. Not ettim; pahalıya not ettim.', 'kararli'],
             ] },
             /* Tur 22 ek (öneri 1): yeri bilinen gömülü şişe (8. bölüm). Çıkarılan şişe artık gömülü değildir. */
             { m: 'Büyük çamın dibini kaz: “Şişeyi Münevver Hanım\'a göstereceğim.”', kosul: gomuluydu, bayrak: { p9_v_camlik: 'sise' }, adimlar: [
@@ -701,21 +701,21 @@ window.BOLUMLER = window.BOLUMLER || {};
            yinelemez; babanın hükmü hemen ardından sahnede gelir. Tek satır, bıraktığım şeyi söyler. */
         /* Anlatı denetimi T1 (plan C): açılış anlatıcı sesinde (3. kişi, geçmiş). Münevver'in yeniden
            tanıtımı kalktı (mercek_tanitim T15); son satır bölümün sorusunu kurar. */
-        'Süha Bey’in “İçti” sözü asmanın altındaki sofradan Feride’nin peşinden gelmişti.',
+        'Sabah kahvesi bitmiş, sofradan kalkan olmamıştı. Asmanın altında iki yalan oturuyordu: Kenan gece bir şişe konyak bitirmiş, Hatice de sabaha karşı onun odasından çıkmıştı.',
         (S) => ({
-          dogru: 'Feride sofrada doğruyu söylemiş, kimseyi inandıramamıştı.',
-          koz: 'Yanlarında Hatice\'nin ağzından kaçan bir ad vardı: Nabi Bey.',
-          sise: 'Yanlarında bir soru da vardı: Feride gece selamlıkta ne arıyordu?',
-          gecmis: 'Yanlarında Perihan Hanım\'ın unutulmuş eski bir talibi de vardı.',
-          savun: 'Yanlarında Feride\'nin Kenan\'ı savunan sözü de vardı.',
+          dogru: 'Feride doğruyu söylemişti; inanan çıkmamış, üstelik kendi adı da sofraya düşmüştü.',
+          koz: 'Yanlarına Feride bir ad koymuştu: Nabi Bey. Babası o adı duymuş, gerisini henüz sormamıştı.',
+          sise: 'Feride yalanlardan birine dokunmuş, karşılığında bir soru almıştı: gece selamlıkta ne arıyordu?',
+          gecmis: 'Feride yanlarına üçüncü bir söz koymuştu: hekim, Perihan Hanım\'ın eski talibiydi.',
+          savun: 'Feride yalnız “Kenan Bey içmez” diyebilmişti; sözünün yanına koyacak bir delili yoktu.',
           /* Tur 29 (B8 'evde'/'oda'): çamlık yok; gecenin şahidi kapılar */
-          oda: 'Babası, Feride’nin gece duyduğu üç tıkı dinlemişti.',
+          oda: 'Feride gece döşemesine vurulan üç tıkı anlatmış, babası dinlemişti; ama üç tık selamlıktaki şişeyi açıklamıyordu.',
         /* Anlatı T2 (b7_8_9 9.3): pazarlığı reddedip susan kız pazarlığı "tutmuş" sayılmaz */
-        }[son8(S)] || (muk(S) ? (evde(S) ? 'Feride gece kapısından çıkmamıştı; bildiğini dilinin altında tutuyordu.' : 'Çamlıkta olanı Feride dilinin altında tutuyordu.')
-          : (b(S).p8_pazar === 'ret' ? 'Feride pazarlık etmeden susmuştu; sessizliği kimseye satılmamıştı.' : 'Feride pazarlığını tutmuş, susmuştu.'))),
+        }[son8(S)] || (muk(S) ? (evde(S) ? 'Feride sofrada susmuştu. Gece odasından çıkmamıştı; bildiği, döşemeden gelen üç tıktan ibaretti.' : 'Feride sofrada susmuştu. Çamlıkta olanı söylese Kenan aklanacak, kendi adı yanacaktı.')
+          : (b(S).p8_pazar === 'ret' ? 'Feride hekimin pazarlığını geri çevirmiş, sofrada yine de susmuştu; bu susuş kimseye verilmiş bir söz değildi.' : 'Feride gece hekimle ettiği pazarlığa uymuş, sofrada susmuştu.'))),
         (S) => (muk(S)
-          ? 'Söz ilk vapurla İstanbul\'a geçecekti.'
-          : 'Hekimin sözünü akşama kadar babasının önünde tarttırmalıydı.'),
+          ? 'Söz ilk vapurla İstanbul\'a geçecekti. Feride akşama kadar babasına tek bir gerçeği kabul ettiremezse, nişanının hükmünü Ada\'nın dili verecekti.'
+          : 'Hekimin yalanını Kenan taşıyordu. Feride akşama kadar babasına tek bir gerçeği kabul ettiremezse, nişanının hükmünü Ada\'nın dili verecekti.'),
         /* Anlatı T2 (mercek_doz 2a): açılış damgası yerine bölümün sorusu ve bedeli */
         /* Tur 29 (GPT S9-1): öğle süresi hazırlığa bağlı; kabul ettirmek akşam hükmünde */
         /* Tur 33 (t33 B9 anlatı 1): doruk (gerdanlığın istenmesi) ilk ekranda söylenmez */
@@ -735,7 +735,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                koruyucu yalanını bozabilir (somut gerçek: saat/kurdele); bedeli Kenan'ın güveni. */
             { eger: kenanVar, ise: [
               { goster: ['mukaddem', 'mahzun'] },
-              { soru: 'Kenan Bey önüne bakıyor; “Odamdaydım” yalanı hâlâ masada.', secim: [
+              { soru: 'Kenan Bey önüne bakıyor. “Odamdaydım” demişti; o yalan hâlâ sofrada duruyor.', secim: [
                 /* Diyalog T1 (D6): seçim delil vaat etmez; saat ve kurdele yolunda delili Feride'nin satırı getirir */
                 /* Oynanış B3: koruyucu yalanı bozmanın gönülde bedeli (Kenan −3) */
                 { m: '“Kenan Bey beni korumak için yalan söyledi.”', etki: { mukaddem: -3 }, bayrak: { p9_acilis: 'kenan' }, iz:'Kenan\'ın koruyucu yalanını babanın önünde bozdun.', adimlar: [
@@ -748,7 +748,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                   ] }] },
                   ['mukaddem', '…Odamda değildim efendim. Onu korumak için söyledim.', 'mahzun'],
                   ['sai', 'Bana yalan söyledin oğlum… kızımı korumak için. Peki kızımın gecesini kim anlatacak?', 'mahzun'],
-                  ['ic', 'Yalanını ben bozdum. Artık yüzüme bakmıyor.', 'mahzun'],
+                  ['ic', 'Gözünü fincanından kaldırmadı. Bana da bakmadı.', 'mahzun'],
                 ] },
                 /* Diyalog T1 (9-28): tırnaklı m ardından aynı söz tekrarlanmaz; m niyet, söz Feride'nin satırı */
                 { m: 'Doğruda dur; Kenan Bey\'in yalanını ele verme.', bayrak: { p9_acilis: 'sakla' }, adimlar: [
@@ -759,7 +759,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
           /* Tur 29 (B8 'oda'): babamın tepkisi kapı tedbirine dayanır — hapis yok, "yanımdan ayrılma" sözü sürer */
           ], degilse: [{ eger: (S) => son8(S) === 'oda', ise: [
-            ['sai', 'İkindiden önce ben de sorarım kızım. Sen evden ayrılma.', 'ciddi'],
+            ['sai', 'Gece selamlıkta kim vardı? İkindiden önce ben de sorarım kızım. Sen evden ayrılma.', 'ciddi'],
           ], degilse: [{ eger: (S) => son8(S) === 'koz', ise: [
             ['sai', 'Hatice, öğleden sonra yukarı gel. Seni ben dinleyeceğim.', 'ciddi'],
             { goster: ['calibe', 'sinsi'] },
@@ -781,7 +781,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['sai', 'Gece kızım hekimin peşinde, sabah hekim hanımın ağzıyla konuşuyor… Bana kim doğruyu söyleyecek?', 'mahzun'],
               ] },
               /* GPT T28 9-O1: büyük sırrı açmadan gerekçeli, düz cevap (ortaklık bayrağı ve Süha −5 yok) */
-              { m: '“Şişeyi incelemeye indim babacığım. Kenan Bey\'e söyleneni sınamak istedim.”', kosul: (S) => var_(S, BOS) || harcandi(BOS)(S), bayrak: { p9_acilis: 'incele' }, iz: 'Selamlıkta ne aradığını açıkça söyledin; Süha Bey\'in ortaklığını açmadın.', adimlar: [
+              { m: '“Şişeye bakmaya indim babacığım. Kenan Bey için söylenen doğru mu, görmek istedim.”', kosul: (S) => var_(S, BOS) || harcandi(BOS)(S), bayrak: { p9_acilis: 'incele' }, iz: 'Selamlıkta ne aradığını açıkça söyledin; Süha Bey\'in ortaklığını açmadın.', adimlar: [
                 ['f', 'Bardağı kuru buldum. İçildiğini kim gördü, onu soruyorum babacığım.', 'kararli'],
                 ['sai', 'Şahitleri tek tek dinlerim. Hekim de onların arasında.', 'ciddi'],
                 ['suha', 'Şişe saymak hekimin işidir küçük hanım; ama siz de iyi saymışsınız.', 'alayci'],
@@ -809,12 +809,12 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* 8. bölümün kahve kazanımı (Tur 17): geri alınmayan küçük gerçek */
           { eger: (S) => b(S).p8_kazanim === 'hatice', ise: [
             /* Tur 33 (t33 B9 diyalog 10'a): muhasebe cümleleri yerine duyusal iz */
-            ['ic', 'Kahvede babam Hatice\'nin sözünde bir an durup düşünmüştü. O duraklama hâlâ sofrada.', 'dusunceli'],
+            ['ic', 'Babam kahvede Hatice\'nin sözünü tek başına almayacağını söyledi. Sabahtan elimde kalan bu.', 'dusunceli'],
           ], degilse: [{ eger: (S) => b(S).p8_kazanim === 'sise', ise: [
-            ['ic', 'Babam iki şişeyi sordu. Henüz kimse cevap vermedi.', 'dusunceli'],
+            ['ic', 'Babam öbür şişeyi görmeden Kenan\'a sarhoş demeyeceğini söyledi. O şişeyi henüz kimse getirmedi.', 'dusunceli'],
           /* Tur 18: kahvenin yeni kazanımları (prova iki taktiği, kendi etiket notum) */
           ], degilse: [{ eger: (S) => b(S).p8_kazanim === 'ayri', ise: [
-            ['ic', 'Kahvede babam “Şahitleri tek tek dinlerim” dedi. Perihan Hanım\'ın fincanı tabağında tıkırdadı.', 'tebessum'],
+            ['ic', 'Kahvede babam “Herkesi ayrı ayrı sorarım” dedi. Perihan Hanım\'ın fincanı tabağında tıkırdadı.', 'tebessum'],
           ], degilse: [{ eger: (S) => b(S).p8_kazanim === 'desteksiz', ise: [
             ['ic', 'Kahvede Hatice ezberini söylemedi. Perihan Hanım\'ın “gördüm”ü tek başına kaldı.', 'tebessum'],
           ], degilse: [{ eger: (S) => b(S).p8_kazanim === 'surup', ise: [
@@ -833,7 +833,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             ], degilse: [
               ['mukaddem', 'Giderim efendim.', 'mahzun'],
-              ['ic', 'Bana bakmadı. Gece merdivenin başında da bakmamıştı, yalnız görmüştü.', 'mahzun'],
+              ['ic', 'Bana bakmadı. Gece penceresinden gördüğünü de kimseye söylemedi.', 'mahzun'],
             ] },
             { gizle: 'mukaddem' },
           ] },
@@ -894,10 +894,10 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: hapis, ise: [
             ['ic', 'Beni odama yolladılar. Kapımda bekçi yok ama penceremde asma var.', 'tebessum'],
           ], degilse: [
-            ['ic', 'Öğleye kadar kimse beni aramaz. Güneş asmanın üstüne çıkmadan bir şey yapmalıyım.', 'endiseli'],
+            ['ic', 'Öğleye kadar beni arayan olmaz. İki işe yetecek kadar vaktim var.', 'endiseli'],
           ] },
           /* Tur 22 ek (öneri 1): hazırlığın üç yolu vakitten önce söylenir; ayrıntı işlerin ipucunda */
-          ['ic', 'Babam, kapı açılmadan beni duymalı.', 'kararli'],
+          ['ic', 'Münevver Hanım ikindi vapuruyla geliyor. O kapıdan girmeden elimde bir delil, babamın kulağında bir söz olmalı.', 'kararli'],
           { vakit: VAKIT_OGLE },
           /* Tur 28 (B9 sürükleyicilik 1): öğle hiçbir iş yapılmadan geçtiyse tek seçimlik köprü (11–12 kararlı yollar).
              p9_v_bos p9_plan'daki elimdekilerin dökümünde okunur. */
@@ -908,7 +908,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ] },
               /* Tur 33 (t33 B9 oynanış 3): pasif "otur, düşün" yerine bir eylem; bayrak ve karşılığı aynı */
               { m: 'Hatice\'nin odasının önünden geç; tepsiye bak.', bayrak: { p9_v_bos: 'kur' }, iz: 'Elin boş ama bir sorun var: tepsideki şişe açık mıydı?', adimlar: [
-                'Dünkü tepsi kapının dibinde duruyordu. Köşesinde mühürlü bir şişenin halkası kurumuştu; sorum hazırdı.',
+                'Dünkü tepsi kapının dibinde duruyordu; üstünde bir şişe halkası kurumuştu. O şişe tepsiye açık mı konmuştu, kapalı mı? Soran olmamıştı.',
               ] },
             ] },
           ] },
@@ -945,11 +945,11 @@ window.BOLUMLER = window.BOLUMLER || {};
                cevabıyla tutulur. Aynı bayrak (p9_v_suha sor/gec) Süha yolunda Münevver'den sonra yazılır; akşamki
                karşılığı iki yolda da aynı satırdır. */
             { soru: 'Süha Bey gözünü benden ayırmıyor.', secim: [
-              { m: '“Ne seyredeceksiniz Hekim Bey?”', etki: { vakar: 1 }, bayrak: { p9_v_suha: 'sor' }, iz: 'Süha Bey\'e dik baktın; oyunu seyretmekle yetinmeyeceğini söyledi.', adimlar: [
-                ['suha', 'Sizi küçük hanım. Oyun başlayınca en iyi yer burası.', 'soguk'],
+              { m: '“Neyi seyrediyorsunuz Hekim Bey?”', etki: { vakar: 1 }, bayrak: { p9_v_suha: 'sor' }, iz: 'Süha Bey\'e dik baktın; bugün gözü üstünde olacak.', adimlar: [
+                ['suha', 'Sizi, küçük hanım. Oyun başlayınca da en iyi yer burası.', 'soguk'],
               ] },
               { m: 'Yanından geç; bakma.', bayrak: { p9_v_suha: 'gec' }, iz: 'Süha Bey\'in bakışını yerde bıraktın.', adimlar: [
-                'Yanından geçtim.',
+                'Yanından geçtim. Koltuğu gıcırdadı; dönüp bakmadım.',
               ] },
             ] },
             /* Doğrulama gecesi (b9 eksik 3): Süha cevapsız kalkmaz; koltukta kalır, çıkışı provanın sonunda */
@@ -1061,8 +1061,8 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['suha', 'O dakikada ne isteyeceğimi sonra söyleyeceğim.', 'alayci'],
               ] },
               { m: '“Şartım var: babamın duyacağı yerde geri alacaksınız.”', etki: { suha: 4 }, bayrak: { p9_pazar: 'sart' }, iz: 'Süha Bey yalanını ancak babanın duyacağı yerde geri alacak. Dakikasına evet demedin.', adimlar: [
-                ['suha', 'Babanız duyar. Saati ben tutarım.', 'soguk'],
-                ['f', 'Yalanınızı babamın önünde geri alın. Kapımı açacağıma söz vermiyorum.', 'kararli'],
+                ['suha', 'Babanız duyar. Dakikam yine de bu gece.', 'soguk'],
+                ['f', 'Önce geri alın. Kapıma gelince: söz vermiyorum.', 'kararli'],
               ] },
               /* Oynanış B3: reddin gönülde bedeli (Süha −3) */
               { m: '“Ret. Yalanınızı kendiniz taşıyın.”', etki: { suha: -3 }, bayrak: { p9_pazar: 'ret' }, iz: 'Pazarlığı reddettin; Süha Bey\'in yalanı Kenan\'ın üstünde kaldı.', adimlar: [
@@ -1080,7 +1080,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Onların planı. Anlatı T2 (GPT T24 9.3): ikinci cümle birazdan duyulacak talimatı özetliyordu */
           /* Tur 28 (B9 ses 1): entrika provası Ada'nın gündüz teması üstünde çalmaz */
           { muzik: 'perihan' },
-          ['an', 'Perihan Hanım Hatice’yi sofanın köşesine çekti.'],
+          ['an', 'Perihan Hanım Hatice\'yi kolundan tutup sofanın köşesine çekti; sesini alçaltmaya gerek görmedi.'],
           { goster: ['calibe', 'soguk'] }, { goster: ['reftar', 'korkmus'] },
           /* Tur 22 ek (öneri 1): babama öğlen seslendiysem Perihan babamın dinleyeceğini biliyor; ezberi değişir */
           { eger: babaDuyar, ise: [
@@ -1089,12 +1089,12 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['calibe', 'Kapıyı ben açarım; “Efendi evde yok” derim. Sen ağlarsın.', 'sinsi'],
           ] },
           { eger: (S) => !!b(S).p8_ezber, ise: [
-            ['ic', 'Dün gece de burada Hatice’nin sesini beklemişti.', 'dusunceli'],
+            ['ic', 'Gece kapısının ardından da böyle fısıldıyordu. Dün ezberin sözlerini öğretti, bugün gözyaşını.', 'dusunceli'],
           /* Tur 28 (B9 sürükleyicilik 1): öğle köprüsünün karşılığı */
           ], degilse: [{ eger: (S) => b(S).p9_v_bos === 'dinle', ise: [
-            ['ic', 'Provanın başını sofadan duymuştum; sonu da başı gibi çıktı.', 'dusunceli'],
+            ['ic', 'Öğlen mutfaktan gelen fısıltının devamı buydu.', 'dusunceli'],
           ], degilse: [{ eger: babaDuyar, ise: [], degilse: [
-            ['ic', 'Babam evde, koridorun ucundaki odasında. “Evde yok” diyecek.', 'endiseli'], // Tur 29 (B9 diyalog 4)
+            ['ic', 'Babam yukarıda, kapısı kilitli odasında. Perihan Hanım misafire “evde yok” diyecek.', 'endiseli'], // Tur 29 (B9 diyalog 4)
           ] }] }] },
           /* Doğrulama gecesi (b9 eksik 3): prova ekibi çıkış satırıyla kalkar; Kenan yolunda Süha da */
           { eger: muk, ise: [
@@ -1111,7 +1111,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 27 (B9 anlatı 1): itirafın izi iç sesten ara sayfaya, anlatıcıya taşındı (envanter dökümü olmasın) */
           { eger: (S) => b(S).p8_kanit === 'itiraf', ise: [
           ], degilse: [{ eger: (S) => b(S).p8_kanit === 'sise', ise: [
-            ['ic', 'Şefik\'in sofraya koyduğu şişeyi “başka şişe” diye geçtiler. Mührü hâlâ sağlam.', 'kararli'],
+            ['ic', 'Şefik\'in sofraya koyduğu şişeyi “başka şişe” diye geçiştirdiler. Mührü hâlâ sağlam.', 'kararli'],
           ], degilse: [{ eger: (S) => b(S).p8_kanit === 'defter', ise: [
             /* Tur 18 (öneri 4): defter babada; kimin eliyle geldiği yola göre */
             { eger: (S) => b(S).p6_defter === 'remzi', ise: [
@@ -1189,11 +1189,11 @@ window.BOLUMLER = window.BOLUMLER || {};
             (S) => (b(S).p9_v_camlik === 'kahve' ? 'İskele kahvelerinde o ikindi başka bir söz dolaşıyordu: “Misafir ayıktı.” Kimin ısmarladığını soran yoktu.'
               : (b(S).p9_v_iskele === 'hanimlar' ? 'İskeledeki hanımlar bu kez susmuştu; öğlen onlara dik cevap veren kızın sözü hâlâ kulaklarındaydı.'
                 /* Tur 27 (B9 anlatı 1): 8. bölümün itirafının izi anlatıcıda */
-                : (b(S).p8_kanit === 'itiraf' ? 'Hatice o gün Feride\'nin gözüne bakmadı; Feride sabah ona Nabi Bey\'in sözünü hatırlatmıştı.' : ''))),
+                : (b(S).p8_kanit === 'itiraf' ? 'Hatice o gün Feride\'nin gözüne bakmadı; sabah ondan “Nabi Bey seni hanım yapmayacak” sözünü işitmişti.' : ''))),
             /* Anlatı T2 (b7_8_9 9.9, mercek_doz B9-3): §5b — sahnenin ilk hamlesini önceden söylemez */
             (S) => (karsila(S)
               ? 'Şefik bütün öğle iskelede beklemişti. Münevver Hanım\'ın eteğini vapurdan iner inmez yakaladı.'
-              : 'Çıngırak çekildi; kapının ardında biri bir saattir bekliyordu.'),
+              : 'Çıngırak çekildi. Perihan Hanım bir saattir o sesi kapının ardında bekliyordu.'),
           ] } },
         ],
       },
@@ -1215,7 +1215,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: karsila, ise: [{ bayrak: { p9_kapi: 'karsila' } }], degilse: [{ bayrak: { p9_kapi: 'perihan' } }] },
           { eger: babaDuyar, ise: [{ bayrak: { p9_baba: 'esik' } }], degilse: [{ bayrak: { p9_baba: 'yok' } }] },
           { eger: karsila, ise: [
-            ['an', 'Şefik onu bahçe kapısından getirdi. Eteğini bırakınca Münevver Hanım doğruca Feride’ye geldi.'],
+            ['an', 'Şefik onu eteğinden tutup bahçe kapısından getirdi. Feride\'nin çocukluğundan beri “nine” dediği kadın yokuşu soluk soluğa çıkmıştı.'],
           ], degilse: [
             ['an', 'Feride ona çocukken “nine” derdi. Münevver Hanım iskele yokuşunu bu kez bir annenin telaşıyla çıkmıştı.'],
           ] },
@@ -1286,7 +1286,7 @@ window.BOLUMLER = window.BOLUMLER || {};
              p9_v_maymun 'savun' akşamüstü mutfakta Hatice'nin ilk sözünde okunur */
           { soru: 'Hatice\'nin eli önlüğünü buldu; başını kaldırmadı.', secim: [
             { m: '“Hatice kimsenin maymunu değil nineciğim.”', etki: { vakar: 1, munevver: -1 }, bayrak: { p9_v_maymun: 'savun' }, iz: 'Hatice\'yi Münevver Hanım\'ın önünde savundun; Hatice duydu.', adimlar: [
-              ['munevver', 'Hatice’ye haksızlık ettim kızım. Sözüm ona değil, onu konuşturana.', 'notr'],
+              ['munevver', 'Dilim öfkeme uydu kızım. Sözüm ona değil, onu konuşturana.', 'notr'],
               /* Tur 29 (t29 B9 diyalog 10'a): kırgın sesin bölümdeki tek minneti (satır sayısı aynı) */
               'Hatice önlüğünü bıraktı, başını kaldırıp bana baktı: “Sağ olun küçük hanım.”',
             ] },
@@ -1306,7 +1306,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['suha', 'Tam olsun: oğlunuz içmedi hanımefendi. Yanılan bendim.', 'soguk'],
             ['an', 'Süha Bey sözü Feride\'ye bakarak bitirdi. Pazarlığın gerisini ikisinden başka kimse bilmiyordu.'],
             { etki: { munevver: 1 } },
-            ['ic', 'Sözünü geri aldı. Bu gece kapım çalınınca o dakikanın sahibi ben olmayacağım.', 'endiseli'],
+            ['ic', 'Bedelini bu gece ben ödeyeceğim: kapım çalınacak, o dakika onun olacak.', 'endiseli'],
           ], degilse: [{ eger: (S) => !muk(S) && b(S).p9_pazar === 'sart', ise: [
             /* Tur 28 (B9 oynanış 1): şart babamın kapının ardında olmasına bağlı; değilse Süha geri almaz, alay eder */
             { eger: babaDuyar, ise: [
@@ -1314,7 +1314,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { goster: ['suha', 'notr'] },
               ['suha', 'Efendim, kapınızın ardından duyuyorsunuz: gece karanlıktı, yanılmış olabilirim.', 'notr'],
               /* GPT T28 9-O2: ihtimal geri alış sayılmaz; Feride üstüne gider, Süha ödenmemiş sözün tamamını vermez */
-              ['f', 'Olabilirsiniz değil Hekim Bey. Gördüm dediğinizi geri alıyor musunuz?', 'ofkeli'],
+              ['f', '“Olabilir” yetmez Hekim Bey. Gördüm dediğinizi geri alıyor musunuz?', 'ofkeli'],
               /* Tur 30 (t30 B9 anlatı 2): babanın kapı ardından duyduğu yerde pazarlık adıyla anılmaz; iğne yalnız Feride'ye */
               ['suha', 'Olabilir dedim efendim. Fazlasını gece karanlık olunca hatırlarım.', 'alayci'],
             ], degilse: [
@@ -1342,9 +1342,9 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Doğrulama gecesi (b9 eksik 3): tırnaklı m ardından aynı söz tekrarlanmaz; m niyet, söz Feride'nin satırı */
             /* Tur 29 (B8 'evde'): gece evden çıkmayan kız çamlığı anlatamaz; gecenin şahidi kapılar (adı yanmaz: p9_cevap
                'gece' değil 'kapi' — aileIster tetiklenmez; p9_cevap'ı 10. bölüm yalnız 'gece' için okur) */
-            { m: '“Pusulam ona vardı nineciğim. Döşemeye vurdu.”', kosul: (S) => muk(S) && evde(S), etki: { munevver: 2 }, bayrak: { p9_cevap: 'kapi' }, iz: 'Gece duyduğunu Münevver Hanım’a anlattın.', adimlar: [
-              ['f', 'Üç kere vurdu nineciğim. Sonrasını bilmiyorum.', 'kararli'],
-              ['munevver', 'Demek pusulan eline geçti. Sağ ol kızım.', 'dolu'],
+            { m: '“Odasındaydı nineciğim. Döşememe aşağıdan üç kez vurdu.”', kosul: (S) => muk(S) && evde(S), etki: { munevver: 2 }, bayrak: { p9_cevap: 'kapi' }, iz: 'Gece duyduğunu Münevver Hanım’a anlattın.', adimlar: [
+              ['f', 'Pusulamı alınca vurdu nineciğim; fişek vaktiydi. Sonrasını bilmiyorum.', 'kararli'],
+              ['munevver', 'Fişek vakti odasındaysa şişe başında değildi. Sağ ol kızım.', 'dolu'],
             ] },
             { m: 'Geceni aç: Kenan seninleydi, çamlıkta, ayık.', kosul: (S) => muk(S) && !evde(S), etki: { munevver: 2, itibar: -2 }, bayrak: { p9_cevap: 'gece' }, iz: 'Geceni Münevver Hanım\'ın önünde kendin açtın; adın da Ada\'nın ağzına düştü.', adimlar: [
               ['f', 'Gece yarısı çamlıkta benimleydi nineciğim. Bir yudum içmedi.', 'utanmis'],
@@ -1370,11 +1370,11 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Oynanış B6: itibar (Ada'nın Feride'ye bakışı) Münevver Hanım'ın isteyişini değiştirir; satır sayısı aynı */
           { eger: (S) => vv(S, 'itibar') >= 55, ise: [
             /* Tur 33 (t33 B9 oynanış 1): itibar eşiği oyuncuya satırın içinde görünür */
-            ['munevver', 'Ada\'da adın hâlâ ağır basıyor kızım; sözünü tartarlar. Yine de elinde bir şey var mı?', 'notr'],
+            ['munevver', 'Ada\'da sözün hâlâ dinlenir kızım. Yine de elinde bir şey var mı?', 'notr'],
           ], degilse: [{ eger: (S) => vv(S, 'itibar') < 45, ise: [
-            ['munevver', 'Ada’da senin hakkında da konuşuyorlar kızım. Sözünü doğrulayacak ne gösterebilirsin?', 'endiseli'],
+            ['munevver', 'Ada\'da senin için de konuşuyorlar kızım. Sözünün yanına koyacak neyin var?', 'endiseli'],
           ], degilse: [
-            ['munevver', 'Elinde ne var kızım?', 'endiseli'],
+            ['munevver', 'Elinde bir şey var mı kızım? Söz yetmez.', 'endiseli'],
           ] }] },
           /* Tur 28 (B9 oynanış 10'a): dusen'in kuralı seçimden önce görünür — babam kapının ardında mı */
           { eger: babaDuyar, ise: [
@@ -1400,7 +1400,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { m: 'Hekim Bey\'in Perihan Hanım\'ın eski talibi olduğunu söyle.', kosul: (S) => var_(S, GECMIS) || harcandi(GECMIS)(S), kozGerek: GECMIS, bayrak: { p9_kanit: 'gecmis' } },
             /* Tur 27 (B9 oynanış 2): kanıtsız iki seçenek aynı sonuca çıkmaz — göz, Münevver Hanım'ı yanına alır */
             { m: 'Delil gösterme; Hatice\'yi Münevver Hanım\'ın sorusuna bırak.', etki: { munevver: 1 }, bayrak: { p9_kanit: 'goz' } },
-            { m: 'Delil kullanma. Bildiğini kendi sözünle anlat.', bayrak: { p9_kanit: 'soz' } },
+            { m: 'Delil gösterme. Hatice\'ye tepsideki şişeyi sor.', bayrak: { p9_kanit: 'soz' } },
           ] },
           /* Seçilen kanıt (açıkça kullanılan koz harcanır) */
           { eger: (S) => b(S).p9_kanit === 'sise', ise: [
@@ -1414,7 +1414,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ], degilse: [
               'Şişe misafir odasında, tepsinin üstünde kalmıştı. Aşağı inip getirdim.',
             ] }] }] },
-            ['f', 'Hatice\'nin tepsisindeki şişe bu. Mührüne bakın, kimse açmamış.', 'kararli'],
+            ['f', 'Misafire gönderilen tepsideki şişe bu. Mührüne bakın, kimse açmamış.', 'kararli'],
             /* Diyalog T1 (9-20): mecaz tersine işliyordu ("yalanınız da sağlam") */
             ['munevver', 'Mühür sağlam. Açılmamış şişeyle kimse sarhoş olmaz.', 'kararli'],
             /* Gösterilen kanıtın kaynağını Perihan öğrenir */
@@ -1426,7 +1426,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [{ eger: (S) => b(S).p9_kanit === 'bos', ise: [
             ['f', 'Selamlıktaki şişe boş, bardak kuru. Şişe biten gecede bardak kuru mu kalır?', 'kararli'],
             /* GPT T26 (9 anlatı 1): kuru bardak kesin çürütme değil, güçlü şüphe */
-            ['munevver', 'Şişe boşalmış, bardak kuru. Öyleyse o şişeyi kim boşalttı?', 'notr'],
+            ['munevver', 'Bardağa değmeyen konyak nereye aktı öyleyse? Bunu bana biri söylesin.', 'notr'],
             { kozYak: BOS }, { etki: { calibe_suphe: 1 } },
           ], degilse: [{ eger: (S) => b(S).p9_kanit === 'toka', ise: [
             /* Tur 28 (B9 diyalog 3): delil sayan satıra öfke verilmez */
@@ -1494,7 +1494,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
           ], degilse: [
             /* Anlatı T2b (GPT T24b 9, 10'a): hazırlıksız kız da tek bir ayrıntıyla küçük bir çatlak açar (sonuç değişmez) */
-            ['f', 'Delilim yok ama bir sorum var. Hatice, misafirin tepsisine koyduğun şişe açık mıydı?', 'endiseli'],
+            ['f', 'Bir tek şey soracağım. Hatice, misafirin tepsisine koyduğun şişe açık mıydı?', 'endiseli'],
             ['reftar', 'Kapalıydı… Ben açmadım hanımefendi.', 'korkmus'],
             ['munevver', 'Tepsideki kapalıysa öbürünü kim açtı? Bunu Perihan Hanım\'a da sorarım.', 'endiseli'],
           ] }] }] }] }] }] }] }] }] },
@@ -1509,12 +1509,12 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['calibe', 'Kızımız sizin oğlunuza kısmet değilmiş hanımefendi.', 'sinsi'],
           /* İftira Feride'nin adına da yayıldıysa: Münevver Hanım'ın ailesi gerdanlığı istemeye hazırlanıyor */
           { eger: aileIster, ise: [
-            ['munevver', 'Ada kızımın adını da çiğnemiş. Bizimkiler gerdanlığı geri isteyelim diyor.', 'endiseli'],
+            ['munevver', 'Ada kızımın adını da diline dolamış. Bizimkiler gerdanlığı geri isteyelim diyor.', 'endiseli'],
             ['munevver', 'Ben istemem. Ben taktım, ben çıkarmam.', 'kararli'],
           ] },
           /* Tur 32 (t32 B9 anlatı 2): öfke portresi gelene kadar anlatıcı gösterir */
           ['an', 'Münevver Hanım ayağa kalktı; şalı omzundan kaydı, düzeltmedi.'],
-          ['munevver', 'Bunlar hep senin oyunun Perihan Hanım. Hatice’yi bir de yalnız dinleyeceğim.', 'ofkeli'],
+          ['munevver', 'Bunlar hep senin oyunun Perihan Hanım. Yanına kalmaz; Hatice\'yi bir de ben dinlerim.', 'ofkeli'],
           { soru: 'Perihan Hanım\'ın sözü sofada asılı kaldı.', secim: [
             { m: 'Münevver Hanım\'ın elini öp. Kimin gelini olduğunu herkes görsün.', etki: { munevver: 2 }, bayrak: { p9_kismet: 'el' }, iz: 'Münevver Hanım\'ın elini öptün; başını kaldırmadın. Kimin gelini olduğunu herkes gördü.', adimlar: [
               /* "başımı kaldırmadım" 10. bölümdeki "Bu kez başımı kaldırdım" satırıyla bağlı; korunur */
@@ -1541,7 +1541,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { gizle: 'munevver' }, { gizle: 'calibe' },
             /* ---- Kenan yolu: bahçe duvarı (Anlatı T1: kavgadan sonra artçı + eşik, mercek_artci 17) ---- */
             { ara: { mekan: 'ada_duvar', yer: 'Ada evi · asmanın dibi', satirlar: [
-              'Münevver Hanım iskeleye inerken sofada kimse konuşmadı. Perihan Hanım mendilini yeniden katladı.',
+              'Münevver Hanım iskeleye inerken sofada kimse konuşmadı. Perihan Hanım mendilini katladı, açtı, yeniden katladı.',
               'Feride kimseden izin istemeden bahçeye çıktı. Kenan\'ın beklediği duvar göğüs hizasındaydı.',
             ] } },
             { muzik: 'romantik' },
@@ -1579,7 +1579,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { eger: (S) => b(S).p9_acilis === 'kenan', ise: [
               /* GPT T23 (Kenan 9a): annesi sabah sofrada yoktu; çatlağın adı konur, sonraki "size sorarım" kazanılır */
               ['mukaddem', 'Sabah yalanımı bozdunuz. Haklıydınız, ama babanızın sofrasında başım öne düştü.', 'mahzun'],
-              ['f', 'Yalanınız beni korudu, ben sizi. Bir dahakine doğruyu ikimiz birden söyleriz.', 'tebessum'],
+              ['f', 'Yalanınız beni korumak içindi, biliyorum. Bir dahakine doğruyu ikimiz birden söyleriz.', 'tebessum'],
             ] },
             /* 8. bölüm: kitaptaki "Hâlâ" */
             { eger: (S) => b(S).p8_kitap === 'yaz', ise: [
@@ -1638,7 +1638,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Anlatı T2 (mercek_doz B9-1, GPT T24 9.1): sahne ortasındaki "Onun gözünden" sayfası kalktı (§5b: hemen
                sonraki repliği özetliyordu); yerine sahnenin gösteremediği geçmiş */
             { eger: (S) => b(S).p9_duvar !== 'uzak', ise: [
-              ['an', 'Münevver Hanım iskelede bekliyordu.'],
+              ['an', 'Münevver Hanım iskelede, Kenan\'ın amcasına yazacağı mektubu kuruyordu. Kenan o mektupta Feride\'nin adını da görmek istiyordu.'],
               ['mukaddem', 'Annem bir yol düşünüyor, ben de. Ama önce sizin sözünüzü duymalıyım.', 'endiseli'],
             ] },
             { eger: (S) => b(S).p9_duvar !== 'uzak', ise: [
@@ -1651,7 +1651,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['mukaddem', 'İçerim. Bir fincan kahvenin kırk yıl hatırı vardır.', 'gulumser'],
               ] },
               { m: '“Babam razı olana kadar bekleyin. Onu razı etmeye ben uğraşırım.”', etki: { mukaddem: 3 }, bayrak: { p9_soz: 'bekle' }, iz: 'Babanı razı etmeyi üstlendin; Kenan bekleyecek.', adimlar: [
-                ['mukaddem', 'Beklerim. Ama ne zaman haber isteyeceğinizi bana söyleyin.', 'mahzun'],
+                ['mukaddem', 'Beklerim. Yalnız bana ne zaman haber vereceğinizi söyleyin.', 'mahzun'],
               ] },
               /* Oynanış B3: Kenan'a eksi — Feride önce kendi adını temizlemeyi seçer (yeni değer p9_soz 'kendim';
                  karşılığı 10. bölümde iskele vedasında; 11–16 p9_soz okumaz) */
@@ -1677,14 +1677,14 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             /* Tur 27 (B9 oynanış 1): Süha yolunda yüzleşmenin ardından bir karar (Kenan yolunda duvar sahnesinin eşi);
                bedeli gönülde, izi akşamın tehdidinde. p9_v_suha yalnız bu bölüm okur. */
-            ['an', 'Süha Bey sofanın köşesindeki koltuktan kalkmamıştı.'],
+            ['an', 'Sofa boşalmıştı; yalnız Süha Bey köşedeki koltuktan kalkmamıştı.'],
             { goster: ['suha', 'notr'] },
             { soru: 'Gözü bende; bir şey bekliyor.', secim: [
               { m: '“Oyunu beğendiniz mi Hekim Bey?”', etki: { suha: 2, vakar: 1 }, bayrak: { p9_v_suha: 'sor' }, adimlar: [
                 ['suha', 'Seyirci olmayı sevmem küçük hanım. Akşam sahneye ben de çıkarım.', 'soguk'],
               ] },
               { m: 'Yanından geç; bakma.', etki: { suha: -3 }, bayrak: { p9_v_suha: 'gec' }, iz: 'Süha Bey\'in bakışını yerde bıraktın; bunu akşama saklayacak.', adimlar: [
-                'Yanından geçtim.',
+                'Yanından geçtim. Koltuğu gıcırdadı; dönüp bakmadım.',
               ] },
             ] },
             { gizle: 'suha' },
@@ -1701,7 +1701,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Anlatı T1: akşamüstünden akşama ara sayfa. Babanın ne duyduğu dala göre; anlatıcı onu her şeyi bilen saymaz. */
           { ara: { mekan: 'ada_sofa', yer: 'Ada evi · akşam', satirlar: [
             /* Tur 27 (B9 anlatı 10'a): ikinci satır öte yan — kancanın çağrılısı yolda (sırrı çözmez) */
-            'Akşam ezanıyla sofanın lambaları yandığında Sait Efendi hâlâ odasındaydı; gün boyu konuşulanların ne kadarını duyduğunu kimse kestiremiyordu.',
+            'Akşam ezanıyla sofanın lambaları yandı. Sait Efendi gün boyu konuşulanların ne kadarını duymuştu, kimse kestiremiyordu; merdiveni her basamakta durarak indi.',
             /* Tur 29 (t29 B9 anlatı 1, 3): öte yan adsız ve vapur saatsiz — kancanın gizemini önceden harcamaz, ret yolunun
                sabah vapuruyla (10. bölüm) da çelişmez. Kapıda adı duyan kızın kancası adlı (KANCA9). */
             'İstanbul\'da bir kulüpte biri Perihan Hanım\'ın telini okudu, katladı, cebine koydu.',
@@ -1761,7 +1761,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             /* Sürükleyicilik T1 (b7_8_9 9.3): babam duymadıysa da gösterilen kanıtın izi akşama ulaşır */
             { eger: (S) => b(S).p9_kanit !== 'soz' && b(S).p9_kanit !== 'goz' && !b(S).p9_delil_babaya, ise: [
-              ['sai', 'Delilini bana değil, Münevver Hanım\'a göstermişsin. Ben kapımın ardındaydım.', 'mahzun'],
+              ['sai', 'Delilini bana değil, Münevver Hanım\'a göstermişsin. Benim kapım kapalıydı.', 'mahzun'],
             ], degilse: [{ eger: (S) => b(S).p9_kanit === 'goz', ise: [
               /* Tur 27 (B9 oynanış 2): "göz" yolu duymayan babaya da ulaşır */
               { eger: sozTuttu, ise: [
@@ -1812,7 +1812,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['sai', 'Hatice\'nin ezberine artık inanmam kızım. O odadan kimse çıkmamış.', 'mahzun'],
           /* Tur 27b (GPT B9-A2/O1): dürbünün kendi hükmü; göz ve kanıtsız sorunun kısmi karşılığı */
           ], degilse: [{ eger: (S) => dusen(S) === 'durbun', ise: [
-            ['sai', 'Remzi onu ayık görmüş. Yüzleştirmeden sarhoş diyemem.', 'ciddi'],
+            ['sai', 'Remzi onu ayık görmüş. Hekimle yüzleştirmeden kimseye sarhoş diyemem.', 'ciddi'],
           ], degilse: [{ eger: (S) => dusen(S) === 'goz', ise: [
             ['sai', 'Hatice ezber okur gibi konuştu. Ona inanmam; kime inanacağımı da bilmiyorum.', 'mahzun'],
           ], degilse: [{ eger: (S) => dusen(S) === 'soru', ise: [
@@ -1830,9 +1830,9 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['sai', 'Kenan odasında değilmiş. Demek Hatice o kapıdan başka birini çıkarken gördü… ya da kimseyi görmedi.', 'ciddi'],
           /* Tur 18: 8. bölüm kahvesinin yeni kazanımları akşam da geri alınmaz */
           ], degilse: [{ eger: (S) => dusen(S) === 'ayri', ise: [
-            ['sai', 'İkisini ayrı dinledim: biri merdiven dedi, biri kapı. Yalanın ayakları birbirini tutmuyor.', 'ciddi'],
+            ['sai', 'İkisini ayrı dinledim: biri merdiven dedi, biri kapı. Sözleri birbirini tutmuyor.', 'ciddi'],
           ], degilse: [{ eger: (S) => dusen(S) === 'desteksiz', ise: [
-            ['sai', 'Hatice’nin odaya girdiği sözü sabah kapandı. Konyağı ayrıca soracağım.', 'ciddi'],
+            ['sai', 'Hatice odaya girmediğini sabah kendi ağzıyla söyledi. Konyağı ayrıca soracağım.', 'ciddi'],
           ], degilse: [{ eger: (S) => dusen(S) === 'surup', ise: [
             /* Tur 27 (B9 diyalog 2): bozuk "ele şahit demek" düzeldi */
             ['sai', 'Şurubu sordum; iki şişe de Hatice\'nin elinden geçmiş. Onun sözüne artık güvenmem.', 'ciddi'],
@@ -1880,7 +1880,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ], degilse: [{ eger: (S) => !tamDustu(S), ise: [
               /* Tur 27: merdivende göz göze gelen baba elini uzatırken yüzüne bakmaz */
               { muzik: 'sessiz', kes: true, durak: 700 },
-          ['an', 'Sait Efendi elini uzatırken son basamağa baktı.'],
+          ['an', 'Sait Efendi elini uzatırken son basamağa baktı; kızının yüzüne bakarsa isteyemeyeceğini biliyordu.'],
             ], degilse: [
               /* Tur 33 (t33 B9 anlatı 3): eksiltili yapı tamamlandı */
             ] }] },
@@ -1908,7 +1908,7 @@ window.BOLUMLER = window.BOLUMLER || {};
              seçimi p9_plan'da kendi cevabıyla kapanır) */
           { eger: (S) => !muk(S) && b(S).p9_v_suha === 'sor', ise: [
             { goster: ['suha', 'alayci'] },
-            ['suha', 'Sahneye çıktım efendim: kızınız taşı kime verirse, ben de onu izlerim.', 'soguk'],
+            ['suha', 'Sahneye çıktım efendim. Kızınız taşı kime verecek, onu görmeye geldim.', 'soguk'],
           ], degilse: [{ eger: (S) => !muk(S), ise: [
             { goster: ['suha', 'alayci'] },
             ['suha', 'Bugün bana bakmadınız küçük hanım. Şimdi bakın: babanız elini uzattı.', 'alayci'],
@@ -1945,12 +1945,12 @@ window.BOLUMLER = window.BOLUMLER || {};
               { eger: boyun, ise: [
                 { efekt: 'halka' }, // Tur 31 (t31_b09_12 B9 ses 2): gerdanlık kilidi halka sesi (kapı anahtarı değil)
                 { taki: null },
-                'Kilidi kendim açtım, gerdanlığı kutusuna koydum. Boynum hafifledi; hiç bu kadar ağır gelmemişti.',
+                'Kilidi kendim açtım, gerdanlığı kutusuna koydum. Boynum hafifledi; bu hafiflik taşlardan ağır geldi.',
               ] },
               /* Sürükleyicilik T1 (S2): kapanış anlatıcısı kartın önünde; kart son söz.
                  Süha yolunda asmanın altındaki dakika pazarlığı kartta görünür (mercek_romantik B9) */
               /* Tur 33 (t33 B9 diyalog 10): "sorulmadan kesilen söz" motifi 10. bölümün açılışına bırakıldı */
-              ['an', 'Gerdanlığı tören günü takmışlardı; bu akşam onu geri götüren el Feride\'nindi.'],
+              ['an', 'Gerdanlığı boynuna başkaları takmıştı; bu akşam onu geri götüren el Feride\'nin kendi eliydi.'],
               /* GPT T26 (9 oynanış, öncelik 3): kart oyuncunun anlaşmasını yazar; ertelenen dakika borç sayılmaz */
               { eger: (S) => !muk(S) && b(S).p9_pazar === 'kabul', ise: [
                 { kart: 'Gerdanlık avucumda, babam arkamda. Bu gece kapımı bir dakika açacağım.' },
@@ -1986,7 +1986,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Tur 28 (B9 diyalog 2): "Annen…" imzası bölümde bir kez (sabah fincanında); burada ad yarım kalır */
               ['sai', 'Uğursuz taş. Behi…', 'mahzun'],
               /* Kapanış anlatıcısı kartın önünde; kart Feride'nin karar cümlesi (S3: sözü o tutar) */
-              ['an', 'Sait Efendi o adı yarıda bıraktı.'],
+              ['an', 'Sait Efendi sözünü bitirmedi. Behiye Hanım\'ın adını yıllardır sonuna kadar söyleyemiyordu.'],
               { kart: 'Kutuyu babama verdim. İskelenin önünde konuşacaklarımı ona bırakmadım.' },
             ] },
             { m: 'Kilidi Süha Bey\'e çözdür.', kosul: (S) => !muk(S) && boyun(S), etki: { suha: 4, itibar: -2 }, bayrak: { p9_son: 'suha' }, iz: 'Kilidi babanın gözü önünde Süha Bey çözdü; bunu Ada da konuşacak.', adimlar: [
@@ -2008,7 +2008,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Tur 32 (t32 B9 ses 3): bölüm bir yan karakterin temasıyla kapanmasın; nişanın bittiği an hüzün */
               { muzik: 'huzun' },
               /* Tur 29 (t29 B9 sürükleyicilik 3): doruk sonrası iki satır teke indi */
-              ['suha', 'Buyurun efendim. Kilidi açtım; gerdanlığı Feride Hanım alsın.', 'alayci'],
+              ['suha', 'Buyurun efendim. Kilit açıldı; gerisini Feride Hanım kendi eliyle verir.', 'alayci'],
               /* Anlatı T2 (b7_8_9 9.11): kilidi Süha'ya çözdüren dalda ironi açık söylenir.
                  Sürükleyicilik T1 (S2): kapanış satırları her dalda kartın önüne alındı; kart son söz */
               /* Tur 29 (t29 B9 görsel 5): an_avuc_suha'da Feride başını babasına çevirmiş — kart resme uyar */
@@ -2038,14 +2038,14 @@ window.BOLUMLER = window.BOLUMLER || {};
         /* Diyalog T1 (D2): defter Feride'nin sesi; "damat" ailenin sözü */
         sise: duydu && f.p9_kanit === 'bos' ? 'Boş şişeyi ve kuru bardağı gösterdim. Babam Kenan\'ın içtiğini artık söyleyemiyor.'
           : (f.p9_kanit === 'sise' ? 'Mühürlü şişeyi akşam babama gösterdim. Kenan\'ın içtiğine inanmıyor.'
-            : 'Sabah şişeyi sordum. Akşam babam da cevabı bekledi. Babam Kenan\'ın içtiğine inanmıyor.'),
+            : 'Sabah şişeyi sordum; akşam aynı soruyu babam sordu. Kenan\'ın içtiğine inanmıyor.'),
         hatice: duydu && f.p9_kanit === 'goz' ? 'Münevver Hanım Hatice\'nin gözüne baktı. Hatice odaya girmediğini babamın duyacağı yerde söyledi.'
           : (duydu && ['toka', 'itiraf'].indexOf(f.p9_kanit) >= 0 ? 'Hatice\'nin ezberini babamın duyacağı yerde çürüttüm. Babam onu artık şahit saymıyor.'
             : 'Kahvede kazandığım tuttu. Babam Hatice\'nin ezberini artık şahit saymıyor.'),
         /* Tur 27b (GPT B9-O1/A2, O2): dürbün ve kısmi sonuçlar defterde de kendi adıyla */
         durbun: 'Remzi Bey\'in dürbününü babamın duyacağı yerde söyledim. Babam hekimin sözünü onunkiyle tartmadan hüküm vermeyecek.',
         goz: 'Münevver Hanım Hatice\'nin gözüne baktı. Babam ezbere dayanmıyor ama odada ne olduğu hâlâ belli değil.',
-        soru: 'Delilim yoktu ama sorumu babam duydu. Tepsideki şişe kapalıymış; öbürünü açanı artık evin içinde arıyor.',
+        soru: 'Delil göstermedim ama sorumu babam duydu. Tepsideki şişe kapalıymış; öbürünü açanı artık evin içinde arıyor.',
         /* Sürükleyicilik T1 (b7_8_9 9.4): sabah sofrasında ortaklığı açan yol oynanan satırla aynı söylenir */
         gecmis: (duydu && f.p9_kanit === 'gecmis') || f.p9_acilis !== 'ortak'
           ? 'Hekimin Perihan Hanım\'ın eski talibi olduğunu açtım. Babam kuşkulandı; o akşam ikisini aynı sofraya oturtmadı.'
