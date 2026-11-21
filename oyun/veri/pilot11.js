@@ -291,7 +291,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['suha', 'Yarın ezan vakti, sarı odada. Orada duvarlar kalın.', 'alayci'],
           { efekt: 'kapi_kapa' }, { gizle: 'calibe' },
           /* Tur 32 (t32 B11 anlatı 1): saatin kızın duyacağı sesle söylendiği görünür (12. bölümün "gösteri"sinin tohumu) */
-          ['an', 'Süha Bey saati, karanlıkta duyulacak kadar yüksek söylemişti. Dönüp Feride\'yi gördü; şaşırmış gibi yapmadı bile.'],
+          ['an', 'Süha Bey saati, karanlıkta duyulacak kadar yüksek söylemişti. Dönüp Feride’ye baktı.'],
           /* İlk karar yola göre (GPT Tur 19 ek, cevap 2) */
           { eger: kabul, ise: [
             ['suha', 'Gizli evetiniz bende. Sabah babanızdan isterim.', 'soguk'],
@@ -401,7 +401,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { etki: { baba_guven: 1 } },
           ], degilse: [
             /* Ret, açık: istek gece yapıldı */
-            ['sai', 'Gece hayırını duydum. Bir de gündüz söyle.', 'ciddi'],
+            ['sai', 'Gece hayırını duydum. Gündüz sofrada da duysunlar.', 'ciddi'],
           ] }] }] }] }] },
           /* Talip sabah istenir (ret yollarında gece ya da şafakta istemişti) */
           { eger: (S) => ['acik', 'yalniz'].indexOf(ilk(S)) < 0, ise: [
@@ -479,7 +479,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Tur 33 (t33 B11 anlatı 10'a, görsel 6): Nazlı'nın ispiyoncu sevinci ve annesine koşan sesi */
             ['mefharet', 'Abla, yastığının altında bu vardı! Anne bak, imzası “—K.”', 'sevincli'],
             { soru: 'Nazlı kâğıdı annesine doğru sallıyor.', secim: [
-              { m: 'Elinden kap: “O benim.”', etki: { itibar: -1, calibe_suphe: 1, mukaddem: 2 }, bayrak: { p11_not: 'kurtardi' }, iz: 'Kenan\'ın kâğıdını kurtardın; ama Perihan imzayı gördü.', adimlar: [
+              { m: 'Elinden kap: “O benim.”', etki: { itibar: -1, calibe_suphe: 1 }, bayrak: { p11_not: 'kurtardi' }, iz: 'Kenan\'ın kâğıdını kurtardın; ama Perihan imzayı gördü.', adimlar: [
                 'Kâğıdı Nazlı\'nın elinden çektim; koynuma soktum.',
                 ['an', 'Perihan Hanım sandıkların ardından çıktı. İmzayı görmüştü.'],
                 { goster: ['calibe', 'soguk'] },
@@ -570,7 +570,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                ellerin kalmasını açıkça isteyen şıkta. İkisi de p11_vapur 'ceket' (bedel aynı: vapurda gören oldu) */
             { m: '“Koyun. Üşüdüm.”', bayrak: { p11_vapur: 'ceket' }, iz: 'Süha\'nın ceketini üşüdüğün için omzuna aldın; vapurda gören oldu.', adimlar: [
               { eger: muk, ise: [{ etki: { suha: 2, itibar: -1 } }], degilse: [{ etki: { suha: 3, itibar: -1 } }] },
-              'Ceketi omzuma koydu; yakasını iki eliyle kapadı. Ellerini çekmesini bekledim; çekti.',
+              'Ceketi omzuma koydu. Ellerini çekince yakayı kendim tuttum.',
               ['ic', 'Omzum ısındı. Bu kadar.', 'kararli'],
             ] },
             { m: '“Koyun; ellerinizi de hemen çekmeyin.”', bayrak: { p11_vapur: 'ceket', p11_v_ceket: 'el' }, iz: 'Süha\'nın ceketini omzuna aldın, ellerini de; vapurda gören oldu.', adimlar: [
@@ -695,15 +695,15 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] }] }] }] }] },
             { cizim: 'an_telgraf' },
             { soru: 'Cevabı Şefik yarın telgrafhaneye götürür.', secim: [
-              { m: 'Tek kelime yaz: “Bekliyorum.”', etki: { mukaddem: 6 }, bayrak: { p11_telgraf: 'bekle' }, iz: 'Selanik\'e tek kelime gidiyor; Kenan onu da okur.', adimlar: [
+              { m: 'Tek kelime yaz: “Bekliyorum.”', bayrak: { p11_tel_cevabi_bekliyor: true, p11_telgraf: 'bekle' }, iz: 'Selanik\'e tek kelime gidiyor; Kenan onu da okur.', adimlar: [
                 'Tek kelime yazdım. Şefik kâğıdı cebine soktu.',
               ] },
               /* Leyla'nın postası kapandıysa Şefik'in adı da Perihan'ın elinden geçer: bu yol yok */
-              { m: 'Şefik\'in adıyla yaz: “Ablam ezberledi.”', kosul: (S) => !leylaAcik(S), etki: { mukaddem: 7 }, bayrak: { p11_telgraf: 'sefik' }, iz: 'Kenan ezberlediğini bilecek; Şefik\'in adıyla.', adimlar: [
+              { m: 'Şefik\'in adıyla yaz: “Ablam ezberledi.”', kosul: (S) => !leylaAcik(S), bayrak: { p11_tel_cevabi_bekliyor: true, p11_telgraf: 'sefik' }, iz: 'Kenan ezberlediğini bilecek; Şefik\'in adıyla.', adimlar: [
                 ['sefik', 'Benim adımla mı? Ben de ezberlerim!', 'sevincli'],
               ] },
               /* GPT T26 öncelik 6: Kenan'ın kırgınlığı ulaşan şeye (cevapsızlığa) bağlı; 12. bölüm ikindi kartı okur */
-              { m: 'Yazma. Perihan Hanım okur.', etki: { mukaddem: -3 }, bayrak: { p11_telgraf: 'yok' }, iz: 'Selanik\'e cevap gitmiyor; Kenan sessizliğini de okuyacak.', adimlar: [
+              { m: 'Yazma. Perihan Hanım okur.', bayrak: { p11_tel_cevabi_bekliyor: true, p11_telgraf: 'yok' }, iz: 'Selanik\'e cevap gitmiyor; Kenan sessizliğini de okuyacak.', adimlar: [
                 ['ic', 'Cevabım bende kalsın.', 'mahzun'],
               ] },
             ] },
@@ -767,7 +767,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Babam merdivene bakıyor. Sarı odada kimin olduğunu biliyorum.', secim: [
             { m: '“Ben çağırırım babacığım.”', bayrak: { p11_cagri: 'ben' }, adimlar: [
               { eger: (S) => b(S).p11_perihan === 'igne', ise: [
-                ['ic', 'Kimseyi çağırmazmışım. Bu akşam ben çağırıyorum.', 'kararli'],
+                ['ic', 'Sofraya hekimi ben getireceğim.', 'kararli'],
               ], degilse: [
                 ['sai', 'Çağır kızım. Beklemeyi sevmem.', 'notr'],
               ] },
@@ -1253,7 +1253,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       }[f.p11_ilk] || 'Süha Bey beni babamdan istedi.');
       /* Sürükleyicilik T1: defter özet/soru değil, Feride'nin son duruşu */
       /* GPT T28 11-A2: açık hayır bekleyen cevap gibi yazılmaz */
-      c.push(f.p11_acis === 'seslen' ? 'Duyduğumu gördüğümden ayırarak konuşacağım.' : m ? 'Kenan Selanik yolunda; onun adını burada ben koruyorum.'
+      c.push(f.p11_acis === 'seslen' ? 'Kapıyı açmadım. Yüzlerini gördüm diyemem.' : m ? 'Kenan Selanik yolunda; onun adını burada ben koruyorum.'
         : (['hayir', 'gonder', 'geri'].indexOf(f.p11_baba) >= 0 ? 'Süha Bey beni babamdan istedi, hayır dedim; neden hayır dediğimi akşam sarı odanın eşiğinde gördüm.'
           : 'Süha Bey beni babamdan istedi; cevabımı gördüklerimle tartacağım.'));
       return c.join(' ');

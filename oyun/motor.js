@@ -1521,7 +1521,7 @@
     // Sahne içi kıyafet ekranı (yeni biçim): { giyin: ['dugun', ...], soru: '...' }
     if (a.giyin) {
       $('#diyalog').hidden = true;
-      const sec = await giyinSec(a.soru, a.giyin);
+      const sec = await giyinSec(typeof a.soru === 'function' ? a.soru(S) : a.soru, a.giyin);
       S.giyili = sec; S.taki = null; S.gorunumBekliyor = false;
       if (!S.kiyafetler.includes(sec)) S.kiyafetler.push(sec);
       (S.kararlar[S.bolum] = S.kararlar[S.bolum] || []).push({ m: 'Giydiğin: ' + V.kiyafetler[sec].ad, iz: '' });
@@ -2791,7 +2791,7 @@
     simdi.filter((k) => !bas || basKoz.indexOf(k) < 0).slice().reverse().forEach((k) => ekle(k, 'yeni · ' + (kk[k] || 'elimde')));
     const degisenHtml = degisen.length
       ? '<ul class="karar-listesi koz-listesi degisen">' + degisen.map((x) => '<li><b>' + bicimle(x.k) + '</b> <small>· ' + bicimle(x.durum) + '</small></li>').join('') + '</ul>'
-      : '<p class="not">Bu bölümde kozlarında değişiklik olmadı.</p>';
+      : '';
     const kararlar = (S.kararlar && S.kararlar[S.bolum]) || [];
     const s = b.siradaki || {};
     const sonraki = BOLUMLER[S.bolum + 1];
@@ -2804,8 +2804,13 @@
     panelAc('ozet', '<div class="ozet-panel pilot-son"><h2>' + b.ad + ' · bölüm sonu</h2>' +
       '<div class="defter-sayfa"><div class="defter-baslik">Feride\'nin defterinden</div>' + defterParcala(b.sonNotu ? b.sonNotu(S) : '') + '</div>' +
       // Önce bu bölümün sonucu: değişen kozlar ve bu bölümde açılan an
-      '<div class="ozet-ikili"><div><h3>Bu bölümde değişenler</h3>' + degisenHtml + '</div>' +
-      '<div><h3>Açılan an</h3>' + (anlar ? '<div class="cizim-galeri">' + anlar + '</div>' : '<p class="not">Bu oynayışta an açılmadı.</p>') + '</div></div>' +
+      ((degisenHtml || anlar || (S.bolum === 116 && S.bayrak.p16_hayir === 'nikah')) ?
+        '<div class="ozet-ikili">' +
+        (degisenHtml ? '<div><h3>Bu bölümde değişenler</h3>' + degisenHtml + '</div>' : '') +
+        (anlar ? '<div><h3>Açılan an</h3><div class="cizim-galeri">' + anlar + '</div></div>' : '') +
+        (S.bolum === 116 && S.bayrak.p16_hayir === 'nikah' && !buAnlar.includes('an_hayir_nikah') ?
+          '<div><h3>Defterimde kalan an</h3><p>' + bicimle(V.cizimler.an_hayir_nikah.ad) + '</p></div>' : '') +
+        '</div>' : '') +
       // Kanca yola özel olabilir: { kanca: (S) => '...' }
       '<h3>Sırada</h3><p class="merak">' + (s.kanca ? bicimle(typeof s.kanca === 'function' ? s.kanca(S) : s.kanca) : '') + '</p>' +
       devam +

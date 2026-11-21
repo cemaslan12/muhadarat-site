@@ -15,7 +15,8 @@ html, body {
   font-family: "EB Garamond", Georgia, "Times New Roman", serif;
   -webkit-tap-highlight-color: transparent; overflow: hidden;
 }
-button { font-family: inherit; }
+button { font-family: inherit; min-width: max(44px, 3cqw); min-height: max(44px, 5cqh); }
+details.kararlar summary { min-height: max(44px, 5cqh); align-content: center; }
 
 /* 16:9 sahne, ekrana sığar */
 #cerceve { position: fixed; inset: 0; display: grid; place-items: center; background: #0d090f; }
@@ -468,8 +469,12 @@ body.dogrusal #cikislar.vakit { display: flex !important; }
 /* Madde 22: yatay telefon (kısa ekran) — parmakla basılabilir düğmeler, sıkı vakit şeridi */
 @media (max-height: 500px) {
   #cikislar { bottom: 1cqh; gap: 6px; }
-  #cikislar .dugme { min-height: 36px; padding: 6px 12px; font-size: 14px; }
-  #secimler button { min-height: 34px; }
+  #cikislar .dugme { min-height: max(44px, 5cqh); padding: 6px 12px; font-size: 14px; }
+  #secimler button { min-height: max(44px, 5cqh); flex-shrink: 0; }
+  #secimler, body.dogrusal #secimler { overflow-y: auto; justify-content: safe center; }
+  body.dogrusal #secimler { justify-content: safe flex-end; }
+  #secimler .dugme .koz-gerek { white-space: normal; overflow-wrap: anywhere; }
+  #panel-kapat { z-index: 1; background: var(--kagit); }
   #vakit-bant { top: 8cqh; width: max-content; max-width: 88cqw; padding: 4px 12px; font-size: 13px; line-height: 1.3; }
   #vakit-bant .vakit-yer, #vakit-bant .vakit-hedef { display: inline; margin: 0 0 0 8px; }
   #vakit-bant .vakit-ipucu { margin-top: 2px; font-size: 12px; }
@@ -484,10 +489,10 @@ body.dogrusal #cikislar.vakit { display: flex !important; }
     #ust-cubuk .gosterge { gap: 2px; }
     #ust-cubuk .cubuk { width: 22px; }
   }
-  #anlati .anlati-gec { min-height: 32px; }
+  #anlati .anlati-gec { min-height: max(44px, 5cqh); }
   #panel-icerik p, #panel-icerik li { font-size: 13px; }
-  #panel-kapat { min-width: 32px; min-height: 32px; }
-  .sirada-satir .dugme { min-height: 34px; }
+  #panel-kapat { min-width: max(44px, 3cqw); min-height: max(44px, 5cqh); }
+  .sirada-satir .dugme { min-height: max(44px, 5cqh); }
   /* Devam düğmesi kaydırmadan görünsün: panelin altına yapışır */
   .pilot-son .sirada-satir:has(#pilot-sonraki) { position: sticky; bottom: -3cqh; z-index: 2; background: var(--kagit);
     padding: 6px 0; border-top: 1px solid #cdb68a; box-shadow: 0 -6px 10px -6px rgba(0,0,0,.25); }
@@ -554,7 +559,7 @@ body.dogrusal #cikislar.vakit { display: flex !important; }
 #vakit-bant.plan .hedef-git { display: block; margin-top: .8cqh; min-height: 44px; text-align: left; border-color: var(--altin-acik);
   box-shadow: 0 0 1cqw rgba(232,207,138,.45); font-size: max(12px, 1.35cqw); }
 #vakit-bant.plan .vakit-firsat { margin-top: .6cqh; }
-#vakit-bant.plan .vakit-firsat summary { cursor: pointer; color: var(--altin-acik); min-height: 32px; display: flex; align-items: center;
+#vakit-bant.plan .vakit-firsat summary { cursor: pointer; color: var(--altin-acik); min-height: max(44px, 5cqh); display: flex; align-items: center;
   font-size: max(12px, 1.35cqw); }
 #vakit-bant.plan .vakit-firsat .vakit-ipucu { margin-top: .3cqh; }
 #cikislar.plan .isaret-dugme { position: static; font-size: max(11px, 1.2cqw); opacity: .85; }
@@ -611,7 +616,7 @@ body.plan-modu #ust-cubuk > * { pointer-events: auto; }
 .plan-svg .pm.secili .pm-kutu, .plan-svg .pm:hover .pm-kutu { filter: brightness(1.08); stroke-width: 1; }
 .harita-lejant { font-size: max(11px, 1.3cqw); color: #6b4a33; margin: .6cqh 0; }
 .harita-secim { font-size: max(12px, 1.55cqw); min-height: 5cqh; padding: .6cqh 1cqw; background: #f8f0df; border-left: .3cqw solid var(--altin); display: flex; align-items: center; gap: 1cqw; flex-wrap: wrap; }
-.harita-secim .dugme { min-height: 36px; }
+.harita-secim .dugme { min-height: max(44px, 5cqh); }
 .harita-secim .riskli-yazi { color: #b5651d; font-weight: 600; }
 .harita-kurallar { margin: .8cqh 0 0; padding-left: 2.2cqw; }
 .harita-kurallar li { font-size: max(11px, 1.4cqw) !important; }

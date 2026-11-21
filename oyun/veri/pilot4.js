@@ -819,7 +819,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['nabi', 'Küçük hanım, Leyla Hanım\'a gidiyormuşsunuz. Bir ricam var.', 'ana'],
           ] },
           /* Anlatı T2b (GPT T24b Süha B4): seçeneklerden önce kızın adı Nabi'nin ağzından */
-          ['nabi', 'Leyla Hanım\'a benim için iki tatlı söz söyleyin. Zengin kız da sevilir, ben seviyorum işte.', 'gulumser'],
+          ['nabi', 'Leyla Hanım\'a benim için iki tatlı söz söyleyin. Zengin diye Leyla Hanım’ı kimse sevmesin mi?', 'gulumser'],
           /* Tur 31: ritim (13 satır) için 817 ile birleşti */
           { soru: 'Nabi Bey merdivenin başını tutmuş.', secim: [
             { m: '“Siz parayı seviyorsunuz Nabi Bey. Leyla\'yı değil.”', etki: { vakar: 1 }, bayrak: { p4_nabi: 'igne' }, iz: 'Nabi Bey\'in aşkını adıyla andın: para.', adimlar: [
@@ -1080,8 +1080,8 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['fevkiye', 'Bu postane değil, vasiyet!', 'muzip'],
               ['f', 'Postane. Vasiyet daha uzun olur.', 'tebessum'],
             ] },
-            { m: '“Perihan Hanım\'a karşı tek ses.”', etki: { fevkiye: 1, calibe_suphe: 1 }, bayrak: { p4_pakt: 'calibe' }, iz: 'Leyla\'yla tek ses oldunuz. Sonraki ziyaretlerinde onun dadısı refakat edecek.', adimlar: [
-              ['fevkiye', 'Tek ses. O kadın bana da hep fazla gülümser.', 'kararli'],
+            { m: '“O sorarsa ikimiz de aynı cevabı verelim.”', etki: { fevkiye: 1, calibe_suphe: 1 }, bayrak: { p4_pakt: 'calibe' }, iz: 'Leyla\'yla tek ses oldunuz. Sonraki ziyaretlerinde onun dadısı refakat edecek.', adimlar: [
+              ['fevkiye', 'İkimize ayrı ayrı sorsa da mı? Öyle yapar, bilirim.', 'kararli'],
               /* Tek sesin ilk ortak cevabı: refakat */
               /* Diyalog T1 (dil Ü7, kısmi): "ilk cevap" sözü 996/1014 ile eş kalır; cümle sadeleşti */
               ['f', 'Yarından sonra beni senin dadın getirip götürsün.', 'kararli'],
@@ -1261,7 +1261,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['remzi', 'Nabi\'nin senedi, kırk lira, altında kendi imzası. Dün gece vadesi doldu.', 'kararli'],
           ['f', 'Her şeyi satın alan adam söz de satın alır mı?', 'tebessum'],
           ['remzi', 'Söz pahalı malım değildir hanımefendi. Kâğıt ucuz ama dili uzun.', 'gulumser'],
-          { soru: 'Kâğıdı iki parmağıyla sallıyor, para gibi.', secim: [
+          { soru: 'Senedi uzatıyor. Alırsam ertesi gün benden ne isteyecek?', secim: [
             { m: '“Bana verin.”', etki: { remzi: 6 }, bayrak: { p4_remzi: 'aldi' }, iz: 'Senedi bir teşekküre aldın. Remzi Bey ömründe bu kadar ucuza satmamıştı.', adimlar: [
               ['f', 'Bana verin.', 'kararli'],
               ['remzi', 'Fiyatı?', 'gulumser'],
@@ -1531,7 +1531,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           ['f', '“Zavallı Süha Bey, yine kimseyi korkutamamış” derler.', 'tebessum'],
           /* Tur 30 (B4 diyalog 7): Süha doruk teklifinden önce yenik görünmez; tehlike sürer */
-          ['ic', 'Güldü. Kaybetmeyi hiç denememiş bir adam gibi.', 'endiseli'], // Tur 28 (B4 diyalog 10'a)
+          ['ic', 'Ben sustum. Onun gülüşü biraz daha sürdü.', 'endiseli'], // Tur 28 (B4 diyalog 10'a)
           { eger: (S) => b(S).p3_kilit === 'izin', ise: [
             ['suha', 'Dün enseniz, bugün bileğiniz. Hekimlik sabır ister.', 'soguk'],
           ], degilse: [{ eger: (S) => b(S).p3_kilit === 'kendi', ise: [
@@ -1541,7 +1541,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] }] },
           /* Tur 27 (B4 sürük 5): doruk sorusunda süre */
           { soru: 'Eli dizinin üstünde, avucu yukarı. Konağa iki yokuş kaldı.', secim: [
-            { m: 'Bileğini uzat.', etki: { suha: 8 }, bayrak: { p4_suha: 'bilek' }, iz: 'Bileğini hekime verdin. Nabzın seni ele verdi.', adimlar: [
+            { m: 'Bileğini uzat.', etki: { suha: 8 }, bayrak: { p4_suha: 'bilek' }, iz: 'Süha Bey bileğini bıraktıktan sonra saatine baktı.', adimlar: [
               'Bileğimi uzattım. İki parmağı bileğimde, saatine bakmadı.',
               { efekt: 'sarsinti' }, // Tur 30 (B4 ses 1) → araba sarsıldı: gövde sarsıntısı (teker_cakil yuvarlanış)
               'Limon kolonyası. Araba sarsıldı, dizi dizime bir kez değdi.',
@@ -1604,7 +1604,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           ['suha', 'Bir anlaşma yapalım. Perihan\'ın tertibini söylerim.', 'soguk'],
           ['suha', 'Siz de her akşam bir saat bana katlanırsınız.', 'soguk'],
-          { soru: 'Araba yokuşa döndü.', secim: [
+          { soru: 'Araba yokuşa dönüyor. Kapıma varmadan cevabımı alacak.', secim: [
             { m: '“Tertibi söyleyin. Karşılığını sonra konuşuruz.”', etki: { suha: 5 }, bayrak: { p4_suha_pakt: 'kabul' }, iz: 'Tertibi aldın, karşılığını sonraya bıraktın.', adimlar: [
               ['f', 'Tertibi söyleyin. Karşılığını sonra konuşuruz.', 'kararli'],
               /* Takvim (plan A3): şurup ertesi gün (5. bölüm) gelir; "yarından sonra" değil. Tur 32 (B4 diyalog 8) */
@@ -1877,11 +1877,11 @@ window.BOLUMLER = window.BOLUMLER || {};
         : suhaYakin(S) ? 'İlk sırrım: o hekimden korkmuyorum.' : 'İlk sırrım: o hekimi bana Perihan Hanım yolluyor.')));
       else if (f.p4_pakt === 'mektup') c.push('Leyla\'yla yemin ettik: onun çekmecesi benim postanem.');
       /* Tur 27 (GPT B4-O2): özet anlaşmayı değil, ilk dönüşte yapılanı yazar ("kabul ettim", "yaptım", "bozdum" ayrı) */
-      else if (f.p_rota === 'mukaddem') c.push('Leyla\'yla yemin ettik: Perihan Hanım\'a karşı tek ses. İlk dönüşte dadısı arabadaydı.');
+      else if (f.p_rota === 'mukaddem') c.push('İlk dönüşte dadısı da arabadaydı. Leyla sözünü tuttu.');
       /* GPT T29 (O4-1): önek, açıklama hesaplandıktan sonra eklenir ("…tek ses; null" hatası) */
-      else c.push('Leyla\'yla yemin ettik: Perihan Hanım\'a karşı tek ses, ' + (((f.p4_pakt === 'calibe' && f.p4_eskort !== 'yalniz') ? ({
-        nimet: 'bugün Nimet refakat etti; sonraki ziyaretlerde Leyla’nın dadısı gelecek.',
-        josephine: 'bugün Madam refakat etti; sonraki ziyaretlerde Leyla’nın dadısı gelecek.',
+      else c.push('Leyla’yla sözleştik. O sorarsa cevabımız bir. Nitekim ' + (((f.p4_pakt === 'calibe' && f.p4_eskort !== 'yalniz') ? ({
+        nimet: 'bugün Nimet refakat etti. Leyla, “İkimiz birden söyleriz,” dedi.',
+        josephine: 'bugün Madam refakat etti. Leyla, “İkimiz birden söyleriz,” dedi.',
       }[f.p4_eskort] || 'ilk dönüşte dadısı arabadaydı.') : null) || ({
         nimet: 'dönüşte yanımda Nimet vardı.',
         josephine: 'dönüşte yanımda Madam vardı.',

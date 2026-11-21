@@ -429,7 +429,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               'Göğsü kolumun altında inip kalkıyordu. Babamın eli durunca da dinlemeyi bırakmadım.',
             ] },
             /* T33 (b13_16 B14 OYNANIŞ): sözün eli durdurmayabileceği seçenekte görünür */
-            { m: '“Kenan Selanik\'te babacığım! Onların evi muteber bir evdir!” (Söz, kalkmış eli durdurmayabilir.)', kosul: muk, etki: { mukaddem: 4 }, bayrak: { p14_hamle: 'soz' }, iz: 'Kenan\'ın adını babanın yumruğunun altında savundun.', adimlar: [
+            { m: '“Kenan Selanik\'te babacığım! Onların evi muteber bir evdir!” (Söz, kalkmış eli durdurmayabilir.)', kosul: muk, bayrak: { p14_hamle: 'soz' }, iz: 'Kenan\'ın adını babanın yumruğunun altında savundun.', adimlar: [
               { eger: iftiraTuttu, ise: [
                 { bayrak: { p14_dayak: true } }, { efekt: 'titre' },
                 ['sai', 'Mektuplaştığını bu ev biliyor!', 'ofkeli'],
@@ -440,7 +440,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 'Düşerken kolumu altımda kıvırmışım. Şimdi duyuyorum.',
               ] },
             ] },
-            { m: '“Ben kimseyle kaçmam babacığım! Kaçacak kız mektup beklemez!” (Söz, kalkmış eli durdurmayabilir.)', kosul: (S) => !muk(S), etki: { mukaddem: -3 }, bayrak: { p14_hamle: 'soz' }, iz: 'Kâğıdı babanın önünde reddettin. Söz her zaman onun elini durdurmaz.', adimlar: [
+            { m: '“Ben kimseyle kaçmam babacığım! Kaçacak kız mektup beklemez!” (Söz, kalkmış eli durdurmayabilir.)', kosul: (S) => !muk(S), bayrak: { p14_hamle: 'soz' }, iz: 'Kâğıdı babanın önünde reddettin. Söz her zaman onun elini durdurmaz.', adimlar: [
               { eger: iftiraTuttu, ise: [
                 { bayrak: { p14_dayak: true } }, { efekt: 'titre' },
                 ['sai', 'Mektuplaştığını bu ev biliyor!', 'ofkeli'],
@@ -587,7 +587,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           'Şefik\'in alnı elimi yakıyor. Dudakları kurumuş, sayıklıyor.',
           /* T28b (GPT A14-2): anlatıcı teşhis ve cinsiyet genellemesi koymaz; gözlenen davranış */
           { goster: ['sefik', 'aglamakli'] },
-          ['sefik', 'Lambayı söndürme abla… Babamı tutamadım… Kolun…', 'aglamakli'],
+          ['sefik', 'Lambayı söndürme abla… Babamı tutamadım… Kolun…', 'korkmus'],
           ['ic', 'Konakta bir tek hekim var. Kapısını çalarsam ne derler, sonra düşünürüm.', 'endiseli'],
           { soru: 'Şefik\'in dudakları çatladı. Sofanın ucunda bir kapı, altından ışık.', secim: [
             { m: 'Sofanın ucuna git, kapısını kendin çal.', etki: { itibar: -1 }, bayrak: { p14_cagri: 'kendi' }, iz: 'Gece yarısı Süha\'nın kapısını kendin çaldın. Konak duyacak.', adimlar: [
@@ -616,12 +616,12 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['suha', 'Ateşi var. Bu gece başından ayrılmayın.', 'endiseli'],
           { soru: 'Süha Bey çantasını açtı. Bana bakmıyor.', secim: [
             /* Diyalog T1 (B1, D2): Feride Süha'ya her zaman "siz" der */
-            { m: '“Kardeşimi kurtarın. Her şeyi biliyorum.”', etki: { vakar: 1 }, bayrak: { p14_hasta: 'bil' }, adimlar: [
+            { m: '“Kardeşime bakın. Perihan Hanım’la aynı sofrada söylediklerinizi unutmadım.”', etki: { vakar: 1 }, bayrak: { p14_hasta: 'bil' }, adimlar: [
               /* D8: savunma yerine tehlikeli karşı soru. T27 (DİYALOG): kapıyı kendi açmadıysa başkası çağırdı */
               { eger: (S) => b(S).p14_cagri === 'kendi', ise: [
-                ['suha', 'Her şeyi mi? Yine de kapınızı bana açtınız.', 'notr'],
+                ['suha', 'Yine de kapınızı bana açtınız.', 'notr'],
               ], degilse: [
-                ['suha', 'Her şeyi mi? Yine de beni çağırttınız.', 'notr'],
+                ['suha', 'Yine de beni çağırttınız.', 'notr'],
               ] },
             ] },
             /* T28b (GPT D14-1; kullanıcı ilkesi "intihar çözüm değil"): romanın zehir isteği yerine korku açıkça söylenir ve
@@ -647,7 +647,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { goster: ['suha', 'mahzun'] },
               ['an', 'Süha Bey\'in gözleri doldu, bakışını Feride\'nin yüzünden çekmedi.'],
             ] },
-            { m: 'Yutkun. Ona gözyaşı yok.', etki: { vakar: 1 }, bayrak: { p14_gozyasi: 'sakla' }, adimlar: [
+            { m: 'Yutkun, başını kaldır.', etki: { vakar: 1 }, bayrak: { p14_gozyasi: 'sakla' }, adimlar: [
               /* GPT T26 (öncelik 10): an_yemin resmi yanakta tek damla gösterir; metin resimle uyuşur */
               'Yutkundum.',
             ] },
@@ -822,7 +822,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                   'Kâğıdı katladım. Sabah Leyla\'lara bir çocuk gidecek.',
                 ] },
               ] },
-              { m: 'Yazma. Önce delil, sonra mektup.', etki: { mukaddem: -3 }, bayrak: { p14_kenan: 'bekle' }, iz: 'Kenan bu geceyi senden duymayacak. Sessizliğini yine kendisi yorumlayacak.', adimlar: [
+              { m: 'Yazma. Önce delil, sonra mektup.', bayrak: { p14_kenan: 'bekle' }, iz: 'Kenan bu geceyi senden duymayacak. Sessizliğini yine kendisi yorumlayacak.', adimlar: [
                 'Kalemi bıraktım. Şimdilik mektuplar bana karşı yazılıyor.',
               ] },
             ] },
@@ -946,7 +946,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       {
         id: 'p14_sabah', mekan: 'selamlik_sofa', tetik: 'giris', kosul: (S) => S.gorev === 3, sahne: [],
         adimlar: [
-          ['an', 'Selamlığın sabah ışığı gecenin hiçbir izini saklamadı. Şefik\'in yüzü kâğıt gibiydi.'],
+          { eger: (S) => b(S).p14_gece === 'birak', ise: [['an', 'Gece kâğıdın peşini bırakıp kardeşine dönmüştü. Sabah babasının karşısına Şefik’le çıktı.']], degilse: [['an', 'Selamlığın sabah ışığı gecenin hiçbir izini saklamadı. Şefik\'in yüzü kâğıt gibiydi.']] },
           { goster: ['sai', 'mahzun'] },
           { eger: dayak, ise: [
             'Babam sargılı koluma bakmadı.',
@@ -1054,7 +1054,6 @@ window.BOLUMLER = window.BOLUMLER || {};
                gerçekten konuşunca açılır (kaynağı "doğrulandı"); dinlenmeyen ya da adı verilmeyen tanığın kozu elde kalır,
                kaynağı değişir. İz cümlesi bütün dallarda doğru (sonuç iç seste ve panelde) */
             { m: '“Kapı çalınmadı babacığım. Sorun, tanığım var.”', kozGerek: TANIK, kosul: tanikVar, etki: { baba_guven: 2, calibe_suphe: 2 }, bayrak: { p14_baba: 'tanik' }, iz: 'Kapının çalınmadığını babanın önüne koydun.', adimlar: [
-              { eger: muk, ise: [{ etki: { mukaddem: 3 } }] },
               /* T27b (GPT B14-O1/A2): açık tanık (babanın önünde konuşmaya söz veren) güven yüksekse gerçekten konuşur;
                  yalnız fısıltı bilgisi varsa Feride kaynağın adını vermez. Sahte teslim yazarı kanıtlamaz: baba araştırır.
                  Koz (kapının çalınmadığı sırrı) her dalda babanın önünde açılır ve tükenir */
@@ -1134,12 +1133,12 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* T30 (D14-1): takvim net, Sait kısa */
           /* T32 (b13_16 B14 ANLATI-3): özür ile hüküm arasındaki bağ kurulur */
           /* T33 (b13_16 B14 ANLATI): ceza çocuğa kesilmiş gibi okunmasın; gerekçe Şefik'in gecesi */
-          ['sai', 'Şefik bu evde korkuyor. Mektebe yollamayı düşündüm ama önce onun ne istediğini soracağım.', 'pisman'],
+          ['sai', 'Şefik, dün geceyi bir daha burada geçirmek ister misin? Mektebe gitmek istersen seni dinlerim.', 'pisman'],
           ['sai', 'Araba öğlen gelir.', 'ciddi'],
           { goster: ['sefik', 'notr'] },
           { soru: 'Şefik bana bakıyor, babam da.', secim: [
             { m: '“Gitsin babacığım. Buradan uzakta iyileşir.”', bayrak: { p14_sefik: 'mektep' }, iz: 'Şefik askerî mektebe gidiyor. Konakta gölgen kalmadı.', adimlar: [
-              ['sefik', 'Gideceğim. Ama sen burada yalnız kalacaksın abla.', 'aglamakli'],
+              ['sefik', 'Gideceğim. Ama sen burada yalnız kalacaksın abla.', 'kuskun'],
               ['f', 'Yalnız kalmam. Sen büyü; döndüğünde ablanı aynı kapıda bulursun.', 'aglamakli'],
             ] },
             { m: '“Yanımda yeri var babacığım. Şefik, sen ne istersin?”', etki: { calibe_suphe: 1, baba_guven: -1 }, bayrak: { p14_sefik: 'yanimda' }, iz: 'Şefik yanında kaldı. Perihan bunu sana karşı kullanacak.', adimlar: [
@@ -1150,11 +1149,11 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['sai', 'Kalsın. Ama ders saatini Perihan Hanım tutar.', 'ciddi'],
               ] },
               { eger: (S) => b(S).p11_sefik === 'yanimda', ise: [
-                ['sefik', 'Yanında kalacağım abla. Yatağımı da buraya sererim.', 'notr'],
+                ['sefik', 'Yanında kalacağım abla. Yatağımı da buraya sererim.', 'sevincli'],
               ] },
             ] },
             { m: '“Şefik kendisi söylesin.”', etki: { sefik: 2 }, bayrak: { p14_sefik: 'mektep' }, iz: 'Şefik mektebi kendisi seçti. Senin için.', adimlar: [
-              ['sefik', 'Asker olacağım abla. Döndüğümde sana kimse el kaldıramaz.', 'notr'],
+              ['sefik', 'Asker olacağım abla. Döndüğümde sana kimse el kaldıramaz.', 'kararli'],
               ['ic', 'On bir yaşında bir çocuk… Bunu babamın gözünün içine bakarak söyledi.', 'mahzun'],
               /* Gece resim defterine bakıldıysa: askeri o çizmişti */
               { eger: (S) => b(S).p14_k_defter === 'bakti', ise: [
@@ -1275,6 +1274,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     // tehlikeyi taşır; "Sırada" Feride'nin seçtiği sonucu söyler. Kartı tekrar etmez; "görücü" yalnız süre olarak geçer.
     siradaki: { ad: 'Görücü', kanca: function (S) {
       var f = S.bayrak;
+      if (f.p14_sefik === 'mektep') return 'Şefik’in yatağı boş. Mektepten gelecek ilk mektubu kendim açacağım.';
       if (f.p_rota === 'mukaddem') {
         /* T29b (GPT S14-1): kanca sabah gerçekten verilen baba cevabını, Şefik'in gidiş/kalışını ve görücü süresini taşır */
         if (f.p14_baba === 'tanik') return (f.p14_sefik === 'yanimda' ? 'Şefik yanımda' : 'Şefik gitti') + '. Babam kapıyı soracak, görücü de yarın ikindi geliyor.';
@@ -1294,10 +1294,10 @@ window.BOLUMLER = window.BOLUMLER || {};
       if (f.p14_kagit) return (f.p14_gece === 'sakla' && S.giyili === 'nisan_yadigar' ? 'Astarımdaki kâğıt' : 'Sandığımdaki kâğıt') + ' saati alafranga sayıyor. Bu eli görücüden önce bulmalıyım.';
       return {
         /* Diyalog T1 (14-22): iki yarı çelişmez; kartın "Bedelini o soracak" sözünü tekrar etmez */
-        sefik: 'Bir gün borcunu soracak. O gün ne diyeceğim?',
+        sefik: 'Şefik’in ateşi düştü. Hekim o gecenin karşılığını isterse?',
         perihan: 'Yemininin günü bende. Önce o kâğıdı yazan eli bulmalıyım.',
         vazgec: 'Artık beni istemeyecek. “Siz istemedikçe” dedi.',
-      }[f.p14_yemin] || 'Bir gün borcunu soracak.';
+      }[f.p14_yemin] || 'O gece için Süha Bey’e ne borçluyum?';
     } },
   };
 })();

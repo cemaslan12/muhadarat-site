@@ -239,7 +239,7 @@ window.BOLUMLER[101] = {
         /* Tur 27 (GPT A1, A2): yabancılığı Feride'nin bilgisiyle sınırlı; "görücü" adı finaldeki ifşaya kalır */
         ['an', 'Öğle gölgesinde Perihan Hanım, Feride\'nin tanımadığı iki hanımın arasına oturmuştu. Konuşurken sesini değil, gülümsemesini kullanırdı.'],
         'Yabancılardan biri beni baştan ayağa süzdü, öteki yalnız bileziğime baktı.',
-        ['ic', 'Kumaş tartar gibi tartıyorlar beni. Sözlü olduğumu bilmiyorlar mı?', 'endiseli'],
+        ['ic', 'Beni de bir arşın ipek gibi ellerinden geçirecekler. Sözlü olduğumu bilmiyorlar mı?', 'endiseli'],
         ['calibe', 'Feride kızım, tülüm söküldü, iğne de Hatice\'de. Git bul şu kızı.', 'gulumser'],
         { soru: 'Perihan Hanım gülümseyerek bekliyor.', secim: [
           { m: '“Peki efendim.”', bayrak: { p_boz: false }, iz: 'Perihan Hanım\'ın yolladığı yere gidiyorsun, gözün açık.', adimlar: [
@@ -376,7 +376,7 @@ window.BOLUMLER[101] = {
         /* Tur 29 (B1 oynanış 2): sezonun iki adaylı yol ayrımı bilinçli olarak iki seçenekli; bedeli soruda söylenir */
         { soru: 'Hangisine? İkisine vaktim yok.', secim: [
           { m: 'Merdivene. Şefik\'in sesi oradan geliyor, bir de tanıdık bir erkek sesi.', bayrak: { p_rota: 'mukaddem' } },
-          { m: 'Limonluğa. Kalabalıktan biraz kaçayım.', bayrak: { p_rota: 'suha' } },
+          { m: 'Limonluğa geçeyim.', bayrak: { p_rota: 'suha' } },
           /* Tur 32 (B1 oynanış 1): açık ret. Feride ikisine de gitmez; karşılaşma Süha'nın hamlesi olur, onun isteği
              değil (p_rota 'suha' 2–4. bölümde yalnız karşılaşma hafızası; p1_rota_ret yalnız bu bölümde okunur) */
           /* Tur 33 (B1 anlatı 1): seçenek kaçış vaat etmez; dönüş yolu limonluğun önünden geçer */
@@ -572,9 +572,9 @@ window.BOLUMLER[101] = {
         { soru: 'Elini uzatmış, bekliyor.', secim: [
           { m: 'Bileğini uzat.', etki: { suha: 8 }, bayrak: { p_bilek: 'verdi' }, adimlar: [
             { efekt: 'nabiz' },
-            'İki parmağı bileğimde, gözü saatinde. Dakika çoktan doldu ama parmakları kalkmadı.',
-            ['suha', 'Nabzınız hızlı. Sebebi kalabalıktır… umarım.', 'notr'], // Tur 28 (B1 diyalog 4): kutu iki cümle
-            ['ic', 'Elini çekmesini bekledim. Nabzımı mı sayıyor, beni mi bekletiyor?', 'endiseli'],
+            'Saatini kapadı, iki parmağı hâlâ bileğimde.',
+            ['suha', 'Nabzınız hızlı. Sebebi kalabalıktır… umarım.', 'alayci'], // Tur 28 (B1 diyalog 4): kutu iki cümle
+            ['ic', 'Elimi birden çeksem camdan görünür mü?', 'endiseli'],
           ] },
           { m: '“İyiyim dayı bey, bakmanıza gerek yok.”', etki: { suha: 4 }, bayrak: { p_bilek: 'dayi' }, adimlar: [
             ['f', 'İyiyim dayı bey, bakmanıza gerek yok.', 'kararli'],
@@ -714,9 +714,9 @@ window.BOLUMLER[101] = {
         ['gelin', 'Onu hiç görmedim. Bu gece göreceğim.', 'endiseli'],
         { soru: 'Gelin elimi tutuyor.', secim: [
           /* Diyalog T1 (1.6): gelin "sen" diyor; Feride de akranına "sen" der */
-          { m: '“Mesut ol.”', bayrak: { p_gelin: 'mesut' }, adimlar: [
-            ['f', 'Mesut ol.', 'tebessum'],
-            ['gelin', 'Herkes öyle diyor.', 'endiseli'],
+          { m: '“Sabah seni yine görmeye geleyim mi?”', bayrak: { p_gelin: 'mesut' }, adimlar: [
+            ['f', 'Sabah seni yine görmeye geleyim mi?', 'tebessum'],
+            ['gelin', 'Gel. Sabahı seninle beklemek isterdim.', 'endiseli'],
             /* Tur 33 (B1 sürük 10'a): gelinin "bu gece"sine Feride'nin kendi "iki gün"ü */
           ] },
           { m: '“Korkuyor musun?”', etki: { itibar: 2 }, bayrak: { p_gelin: 'sordu' }, adimlar: [
@@ -854,7 +854,7 @@ window.BOLUMLER[101] = {
             'Döndü. Perdenin aralığından yalnız gözlerimi görebildi.',
             ['remzi', 'Her şey parayla alınır hanımefendi. Yol, ucuzudur.', 'gulumser'],
             ['f', 'Öyleyse pahalısını henüz görmemişsiniz.', 'tebessum'],
-            { goster: ['remzi', 'saskin'] },
+            { goster: ['remzi', 'mahcup'] },
             'Cevap veremedi; bastonunu daha sıkı kavradı.',
           ] },
           /* Tur 32 (B1 anlatı 5): inip nereye yürüdüğü belli; kupanın atının başına */
@@ -865,7 +865,7 @@ window.BOLUMLER[101] = {
           ] },
           { m: 'Arabacıya: “Bekleriz. Acelesi olan utansın.”', etki: { remzi: 5, itibar: 2 }, bayrak: { p_remzi: 'bekledi' }, adimlar: [
             ['f', 'Bekleriz. Acelesi olan utansın.', 'kararli'],
-            { goster: ['remzi', 'ana'] }, // Tur 32 (B1 görsel 4): mahcup portresi yok
+            { goster: ['remzi', 'mahcup'] },
             /* Tur 27b (GPT D 10'a-2): gösteriş vecizeyle değil davranışla; parayı yine de bırakır */
             'Sesimi duydu. Mecidiyeyi yine de arabacımızın avucuna bıraktı, özür yerine para.',
             ['an', 'Remzi Bey kendi arabacısına döndü.'], ['remzi', 'Çek kupayı.', 'kararli'],

@@ -422,7 +422,7 @@ window.BOLUMLER = window.BOLUMLER || {};
   window.BOLUMLER[112] = {
     no: 112,
     baslik: 'Yeni 12. Bölüm',
-    ad: 'Diz Çöken Adam',
+    ad: 'Sarı Odanın Eşiği',
     dogrusal: true,
     adaylar: ['mukaddem', 'suha', 'remzi'],
     ilkFaz: 'A',
@@ -525,7 +525,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['sefik', 'Abla, Perihan Hanım arabayı kuşluğa ısmarladı. Bugün de gölgen olayım mı?', 'sevincli'],
           { soru: 'Şefik elimi tuttu.', secim: [
             { m: '“Ol. Kuşlukta sarı odanın kapısında oyna; kimseyi sokma.”', etki: { sefik: 1 }, bayrak: { p12_sefik: 'yanimda' }, iz: 'Şefik kuşlukta sarı odanın kapısında olacak.', adimlar: [
-              ['sefik', 'Kapıda tahta atımla oynarım. Kimse geçemez!', 'sevincli'],
+              ['sefik', 'Tahta atımı kapıya çekerim!', 'sevincli'],
             ] },
             { m: '“Bugün Perihan Hanım\'ın gölgesi ol. Nereye gider, bana söyle.”', etki: { sefik: 1 }, bayrak: { p12_sefik: 'casus' }, iz: 'Şefik Perihan\'ın peşinde; akşam ne gördüğünü söyleyecek.', adimlar: [
               ['sefik', 'Onun gölgesi mi? Olurum; beni görmez bile.', 'sevincli'],
@@ -674,7 +674,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { bayrak: { p12_v_kahve: 'soyle' } },
           ] },
           /* Tur 27 (B12 anlatı 2 / oynanış 4): Remzi ipliği kopmasın (15. bölümün Remzi kapısı); istemeye gelenlerin saati */
-          ['calibe', 'Tüccar Rıfkı\'nın oğlu da bu sabah kapıyı yoklamış efendi. Parası çok, sabrı yok.', 'sinsi'],
+          ['calibe', 'Remzi Bey daha kuşluk olmadan kapıya adam yollamış efendi.', 'sinsi'],
           ['sai', 'Parası kapımı satın almaz.', 'ciddi'],
           { eger: function (S) { return (S.gonul.remzi || 0) >= 10 || b(S).p11_remzi === 'salon' || b(S).p11_remzi === 'nabi'; }, ise: [
             ['ic', 'Remzi Bey her şeye fiyat biçer. Bana bir kez biçmemişti.', 'tebessum'],
@@ -698,7 +698,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             { m: '“Önce Kenan\'ın adı temizlensin babacığım.”', bayrak: { p12_cevap: 'kenan' }, adimlar: [
               /* Oynanış T1 B3/B7: Kenan yolunda adını babanın önünde savunmak gönülde basamaktır */
-              { eger: muk, ise: [{ etki: { mukaddem: 2 } }] },
               ['sai', 'Kenan Selanik\'te kızım; o iş orada kaldı.', 'mahzun'],
               /* GPT T26 12 (diyalog): diz motifi tek repliğe iner ("Ayakta yalan söylerim"); burada tehdit kalır */
               ['suha', 'Temizlenir efendim. Kimin temizleyeceğini kızınız seçer.', 'soguk'],
@@ -708,7 +707,6 @@ window.BOLUMLER = window.BOLUMLER || {};
                  GPT T26 öncelik 6: kırgınlık haberle gelir — Perihan haberi Münevver Hanım'a, oradan Selanik'e yollar */
               { eger: muk, ise: [
                 ['calibe', 'Akşama mı? Münevver Hanım\'a yazarım; oğlu da duysun.', 'sinsi'],
-                { etki: { mukaddem: -3 } },
               ] },
               ['sai', 'Akşam. Ben de akşam karar veririm.', 'ciddi'],
             ] },
@@ -748,7 +746,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             'Kahve bitti; Sait Efendi işine çıktı, az sonra Perihan Hanım\'ın arabası da yokuşa döndü.',
             'Kuşluğa kadar konak sahipsiz kaldı. Feride bu saatleri boşa geçirmeyecekti.',
           ] } },
-          ['ic', 'Kuşlukta Süha Bey sarı odanın kapısında olacak. Karşısına eli boş çıkmayacağım.', 'kararli'], // Tur 32 (t32 B12 diyalog 6)
+          ['ic', 'Kuşlukta Süha Bey sarı odada. Kapıda yolumu keserse?', 'kararli'], // Tur 32 (t32 B12 diyalog 6)
           { vakit: VAKIT_KUSLUK },
           { gorev: 2 },
         ],
@@ -881,7 +879,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Dizinin üstünde; gözü gözümde.', secim: [
             /* Kenan yolu: "Geç kalmışsın beyefendi" çizgisi */
             /* Doğrulama gecesi (b12 eksik 2): Feride Süha'ya her zaman "siz" (karakter_sesleri hitap tablosu) */
-            { m: '“Geç kaldınız beyefendi. Geç!”', kosul: muk, etki: { vakar: 1, mukaddem: 2 }, bayrak: { p12_tepki: 'gec' }, adimlar: [
+            { m: '“Geç kaldınız beyefendi. Geç!”', kosul: muk, etki: { vakar: 1 }, bayrak: { p12_tepki: 'gec' }, adimlar: [
               ['suha', 'Geç kaldım. Ama Kenan Bey\'den yakınım.', 'alayci'],
               ['ic', 'Yakın. Kenan uzakta; ama nerede beklediğini bilen benim.', 'mahzun'],
             ] },
@@ -1044,7 +1042,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ] }] },
               ] },
               /* Kenan yolu: uzaklıkta korunan bağ */
-              { m: 'Koynundaki telgrafa dokun: “Kalbim Selanik\'te.”', kosul: muk, etki: { mukaddem: 4 }, bayrak: { p12_dokun: 'kenan' }, iz: 'Kalbinin yerini Süha\'nın yüzüne söyledin.', adimlar: [
+              { m: 'Koynundaki telgrafa dokun: “Kalbim Selanik\'te.”', kosul: muk, bayrak: { p12_dokun: 'kenan' }, iz: 'Kalbinin yerini Süha\'nın yüzüne söyledin.', adimlar: [
                 ['suha', 'Selanik uzak. Ben buradayım.', 'alayci'],
                 ['ic', 'Uzak. Ama sesi telgrafla bile yetişiyor.', 'tebessum'],
               ] },
@@ -1160,20 +1158,23 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Diyalog T1 (b12 #18): kart verilen cevaba göre */
               { eger: function (S) { return b(S).p11_telgraf === 'sefik'; }, ise: [
                 { kart: '—K.', alt: 'Ablana söyle: ben de her gün okuyorum. Bir yıl kısalıyor.' },
+                { eger: (S) => b(S).p11_tel_cevabi_bekliyor, ise: [{ etki: { mukaddem: 7 } }, { bayrak: { p11_tel_cevabi_bekliyor: false } }] },
               ], degilse: [
                 { kart: '—K.', alt: 'Cevabın geldi. Ben de bekliyorum; her gün.' },
+                { eger: (S) => b(S).p11_tel_cevabi_bekliyor, ise: [{ etki: { mukaddem: 6 } }, { bayrak: { p11_tel_cevabi_bekliyor: false } }] },
               ] },
             /* Tur 29 (GPT O10-1/2): 10'da sözsüz, mektupsuz ayrılan kızın susuşu kırgınlık sayılmaz */
             ], degilse: [{ eger: function (S) { return b(S).p10_son === 'ayri'; }, ise: [
               { kart: '—K.', alt: 'Cevap beklemedim; söz istemediniz. Selanik\'e vardım; Şefik\'e yazıyorum.' },
             ], degilse: [
               { kart: '—K.', alt: 'Cevap gelmedi. Sessizliğini de okudum.' },
+              { eger: (S) => b(S).p11_tel_cevabi_bekliyor, ise: [{ etki: { mukaddem: -3 } }, { bayrak: { p11_tel_cevabi_bekliyor: false } }] },
             ] }] },
             { soru: 'Telgraf avucumda; Şefik bekliyor.', secim: [
               { m: 'Koynuna sakla.', bayrak: { p12_v_telgraf: 'sakla' }, adimlar: [
                 ['ic', 'Kenan\'ın sesi koynumda. Kimse oradan alamaz.', 'tebessum'],
               ] },
-              { m: 'Şefik\'le tek kelime yolla: “Biliyorum.”', etki: { mukaddem: 6 }, bayrak: { p12_v_telgraf: 'cevap' }, iz: 'Kenan\'a cevap gitti; posta açıksa Perihan da okur.', adimlar: [
+              { m: 'Şefik\'le tek kelime yolla: “Biliyorum.”', bayrak: { p12_v_telgraf: 'cevap' }, iz: 'Kenan\'a cevap gitti; posta açıksa Perihan da okur.', adimlar: [
                 ['sefik', 'Koşarım! Kimse görmeden.', 'sevincli'],
               ] },
               { m: 'Oku, ezberle, yak.', bayrak: { p12_v_telgraf: 'yak' }, adimlar: [
@@ -1199,10 +1200,10 @@ window.BOLUMLER = window.BOLUMLER || {};
               { kart: '—Süha', alt: 'Dizimi gördünüz. Şeker özür değil.' },
             ] }] }] },
             { soru: 'Kutunun kapağında bir menekşe resmi.', secim: [
-              { m: 'Bir şeker al; kutuyu sakla.', etki: { suha: 2 }, bayrak: { p12_v_seker: 'al' }, iz: 'Süha\'nın şekeri dilinde; kokusu akşama kalır.', adimlar: [
+              { m: 'Bir şeker al; kutuyu sakla.', bayrak: { p12_seker_haberi: true, p12_v_seker: 'al' }, iz: 'Süha\'nın şekeri dilinde; kokusu akşama kalır.', adimlar: [
                 ['ic', 'Dilimde menekşenin tadı var; aklımda o kapının aralığı.', 'utanmis'],
               ] },
-              { m: 'Kutuyu Şefik\'le geri yolla.', etki: { vakar: 1, suha: -3 }, bayrak: { p12_v_seker: 'geri' }, iz: 'Şekeri geri yolladın; Süha akşam sofrada bunu hatırlayacak.', adimlar: [
+              { m: 'Kutuyu Şefik\'le geri yolla.', etki: { vakar: 1 }, bayrak: { p12_seker_haberi: true, p12_v_seker: 'geri' }, iz: 'Şekeri geri yolladın; Süha akşam sofrada bunu hatırlayacak.', adimlar: [
                 ['ic', 'Şeker de bir söz. Onun sözünü dilime almam.', 'kararli'],
               ] },
               { m: 'Kutuyu Perihan Hanım\'ın kapısının önüne bırak.', etki: { calibe_suphe: 2 }, bayrak: { p12_v_seker: 'perihan' }, iz: 'Perihan kutunun kimden geldiğini bilecek.', adimlar: [
@@ -1213,7 +1214,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { muzik: null },
           /* Oynanış T1 B4: hüküm sofrasına giyinme anı; akşam sofrasında kıyafete tepki */
-          { giyin: ['aksam', 'nisan_sade', 'nisan_yadigar'], soru: 'Akşam babamın sofrasına ne giyip ineceğim?' },
+          { giyin: ['aksam', 'nisan_sade', 'nisan_yadigar'], soru: (S) => b(S).p12_v_on === 'ayril' ? 'Sarı odada söylemedim. Babamın karşısına ne giyip çıkayım?' : 'Akşam babamın sofrasına ne giyip ineceğim?' },
           { gorev: 4 },
           { ara: { mekan: 'yemek_salonu', yer: 'Yemek salonu · akşam', satirlar: [
             'Akşam serinliği o gün erken indi; yemek salonuna mangal kondu. Sait Efendi döndüğünde sofra kurulmuştu.',
@@ -1255,10 +1256,12 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* GPT T24b 12 (10'a): şeker kararı sonraki karşılaşmanın ilk satırını belirler */
           { eger: function (S) { return b(S).p12_v_seker === 'geri'; }, ise: [
             ['an', 'Süha Bey sofraya oturdu. Geri dönen kutuyu anmadı; Feride\'ye bir kez bile gülümsemedi.'],
+            { eger: (S) => b(S).p12_seker_haberi, ise: [{ etki: { suha: -3 } }, { bayrak: { p12_seker_haberi: false } }] },
           ], degilse: [{ eger: function (S) { return b(S).p12_v_seker === 'al'; }, ise: [
             /* Diyalog T1 (b12 #13): Perihan'ın yığılan suçlamalarına Feride bir kez karşılık verir */
             ['f', 'Menekşe herkesin şekeri Perihan Hanım.', 'tebessum'], // Tur 28 (B12 diyalog 1)
             ['an', 'Süha Bey tam o sırada oturdu; gülümsemesini dudağında sakladı.'],
+            { eger: (S) => b(S).p12_seker_haberi, ise: [{ etki: { suha: 2 } }, { bayrak: { p12_seker_haberi: false } }] },
           ], degilse: [
             ['an', 'Süha Bey sofraya gülümsemeden oturdu.'],
           ] }] },
@@ -1396,7 +1399,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['ic', 'Saati vardı; sebebi yoktu. Babama yetmedi.', 'mahzun'],
             ] },
             /* Oynanış T1 B6: vakar eşiği cesaret seçeneğini açar — iftiradan delil istemek (kanıt Perihan'daysa gösterir) */
-            { m: '“Mektup diyorsunuz Perihan Hanım. Gösterin; ben de okuyayım.”', etki: { vakar: 1, calibe_suphe: 1 }, bayrak: { p12_v_karsi: 'cesaret' }, iz: 'İftiradan babanın önünde delil istedin.', adimlar: [
+            { m: '“O mektubu ben de okuyayım Perihan Hanım.”', etki: { vakar: 1, calibe_suphe: 1 }, bayrak: { p12_v_karsi: 'cesaret' }, iz: 'İftiradan babanın önünde delil istedin.', adimlar: [
               { eger: kanitli, ise: [
                 ['calibe', 'İstersen gösteririm kızım. Babanın önünde, satır satır.', 'sinsi'],
               ], degilse: [
@@ -1523,7 +1526,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { muzik: 'sessiz' }, // Tur 27b (ortak istek; GPT B12-SE1): hükümden önce müzik çekilir
           { efekt: 'fincan' }, // Tur 28 (B12 ses 1): hükmün öncesi fincanın sesiyle
-          ['an', 'Sait Efendi fincanı önüne çekti, bir yudum aldı.'],
+          ['an', 'Sait Efendi fincanı tabağına bıraktı.'],
           { efekt: 'yudum' }, // Tur 33 (t33 B12 ses 2): hükümden önce yudumun duraklaması (sus dalında müzik doğrudan girmesin)
           /* Tur 31 (t31_b09_12 B12 anlatı 1, oynanış 1): hükmün ortak gerekçesi her dalda, sorudan önce; retli yolda baba reddi tanır */
           /* Tur 33 (t33 B12 oynanış 1): iftira boşa çıktıysa hükmün gerekçesi açık — laf korkusu değil, kirletenin temizlemesi */
@@ -1634,7 +1637,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             ['sai', 'Süha, bu iş aydınlanana kadar kızımla yalnız görüşmeyeceksin.', 'ciddi'],
             { soru: 'Babam nikâhı durdurdu. Kazandığım sözü nasıl kaydedeceğim?', secim: [
-              { m: '“Nikâhın durduğunu siz de yazın babacığım.”', bayrak: { p12_son: 'vade' }, adimlar: [
+              { m: '“Nikâhın durduğunu siz de yazın babacığım.”', bayrak: { p12_son: 'teyit' }, adimlar: [
                 ['sai', 'Yazarım. Şahitlerin önünde verdiğim sözü geri almam.', 'ciddi'],
               ] },
               { m: '“O gün de kararımı ben vereceğim.”', bayrak: { p12_son: 'sus', p12_riza: false, p12_karar: 'karar_hakki' }, adimlar: [
@@ -1709,7 +1712,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
           ] }] }] }] },
           ], degilse: [
-            { eger: (S) => b(S).p12_son === 'vade', ise: [['f', 'O gün cevabı ben vereceğim babacığım.', 'kararli']] },
+            { eger: (S) => b(S).p12_son === 'teyit', ise: [['f', 'O gün cevabı ben vereceğim babacığım.', 'kararli']] },
           ] },
           /* Tur 28 (B10 anlatı 1): 10. bölümün tek sorusunun cevabı (notun ikinci satırı) hükmün karşısında okunur */
           /* Tur 29 (t29 B12 diyalog 1): Süha'ya yakın kız ("İstediğim adam belki") ikinci sesli satırı söylemez (aynı işi
@@ -1784,7 +1787,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       if (f.p12_son === 'kenan' && f.p12_borc) son = 'Kenan\'ın adını sofrada hazırlıksız temizlettim; Süha Bey borç yazdı, babam Selanik\'e kapıyı kapadı.';
       if (f.p12_nikah_ertelendi) {
         if (f.p12_karar === 'karar_hakki') son = 'Nikâh durduktan sonra o günkü kararımı kendim vereceğimi söyledim.';
-        else if (f.p12_son === 'vade') son = 'Babam nikâhı durdurdu; verdiği sözü yazmasını istedim.';
+        else if (f.p12_son === 'teyit') son = 'Babam nikâhı durdurdu; verdiği sözü yazmasını istedim.';
         else son = son ? son.replace(/\.$/, '; nikâh ertelendi.') : 'Nikâh iş aydınlanana dek ertelendi.';
       }
       var karar = son || (m ? (f.p10_son === 'bekle' ? 'Babamın hükmünü dinledim; Selanik\'e verdiğim “Bekleyeceğim” sözünü ben bozmam.'

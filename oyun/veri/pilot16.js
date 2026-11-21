@@ -103,6 +103,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     an_kavusma_gizli: ['Tek kandilin ışığında nikâh', 'Yüzleşme ve Son · Kenan'],
     an_hayir:         ['Selamlıkta kendi hayırı', 'Yüzleşme ve Son · Süha'],
     /* T28b (ORTAK: resim bağlandı): Remzi'ye giden gecenin hayırı (HAYIR_GECE); baba başı eğik, Perihan kapıda */
+    an_hayir_nikah:   ['İmamın kapanan defteri', 'Yüzleşme ve Son · Nikâhta ret'],
     an_hayir_gece:    ['Gece selamlıkta, kimsenin desteği olmadan', 'Yüzleşme ve Son · Üçüncü kapı'],
   };
   Object.keys(ANLAR).forEach(function (id) {
@@ -315,7 +316,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     /* Cemil T27: Süha yolunun kapısız dalında bağımsız "Hayır" (beşinci son) */
     son_hayir: 'Hayır dediğim adam o mektubu yazdı. Beyrut\'ta onu kim bekliyordu?',
   };
-  var SON_AD = { son_kavusma: 'Kavuşma', son_umutlu_ayrilik: 'Umutlu Ayrılık', son_tehlikeli_evet: 'Tehlikeli Evet', son_remzi: 'Üçüncü Kapı', son_hayir: 'Kendi Hayırı' };
+  var SON_AD = { son_kavusma: 'Kavuşma', son_umutlu_ayrilik: 'Umutlu Ayrılık', son_tehlikeli_evet: 'Tehlikeli Evet', son_remzi: 'Üçüncü Kapı', son_hayir: 'Kendi Cevabım' };
   /* T27 (SÜRÜK-4): sezon kartının Şebib satırı sona göre ("vapur/saat" Kenan'ın kalıbıydı, dört sonda aynıydı) */
   var SEBIB_SATIR = {
     son_kavusma: 'O gece Beyrut\'ta Şebib adında bir adam, Behiye Hanım\'ın emanetini sandıktan çıkardı.',
@@ -535,7 +536,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['calibe', 'Kimi bekliyordun? Baban selamlıkta uyur.', 'soguk'],
         ] },
       ] },
-      { m: '“Bu odada ne konuşulduysa babam sabah öğrenecek.”', kosul: acik('tehdit'), bayrak: bay('tehdit'), adimlar: [
+      { m: '“Bu geceyi babama ben anlatacağım.”', kosul: acik('tehdit'), bayrak: bay('tehdit'), adimlar: [
         ['calibe', 'Sabaha çok var kızım. Geceler uzundur.', 'soguk'],
       ] },
       /* T32 (b13_16 B16 OYNANIŞ): elinde koz kalmayan kızın da sözle yapabileceği bir hamle (vakar ≥ 21 ağırlık sayar;
@@ -924,25 +925,25 @@ window.BOLUMLER = window.BOLUMLER || {};
         ['an', 'Sait Efendi zarfı okudu, katlayıp kızına geri verdi. O gün ona uzattığı tek şeydi.'],
       ] },
     ] },
-    ['ic', 'Hayır dedim. Beni razı gösteremediler.', 'kararli'],
   ];
 
   var HAYIR_NIKAH = [
     { muzik: 'sessiz', kes: true, durak: 800 },
     ['f', 'Hayır. Remzi Bey’e varmam.', 'kararli'],
-    { goster: ['sai', 'ciddi'] },
-    ['sai', 'Verdiğim sözü herkes duydu kızım.', 'ciddi'],
+    { goster: ['sai', 'endiseli'] },
+    ['sai', 'Verdiğim sözü herkes duydu kızım.', 'endiseli'],
     ['f', 'Benim cevabımı da duysunlar babacığım.', 'kararli'],
     ['an', 'İmam nikâh defterini kapadı. Remzi Bey saatini cebine koydu.'],
-    ['remzi', 'Bu masrafı unutmam hanım.', 'kararli'],
+    { cizim: 'an_hayir_nikah' },
+    ['remzi', 'Saati ben kurmuştum. Siz durdurdunuz.', 'mahcup'],
     { gizle: 'remzi' },
-    ['sai', 'Rızan yoksa nikâh kıyılmaz. Ama bu konakta artık sözün geçmez.', 'ciddi'],
+    ['sai', 'Rızan yoksa nikâh kıyılmaz. Ama bu konakta artık sözün geçmez.', 'ofkeli'],
     { gizle: 'sai' },
     { goster: ['calibe', 'ofkeli'] },
     ['calibe', 'Herkesin önünde hayır dedin kızım. Konak yine benim.', 'ofkeli'],
     { gizle: 'calibe' },
     { ara: { mekan: 'fazila_oda', yer: 'Aynı gün · ikindi', satirlar: [
-      'Misafirler dağılınca Feride odasına çıktı. Sait Efendi onunla konuşmadı.',
+      'Feride odasında tek başına oturdu. Babasının adımları kapısının önünden geçti.',
       (S) => b(S).p16_hatice_soz ? 'Hatice Münevver Hanım’ın konağına geçmişti. Feride’nin verdiği söz yerindeydi.' : '',
     ] } },
   ].concat(HAYIR_GECE.slice(HAYIR_GECE.findIndex(a => typeof a === 'string' && a.indexOf('Akşamüstü kapımın altından') === 0)));
@@ -2338,8 +2339,8 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             /* T28b (GPT O16-1, A16-2; kök bulgu 1): güçsüz "hiçbiri" de, Remzi kapısını seçen de açık ret söyleyebilir.
                Sonuç rızayı değiştirmez; yalnız korunmayı ve babanın desteğini (HAYIR_GECE) */
-            { m: 'Sandığı kapa, babama in: “Dünkü evetimi geri alıyorum.”', kosul: (S) => kapi(S) === 'remzi', etki: { vakar: 2, remzi: -3 }, bayrak: { p16_son: 'son_hayir', p16_hayir: 'gece' }, iz: 'Remzi\'ye verdiğin eveti babanın önünde geri aldın. Nikâh kıyılmayacak ama baban yanında değil.', adimlar: HAYIR_GECE.concat([{ kart: GECE_KANCA }], kapanis()) },
-            { m: 'Sandığı kapa, babama in: “Remzi Bey\'e varmam.”', kosul: (S) => kapi(S) !== 'remzi', etki: { vakar: 2, remzi: -3 }, bayrak: { p16_son: 'son_hayir', p16_hayir: 'gece' }, iz: 'Babanın verdiği söze hayır dedin. Nikâh kıyılmayacak ama baban yanında değil.', adimlar: HAYIR_GECE.concat([{ kart: GECE_KANCA }], kapanis()) },
+            { m: 'Sandığı kapa, babama in: “Dünkü evetimi geri alıyorum.”', kosul: (S) => kapi(S) === 'remzi', etki: { vakar: 2 }, bayrak: { p16_son: 'son_hayir', p16_hayir: 'gece' }, iz: 'Remzi\'ye verdiğin eveti babanın önünde geri aldın. Nikâh kıyılmayacak ama baban yanında değil.', adimlar: HAYIR_GECE.concat([{ kart: GECE_KANCA }], kapanis()) },
+            { m: 'Sandığı kapa, babama in: “Remzi Bey\'e varmam.”', kosul: (S) => kapi(S) !== 'remzi', etki: { vakar: 2 }, bayrak: { p16_son: 'son_hayir', p16_hayir: 'gece' }, iz: 'Babanın verdiği söze hayır dedin. Nikâh kıyılmayacak ama baban yanında değil.', adimlar: HAYIR_GECE.concat([{ kart: GECE_KANCA }], kapanis()) },
           ] },
           { gorev: 3 },
           { ara: { mekan: 'buyuk_salon', yer: 'Ertesi gün · büyük salon', satirlar: [
@@ -2589,6 +2590,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       an_kavusma_o: 'Kenan yolunda: rızalı nikâhta duvağı Kenan kaldırırsa.',
       an_kavusma_gizli: 'Kenan yolunda: Münevver Hanım\'ın arabasıyla Leyla\'ların konağında gizli nikâh.',
       an_hayir: 'Süha yolunda: selamlıkta Süha Bey\'e de hayır dersen.',
+      an_hayir_nikah: 'İmam rızanı sorduğunda kendi cevabını verirsen.',
       an_hayir_gece: 'Remzi Bey\'e varılacak gece babana desteksiz hayır dersen.',
       an_ayrilik: 'Kenan yolunda: sabah avluda, kafesin aralığından sokağın başına bakan kız.',
       an_iki_kagit: 'Süha yolunda: sahte mektup elindeyken hekimin boş odasında iki kâğıt.',
@@ -2603,6 +2605,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       an_kavusma_gizli: function (S) { return S.bayrak.p16_son === 'son_kavusma' && S.bayrak.p16_secim === 'gizli'; },
       an_ayrilik: function (S) { return S.bayrak.p16_son === 'son_umutlu_ayrilik' || bagimsiz(S); },
       an_hayir: function (S) { return S.bayrak.p16_son === 'son_hayir' && S.bayrak.p16_hayir === 'hayir'; },
+      an_hayir_nikah: (S) => S.bayrak.p16_hayir === 'nikah',
       an_hayir_gece: function (S) { return geceHayir(S); },
       an_iki_kagit: function (S) { return S.bayrak.p16_son === 'son_tehlikeli_evet' || (S.bayrak.p16_son === 'son_hayir' && S.bayrak.p16_hayir === 'hayir'); },
       an_iki_kagit_musvedde: function (S) { return S.bayrak.p16_son === 'son_tehlikeli_evet' || (S.bayrak.p16_son === 'son_hayir' && S.bayrak.p16_hayir === 'hayir'); },

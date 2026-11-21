@@ -1053,7 +1053,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['suha', 'O dakikada ne isteyeceğimi sonra söyleyeceğim.', 'alayci'],
               ] },
               { m: '“Şartım var: babamın duyacağı yerde geri alacaksınız.”', etki: { suha: 4 }, bayrak: { p9_pazar: 'sart' }, iz: 'Süha Bey yalanını ancak babanın duyacağı yerde geri alacak. Dakikasına evet demedin.', adimlar: [
-                ['suha', 'Babanız duyar. Dakika yine benim.', 'soguk'],
+                ['suha', 'Babanız duyar. Saati ben tutarım.', 'soguk'],
                 ['f', 'Yalanınızı babamın önünde geri alın. Kapımı açacağıma söz vermiyorum.', 'kararli'],
               ] },
               /* Oynanış B3: reddin gönülde bedeli (Süha −3) */
@@ -1207,7 +1207,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: karsila, ise: [{ bayrak: { p9_kapi: 'karsila' } }], degilse: [{ bayrak: { p9_kapi: 'perihan' } }] },
           { eger: babaDuyar, ise: [{ bayrak: { p9_baba: 'esik' } }], degilse: [{ bayrak: { p9_baba: 'yok' } }] },
           { eger: karsila, ise: [
-            ['an', 'Şefik onu eteğinden tutup bahçe kapısından getirdi; Feride\'nin “nine” dediği kadın bir anne telaşındaydı.'],
+            ['an', 'Şefik onu bahçe kapısından getirdi. Eteğini bırakınca Münevver Hanım doğruca Feride’ye geldi.'],
           ], degilse: [
             ['an', 'Feride ona çocukken “nine” derdi. Münevver Hanım iskele yokuşunu bu kez bir annenin telaşıyla çıkmıştı.'],
           ] },
@@ -1278,7 +1278,7 @@ window.BOLUMLER = window.BOLUMLER || {};
              p9_v_maymun 'savun' akşamüstü mutfakta Hatice'nin ilk sözünde okunur */
           { soru: 'Hatice\'nin eli önlüğünü buldu; başını kaldırmadı.', secim: [
             { m: '“Hatice kimsenin maymunu değil nineciğim.”', etki: { vakar: 1, munevver: -1 }, bayrak: { p9_v_maymun: 'savun' }, iz: 'Hatice\'yi Münevver Hanım\'ın önünde savundun; Hatice duydu.', adimlar: [
-              ['munevver', 'Dilim öfkeme uydu kızım. Sözüm ona değil, onu konuşturana.', 'notr'],
+              ['munevver', 'Hatice’ye haksızlık ettim kızım. Sözüm ona değil, onu konuşturana.', 'notr'],
               /* Tur 29 (t29 B9 diyalog 10'a): kırgın sesin bölümdeki tek minneti (satır sayısı aynı) */
               'Hatice önlüğünü bıraktı, başını kaldırıp bana baktı: “Sağ olun küçük hanım.”',
             ] },
@@ -1729,7 +1729,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: (S) => !babaDuyar(S) && ['sise', 'bos'].indexOf(b(S).p9_kanit) >= 0, ise: [
             { soru: 'Babam önümde. Şişeyi ona da gösterebilirim.', secim: [
               { m: 'Şişeyi doğrudan babama uzat: “Siz de bakın babacığım.”', bayrak: { p9_delil_babaya: true }, adimlar: [
-                ['an', 'Sait Efendi şişeyi alıp lambaya tuttu.'],
+                ['an', 'Sait Efendi şişeyi lambaya tuttu. Feride elini açınca şişeyi avucuna geri bıraktı.'],
               ] },
               { m: 'Şişeyi çıkarma. Önce babamı dinle.', bayrak: { p9_delil_babaya: false } },
             ] },
@@ -1930,7 +1930,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 30 (t30 B9 sürükleyicilik 2): süre + bedel, iki cümle */
           { soru: 'Babamın eli uzanmış. Vapur bir saate kalkar; verirsem Ada “kabul etti” der.', secim: [
             { m: '“Veririm. Ama kendi elimle, Münevver Hanım\'a.”', etki: { munevver: 1, vakar: 1 }, bayrak: { p9_son: 'sart' }, iz: 'Gerdanlığı sen götüreceksin; baban yalnız yanında yürüyecek.', adimlar: [
-              ['f', 'Veririm babacığım. Ama kendi elimle: o taktı, ona veririm.', 'kararli'],
+              ['f', 'Veririm babacığım. Onu bana takanın eline.', 'kararli'],
               { goster: ['calibe', 'ofkeli'] },
               ['calibe', 'Efendi, kızı akşam vakti iskeleye mi yollayacaksınız?', 'ofkeli'],
               ['sai', 'Yollamam. Yanında yürürüm.', 'mahzun'],
@@ -2030,7 +2030,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         /* Diyalog T1 (D2): defter Feride'nin sesi; "damat" ailenin sözü */
         sise: duydu && f.p9_kanit === 'bos' ? 'Boş şişeyi ve kuru bardağı gösterdim. Babam Kenan\'ın içtiğini artık söyleyemiyor.'
           : (f.p9_kanit === 'sise' ? 'Mühürlü şişeyi akşam babama gösterdim. Kenan\'ın içtiğine inanmıyor.'
-            : 'Kahvede istediğim şişe hesabı akşama da yetti. Babam Kenan\'ın içtiğine inanmıyor.'),
+            : 'Sabah şişeyi sordum. Akşam babam da cevabı bekledi. Babam Kenan\'ın içtiğine inanmıyor.'),
         hatice: duydu && f.p9_kanit === 'goz' ? 'Münevver Hanım Hatice\'nin gözüne baktı. Hatice odaya girmediğini babamın duyacağı yerde söyledi.'
           : (duydu && ['toka', 'itiraf'].indexOf(f.p9_kanit) >= 0 ? 'Hatice\'nin ezberini babamın duyacağı yerde çürüttüm. Babam onu artık şahit saymıyor.'
             : 'Kahvede kazandığım tuttu. Babam Hatice\'nin ezberini artık şahit saymıyor.'),

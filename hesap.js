@@ -3,7 +3,7 @@
    giriş yapmış oyuncunun Firestore belgesine (oyuncular/{uid}) eşler. Oyun koduna dokunmaz. */
 
 const SURUM = '10.12.2';
-const TUR_ANAHTARI = 'muhadarat_hesap_tur';     // 'google' | 'apple' | 'misafir'
+const TUR_ANAHTARI = 'muhadarat_hesap_tur';     // 'google' | 'apple' | 'eposta' | 'misafir'
 const ZAMAN_ANAHTARI = 'muhadarat_hesap_zaman'; // son buluta yazma zamanı (ms)
 
 let fb = null; // { auth, db, m: modüller }
@@ -46,6 +46,28 @@ export async function girisYap(saglayici) {
   return sonuc.user;
 }
 
+/* E-posta ve şifreyle devam: hesap yoksa açar, varsa giriş yapar. Dönen değer: { user, yeni }. */
+export async function epostaIleGir(eposta, sifre) {
+  const f = await baslat();
+  const { A } = f;
+  let sonuc, yeni = true;
+  try { sonuc = await A.createUserWithEmailAndPassword(f.auth, eposta, sifre); }
+  catch (e) {
+    if (e.code !== 'auth/email-already-in-use') throw e;
+    yeni = false;
+    sonuc = await A.signInWithEmailAndPassword(f.auth, eposta, sifre);
+  }
+  turYaz('eposta');
+  await buluttanCek(sonuc.user);
+  await bulutaYaz(sonuc.user, true);
+  return { user: sonuc.user, yeni };
+}
+
+export async function sifreSifirla(eposta) {
+  const f = await baslat();
+  await f.A.sendPasswordResetEmail(f.auth, eposta);
+}
+
 export async function cikisYap() {
   const f = await baslat();
   if (f) { await bulutaYaz(f.auth.currentUser, true).catch(() => {}); await f.A.signOut(f.auth); }
@@ -59,7 +81,7 @@ export async function hesabiSil() {
   await f.F.deleteDoc(f.F.doc(f.db, 'oyuncular', u.uid));
   try { await f.A.deleteUser(u); }
   catch (e) {
-    if (e.code !== 'auth/requires-recent-login') throw e;
+    if (e.code !== 'auth/requires-recent-login' || tur() === 'eposta') throw e;
     const s = tur() === 'apple' ? new f.A.OAuthProvider('apple.com') : new f.A.GoogleAuthProvider();
     await f.A.reauthenticateWithPopup(u, s);
     await f.A.deleteUser(u);

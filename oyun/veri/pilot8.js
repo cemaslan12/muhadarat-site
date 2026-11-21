@@ -441,15 +441,15 @@ window.BOLUMLER = window.BOLUMLER || {};
       'Bir pusula yazdım. Madam aşağı inip Kenan\'ın kapısının altından sürecekti.',
     ] },
     { soru: 'Pusulaya sabahın planını yazacağım.', secim: [
-      { m: '“İlk vapurla gidin. Adınızı burada yazamasınlar.”', etki: { mukaddem: 3 }, bayrak: { p8_plan: 'git' },
+      { m: '“İlk vapurla gidin. Adınızı burada yazamasınlar.”', bayrak: { p8_plan: 'git' },
         iz: 'Kenan sabah vapuruyla gidecek. Kahvede yanında olmayacak.', adimlar: [
         'Yazdım: “İlk vapurla gidin. Adınızı burada yazamasınlar.”',
       ] },
-      { m: '“Kalın. Yalanın yüzüne sabah birlikte bakalım.”', etki: { mukaddem: 4 }, bayrak: { p8_plan: 'kal' },
+      { m: '“Kalın. Yalanın yüzüne sabah birlikte bakalım.”', bayrak: { p8_plan: 'kal' },
         iz: 'Kenan kalacak. Sabah kahvesinde yalanı birlikte karşılayacaksınız.', adimlar: [
         'Yazdım: “Kalın. Yalanın yüzüne sabah birlikte bakalım.”',
       ] },
-      { m: '“Annenize gidin, her şeyi önce o duysun.”', kosul: (S) => var_(S, ITIRAF), etki: { mukaddem: 3 }, bayrak: { p8_plan: 'anlat' },
+      { m: '“Annenize gidin, her şeyi önce o duysun.”', kosul: (S) => var_(S, ITIRAF), bayrak: { p8_plan: 'anlat' },
         iz: 'Kenan annesine gidecek. Münevver Hanım yalanı önce oğlundan duyacak.', adimlar: [
         'Yazdım: “Annenize gidin, her şeyi önce o duysun.”',
       ] },
@@ -522,7 +522,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           bekci: 'Kenan\'ın kapısına o gece tepsi hiç varmadı. Asıl iş alt katta, Feride\'nin göremediği yerde dönüyordu.',
           izle: 'Hatice tepsisiyle hâlâ Kenan\'ın eşiğindeydi.',
           /* Tur 30 (ORTAK, t30 B7 §5): Süha'nın son sözünü ("Sabah boş şişe konuşacak") yinelemez; yeni bilgi karşılıklı tanıklık */
-          in: 'Selamlıkta boş bir şişe kalmıştı. Feride onu boşaltan eli görmüştü; elin sahibi de Feride\'yi.',
+          in: 'Sabah babası inmeden o boş şişeye yeniden ulaşması gerekecekti. Feride onu boşaltan eli görmüştü; elin sahibi de Feride\'yi.',
           /* Tur 30: 7. bölüm kancası "Kenan'ın kapısı kapalı" der; açılış onu yinelemez */
           uyar: 'Feride uyarısını fısıldayıp merdivene dönmüştü. Tutup tutmadığı birkaç dakikada belli olacaktı.',
         })[son7(S)] || 'Aşağıda açılan dolap kapağının sesi Feride\'nin kulağından gitmemişti.',
@@ -752,7 +752,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 28b (GPT 8-O1): yerinden ayrılmayan kız odadan çıkmadı; çıkan kızın açık kapısı seçilmiş karar diye
              sahiplenilmez (sürgü içeriden çekilir, dışarı çıkan çekemez) */
           { eger: (S) => burada(S) || (evde(S) && son7(S) !== 'tepsi'), ise: [
-            'Bir basamak bile inmedim.',
+            'Tahta ayağımın altında serin.',
           ], degilse: [{ eger: (S) => b(S).p7_kapi === 'surgu', ise: [
             'Sürgüm kapıda, ama dışarıdan çekilmiyor. Odam ben dönene kadar açık.',
           ], degilse: [{ eger: (S) => b(S).p7_kapi === 'nimet', ise: [
@@ -1346,13 +1346,13 @@ window.BOLUMLER = window.BOLUMLER || {};
             { eger: (S) => red(S) && b(S).p8_rhamle === 'kenan', ise: [
               { eger: burada, ise: [
                 /* Tur 33 (B8 görsel 1): merdivende 8 satır üst üste mahzun serisi kırıldı */
-                ['mukaddem', 'Penceremdeki çakılı aldım. Fişek hekimi aşağıda gösterdi; sizin yerinizden inmediğinizi de.', 'kararli'],
+                ['mukaddem', 'Penceremdeki çakılı aldım. Fişek patladığında hekim aşağıdaydı. Sizi yukarıda gördüm.', 'kararli'],
               ], degilse: [
                 ['mukaddem', 'Penceremdeki çakılı aldım. Fişek de ikinizi kıyıda gösterdi; bir adım atmadığınızı da.', 'kararli'],
               ] },
             ], degilse: [{ eger: red, ise: [
               { eger: burada, ise: [
-                ['mukaddem', 'Fişek hekimi aşağıda, sizi yukarıda gösterdi. Bir basamak bile inmediğinizi de gösterdi.', 'kararli'],
+                ['mukaddem', 'Fişek patladığında hekim aşağıdaydı. Siz merdivenin başındaydınız.', 'kararli'],
               ], degilse: [
                 ['mukaddem', 'Fişek ikinizi kıyıda gösterdi. Bir adım bile atmadığınızı da gösterdi.', 'kararli'],
               ] },
@@ -1537,13 +1537,13 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['ic', 'Dokuz yaşımda ona verdiğim masal kitabı. Ada\'ya getirmiş.', 'utanmis'],
             ] },
                   { soru: 'Kitap elimde.', secim: [
-                    { m: 'Altına yaz: “Hâlâ.”', kosul: muk, etki: { mukaddem: 3 }, bayrak: { p8_kitap: 'yaz' },
+                    { m: 'Altına yaz: “Hâlâ.”', kosul: muk, bayrak: { p8_kitap: 'yaz' },
                       iz: 'Kenan kitabını açınca “Bu senindir”in altında “Hâlâ”yı bulacak.', adimlar: [
                       { efekt: 'kalem' },
                       'Altına yazdım: “Hâlâ.” Mürekkep kuruyana kadar bekledim.',
                     ] },
                     /* Tur 30 (t30 B8 oynanış 10'a 2): karşılığı 9. ve 10. bölümde (p8_kitap 'al') */
-                    { m: 'Kitabı al; ona kendin geri ver.', kosul: (S) => !muk(S), etki: { mukaddem: 2 }, bayrak: { p8_kitap: 'al' },
+                    { m: 'Kitabı al; ona kendin geri ver.', kosul: (S) => !muk(S), bayrak: { p8_kitap: 'al' },
                       iz: 'Kenan\'ın masal kitabı sende. Onu kendi elinle geri vereceksin.', adimlar: [
                       /* Diyalog T1 (8.17): satır kendi eylemiyle çelişmez */
                       'Kitabı aldım. Kendi elimle, yüzüne bakarak geri vereceğim.',
@@ -1718,7 +1718,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['remzi', 'Pembe. Sabahın en pahalı rengi, bilirim.', 'gulumser'],
           ], degilse: [{ eger: (S) => giy(S) === 'mavi', ise: [
             /* Diyalog T1 (ses A5): "Annenizin mavisi" dört ağızdaydı; Remzi'nin sesi fiyat */
-            ['remzi', 'Mavi. Eski kesim ama Lyon ipeği; bugün o fiyata bulunmaz.', 'gulumser'],
+            ['remzi', 'Mavi Lyon ipeği. Pahasını benden sormayın.', 'gulumser'],
           ], degilse: [
             ['remzi', 'Masum görünmek için mi o fildişi? İyi seçim.', 'gulumser'],
           ] }] },
@@ -1967,7 +1967,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [{ eger: (S) => b(S).p7_hizmet === 'sefik', ise: [
             ['calibe', 'Çocuk uyuyordu. Hatice\'yi kapıdan çıkarken yakaladım.', 'ofkeli'],
           ], degilse: [
-            ['calibe', 'Hatice yatağında yoktu. Kapı aralığından baktım: oradaydı.', 'soguk'],
+            ['calibe', 'Hatice yatağında yoktu. Misafir odasının aralık kapısından baktım, Hatice içerideydi.', 'soguk'],
           ] }] }] },
           /* Tur 27 (B8 oynanış 2): gece eşikten alınan toka kahvede bir seçimin kapısını açar. Koz harcanmaz (yalnız
              son karardaki koz harcanır; 9. bölüm tokayı yine ister). Bedel: Perihan Hanım gece dolaştığımı öğrenir. */
@@ -2423,7 +2423,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       var f = S.bayrak, c = [], m = f.p_rota === 'mukaddem';
       // 1) Sabah: açtığım kanıt ya da kahvede açtığım prova
       var prova = {
-        acik: 'Kahvede provayı herkese açtım. Babam şahitleri ayrı dinleyecek, Perihan Hanım dinlendiğini biliyor.',
+        acik: 'Hatice’nin sözlerini dün gece de duyduğumu söyledim. Babam şahitleri ayrı dinleyecek, Perihan Hanım dinlendiğini biliyor.',
         yalniz: 'Kahvede Hatice\'ye ezber öğretildiğini söyledim. Babam onu yalnız dinledi, Perihan Hanım dinlendiğini biliyor.',
       }[f.p8_prova];
       var defter = f.p6_defter === 'remzi' ? 'Eczacının defterini Remzi Bey babama kendi eliyle verdi'

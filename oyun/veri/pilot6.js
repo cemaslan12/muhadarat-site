@@ -176,7 +176,7 @@ window.BOLUMLER = window.BOLUMLER || {};
   var KAPANIS_S = ['an', 'Feride Ada\'ya, ona ne olduğunu henüz adlandıramadığı bir adamla aynı vapura binecekti.'];
   /* Tur 28b (kök 2): kapıyı açmayan / konuşmayan kızın kapanışı adlandırılmamış bir duyguyu ona yüklemez */
   var KAPANIS_S_RET = ['an', 'Feride Ada\'ya, kapısını açmadığı bir adamla aynı vapura binecekti.'];
-  var KAPANIS_S_AC = ['an', 'Feride Ada\'ya, adını “Bey”siz söylediği bir adamla aynı vapura binecekti.'];
+  var KAPANIS_S_AC = ['an', 'Sabah vapurunda herkes ikisini de görecekti.'];
 
   /* ---- Serbest vakitler (motor.js serbestVakit). Mini sahneler kaçırılabilir; bayraksız akış bozulmaz. ---- */
   // 1) Kahveden öğleye: Perihan'ın baş ağrısı, mutfakta Şefik, Madam'ın takozu
@@ -279,10 +279,10 @@ window.BOLUMLER = window.BOLUMLER || {};
           'Salonda Remzi Bey\'in uşağının bıraktığı bir sepet; kurdelesi altın sırma.',
           'İçinde Paris işi bir yelpaze; sapı sedef. Kartında tek satır: “Ada sıcak olur.”',
           { soru: 'Yelpaze elimde.', secim: [
-            { m: 'Yelpazeyi al. Kartı da.', etki: { remzi: 3 }, bayrak: { p6_v_yelpaze: 'al' }, adimlar: [
+            { m: 'Yelpazeyi al. Kartı da.', bayrak: { p6_yelpaze_haberi: true, p6_v_yelpaze: 'al' }, adimlar: [
               'Yelpazeyi açtım. Sedefin üstünde küçük bir harf: R.',
             ] },
-            { m: 'Sepeti geri yolla: “Ada\'da rüzgâr bol.”', etki: { vakar: 1, remzi: -3 }, bayrak: { p6_v_yelpaze: 'geri' }, adimlar: [
+            { m: 'Sepeti geri yolla: “Ada\'da rüzgâr bol.”', etki: { vakar: 1 }, bayrak: { p6_yelpaze_haberi: true, p6_v_yelpaze: 'geri' }, adimlar: [
               'Sepeti uşağa geri verdim. Kartın arkasına yazdım: “Ada\'da rüzgâr bol.”',
             ] },
           ] },
@@ -426,7 +426,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { efekt: 'adim' },
               'Perdeyi bıraktım. Penceremi bilen adam merdiveni de buldu.',
             ] }] },
-            ['ic', 'Eşiğim benim. Bu adam onu geçmeyecek.', 'kararli'],
+            ['ic', 'Bir ayağı eşik tahtasında.', 'kararli'],
           ] },
           /* Sürükleyicilik T1 (b4_5_6 6.2): huy satırı açılışa, iskarpin satırı topuk seçiminin hemen önüne alındı */
           /* Tur 32 (B6 görsel b): gece tehdidinde Nabi'nin sırıtan 'ana' yüzü kullanılmaz */
@@ -767,7 +767,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
                 ['suha', 'Hızlı. Benim yüzümden değil, değil mi?', 'alayci'],
                 ['f', 'Sizin yüzünüzden olsa söyler miydim?', 'utanmis'],
-                ['suha', 'Söylemezdiniz. Kalbiniz söyledi.', 'alayci'],
+                ['suha', 'Bileğinizi verdiğinizde iki vuruş birbirine yetişti.', 'alayci'],
               ] },
               { m: 'Bileğini ver. Sonra elini al, kalbinin üstüne kendin koy.', etki: { suha: 8 }, bayrak: { p6_nabiz: 'el' }, adimlar: [
                 /* Tur 32 (B6 görsel 4): 'el' dalında an resmi bileği değil, göğüsteki eli gösterir (resmi gelene kadar an_nabiz) */
@@ -1197,8 +1197,10 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* İkindi vakti: salondaki sepet */
           { eger: (S) => b(S).p6_v_yelpaze === 'al', ise: [
             ['remzi', 'Yelpazemi almışsınız. Her sallayışınız bana bir serinlik borcu.', 'gulumser'],
+            { eger: (S) => b(S).p6_yelpaze_haberi, ise: [{ etki: { remzi: 3 } }, { bayrak: { p6_yelpaze_haberi: false } }] },
           ], degilse: [{ eger: (S) => b(S).p6_v_yelpaze === 'geri', ise: [
             ['remzi', 'Rüzgâr bolmuş. Ben de rüzgâr satın alırım, köşkümün önünden geçer.', 'notr'],
+            { eger: (S) => b(S).p6_yelpaze_haberi, ise: [{ etki: { remzi: -3 } }, { bayrak: { p6_yelpaze_haberi: false } }] },
           ] }] },
           /* Oynanış T1 (B4): öğlen seçilen kıyafete tepki (6. bölümde ilk kez; Remzi'nin fiyat dili) */
           { eger: (S) => S.giyili === 'nisan_gosterisli', ise: [
@@ -1570,8 +1572,8 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Çardağın gölgesi ikimizin arasına düşmüş.', secim: [
             { m: 'Yaklaş. Elini tut.', etki: { suha: 8, itibar: -1 }, bayrak: { p6_cardak: 'yaklas' }, adimlar: [
               'Yaklaşıp elini tuttum. Parmakları kaçar gibi oldu, sonra kapandı.',
-              ['suha', 'Düştüm. Memnun musunuz?', 'mahzun'],
-              ['f', 'Henüz değil.', 'gulumseyen'],
+              ['suha', 'Elimi siz tuttunuz.', 'mahzun'],
+              ['f', 'Bırakayım mı?', 'gulumseyen'],
               /* Tur 31 (t31_b05_08 B6 oynanış 3): Nimet girişteyse temasın tanığı var */
               { eger: (S) => b(S).p6_v_roman === 'nimet', ise: [
                 { etki: { itibar: -1, mehves: -1 } },
@@ -1963,7 +1965,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       /* Tur 27 (sürük 3): kapanmış son yerine tehlike */
       }[f.p6_kandil] || 'Lambamla “yarın” dedim. Koridorun ucunda bir lamba benimkinden geç söndü.';
       return {
-        ac: 'Adını söyledim. Kapıyı açık tutup tutmayacağıma yine ben karar vereceğim.',
+        ac: 'Yarın vapurda adını ağzımdan kaçırırsam?',
         /* Diyalog T1 (b5_8 6.14): kartpostal klişesi yerine Feride'nin kendi cevabı (karar, duygusal doruk) */
         /* Tur 27 (anlatı 2): Feride'nin kapıdaki satırını yinelemez; bilgi ve süre */
         /* Tur 30 (t30 kart↔kanca): kart ve defter "Perihan biliyor"u zaten söylüyor; kanca yeni tehlike (aynı güverte) */

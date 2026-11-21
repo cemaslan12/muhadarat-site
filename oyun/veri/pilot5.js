@@ -492,7 +492,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* --- Küçük soru kapanır: bardakta ne var --- */
           /* Tur 27 (B5 anlatı 6): iki açıklayıcı iç ses tek satır. Tur 28: gerilim şişenin gelişine taşındı */
           /* GPT T27 (B5-S1): amaç sabah kesinleşmez, şüphe olarak kalır; orta dönüş (iki şişe) yeni soru açar */
-          ['ic', 'Uyku şurubu. Beni her akşam uyutup sabah hasta mı gösterecekler?', 'kararli'],
+          ['ic', 'Uyku şurubu. Sabah lafıma kim inanır?', 'kararli'],
           { soru: 'Akşama kadar şişe benim.', secim: [
             { m: 'Şişeyi boşalt. Vişne şerbeti doldur.', bayrak: { p5_degis: 'serbet' }, iz: 'Şişede artık vişne var. Akşam tadına bakan kendini ele verir.', adimlar: [
 { efekt: 'dokulme' }, 'Şurubu leğene döktüm, şişeye vişne şerbeti doldurdum. Rengi aynı.',
@@ -572,7 +572,6 @@ window.BOLUMLER = window.BOLUMLER || {};
                 'Lala çıkarken taşlıkta Hatice belirdi. Sabah beni kapı aralığından izlemişti.',
               ], degilse: [
                 'Lala pusulayı bohçasına soktu. Akşam Leyla\'da, sabah Kenan\'ın kapısında olacak.',
-                { etki: { mukaddem: 3 } },
               ] },
             ] },
             /* GPT T29 O5-1: sırrın içeriği düğmede görünür; Süha yolunda çekim değil korku (önceki retleri geçersiz kılmaz) */
@@ -873,10 +872,10 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['suha', '{i}« Je vous aime… »{/i} Pardon. {i}« Je vous ai vue. »{/i}', 'alayci'],
             /* Tur 28b (kök 2; 1–4 açık ret bayrakları): Süha'ya önceden açık sınır koyan kız ilanı gizli bir evetle duymaz */
             { eger: sinirKoydu, ise: [
-              ['ic', '“Sizi seviyorum”, pardon, “sizi gördüm.” Sürçmesi de yalan, ikisini de istemedim.', 'ofkeli'],
+              ['ic', 'Kitabı bana çevirmiyor.', 'ofkeli'],
             ], degilse: [
               /* Tur 30 (B5 anlatı 3): seçim yapmamış kıza utanma yüklenmez; hükmü kendisi verir */
-              ['ic', '“Sizi seviyorum”, pardon, “sizi gördüm.” Sürçtü mü, sürçmüş gibi mi yaptı?', 'saskin'],
+              ['ic', 'Sayfada öyle mi yazıyor?', 'saskin'],
             ] },
             { soru: 'Kitap dizinde, gözü bende.', secim: [
               { m: '“Yanlış okudunuz. Ya da doğru.”', etki: { suha: 6 }, bayrak: { p5_roman: 'duzelt' }, adimlar: [
@@ -1016,10 +1015,10 @@ window.BOLUMLER = window.BOLUMLER || {};
             { m: '“Haberin bedeli ne Remzi Bey?”', etki: { remzi: 5 }, bayrak: { p5_remzi: 'bedel' }, iz: 'Remzi Bey haberi bedava verdi. Bedelini sonra soracak.', adimlar: [
               ['f', 'Haberin bedeli ne Remzi Bey?', 'gulumseyen'],
               ['remzi', 'Size bedava. Başkasına iki şişe fiyatına.', 'gulumser'],
-              ['f', 'Bedava şeyden korkarım Remzi Bey.', 'gulumseyen'],
+              ['f', 'Hesabı kime çıkaracaksınız Remzi Bey?', 'gulumseyen'],
               /* GPT T28 (D5-1): fiyat mecazı haber/vals pazarlığında kalır; burada Feride'nin sözüne cevap */
               /* Tur 29 (B5 diyalog 2): Remzi duygu sözcüğü kullanmaz; fiyatla söyler */
-              ['remzi', 'Korkun. Korkusunu saklamayan müşteriye ben indirim yaparım.', 'gulumser'],
+              ['remzi', 'Şimdilik bahçıvana. Size gelince bir kahveniz yeter.', 'gulumser'],
             ] },
             { m: '“Altınınızı geri alın. Bahçıvanımız satılık değil.”', etki: { remzi: 3, vakar: 1 }, bayrak: { p5_remzi: 'altin' }, iz: 'Bahçıvan altını sakladı. Remzi Bey ise senin fiyatını yükseltti.', adimlar: [
               ['f', 'Altınınızı geri alın. Bahçıvanımız satılık değil.', 'kararli'],
@@ -1440,7 +1439,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { eger: (S) => b(S).p5_roman === 'oku', ise: [
               'Romanı kıvrık sayfası yukarıda, başucuma bıraktı. O sayfayı henüz okumamıştım.',
             ] },
-            ['an', 'Süha Bey yatağın kenarına oturup Fransızcaya geçti. Hatice kapıda dinlese de tek kelimesini anlamazdı.'],
+            ['an', 'Süha Bey yatağın kenarına oturdu. Kapıya bir göz atıp Fransızcaya geçti.'],
             /* GPT T27 (B5-O2): çardakta planı reddeden kız uyku rolüne kendiliğinden girmez; bileği ve gözü kendisi seçer.
                Planı kabul eden ya da şart koyan kız mevcut yakın sahneyi oynar. Bayraklar (p5_fisilti) iki dalda aynı. */
             { eger: (S) => b(S).p5_plan === 'ret', ise: [

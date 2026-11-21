@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="stil.css?v=8">
+<link rel="stylesheet" href="stil.css?v=9">
 </head>
 <body class="giris-sayfasi">
 <main class="bolum giris-kapi">
@@ -36,6 +36,19 @@
         <svg width="22" height="22" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
         <span>Apple ile devam et</span>
       </button>
+      <button class="dugme-hesap eposta" id="eposta-ac" type="button" aria-expanded="false" aria-controls="eposta-form">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3.5 6.5h17v11h-17zM4 7l8 6.5L20 7"/></svg>
+        <span>E-posta ile devam et</span>
+      </button>
+      <form class="eposta-form" id="eposta-form" hidden novalidate>
+        <label for="eposta">E-posta adresiniz</label>
+        <input id="eposta" type="email" autocomplete="email" inputmode="email" required>
+        <label for="sifre">Şifreniz <small>(en az 6 karakter)</small></label>
+        <input id="sifre" type="password" autocomplete="current-password" minlength="6" required>
+        <button class="dugme dugme-ana" type="submit">Devam et</button>
+        <p class="kapi-kucuk">İlk girişinizde hesabınız bu e-posta ve şifreyle açılır; sonraki girişlerde aynı şifreyi yazarsınız.</p>
+        <button class="baglanti" id="sifre-unuttum" type="button">Şifremi unuttum</button>
+      </form>
       <div class="kapi-ayrac"><span>ya da</span></div>
       <button class="baglanti kapi-misafir" id="misafir" type="button">Misafir olarak oyna</button>
       <p class="kapi-kucuk">Misafir ilerlemesi yalnız bu tarayıcıda saklanır.</p>
@@ -73,11 +86,11 @@
   <form method="dialog"><button class="dugme">Tamam</button></form>
 </dialog>
 
-<script src="firebase-ayar.js?v=8"></script>
-<script src="olcum.js?v=8"></script>
-<script src="pwa.js?v=8"></script>
+<script src="firebase-ayar.js?v=9"></script>
+<script src="olcum.js?v=9"></script>
+<script src="pwa.js?v=9"></script>
 <script type="module">
-  import * as H from './hesap.js';
+  import * as H from './hesap.js?v=9';
   const $ = (s) => document.querySelector(s);
   const hata = (m) => { const e = $('#hata'); e.textContent = m; e.hidden = !m; };
   const durum = (m) => { const e = $('#durum'); e.textContent = m; e.hidden = !m; };
@@ -86,6 +99,13 @@
     'auth/cancelled-popup-request': '',
     'auth/popup-blocked': 'Tarayıcınız giriş penceresini engelledi. Lütfen açılır pencerelere izin verip tekrar deneyin.',
     'auth/network-request-failed': 'İnternet bağlantısı kurulamadı. Lütfen tekrar deneyin.',
+    'auth/invalid-credential': 'Bu e-posta kayıtlı ama şifre uyuşmadı. Şifrenizi unuttuysanız aşağıdan sıfırlayabilirsiniz.',
+    'auth/wrong-password': 'Bu e-posta kayıtlı ama şifre uyuşmadı. Şifrenizi unuttuysanız aşağıdan sıfırlayabilirsiniz.',
+    'auth/invalid-email': 'E-posta adresi geçerli görünmüyor. Lütfen kontrol edin.',
+    'auth/missing-email': 'Lütfen e-posta adresinizi yazın.',
+    'auth/weak-password': 'Şifre en az 6 karakter olmalı.',
+    'auth/too-many-requests': 'Çok fazla deneme yapıldı. Lütfen biraz sonra tekrar deneyin.',
+    'auth/operation-not-allowed': 'E-posta ile giriş henüz açık değil.',
     'auth/account-exists-with-different-credential': 'Bu e-posta başka bir giriş yöntemiyle kayıtlı. Lütfen önceki yöntemle girin.',
   };
 
@@ -97,6 +117,7 @@
 
   // Ayar yokken (kurulum bitmeden) hesap düğmeleri kapalı
   if (!H.ayarVar()) {
+    $('#eposta-ac').disabled = true;
     ['google', 'apple'].forEach((id) => { const d = $('#' + id); d.disabled = true; d.querySelector('span').textContent += ' (yakında)'; });
   } else if (!window.APPLE_ACIK) {
     const d = $('#apple'); d.disabled = true; d.querySelector('span').textContent += ' (yakında)';
@@ -118,6 +139,41 @@
       console.error(e);
     } finally { document.body.classList.remove('bekliyor'); }
   }
+  // E-posta ile devam: düğme formu açar
+  $('#eposta-ac').addEventListener('click', () => {
+    const f = $('#eposta-form');
+    f.hidden = !f.hidden;
+    $('#eposta-ac').setAttribute('aria-expanded', String(!f.hidden));
+    if (!f.hidden) $('#eposta').focus();
+  });
+  $('#eposta-form').addEventListener('submit', async (olay) => {
+    olay.preventDefault();
+    const eposta = $('#eposta').value.trim(), sifre = $('#sifre').value;
+    hata('');
+    if (!eposta) return hata(MESAJ['auth/missing-email']);
+    if (sifre.length < 6) return hata(MESAJ['auth/weak-password']);
+    durum('Giriş yapılıyor…');
+    document.body.classList.add('bekliyor');
+    try {
+      const s = await H.epostaIleGir(eposta, sifre);
+      window.olcum && window.olcum('giris_yapti', { yontem: 'eposta', yeni: s.yeni ? 1 : 0 });
+      durum('Giriş yapıldı, oyun açılıyor…');
+      location.href = 'oyun/';
+    } catch (e) {
+      durum('');
+      hata(MESAJ[e.code] ?? 'Giriş yapılamadı. Lütfen tekrar deneyin.');
+      console.error(e);
+    } finally { document.body.classList.remove('bekliyor'); }
+  });
+  $('#sifre-unuttum').addEventListener('click', async () => {
+    const eposta = $('#eposta').value.trim();
+    hata('');
+    if (!eposta) { $('#eposta').focus(); return hata('Önce e-posta adresinizi yazın; sıfırlama bağlantısını oraya göndereceğiz.'); }
+    try {
+      await H.sifreSifirla(eposta);
+      durum('Bu adres kayıtlıysa şifre sıfırlama bağlantısı gönderildi. Gelen kutunuza ve istenmeyen postalara bakın.');
+    } catch (e) { hata(MESAJ[e.code] ?? 'Bağlantı gönderilemedi. Lütfen tekrar deneyin.'); console.error(e); }
+  });
   $('#google').addEventListener('click', () => gir('google'));
   $('#apple').addEventListener('click', () => gir('apple'));
   $('#misafir').addEventListener('click', () => { H.turYaz('misafir'); window.olcum && window.olcum('giris_yapti', { yontem: 'misafir' }); location.href = 'oyun/'; });

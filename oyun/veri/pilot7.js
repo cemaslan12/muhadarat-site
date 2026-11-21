@@ -865,7 +865,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { m: 'Perihan Hanım\'ın yanına dön.', etki: { suha: -3, calibe_suphe: -2 }, bayrak: { p7_kic: 'kac' },
                 iz: 'Perihan Hanım\'ın yanına oturdun. Kuşkusu dağıldı, hekim ise bozuldu.', adimlar: [
                 'Perihan Hanım\'ın yanına oturdum. Limonu bana onun önünden uzattı.',
-                ['suha', 'Onun yanında güvende misiniz? Ona sorun.', 'alayci'],
+                ['suha', 'Onun yanında güvende misiniz? Perihan Hanım’a sorun.', 'alayci'],
                 /* Tur 27 (oynanış 1): kaçan kız kıça çıkmaz; konuşma uyuyan Perihan'ın yanında, fısıltıyla geçer */
                 ['an', 'Perihan Hanım uyuklayınca hekim Feride’nin yanına oturdu. Sesini yalnız onun duyacağı kadar alçalttı.'],
               ] },
@@ -907,7 +907,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ] },
               { m: '“Perihan Hanım duyarsa bedelini kim öder?”', etki: { suha: 4 }, bayrak: { p7_soz: 'duy' }, adimlar: [
                 ['f', 'Perihan Hanım duyarsa bedelini kim öder, siz mi ben mi?', 'kararli'],
-                ['suha', 'Duysun. Bu kez ondan önce ben konuşuyorum.', 'alayci'],
+                ['suha', 'Duysun. Bakalım aynı sözü bu akşam babanızın yanında da söyleyecek misiniz?', 'alayci'],
                 /* Anlatı T2b (GPT 24b B7): şart koyan kız kaçamağı yakalar; Süha'nın cevabı tehlikeli kalır */
                 ['f', 'Bu, sorumun cevabı değil.', 'ofkeli'],
                 ['suha', 'Cevabı şu: önce sizden alır, sonra benden. Ben ödemeye alışkınım, siz değilsiniz.', 'soguk'],
@@ -1258,7 +1258,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Aile sofrası (mercek_tanitim Y4): portreler ilk repliklerinin önünde tek tek katılır */
           /* Tur 27 (anlatı (b)2): Perihan'ın "hasta hanım" maskesi tek huy satırında */
           /* Tur 29 (B7 diyalog 6): "bu evde" sıklığı azaldı */
-          ['an', 'Perihan Hanım vapurdaki hastalığını sofraya taşımıştı.'],
+          ['an', 'Perihan Hanım sofraya da birinin koluna girerek geldi.'],
           { goster: ['sai', 'notr'] }, { goster: ['mukaddem', 'ana'] },
           { eger: (S) => b(S).p7_davet === 'kacir', ise: [
             ['mukaddem', 'Son vapuru kaçırdım efendim. Annem merak edecek.', 'endiseli'],
@@ -1374,8 +1374,8 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Anlatı T2 (7.3): ön merdivenin yanında mutfağa inen hizmet merdiveni de var (B8 asma yolu, B9 öğle) */
           /* Diyalog T1 (7.12): kutuya sığar; iki merdiven (ön ve hizmet) anılmaya devam eder */
           /* Tur 33 (B7 diyalog 3): rapor dili yerine anlatıcının ev kuralı */
-          ['an', 'Misafir odası alt katta, selamlığın yanındaydı. Öndeki merdivenden başka, mutfağa inen dar bir hizmet merdiveni de vardı.'],
-          ['ic', 'İki merdiven. Gece hangisinden inecekler?', 'endiseli'],
+          ['an', 'Misafir odası selamlığın yanındaydı. Mutfaktan bir ayak sesi gelince Feride arka merdiveni fark etti.'],
+          { eger: (S) => b(S).p7_remzi === 'fayton', ise: [['ic', 'Yokuşta arabayı ona bıraktım. Burada kimin kapıda duracağını ben söyleyebilirim.', 'kararli']], degilse: [['ic', 'Ön merdivende dursam mutfaktan ineni göremem.', 'endiseli']] },
           /* Tur 22 ek (GPT öneri 2): eski hizmet sorusunun yerine tek kararlık küçük güvenlik düzeni. Şefik'in yeri
              herkesin önünde söylenir; Nimet'e (Nimet Ada'da değilse Madam'a) kulağına. Kalan her yerin bedeli
              karar anında görünür: benimle gelen kapıyı tutamaz, kapıda kalan alt katta yanımda olamaz. */
@@ -1710,7 +1710,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Diyalog T1 (ses A9): "Akıllı kız" Perihan'ın sözü */
               ['suha', 'Sürgünüzü getirmişsiniz. İyi tedbir, çekmeyin yine de.', 'alayci'],
             ], degilse: [
-              ['suha', 'Bekçiniz uyuyor. Uyandırmayalım, fısıldayacağım.', 'alayci'],
+              ['suha', 'Bekçiniz uyuyor.', 'alayci'],
             ] }] },
             /* Tur 22 ek: önce anahtar, sonra dolap yolunda pencereden gördüğü gerçek hareket */
             { eger: (S) => b(S).p7_v_goren === 'suha', ise: [
@@ -2018,7 +2018,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         izle: S.bayrak.p7_v_dolap
           ? 'Eşikteki şişe mühürlü kaldı. Selamlıktan bir mantar sesi geldi; dolapta ikinci şişe vardı.'
           : 'Eşikteki şişe mühürlü kaldı. Selamlıktan bir mantar sesi geldi; bu evde ikinci bir şişe mi var?',
-        in: 'Şişeyi boşaltan eli gördüm. Sabah hikâyeyi o anlatmadan ben anlatacağım.',
+        in: 'Şişeyi boşaltan eli gördüm. Süha Bey şişeyi selamlıkta bıraktı. Sabah babamdan önce kim alacak?',
         uyar: 'Kenan\'ın kapısı kapalı. Ama sabahki hikâyeye kapı gerekmiyor.',
         /* Tur 30 (B7 sürük 1): kart "Kenan Bey misafir odasında, konyak bir kapı ötede" der; kanca onu yinelemez (tür tehlike) */
         /* Tur 33 (B7 anlatı 3): Süha adı henüz seçmedi */

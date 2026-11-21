@@ -132,6 +132,7 @@ window.BOLUMLER = window.BOLUMLER || {};
   var SAYFA = { eger: function (S) { return b(S).p2_pusula === 'yazdi'; }, ise: [
     { eger: function (S) { return b(S).p2_satir === 'soru'; }, ise: [
       '“Yirmi dördüncü sayfada kapısı açık bir kafes var, kuş henüz bilmiyor. —K.”',
+      { eger: (S) => b(S).p2_pusula_yolda, ise: [{ etki: { mukaddem: 8 } }, { bayrak: { p2_pusula_yolda: false } }] },
       /* Anlatı T2 (b1_2_3 B3 b2): 2. bölümde lekeden kuş çizildiyse iki bölüm sonra yankılanır */
       { eger: function (S) { return b(S).p2_sefik_cizim === 'kus'; }, ise: [
         ['ic', 'Şefik\'le lekeden bir kuş yapmıştık. Kuş kafesi bilmezdi.', 'tebessum'],
@@ -140,26 +141,33 @@ window.BOLUMLER = window.BOLUMLER || {};
       ] },
     ], degilse: [{ eger: function (S) { return b(S).p2_satir === 'okudum'; }, ise: [
       '“Okuduğunuzu bilmek bir yıla yetti. —K.”',
+      { eger: (S) => b(S).p2_pusula_yolda, ise: [{ etki: { mukaddem: 6 } }, { bayrak: { p2_pusula_yolda: false } }] },
     ], degilse: [{ eger: function (S) { return b(S).p2_satir === 'sitem'; }, ise: [
       /* Tur 29 (B2 oynanış 2): pusuladaki sitemin cevabı; Kenan özür diler, ödül beklemez */
       '“Haklısınız, bir yıl geç kaldım. Bu sayfayı erken yolluyorum. —K.”',
+      { eger: (S) => b(S).p2_pusula_yolda, ise: [{ etki: { mukaddem: -5 } }, { bayrak: { p2_pusula_yolda: false } }] },
     ], degilse: [{ eger: function (S) { return b(S).p2_satir === 'haber'; }, ise: [
       /* Tur 30: 2. bölümde görücü haberini yazan kıza Kenan'ın cevabı (planın karşılığı) */
       '“Haberi anneme verdim, bu kutu bu yüzden vaktinde geldi. —K.”',
+      { eger: (S) => b(S).p2_pusula_yolda, ise: [{ etki: { mukaddem: 6 } }, { bayrak: { p2_pusula_yolda: false } }] },
     ], degilse: [
       '“Yasemin yerindeyse ben de yerimdeyim. —K.”',
+      { eger: (S) => b(S).p2_pusula_yolda, ise: [{ etki: { mukaddem: 9 } }, { bayrak: { p2_pusula_yolda: false } }] },
     ] }] }] }] },
   ], degilse: [{ eger: function (S) { return b(S).p2_pusula === 'yaprak' || b(S).p2_pusula === 'aldi'; }, ise: [
     { eger: function (S) { return b(S).p2_pusula === 'yaprak'; }, ise: [
       '“Yaprağı yirmi dördüncü sayfaya bastım, bir ömür okunur. —K.”',
+      { eger: (S) => b(S).p2_pusula_yolda, ise: [{ etki: { mukaddem: 8 } }, { bayrak: { p2_pusula_yolda: false } }] },
     ], degilse: [
       '“Sayfa boş geldi. En uzun mektubunuz oydu. —K.”',
+      { eger: (S) => b(S).p2_pusula_yolda, ise: [{ etki: { mukaddem: 7 } }, { bayrak: { p2_pusula_yolda: false } }] },
     ] },
     { eger: function (S) { return !!b(S).p2_nesne_calibede; }, ise: [
       ['ic', 'Yasemin şimdi Perihan Hanım\'ın cebinde. Bunu ona yazamam.', 'ofkeli'],
     ] },
   ], degilse: [{ eger: function (S) { return b(S).p2_not_yer === 'kitap'; }, ise: [
     '“Bir katı yanlış katlanmıştı, bu kâğıdın da öyle. —K.”',
+    { eger: (S) => b(S).p2_pusula_yolda, ise: [{ etki: { mukaddem: 3 } }, { bayrak: { p2_pusula_yolda: false } }] },
   ], degilse: [
     '“Pusulam kitapta yoktu. Nerede olduğunu sormayacağım. —K.”',
     { eger: function (S) { return !!b(S).p2_nesne_calibede; }, ise: [
@@ -192,7 +200,6 @@ window.BOLUMLER = window.BOLUMLER || {};
   var yaziGordu = function (S) { return b(S).p3_sari_mangal === 'yazi'; };
   var SARI_DINLE = [
     /* Tur 27 (GPT B3-A1): emri yarım bırakmak bilinçli bir karar */
-    ['ic', 'Kutuyu bırakıp gideceğimi sanıyorlar. Önce içeride ne konuşulduğunu duymalıyım.', 'kararli'],
     /* Diyalog T1 (3.2): Perihan'ın söylemediği bahane yerine kâğıdın yaşı */
     ['suha', '{i}O kâğıdı yıllardır görmedim. Bir bakayım.{/i}', 'endiseli'],
     { eger: yaziGordu, ise: [
@@ -235,7 +242,7 @@ window.BOLUMLER = window.BOLUMLER || {};
 
     { soru: 'Aynada göz gözeyiz.', secim: [
       { m: 'Gözünü kaçırma. Sonra çekil.', etki: { suha: 5 }, bayrak: { p3_sari_son: 'bakti' }, adimlar: [
-        'Bakışımı indirmeden bir adım geri çekildim. Önce o kaçırdı.',
+        'Bakışımı indirmeden bir adım geri çekildim. Önce onun gözleri yere indi.',
       ] },
       { m: 'Parmağını dudağına götür.', etki: { suha: 7 }, bayrak: { p3_sari_son: 'sir' }, adimlar: [
         'Parmağımı dudağıma götürdüm. Aynadaki yüz birden gençleşti.',
@@ -509,8 +516,8 @@ window.BOLUMLER = window.BOLUMLER || {};
         /* Tur 27 (B3 sürük 1): soru taş takıldıktan sonra cevap bulduğu için "taş takılmadan" kalktı */
         /* Tur 28 (B3 anlatı 1): 2. bölümün "o adı kimseye söylemedi" hükmüyle çelişmez */
         /* Tur 33 (B3 sürük 1): iki fikir iki satıra bölündü */
-        'Perihan Hanım duyduğunu söylemez, kullanırdı.',
-        'Gerdanlık ertesi ikindi takılacaktı. Feride bu kez onun hamlesini önceden görmek istiyordu.',
+        'Perihan Hanım o gece duyduklarını önce Sait Efendi’ye götürürse mektup geç kalacaktı.',
+        'Gerdanlık ertesi ikindi takılacaktı. Perihan daha o zamandan kimin elinin Feride’nin ensesine değeceğine karışacak mıydı?',
       ] } },
     ],
 
@@ -645,7 +652,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['calibe', 'Var Madam. Çok var.', 'soguk'],
             ] },
             { m: 'Sandığın bir ucundan tut. “Şefik, öbür ucundan!”', etki: { josephine: 2, sefik: 1, itibar: -1 }, bayrak: { p3_josephine: 'sandik' }, adimlar: [
-              'Sandık ağırdı. Şefik kendi ucunu bırakıp güldü, Madam da güldü.',
+              'Şefik kendi ucunu bırakıp gülünce Madam sandığı alttan tuttu.',
               ['calibe', 'Hanım kızı sandık taşımaz Feride.', 'soguk'],
               ['f', 'Taşıdı ama efendim.', 'tebessum'],
             ] },
@@ -930,19 +937,19 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             ['munevver', 'Âdeti ben bilirim. Yüz yıllık âdet bir dakikaya darılmaz.', 'kararli'],
             { soru: 'Bütün yelpazeler durdu.', secim: [
-              { m: '“Hanımefendi istedi. Giderim.”', etki: { mukaddem: 4, calibe_suphe: 1 }, bayrak: { p3_kapi: 'gitti' }, iz: 'Münevver Hanım\'ın iznine yaslandın, salon dakikayı saydı.', adimlar: [
+              { m: '“Hanımefendi istedi. Giderim.”', etki: { calibe_suphe: 1 }, bayrak: { p3_esige_geliyor: true, p3_kapi: 'gitti' }, iz: 'Münevver Hanım\'ın iznine yaslandın, salon dakikayı saydı.', adimlar: [
                 ['f', 'Hanımefendi istedi efendim. Giderim.', 'kararli'],
                 ['ic', 'Bir dakika. Bütün salon saymaya başladı.', 'endiseli'],
               ] },
               /* Oynanış T1 (B1): kozun kilidi görünür; harcanan koz tükenir (4. bölüm kahvesinde artık yok) */
-              { m: '“Gece açılan kapılar var. Gündüz bir dakika ne olur?”', kosul: kapiKoz, kozGerek: [KAPI, KOZ], kilitGoster: kapiKilit, etki: { mukaddem: 4, calibe_suphe: 2 }, bayrak: { p3_kapi: 'koz', p3_koz_toren: true }, iz: 'Kozunu bütün salonun önünde oynadın, Perihan Hanım sustu. Bildiğin sende, ama artık gizli silah değil.', adimlar: [
+              { m: '“Gece açılan kapılar var. Gündüz bir dakika ne olur?”', kosul: kapiKoz, kozGerek: [KAPI, KOZ], kilitGoster: kapiKilit, etki: { calibe_suphe: 2 }, bayrak: { p3_esige_geliyor: true, p3_kapi: 'koz', p3_koz_toren: true }, iz: 'Kozunu bütün salonun önünde oynadın, Perihan Hanım sustu. Bildiğin sende, ama artık gizli silah değil.', adimlar: [
                 ['f', 'Gece açılan kapılar var efendim. Gündüz bir dakika açılsa ne olur?', 'kararli'],
                 'Kapıdaki Hatice\'nin tepsisi sallandı. Perihan Hanım\'ın parmakları yelpazenin sapını sıktı.',
                 KAPI_YAK,
                 NIMET_RISK,
               ] },
               kapiIkiz('“Gece açılan kapılar var. Gündüz bir dakika ne olur?”'),
-              { m: '“Yüzükler bile el değiştiriyor. Bir kutu ne ki?”', kosul: yuzukKoz, kozGerek: YUZUK, kilitGoster: yuzukKilit, etki: { mukaddem: 4, calibe_suphe: 2 }, bayrak: { p3_kapi: 'koz', p3_koz_toren: true }, iz: 'Yüzüğü bütün salonun önünde andın, Hatice elini sakladı. Sır artık salonun.', adimlar: [
+              { m: '“Yüzükler bile el değiştiriyor. Bir kutu ne ki?”', kosul: yuzukKoz, kozGerek: YUZUK, kilitGoster: yuzukKilit, etki: { calibe_suphe: 2 }, bayrak: { p3_esige_geliyor: true, p3_kapi: 'koz', p3_koz_toren: true }, iz: 'Yüzüğü bütün salonun önünde andın, Hatice elini sakladı. Sır artık salonun.', adimlar: [
                 ['f', 'Yüzükler bile el değiştiriyor efendim. Bir kutu ne ki?', 'kararli'],
                 'Hatice elini önlüğünün altına sakladı. Perihan Hanım gülümsemeyi bıraktı.',
                 { kozYak: YUZUK },
@@ -968,6 +975,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 'Nimet üç adım arkamda.',
               ] },
               ['mukaddem', 'Feride Hanım. Annem bir dakika dedi, saatime bakıyorum.', 'kutu'],
+              { eger: (S) => b(S).p3_esige_geliyor, ise: [{ etki: { mukaddem: 4 } }, { bayrak: { p3_esige_geliyor: false } }] },
               { eger: (S) => b(S).p2_selam_haberi, ise: [
                 ['f', 'Babam merdivendeki selamımızı sordu. Ben de sizi bir yıl sonra gördüğümü söyledim.', 'utanmis'],
                 { etki: { mukaddem: 6 } },
@@ -1063,10 +1071,10 @@ window.BOLUMLER = window.BOLUMLER || {};
               SAYFA,
               { gizle: 'mukaddem_not' },
               { soru: 'Nimet cevap bekliyor.', secim: [
-                { m: '“Kâhyaya söyle: ‘Okundu.’”', etki: { mukaddem: 4 }, bayrak: { p3_soz: 'okundu' }, adimlar: [
+                { m: '“Kâhyaya söyle: ‘Okundu.’”', bayrak: { p3_soz: 'okundu' }, adimlar: [
                   ['mehves', 'Tek kelime. Ben onu da ağır taşırım.', 'kararli'],
                 ] },
-                { m: '“Şefik\'le kitap yollarım. Cevap onda.”', etki: { mukaddem: 4, sefik: 1 }, bayrak: { p3_soz: 'kitap' }, adimlar: [
+                { m: '“Şefik\'le kitap yollarım. Cevap onda.”', etki: { sefik: 1 }, bayrak: { p3_soz: 'kitap' }, adimlar: [
                   ['ic', 'Cevap yine kitapta. Taşıyan bu sefer Şefik.', 'tebessum'],
                 ] },
                 { m: '“Hiçbir şey söyleme.”', bayrak: { p3_soz: 'sustu' }, adimlar: [
@@ -1125,8 +1133,8 @@ window.BOLUMLER = window.BOLUMLER || {};
                 'Kapıda Hatice elini önlüğünün altına sakladı.',
                 { kozYak: YUZUK },
               ] },
-              { m: '“Hekimimize sorun efendim. O her şeyi bilir.”', etki: { suha: 5, calibe_suphe: 1 }, bayrak: { p3_igne: 'suha' }, iz: 'Sözü hekime attın. Salon güldü, Perihan Hanım gülmedi.', adimlar: [
-                ['f', 'Hekimimize sorun efendim. O her şeyi bilir.', 'tebessum'],
+              { m: '“Hekimimize sorun efendim. Kilidi de bilir herhâlde.”', etki: { suha: 5, calibe_suphe: 1 }, bayrak: { p3_igne: 'suha' }, iz: 'Sözü hekime attın. Salon güldü, Perihan Hanım gülmedi.', adimlar: [
+                ['f', 'Hekimimize sorun efendim. Kilidi de bilir herhâlde.', 'tebessum'],
                 /* Doğrulama gece (B3 ses): Süha'nın hekim nüktesi sahnede bir kez ("Hekim eli kilitten anlar") */
                 ['suha', 'Bilirim. Söylemem.', 'soguk'],
                 'Hanımlardan biri güldü. Perihan Hanım gülmedi.',
@@ -1168,7 +1176,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['f', 'Hekim eli nabız tutar Süha Bey, kilit değil.', 'kararli'],
                 { efekt: 'kapak' }, // Tur 30 (B3 ses 4): kilit çıtı her kapanışta (Tur 33: ince metal çıt)
                 'Ellerimi enseme götürdüm. Kilit ilk seferde kapandı.',
-                ['munevver', 'Benim gelinim kimseye muhtaç değil.', 'kararli'],
+                ['munevver', 'Benim gelinim kimseye muhtaç değil.', 'dolu'],
                 /* Tur 29 (B3 oynanış 10'a): üçüncü stratejinin de küçük bedeli */
                 ['calibe', 'Hanım kızı ensesine kendi el atmaz kızım. Neyse, âdet de yoruldu bugün.', 'soguk'],
                 ['suha', 'Nabzı da kendiniz mi tutarsınız?', 'alayci'],
@@ -1441,10 +1449,13 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { eger: (S) => b(S).p2_remzi === 'duello', ise: [
             ['remzi', '“Annesi beğenmiş, oğlu yolu, ikisi de alamadı.” Nabi kelimesi kelimesine getirdi.', 'gulumser'],
+            { eger: (S) => b(S).p2_remzi_haber_bekliyor, ise: [{ etki: { remzi: 5 } }, { bayrak: { p2_remzi_haber_bekliyor: false } }] },
           ], degilse: [{ eger: (S) => b(S).p2_remzi === 'ilgi', ise: [
             ['remzi', 'Kendine gülen adam az bulunurmuş. Duydum, yine güldüm.', 'gulumser'],
+            { eger: (S) => b(S).p2_remzi_haber_bekliyor, ise: [{ etki: { remzi: 8 } }, { bayrak: { p2_remzi_haber_bekliyor: false } }] },
           ], degilse: [{ eger: (S) => b(S).p2_remzi === 'uzak', ise: [
             ['remzi', 'Sözlü olduğunuzu babanıza hatırlatmışsınız. Bana da hatırlatmış oldunuz.', 'mahcup'],
+            { eger: (S) => b(S).p2_remzi_haber_bekliyor, ise: [{ etki: { remzi: -3 } }, { bayrak: { p2_remzi_haber_bekliyor: false } }] },
           ], degilse: [
             /* sofrada Nabi'ye arka kapı iması (p2_koz_sofra: 'nabi') */
             ['remzi', 'Nabi dün gece kulüpte sizi andı. Korkarak andı; onu hiç böyle görmemiştim.', 'kararli'],
@@ -1452,7 +1463,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Atının dizginini parmağına doluyor.', secim: [
             { m: 'Bedelini Remzi Bey’e sor.', etki: { remzi: 7 }, bayrak: { p3_remzi: 'duello' }, iz: 'Remzi Bey\'i kendi pazarında yendin, kulakları kızardı.', adimlar: [
               ['f', 'Sekiz yüze neyi alırdınız, Remzi Bey? Taşı mı, boynu mu?', 'tebessum'],
-              { goster: ['remzi', 'ana'] }, // Tur 32 (B3 görsel 6): mahcup portresi üretilene dek
+              { goster: ['remzi', 'mahcup'] },
               ['remzi', 'Taşı. Boyun satılmaz; geçen gün öğrendim.', 'mahcup'],
               /* Diyalog T1 (G3): duyguyu adlandıran anlatı yerine jest */
             ] },
@@ -1658,7 +1669,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['an', 'Feride lambasını söndürmedi. Yazdığı iki satırın arkasında, sabah da duracaktı.'],
                 { kart: 'Pusulam yola çıktı. Sabah Perihan Hanım’dan önce kime ulaşacak?' },
               ], degilse: [
-                'Nimet yarım saatte döndü. Eli boş, yüzü rahat.',
+                'Nimet yarım saatte döndü. Şalını açtı. Kâğıt yoktu.',
                 ['an', 'Feride lambasını söndürmedi. Yazdığı iki satırın arkasında, sabah da duracaktı.'],
                 { kart: 'Pusulam yola çıktı. Sabah Perihan Hanım’dan önce kime ulaşacak?' },
               ] }] },

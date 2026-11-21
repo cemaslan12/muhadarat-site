@@ -797,7 +797,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* GPT T23 (Remzi 10A): vals pazarlığı yapılmamış yolda "daha" yok */
             ['remzi', 'Şahit lazımsa buradayım. Karşılığında bir vals; çok mu?', 'ana'],
           ] }] }] },
-          ['remzi', 'Altı fincan da benden. Şahitlik de alınır satılır; ben alırım.', 'gulumser'],
+          ['remzi', 'Şahidin kahvesi benden.', 'gulumser'],
           /* Tur 22 ek (öneri 4): kalan Hatice iskelede; şahit seçeneği onun için açılır */
           { eger: haticeKal, ise: ['Kahvenin ardında Hatice; bohçasız, bana bakıyor.'] },
           /* 9. bölüm: Ada kahvelerine ısmarlanan söz */
@@ -910,9 +910,9 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: (S) => b(S).p10_nabi !== 'leyla', ise: [
             /* Anlatı T2 (10-11): sabah dalında Münevver geceyi Ada'da geçirdi (açılışla uyum) */
             { eger: sabah, ise: [
-              ['an', 'Münevver Hanım geceyi Ada\'da geçirmişti. Kötü haberi kendi ağzıyla vermek istiyordu.'],
+              ['an', 'Münevver Hanım geceyi Ada\'da geçirmişti. İlk düdükte iskeledeydi.'],
             ], degilse: [
-              ['an', 'Münevver Hanım iskeleden ayrılmamıştı. Kötü haberi kendi ağzıyla vermek istiyordu.'],
+              ['an', 'Münevver Hanım iskeleden ayrılmamıştı. Vapur öttüğünde de yerinden kıpırdamadı.'],
             ] },
           ] },
           { goster: ['munevver', 'endiseli'] },
@@ -1197,7 +1197,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* Anlatı T2 (10-1): Şefik iskelede değildi; kâğıdı getiren el söylenir (Sürükleyicilik T1: sorudan önceye) */
           { gizle: 'sefik' },
-          ['an', 'Perihan Hanım sofanın başköşesinden kalkmadı. Kızgınlığı sesinde değil, yerinden kıpırdamayışındaydı.'],
+          ['an', 'Perihan Hanım sofanın başköşesinden kalkmadı.'],
           /* Oynanış B5: keşif — Nabi Bey'in sedirde unuttuğu pusula. Bayrak p10_k_pusula gece kapıda (Nabi'nin sorusu)
              ve teklifte (Feride'nin cevabı) okunur. Koz vermez: 'Halim Efendi' kozu kapıda duyulur ve 11. bölüm onu
              "kapınızdan duydum" diye harcar (pusuladan koz verilirse o satır yanlış olurdu; bkz. sonraya). */
@@ -1439,7 +1439,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { eger: (S) => S.giyili === 'gecelik', ise: [
                 /* Tur 31 (t31_b09_12 B10 oynanış 3): gecelikle kapı açmanın küçük, kesin bedeli */
                 { etki: { calibe_suphe: 1 } },
-                'Koridorun ucunda bir tahta gıcırdadı. Gecelikle kapı açtığımı biri duydu.',
+                'Koridorun ucunda bir tahta gıcırdadı. Kapımı açtığımı biri duydu.',
                 { eger: (S) => b(S).p10_dakika === 'gel', ise: [
                   ['suha', 'Saçınız çözük. Davet ettiğiniz adamı böyle mi karşılarsınız?', 'notr'],
                 ], degilse: [
@@ -1810,7 +1810,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         /* Sürükleyicilik T1: "o kapı neden aralandı?" kancanın ifşasını önceden söylüyordu; defter Feride'nin eylemiyle biter.
            GPT T26 (10 oynanış 3): Hatice'nin akıbeti aynı cümlede */
         c.push(hatice ? hatice + '; Süha Bey kapımdan ayrıldı, babamın kapısında durmadı.'
-          : 'Adımlarını dinledim, babamın kapısında durmadı.');
+          : 'Adımları babamın kapısını geçti.');
       }
       return c.join(' ');
     },

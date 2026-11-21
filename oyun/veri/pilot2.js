@@ -292,7 +292,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['mehves', 'Münevver Hanım\'ın kâhyası geldi hanımcığım. Gerdanlık kuyumcudan çıkmış, öbür gün takılacak.', 'ana'],
           ['mehves', 'Perihan Hanım da mutfağa iki kez indi. Sofrada size bir şey soracak.', 'endiseli'],
           /* Tur 28 (GPT B2 b3): gelecek sofra tehdidi geçmiş sayılmaz */
-          ['ic', 'Sofrada ne soracak?', 'endiseli'],
           ['mehves', 'Sofraya ne giyeceksiniz?', 'notr'],
           /* --- Sofraya kıyafet --- */
           { islev: (S) => { S.bayrak.p2_ilk_giyili = S.giyili; } },
@@ -347,29 +346,29 @@ window.BOLUMLER = window.BOLUMLER || {};
               { bayrak: { p2_k_ithaf: true } },
             ] } },
             { soru: 'Bir yıl tek satır yoktu. Kitap bu gece geri gidecek.', secim: [
-              { m: 'Pusulanın altına bir satır yaz.', etki: { mukaddem: 5 }, bayrak: { p2_pusula: 'yazdi' }, iz: 'Kenan\'ın pusulasına kendi cevabını yazdın.', adimlar: [
+              { m: 'Pusulanın altına bir satır yaz.', bayrak: { p2_pusula: 'yazdi' }, iz: 'Kenan\'ın pusulasına kendi cevabını yazdın.', adimlar: [
                 { efekt: 'kalem' },
                 'Annemin gümüş kalemini buldum. Nimet görmüyormuş gibi pencereye döndü.',
                 { soru: 'Ne yazacağım?', secim: [
-                  { m: '“Okudum.”', etki: { mukaddem: 6 }, bayrak: { p2_satir: 'okudum' }, adimlar: [
+                  { m: '“Okudum.”', bayrak: { p2_pusula_yolda: true, p2_satir: 'okudum' }, adimlar: [
                     ['ic', '“Okudum” yazdım. Başka ne yazsam Nimet\'in de okuyacağını düşündüm.', 'utanmis'],
                   ] },
-                  { m: '“Sayfa yirmi dörtte ne var?”', etki: { mukaddem: 8 }, bayrak: { p2_satir: 'soru' }, adimlar: [
+                  { m: '“Sayfa yirmi dörtte ne var?”', bayrak: { p2_pusula_yolda: true, p2_satir: 'soru' }, adimlar: [
                     ['ic', 'Soru sordum ki cevap yazmak zorunda kalsın.', 'tebessum'],
                   ] },
-                  { m: '“Yasemin iyi bir yerde.”', kosul: (S) => S.bayrak.p_yasemin === 'sakla', etki: { mukaddem: 9 }, bayrak: { p2_satir: 'yasemin' }, adimlar: [
+                  { m: '“Yasemin iyi bir yerde.”', kosul: (S) => S.bayrak.p_yasemin === 'sakla', bayrak: { p2_pusula_yolda: true, p2_satir: 'yasemin' }, adimlar: [
                     ['ic', 'Yazarken elim titredi. Yazı yine de düzgün çıktı.', 'utanmis'],
                   ] },
-                  { m: '“Yeri burası. Siz de biliyorsunuz.”', kosul: (S) => S.bayrak.p_yasemin !== 'sakla', etki: { mukaddem: 9 }, bayrak: { p2_satir: 'yasemin' }, adimlar: [
+                  { m: '“Yeri burası. Siz de biliyorsunuz.”', kosul: (S) => S.bayrak.p_yasemin !== 'sakla', bayrak: { p2_pusula_yolda: true, p2_satir: 'yasemin' }, adimlar: [
                     ['ic', 'Yazarken elim titredi. Yazı yine de düzgün çıktı.', 'utanmis'],
                   ] },
                   /* Tur 30 (B1 anlatı 3; B2 anlatı 2): 1. bölümün "Kenan'ın haberi olmalı" planı burada ödenir. Kenan yolunda
                      her kız arabada görücü hanımı duydu (p1_kanca). 3. bölüm SAYFA ve "Onun gözünden" okur */
-                  { m: '“Gerdanlıktan önce bir hanım beni oğluna istedi.”', etki: { mukaddem: 6 }, bayrak: { p2_satir: 'haber' }, iz: 'Kenan\'a perde ardındaki pazarlığı yazdın. Haberi Perihan Hanım\'dan önce sen verdin.', adimlar: [
+                  { m: '“Gerdanlıktan önce bir hanım beni oğluna istedi.”', bayrak: { p2_pusula_yolda: true, p2_satir: 'haber' }, iz: 'Kenan\'a perde ardındaki pazarlığı yazdın. Haberi Perihan Hanım\'dan önce sen verdin.', adimlar: [
                     ['ic', 'Ona yazdığım ilk satır bir gönül sözü değil, kötü bir haber oldu.', 'mahzun'],
                   ] },
                   /* Tur 29 (B2 oynanış 2): Kenan yolunda açık soğukluk da yazılabilir; gönül düşer (net 0), 3. bölüm SAYFA okur */
-                  { m: '“Bir yıl bekledim. Siz de biraz bekleyin.”', etki: { mukaddem: -5, vakar: 1 }, bayrak: { p2_satir: 'sitem' }, iz: 'Pusulanın altına sitemini yazdın.', adimlar: [
+                  { m: '“Bir yıl bekledim. Siz de biraz bekleyin.”', etki: { vakar: 1 }, bayrak: { p2_pusula_yolda: true, p2_satir: 'sitem' }, iz: 'Pusulanın altına sitemini yazdın.', adimlar: [
                     ['ic', 'Bu kadarını yazabildim. Kırıldığımı anlasın.', 'mahzun'],
                   ] },
                 ] },
@@ -385,15 +384,15 @@ window.BOLUMLER = window.BOLUMLER || {};
                   ['ic', 'Perihan Hanım\'ın habercisi daha yola çıkmadan benim satırım çıktı.', 'tebessum'],
                 ] },
               ] },
-              { m: 'Yaseminden bir yaprak kopar, pusulaya koy.', kosul: (S) => S.bayrak.p_yasemin === 'sakla', etki: { mukaddem: 8 }, bayrak: { p2_pusula: 'yaprak' }, iz: 'Kenan\'a yazısız, kokulu bir cevap yolladın.', adimlar: [
+              { m: 'Yaseminden bir yaprak kopar, pusulaya koy.', kosul: (S) => S.bayrak.p_yasemin === 'sakla', bayrak: { p2_pusula_yolda: true, p2_pusula: 'yaprak' }, iz: 'Kenan\'a yazısız, kokulu bir cevap yolladın.', adimlar: [
                 'Tek bir yaprak kopardım. Kokusu hâlâ geçen yazın kokusu.',
                 ['ic', 'Yazı yok. Anlayan anlar.', 'tebessum'],
               ] },
-              { m: 'Yasemini al. Bu kez sakla.', kosul: (S) => S.bayrak.p_yasemin !== 'sakla', etki: { mukaddem: 7 }, bayrak: { p2_pusula: 'aldi' }, iz: 'Yasemini bu kez sen sakladın.', adimlar: [
+              { m: 'Yasemini al. Bu kez sakla.', kosul: (S) => S.bayrak.p_yasemin !== 'sakla', bayrak: { p2_pusula_yolda: true, p2_pusula: 'aldi' }, iz: 'Yasemini bu kez sen sakladın.', adimlar: [
                 'Kitap gitsin, yasemin kalsın. Boş sayfa benim cevabım.',
               ] },
               /* Tur 33 (B2 sürük 1): "sustu" dalının ayrı "Pusula elimde" sorusu bu seçime indi (p2_not_yer aynı değerler) */
-              { m: 'Okuduğunu belli etmek için pusulayı farklı katlayıp geri koy.', etki: { mukaddem: 3 }, bayrak: { p2_pusula: 'sustu', p2_not_yer: 'kitap' }, iz: 'Pusulayı geri koydun; okuduğunu anlayacak mı, bilmiyorsun.', adimlar: [
+              { m: 'Okuduğunu belli etmek için pusulayı farklı katlayıp geri koy.', bayrak: { p2_pusula_yolda: true, p2_pusula: 'sustu', p2_not_yer: 'kitap' }, iz: 'Pusulayı geri koydun; okuduğunu anlayacak mı, bilmiyorsun.', adimlar: [
                 'Yeniden katladım. Bir katını bile bile yanlış katladım.',
                 ['ic', 'Bir yıl o sustu. Bu gece de ben susayım.', 'dusunceli'],
               ] },
@@ -461,7 +460,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                   ['ic', '“Fikir değiştirirsiniz” demişti. Değiştirdiğimi kimse bilmesin.', 'utanmis'],
                 ] },
                 /* Oynanış T1 (B3): Süha için eksi seçenek; kutusunun Perihan'a "unutulmuş" diye gitmesi */
-                { m: '“Perihan Hanım\'a götürsünler.”', etki: { calibe_suphe: 1, suha: -3 }, bayrak: { p2_kutu: 'calibe' }, iz: 'Süha Bey\'in kutusunu Perihan Hanım\'ın önüne koydun. Duyacak.', adimlar: [
+                { m: '“Perihan Hanım\'a götürsünler.”', etki: { calibe_suphe: 1 }, bayrak: { p2_kutu: 'calibe' }, iz: 'Süha Bey\'in kutusunu Perihan Hanım\'ın önüne koydun. Duyacak.', adimlar: [
                   ['f', 'Perihan Hanım\'a götürsünler. “Süha Bey unutmuş” desinler.', 'tebessum'],
                   ['mehves', 'Hanımcığım… ateşle oynuyorsunuz.', 'endiseli'],
                 ] },
@@ -783,14 +782,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* --- Remzi dedikodusu: parası değil, kendine gülmesi --- */
           ['an', 'Nabi Bey kulüpten bir dedikodu getirmişti. Ablası ayıplar gibi dinledi ama tek kelimesini kaçırmadı.'],
           ['nabi', 'Kapıdaki yaldızlı kupayı soran olursa: Tüccar Rıfkı\'nın oğlu Remzi\'ninmiş. Babası Galata\'nın yarısını alır.', 'gulumser'],
-          { eger: (S) => S.bayrak.p_remzi === 'laf', ise: [
-            ['nabi', 'Kulüpte kendi ağzıyla anlatmış, enişte. “Kendi lafımla yendiler beni,” demiş.', 'gulumser'],
-          ], degilse: [{ eger: (S) => S.bayrak.p_remzi === 'yurudu', ise: [
-            ['nabi', 'Kulüpte anlatıyormuş: “Bir hanım çamura bastı da kupama basmadı.” Gülerek!', 'gulumser'],
-          ], degilse: [
-            ['nabi', 'Kulüpte anlatıyormuş: “Biri beni bekleyerek utandırdı, ilk defa.” Gülerek!', 'gulumser'],
-          ] }] },
-          ['nabi', 'Sonra kupayı çamura çektirmiş, atın başını kendisi tutmuş. Tuhaf herif.', 'notr'],
           /* Oynanış T1: 1. bölümde kapıdaki son karar (p1_remzi_ad) kulüp dedikodusuna girer */
           { eger: (S) => S.bayrak.p1_remzi_ad === 'sozlu', ise: [
             ['nabi', 'Kızın biri kapıda “Sözlüyüm” demiş. Remzi buna da gülmüş.', 'gulumser'],
@@ -811,22 +802,22 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['calibe', 'Annesi de bugün Feride\'yi pek beğendi efendi. Bir kahveye çağırsak ayıp olmaz.', 'sinsi'],
           { soru: 'Perihan Hanım\'ın yelpazesi yavaşladı, babam bana bakıyor.', secim: [
             /* Oynanış T1 (B3): Remzi için eksi; 3. bölümde Remzi bunu "bana da hatırlatmış oldunuz" diye anar */
-            { m: '“Babacığım, ben sözlüyüm.”', etki: { baba_guven: 2, remzi: -3 }, bayrak: { p2_remzi: 'uzak' }, iz: 'Babana sözlü olduğunu hatırlattın. Kahve lafı kapandı.', adimlar: [
+            { m: '“Babacığım, ben sözlüyüm.”', etki: { baba_guven: 2 }, bayrak: { p2_remzi_haber_bekliyor: true, p2_remzi: 'uzak' }, iz: 'Babana sözlü olduğunu hatırlattın. Kahve lafı kapandı.', adimlar: [
               ['f', 'Babacığım, ben sözlüyüm. Bunu herkes biliyor.', 'kararli'],
               ['sai', 'Elbette kızım, Münevver Hanım\'ın gelinisin. Kahve olmaz hanım.', 'ciddi'],
               ['an', 'Perihan Hanım\'ın yelpazesi durdu. Kahve lafı o akşam bir daha açılmadı.'],
             ] },
             /* Tur 27 (B2 oynanış 3): kendine gülen adamı laflayarak yenmek 1. bölümdeki gibi Remzi'de iz bırakır */
-            { m: '“Annesi beni beğenmiş, oğlu yolu. İkisi de alamadı.”', etki: { remzi: 5, itibar: -1 }, bayrak: { p2_remzi: 'duello' }, iz: 'Remzi Bey\'e sofradan bir laf yolladın. Nabi Bey bunu götürecek.', adimlar: [
+            { m: '“Annesi beni beğenmiş, oğlu yolu. İkisi de alamadı.”', etki: { itibar: -1 }, bayrak: { p2_remzi_haber_bekliyor: true, p2_remzi: 'duello' }, iz: 'Remzi Bey\'e sofradan bir laf yolladın. Nabi Bey bunu götürecek.', adimlar: [
               ['f', 'Annesi beni beğenmiş, oğlu yolu. İkisi de alamadı.', 'tebessum'],
               ['nabi', 'Bunu Remzi\'ye söylemeli! Çatlar.', 'gulumser'],
               ['calibe', 'Feride, sofrada laf yarıştırılmaz.', 'soguk'],
               ['sai', 'Kahveyi de bırak hanım. Kızın cevabını verdi.', 'gulumser'],
             ] },
-            { m: '“Kendine gülebilen adam az bulunur.”', etki: { remzi: 8 }, bayrak: { p2_remzi: 'ilgi' }, iz: 'Remzi Bey\'i sofrada övdün. Perihan Hanım bunu not etti.', adimlar: [
+            { m: '“Kendine gülebilen adam az bulunur.”', bayrak: { p2_remzi_haber_bekliyor: true, p2_remzi: 'ilgi' }, iz: 'Remzi Bey\'i sofrada övdün. Perihan Hanım bunu not etti.', adimlar: [
               ['f', 'Kendine gülebilen adam az bulunur.', 'tebessum'],
               ['calibe', 'Duydunuz mu efendi? Kızımız beğendi.', 'sinsi'],
-              ['ic', 'Tek cümle söyledim, Perihan Hanım onu çoktan cebine koydu. Bir gün önüme çıkaracak.', 'endiseli'],
+              ['ic', 'Babamın önünde fincanıma biraz daha kahve koydu.', 'endiseli'],
             ] },
             /* Oynanış T1 (B1): kozsuz oyuncu kilitli görür; sofrada koz zaten kullanıldıysa gizli kalır (motor.secenekDurumu) */
             /* GPT T26 Süha (B2 oynanış 3, öncelik 1): bilgi/koz ayrımı. Gizlilik üstünlüğüne dayanan ima yalnız koz sahibine;
@@ -939,7 +930,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 { bayrak: { p2_nesne_calibede: true } },
               ] },
             ] },
-            { m: '“O benim. Ver.”', kosul: (S) => elde(S) && muk(S), etki: { mukaddem: 3 }, bayrak: { p2_mefharet: 'aldi' }, adimlar: [
+            { m: '“O benim. Ver.”', kosul: (S) => elde(S) && muk(S), bayrak: { p2_mefharet: 'aldi' }, adimlar: [
               ['f', 'O benim. Ver.', 'kararli'],
               'Sesimi yükseltmedim. Nazlı verdi.',
               ['calibe', 'Kızım, küçüğe öyle bakılmaz.', 'soguk'],
@@ -1014,14 +1005,14 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['ic', 'Sözlerini biliyor. Dudakları kıpırdadı, sesi çıkmadı.', 'saskin'],
             ] },
           ] },
-          ['an', 'Süha Bey piyanonun öbür ucuna geldi. Bir genç kızın notasını çevirmek, ancak izinle yapılırdı.'],
+          ['an', 'Süha Bey piyanonun öbür ucuna geldi. Eli notanın üstünde durdu.'],
           { goster: ['suha', 'notr'] },
           /* GPT T23 (Süha 2b-3): Süha, Feride'nin önce kardeşini koruduğunu görmüştür */
           { eger: (S) => S.bayrak.p2_mefharet === 'sefik', ise: [
             ['suha', 'Mürekkep dökülünce herkes size baktı, siz de kardeşinize. Gördüm.', 'notr'],
           ] },
           ['suha', 'Sayfaları ben çevireyim mi? İzin verirseniz.', 'notr'],
-          'Piyanonun öbür ucunda duruyor, tuşlara dokunmadan.',
+          'Sayfanın köşesi kalktı.',
           /* Tur 28 (GPT B2 O2): sofrada konan açık sınır sonraki iç seste okunur */
           { eger: (S) => !!S.bayrak.p2_suha_sinir, ise: [
             /* Tur 30 (B2 diyalog 2): sınır iç sesi seçimi önceden bağlamaz ("Buyurun" da seçilebilir; karar oyuncunun) */
@@ -1214,7 +1205,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ] },
             ] },
           ] }] },
-          ['mehves', 'Gerdanlık takılacak. Sevinçli misiniz hanımcığım?', 'ana'],
+          ['mehves', 'Yarın gerdanlık şu yakaya düşecek, hanımcığım. Aynayı biraz çevireyim mi?', 'ana'],
           { soru: 'Nimet aynada yüzüme bakıyor.', secim: [
             { m: '“Sevinçliyim.”', kosul: muk, bayrak: { p2_gerdanlik: 'sevinc' }, adimlar: [
               ['mehves', 'Öyleyse yüzünüzü benden niye saklarsınız küçük hanım?', 'duygulu'],
