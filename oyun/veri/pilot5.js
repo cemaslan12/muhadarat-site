@@ -132,9 +132,9 @@ window.BOLUMLER = window.BOLUMLER || {};
   var sordu = function (S) { return S.bayrak.p5_v_kiler === 'sor'; };
   // Anlatı denetimi T1: bölüm kapanışı (kanca kartından hemen önce; her yol yalnız birini görür)
   // Tur 27 (t27_b05_08 B5 anlatı b3): "hesap tutmak" Süha'nın kalıbı; kapanış saymaya döndü
-  var KAPANIS = ['an', 'O gece konakta herkes bir bardağı düşündü. Feride ise çardaktaki feneri.'];
+  var KAPANIS = ['an', 'Feride çardaktaki fenerden gözünü ayırmadı.'];
   /* Tur 30 (B5 anlatı b1): pencereyi açıp konuşan 'senet' dalının kendi kapanışı */
-  var KAPANIS_SENET = ['an', 'O gece konakta herkes bir bardağı düşündü. Feride ise pencereyi açıp bir senedi pazarlığa koydu.'];
+  var KAPANIS_SENET = ['an', 'Feride pencereyi açıp senedi pazarlığa koydu.'];
   // T2 (b4_5_6 5.11): penceresini bırakıp bahçeye inen yolun kapanışı. Tur 27 (B5 anlatı 3): kartın sırrını
   // (içeriden sürgülenen kapı) önceden açmaz; tehlikeyi sezdirir
   var KAPANIS_INDI = ['an', 'Konakta o gece Feride\'den önce davranan bir el vardı.'];
@@ -250,7 +250,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Babam yüzüme bakıyor.', secim: [
             { m: '“Hasta değilim babacığım.”', etki: { baba_guven: 2, calibe_suphe: 1 }, bayrak: { p5_v_baba: 'hasta_degil' }, adimlar: [
               ['f', 'Hasta değilim babacığım. Beni hasta görmek isteyenler var.', 'mahzun'],
-              ['sai', 'Kim olduğunu söyleme kızım. Bir gün kendi gözümle göreyim.', 'ciddi'],
+              ['sai', 'Ne yaptıklarını söyle kızım.', 'ciddi'],
             ] },
             /* Tur 28 (ortak istek b01_04 §5, B4 oynanış 2): Münevver'e "babamı ben razı ederim" diyen kızın kendi hamlesi;
                p5_v_baba 'hasta_degil' yazar (6. bölümde Sait Ada göçünü öne alır) */
@@ -364,14 +364,11 @@ window.BOLUMLER = window.BOLUMLER || {};
             : '“Küçük bana inanıyor.” Gece okunan o satır sabaha kadar Feride\'nin kulağından gitmedi.')
           : b(S).p4_not === 'sor' ? 'Şefik uykulu sesiyle notun sahibini söylemişti; Feride bunu sabaha kadar düşündü.'
           : 'Gece bir el Şefik\'in cebine girip çıkmıştı; Feride sabaha kadar o eli unutmadı.'),
-        (S) => '{b}Leyla{/b} bir gün önce Feride\'yle yeminleşmişti: ' + ({
-          sir: 'aralarında sır olmayacaktı.',
-          mektup: 'Leyla\'nın çekmecesi Feride\'nin postanesi olacaktı.',
-        }[b(S).p4_pakt] || 'Perihan Hanım\'a karşı tek ses olacaklardı.') + ' Yeminin ilk sınavı o gündü.',
+        'Leyla’ya verdiği sözün üzerinden bir gün geçmişti.',
         /* GPT T25 Kenan B5 (anlatı 1, sürük 1; S4): akşamın düzenini sahne söyler (Hatice'nin repliği); açılış üç satır */
         /* GPT T27 (B5-A1): "herkes biliyor" kesinliği babanın habersizliğiyle çelişiyordu */
         /* Tur 33 (B5 anlatı 3): ikinci cümle sahnenin planını önden açmaz */
-        'Perihan Hanım evin hekimini, {b}Süha Bey{/b}\'i, o sabahtan itibaren üvey kızının başucuna yollamaya karar vermişti. Konakta bir kızı hasta göstermenin en kısa yolu, ona hekim tutmaktı.',
+        'Perihan Hanım o sabah Süha Bey’i Feride’ye yolladı.',
       ] } },
     ],
 
@@ -501,7 +498,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Akşama kadar şişe benim.', secim: [
             { m: 'Şişeyi boşalt. Vişne şerbeti doldur.', bayrak: { p5_degis: 'serbet' }, iz: 'Şişede artık vişne var. Akşam tadına bakan kendini ele verir.', adimlar: [
 { efekt: 'dokulme' }, 'Şurubu leğene döktüm, şişeye vişne şerbeti doldurdum. Rengi aynı.',
-['ic', 'Akşam kim tadına bakarsa, kendini ele verir.', 'tebessum'],
+['ic', 'Akşam tadını tanıyacak mı?', 'tebessum'],
             ] },
             { m: 'Şişeyi sakla; günü gelince koz olur.', etki: { calibe_suphe: 1 }, bayrak: { p5_degis: 'sakla' }, iz: 'Şişe sandığında. Ama kaybolan şişeyi akşam biri soracak.', adimlar: [
               'Şişeyi sandığımın dibine, annemin şallarının arasına gömdüm.',
@@ -513,7 +510,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { gorev: 1 },
           { ara: { mekan: 'fazila_oda', yer: 'Feride\'nin odası · öğle', satirlar: [
-            'Öğleye kadar şişeyi soran olmadı. O konakta susmak, bir şeyin olmasını beklemekti.',
+            'Öğleye kadar şişeyi soran olmadı.',
             /* Anlatı denetimi T2 (b4_5_6 5.7; mercek_doz B5a2, §5b): lalanın gelişini sahne açar, sayfa söylemez */
             'Öğle sıcağında konak kendi gölgesine çekildi.',
           ] } },
@@ -609,7 +606,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['an', 'Perihan Hanım\'ın buyruğu öğleye doğru geldi: hasta kız ikindiyi çardakta, hekimin gözü önünde geçirecekti.'],
           ] },
           /* Anlatı denetimi T2 (b4_5_6 5.14): 6. bölümün topuğu burada ekilir */
-          'Terzi yeni iskarpinlerimi getirmiş. Topukları sarı demirli, son moda; ağır da.',
+          'Yeni iskarpinlerimi giydim; sarı demirli topukları ağır.',
           /* Tur 28b (GPT G5-1; kök 8): 3. bölümde "bugün o taşısın" diye Şefik'e verilen madalyon sahnede geri gelir;
              kıyafet seçimi eşyayı sessizce taşımaz, an resimleri (madalyonlu) metinle aynı durumu gösterir */
           /* Tur 29 (B5 anlatı 4): eşyayı veren kişi sahnede görünür (Süha yolunda Şefik bu sahnede yoktu) */
@@ -745,7 +742,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { soru: 'Sayfayı çevirmek için ikimiz birden uzandık.', secim: [
               { m: 'Elini çek. Şefik’i çağır; görüşmeyi bitir.', bayrak: { p5_muk: 'mesafe', p5_hamle: 'mesafe' }, iz: 'Yakınlığı başlamadan kestin. Kenan’a bir söz vermedin.', adimlar: [
                 ['f', 'Şefik! Gel, dersine devam et. Ben içeri dönüyorum.', 'kararli'],
-                ['mukaddem', 'Peki. Atlasa onunla bakarız.', 'notr'],
+                ['mukaddem', 'Peki. Atlası Şefik\'e bırakırım.', 'notr'],
               ] },
               { m: 'Elini çekme.', etki: { mukaddem: 8, itibar: -1 }, bayrak: { p5_muk: 'el' }, adimlar: [
                 /* Sürükleyicilik T1 (mercek_romantik B5 b2): 3. bölümdeki "ikimiz de çekmedik" kalıbı burada yinelenmez */
@@ -876,7 +873,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ], degilse: [{ eger: (S) => b(S).p4_suha === 'perde', ise: [
               ['suha', 'Dün perdeyi açtınız. Bugün çardak açık; yine saklanmıyorsunuz.', 'alayci'],
             ] }] },
-            ['an', 'Süha Bey kitabı açtı. Fransızcayı konakta Madam\'dan sonra en iyi o bilirdi.'],
+            ['an', 'Süha Bey kitabı açtı.'],
             ['suha', '{i}« Je vous aime… »{/i} Pardon. {i}« Je vous ai vue. »{/i}', 'alayci'],
             /* Tur 28b (kök 2; 1–4 açık ret bayrakları): Süha'ya önceden açık sınır koyan kız ilanı gizli bir evetle duymaz */
             { eger: sinirKoydu, ise: [
@@ -1002,7 +999,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 32 (B5 anlatı 4): bilginin kaynağı söylenir; uzun satır bir eylemle ikiye bölündü */
           ['remzi', 'Pera\'daki eczacı bana borçlu. Dün Hatice ondan iki şişe haşhaş şurubu almış; hesap Perihan Hanım\'a.', 'notr'],
           /* Tur 27 (B5 sürük 2): orta dönüş yeni soru açar (ikinci şişe kimin için?); fenerdeki Nabi'de karşılanır */
-          ['remzi', 'Eczacı iki şişeye şaşırmış. Uyku ikiye bölünmez; fiyatı bölünür.', 'kararli'],
+          ['remzi', 'Eczacı iki şişeye şaşırmış.', 'kararli'],
           /* Öğle vaktinde kilerde görülen ikinci şişe (Tur 18: not, soru ve yer ayrı karşılık bulur) */
           { eger: (S) => b(S).p5_v_kiler === 'not', ise: [
             /* Tur 30 (şüphe ≠ hüküm): sayı bir iz; hangi şişenin hangisi olduğu çıkarım */
@@ -1077,7 +1074,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: muk, ise: [
             { ara: { yer: 'Öte yanda', satirlar: [
               /* Tur 29 (B5 anlatı 9): "şahitsiz iyilik" ironisi ters okunuyordu */
-              'Perihan Hanım o akşam bardağı kendisi doldurmadı, şişeyi Hatice\'nin eline tutuşturdu. Kendi eli hiçbir bardağa değmezdi.',
+              'Perihan Hanım şişeyi Hatice\'nin eline tutuşturdu; bardağı ona doldurttu.',
             ] } },
           ], degilse: [
             /* Tur 30 (B5 anlatı b2): Süha yolunda da öte yan; sırrı çözmez, ikinci şişenin gerilimini kurar */
@@ -1256,7 +1253,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               'Şişenin ağzı bardağa iki kez çarptı. Hatice\'nin eli titriyordu.',
               { delil: 'Hatice\'nin bardağı doldururken titreyen eli' },
             ], degilse: [
-              'Hatice bardağı doldurdu; lamba ışığında kan gibi kırmızıydı.',
+              'Hatice bardağı vişne şerbetiyle doldurdu.',
             ] },
           ] },
           /* Sürükleyicilik T1 (b4_5_6 5.5; S6): an resmi seçimden sonraya taşındı (aşağıda) */
@@ -1342,7 +1339,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                   /* Tur 30: akıl yürütme satırı öfkeyle değil */
                   ['ic', 'Benim için mi içti, içtiğini bana göstermek için mi? İkincisi daha çok ona benziyor.', 'mahzun'],
                 ], degilse: [
-                  ['ic', 'Benim için içti. Ya da içtiğini bana göstermek için.', 'utanmis'],
+                  ['ic', 'Vişneyi tanıdı. Şişeyi değiştirdiğimi artık biliyor.', 'dusunceli'],
                 ] },
               ] },
             ] },

@@ -105,6 +105,7 @@ window.BOLUMLER = window.BOLUMLER || {};
      p12_son 'sus' ile birlikte yazılır). benzet13 SOZ12 bu bayrağı henüz listelemiyor (ortak istek O10); okuma tek
      yardımcıda toplandı, sözleşmeye eklenince b(S) ile doğrudan okunur */
   /* T28b (t28_ortak_istek_13): benzet13/14/16 SOZ12 'riza' değerini tanıyor; 12. bölüm 'riza' yazınca da okunur */
+  var kararHakki = function (S) { return b(S).p12_karar === 'karar_hakki'; };
   var riza = function (S) { return b(S).p12_son === 'riza' || S.bayrak['p12_riza'] === true; };
   /* T28b (GPT A13-1, O13-1): karşılaşma ≠ istek. Süha yolunda açık ret geçmişi (sabah "hiçbir şeyim", taşlıkta "hayır",
      iğne, 12. bölümün rıza itirazı, Madam'a "sevmiyorum") iç seslerde gizli yakınlığa çevrilmez */
@@ -207,7 +208,10 @@ window.BOLUMLER = window.BOLUMLER || {};
         ], bos: 'Büyük salon boş, şövalede yarım bir resim.' },
       suha_oda: { kisi: 'suha', ifade: 'notr', eylem: 'konuş', ipucu: 'Süha Bey odasında, kapısı aralık (konuşma).',
         adimlar: [
-          ['suha', 'Kavgamızı duydunuz. Boru mu, duvar mı?', 'alayci'],
+          { eger: (S) => b(S).p13_boru === 'kapali', ise: [
+            ['suha', 'Kavgamızı duydunuz mu?', 'alayci'],
+            ['f', 'Kimin ne dediğini duymadım. Bana söyleyeceğiniz varsa şimdi söyleyin.', 'kararli'],
+          ], degilse: [ ['suha', 'Kavgamızı duydunuz. Boru mu, duvar mı?', 'alayci'] ] },
           { eger: muk, ise: [
             { soru: 'Süha Bey kapıyı ardına kadar açık tutuyor.', secim: [
               /* GPT T26 (13 ek): 12. bölümde Kenan'ın adı sofrada temizlendiyse (p12_son 'kenan') istek mektup lafına döner */
@@ -313,8 +317,9 @@ window.BOLUMLER = window.BOLUMLER || {};
         (S) => b(S).p12_nikah_ertelendi ? 'Nikâh durmuştu. Feride sabaha kadar yalanın gerisini nasıl ortaya çıkaracağını düşündü.' : '“Süha\'ya varacaksın.” Feride sabaha kadar bu sözün cevabını kurdu.',
         /* T27: Süha yolunun açılışı 12. bölümün son hamlesine (p12_son) göre; Feride hükümden önce sustuysa
            "kızına sormadan" doğru, süre ya da şart koyduysa kazancı anılır */
-        (S) => b(S).p12_v_on === 'ayril' ? 'Feride sarı odanın eşiğinden ayrılmıştı. Süha Bey’in itirafını dinlememiş, kararını babasının önünde söylemişti.' : muk(S) ? 'Kenan Selanik\'teydi, adı konakta yalnız Perihan Hanım\'ın ağzından anılıyordu.'
-          : b(S).p12_son === 'vade' ? 'Süha Bey diz çökmüş, sonra onu istemişti. Feride hükmün içine bir süre sığdırmıştı.'
+        (S) => b(S).p12_v_on === 'ayril' ? 'Feride sarı odanın eşiğinden ayrılmıştı. Süha Bey’in itirafını dinlememiş, kararını babasının önünde söylemişti.' : muk(S) ? 'Kenan Selanik\'teydi.'
+          : kararHakki(S) ? 'Nikâh durmuştu. Feride o günkü kararını kendisinin vereceğini söylemişti.'
+          : b(S).p12_son === 'vade' ? (b(S).p12_nikah_ertelendi ? 'Nikâh durmuştu. Feride babasından bu sözü yazmasını istemişti.' : 'Süha Bey diz çökmüş, sonra onu istemişti. Feride hükmün içine bir süre sığdırmıştı.')
             /* T29b (GPT A13-2): kabul ettirilen şart ile yazılan şart ayrı; sabah "yazılacak", gece "yazılacaktı" ile aynı */
             : b(S).p12_son === 'sart' ? 'Süha Bey diz çökmüş, sonra onu istemişti. Feride şartını kabul ettirmişti, yazısını henüz görmemişti.'
               /* T27b (B12 notu 3): babası iki kez "sen ne dersin" diye sormuştu; rıza itirazı ayrı anılır */
@@ -336,6 +341,9 @@ window.BOLUMLER = window.BOLUMLER || {};
           { goster: ['calibe', 'soguk'] },
           /* 12. bölüm: Feride'nin hükümden önceki son hamlesi (p12_son) babanın ilk sözünde karşılanır.
              T27b (GPT B13-A1): açık rıza itirazı sessizlikle birleşmez; babası sözü hatırlar, Feride kendi sesiyle sürdürür */
+          { eger: kararHakki, ise: [
+            ['sai', 'Dün kararını o gün vereceğini söyledin. Bugün senden evet istemiyorum.', 'ciddi'],
+          ] },
           { eger: riza, ise: [
             ['sai', 'Dün imamın soracağı rızadan söz ettin. Cevabını imamdan önce ben istiyorum.', 'ciddi'],
             ['ic', 'Hayırımı nikâh gününe saklamam. Bu sofrada da söylerim.', 'kararli'],
@@ -470,7 +478,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: muk, ise: [
             ['an', 'Kenan\'ın nişan resmini söz kesildiği yıl Münevver Hanım getirmişti. Feride ona yalnız kimse yokken bakardı.'],
           ], degilse: [
-            ['an', 'Kenan\'ın nişan resmi sorulmadan verilen sözün iziydi. Perihan Hanım\'ın elinde iftiraya delil olurdu; Feride onu bu yüzden bırakmadı.'],
+
           ] },
           { goster: ['mukaddem_foto', 'ana'] },
           'Arkasında Kenan\'ın eliyle tek satır: “Bu da senindir. —K.”',
@@ -496,7 +504,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             /* T32 (b13_16 O6): Nimet'in vedası romantik temanın altında kalmaz */
             { muzik: 'huzun' },
-            ['mehves', 'Annenizden bu konakta kalan son kişi bendim.', 'mahzun'],
+            ['mehves', 'Annenize de ben bakardım.', 'mahzun'],
             ['mehves', 'Nereye gideyim hanımcığım?', 'mahzun'],
             { soru: 'Nimet bohçasının düğümünü tutuyor.', secim: [
               /* GPT T26 (öncelik 6): bağ, Münevver/Leyla haberi aldığı anda artar (gece taşlıkta); burada yalnız yol */
@@ -516,7 +524,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* GPT T26 (13 sürükleyicilik): ayrılığa Feride'nin küçük hareketi; Süha gelmeden nefes */
             'Annemin yazmalarından birini bohçasına koydum. Ne o bir şey dedi ne ben.',
             /* T32 (b13_16 O6, ANLATI 10'a 2): veda ile Süha'nın girişi arasında nefes; Süha evdeki bedeli görür */
-            { muzik: null },
+            { muzik: 'sessiz', kes: true, durak: 900 },
             ['an', 'Süha Bey merdivenden bohçaya sessizce baktı.'],
           ] },
           { gizle: 'mehves' },
@@ -572,7 +580,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* GPT T26 (öncelik 3, 7): "bedel" yerine sınanabilir söz; akşam babanın önünde yerine gelir */
               { m: '“Evetim şartlı: Perihan Hanım\'ın eli bu işe değmeyecek.”', etki: { suha: 4 }, bayrak: { p13_suha: 'sart' }, iz: 'Süha şartını kabul etti, akşam babanın önünde de söyleyecek.', adimlar: [
                 ['suha', 'Şartınız benim de şartım. Akşam babanızın önünde de söylerim.', 'notr'],
-                ['ic', 'Ömrümün şartını kendim koydum. Kabul etti; bakalım akşam tutacak mı.', 'dusunceli'],
+                ['ic', 'Kabul etti. Akşam babamın önünde de söylesin.', 'dusunceli'],
               ] },
               /* Diyalog T1 (13-31): Süha yolunda "emir" doygunluğu azaltıldı */
               { m: '“Beni Perihan Hanım\'ın ağzıyla istediniz Süha Bey.”', etki: { vakar: 1, suha: -3 }, bayrak: { p13_suha: 'igne' }, iz: 'İğneni Süha\'nın en acıyan yerine batırdın, bunu kolay unutmaz.', adimlar: [
@@ -624,8 +632,8 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Sürükleyicilik T1 (S7, romantik mercek): Feride'nin sezondaki tek "seviyorum"u ilk seçenek.
                T28 (b13_16 DİYALOG): ilk "seviyorum" kendi hakkında açıklamayla sönmez */
             { soru: 'Madam çayımı koydu.', secim: [
-              { m: '“Seviyorum.”', etki: { josephine: 1, mukaddem: 4 }, bayrak: { p13_dert: 'sev' }, iz: 'Kenan\'ı sevdiğini ilk kez yüksek sesle söyledin.', adimlar: [
-                ['ic', 'Söyledim. Oda yıkılmadı, ben de.', 'utanmis'],
+              { m: '“Seviyorum.”', etki: { josephine: 1 }, bayrak: { p13_dert: 'sev' }, iz: 'Madam\'a Kenan\'ı sevdiğini söyledin.', adimlar: [
+                ['ic', 'Söyledim.', 'utanmis'],
                 /* Doğrulama v65 (ses §Josephine): kırık Türkçe, sahnede tek "ma chère"; akıcı vecize değil */
                 ['josephine', 'Bu oda duydu, ma chère. Oda… nasıl dersiniz… unutmaz.', 'ana'],
               ] },
@@ -744,7 +752,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { eger: (S) => b(S).p13_dert === 'hayir', ise: [
               ['ic', 'Bulunursa Kenan\'ın adı bir kez daha kirlenir. Benimki de, sevmediğim bir söz yüzünden.', 'endiseli'],
             ], degilse: [
-              ['ic', 'Bulunursa Kenan\'ın adı bir kez daha kirlenir. Yakarsam ondan elimde bir şey kalmaz.', 'endiseli'],
+              ['ic', 'Bulunursa Kenan\'ın adı bir kez daha kirlenir. Yakarsam resmi kalmaz.', 'endiseli'],
             ] },
           ], degilse: [
             /* Anlatı T2b (GPT okur 13-4): yakmak bir güvenlik hamlesi de olabilir; iki erkek arasında kalp kararı dayatılmaz */
@@ -771,7 +779,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { eger: muk, ise: [
                 /* T27 (DİYALOG; SÜRÜK 10'a): 12. bölümün "ezberi kimse yakamaz" kalıbı tekrarlanmaz; doruk sesli sözle kapanır */
                 /* T29 (b13_16 ANLATI-3): bozuk cümle düzeldi */
-                ['f', 'Perihan Hanım\'dan önce ben yaktım, Madam. Kenan\'ın adını bana karşı kullanacak kâğıt kalmadı.', 'mahzun'],
+                ['f', 'Perihan Hanım\'dan önce ben yaktım, Madam. Bu resmi bana karşı kullanamaz.', 'mahzun'],
               ], degilse: [
                 ['ic', 'Bana sorulmadan verilen sözü ben kapattım. Külünü de ben gördüm.', 'kararli'],
                 /* Oynanış T1 B3: Süha yolunda Kenan'ın resmini yakmak ona dönen kapıyı daraltır */
@@ -866,7 +874,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { goster: ['josephine', 'kararli'] },
             'Yalnız inmediğimi herkes gördü.',
           ] },
-          ['an', 'Perihan Hanım kavgadan beri odasından çıkmamıştı. Gülümseyerek indi; bu onun hüneriydi.'],
+          ['an', 'Perihan Hanım kavgadan beri odasından çıkmamıştı. Gülümseyerek indi.'],
           { goster: ['calibe', 'gulumser'] },
           /* Riskli geçidin bedeli */
           { eger: (S) => b(S).p13_nabi === 'gordu', ise: [
@@ -940,7 +948,9 @@ window.BOLUMLER = window.BOLUMLER || {};
              pazarlık" sonuçları onu hiç konuşmamış gibi yazmaz (şart sözü ayrı, aşağıda korunur) */
           { eger: (S) => (b(S).p13_v_iftira === true || b(S).p12_nikah_ertelendi === true) && !(b(S).p13_v_suha === 'kop' || b(S).p13_v_sefik === 'suha' || b(S).p13_suha === 'sart'), ise: [
             /* T32 (b13_16 DİYALOG-5): bir önceki diyaloğu tekrar etmez */
-            ['an', 'Süha Bey kendi payını yine “sustum” sözünün arkasına sakladı. Perihan Hanım\'ın omuzları bir parmak indi.'],
+            { eger: (S) => b(S).p13_v_iftira === true, ise: [
+              ['an', 'Süha Bey kendi payını yine “sustum” sözünün arkasına sakladı. Perihan Hanım\'ın omuzları bir parmak indi.'],
+            ], degilse: [['an', 'Perihan Hanım\'ın omuzları bir parmak indi.']] },
           ], degilse: [
           { eger: (S) => b(S).p13_v_suha === 'sus', ise: [
             /* Diyalog T1 (13-20): talip planını babaya açan kız ikindideki pazarlığı bozmuştur; sonucu görünür */
@@ -1294,7 +1304,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                     ['f', 'Muayene içindi Süha Bey.', 'kararli'],
                   ] },
                 ] },
-                ['ic', 'Avucu sıcak. Tehlikeli olan da bu.', 'utanmis'],
+
               ] },
               /* Diyalog T1 (13-31): Süha emir vermedi; cevap boşa düşmesin.
                  T28b (GPT D13-1): açık ret geçmişinde erteleme değil kesin beden sınırı; kararsız dalda eski söz */
@@ -1482,7 +1492,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     siradaki: { ad: 'Şefik', kanca: function (S) {
       var f = S.bayrak;
       if (f.p_rota === 'mukaddem') {
-        if (f.p13_dert === 'sev') return 'Sevdiğimi ilk kez söyledim. Gece adıma bir zarf geldi.';
+        if (f.p13_dert === 'sev') return 'Madam\'a sevdiğimi söyledim. Gece adıma bir zarf geldi.';
         if (f.p13_resim === 'yak') return 'Resmini kendi elimle yaktım. Külü soğumadan adıma bir zarf geldi.';
         if (f.p13_resim === 'sakla') {
           var yer = { tahta: 'Resim döşeme tahtasının altında.', sandik: 'Resim annemin sandığında.' }[f.p13_v_yer] || 'Resim koynumda.';

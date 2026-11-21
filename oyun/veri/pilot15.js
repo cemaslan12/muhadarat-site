@@ -293,7 +293,7 @@ window.BOLUMLER = window.BOLUMLER || {};
   var CARDAK = { kisi: 'nabi', ifade: 'notr', eylem: 'konuş',
     ipucu: 'Nabi Bey çardakta, Remzi Bey\'in bir sırrını satıyor. (Remzi · delil) Bedeli: Nabi\'ye borçlu kalmak.',
     adimlar: [
-      ['an', 'Nabi Bey çardağa çekilmişti. Bir sırrı satmadan önce hep kimsenin bakmadığı köşede beklerdi.'],
+      ['an', 'Nabi Bey çardağa çekilmişti.'],
       ['nabi', 'Remzi\'nin görücüsü mü geldi? Ben onun bir sırrını bilirim.', 'notr'],
       ['nabi', 'Beyoğlu\'nda bir evi var, perdeleri hep kapalı.', 'notr'],
       /* T27b (GPT B16-A1): Remzi sonundaki Beyrut alacaklısına önceden küçük iz; sahibi ve Behiye bağı finalde açılır */
@@ -1019,7 +1019,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       gelen === 'kenan' ? 'Fener köşeyi dönmedi, avlu kapısına doğru indi. Feride lambasını söndürüp basamakların kenarına basarak indi.'
         : 'Harem merdiveni gece gıcırdardı, Feride basamakların kenarına basarak indi.',
       /* T32 (b13_16 B15 ANLATI-2): aynı iniş art arda iki kez söylenmez */
-      'Biri görse adı bir daha temizlenmezdi. Karanlıkta yalnız tırabzanın soğuğunu tuttu.',
+      'Biri görse adı yeniden konuşulacaktı. Karanlıkta tırabzanın soğuğunu tuttu.',
       /* T33 (b13_16 B15 ANLATI): telin bilgisi Kenan'ın ağzında; ara sayfa tekrar etmez */
       'Avlu kapısının sürgüsünü kendisi çekti, kapıyı araladı.',
     ] } },
@@ -1104,7 +1104,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           }[b(S).p14_yemin] || 'Süha Bey yeminini ettikten sonraki gün Feride\'nin yüzüne hiç bakmadı. “Siz istemedikçe” demişti.';
         },
         'Remzi Bey’in annesiyle yengesi ikindide gelecekti. Konak sabahtan hazırlığa girişti.',
-        'Kararı yatsıda babası verecekti. Kenan, Süha Bey, Remzi Bey: yatsıya kadar üç kapı da aralıktı.',
+        'Kararı yatsıda babası verecekti. Feride o saate kadar hangi kapıyı açabileceğini görecekti.',
       ] } },
     ],
 
@@ -1554,7 +1554,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['sai', 'Bu gece söyler. Dinleriz.', 'ciddi'],
             ] },
           ] },
-          ['an', 'Yemek sessiz bitti. Sofradan ilk Sait Efendi kalktı, ardından kimse oturmaya cesaret edemedi.'],
+          ['an', 'Yemek sessiz bitti. Sofradan ilk Sait Efendi kalktı.'],
           { gizle: 'calibe' }, { gizle: 'suha' }, { gizle: 'sai' },
           { gorev: 3 },
           { ara: { mekan: 'mabeyn_kapisi', yer: 'Mabeyn kapısı · yatsı', satirlar: [
@@ -1571,7 +1571,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         adimlar: [
           { muzik: 'gerilim' },
           /* T33 (b13_16 B15 ANLATI): anlatıcı babanın birazdan soracağını önceden özetlemez */
-          ['an', 'Bu konakta kızlara kimi istedikleri sorulmazdı. Sait Efendi lambayı alıp mabeyn kapısına kendisi geldi.'],
+          ['an', 'Sait Efendi lambayı alıp mabeyn kapısına kendisi geldi.'],
           { goster: ['sai', 'ciddi'] },
           /* Oynanış T1 B4: seçilen kıyafete babanın tepkisi (annesinin gök mavisi) */
           { eger: (S) => S.giyili === 'nisan_yadigar', ise: [
@@ -1587,23 +1587,23 @@ window.BOLUMLER = window.BOLUMLER || {};
             { anlati: { gorsel: 'mabeyn_kapisi', baslik: 'Üç kapı', satirlar: [
               /* T33 (b13_16 B15 SÜRÜK/DİYALOG): pano puan listesi gibi okunmasın; her satır bir kapı, bir el, bir yük
                  (benzet15 çapası: üç satır, her birinde "Bedeli") */
-              function (S) { return 'Kenan\'ın kapısı için Feride\'nin elinde ' + panoElde(S, 'kenan') + '. Bedeli Perihan Hanım\'la kavgaydı.'; },
+              function (S) { return (hazirSay(S, 'kenan') ? 'Feride\'nin elinde Kenan\'ın kapısını açacak bir dayanak vardı.' : 'Kenan\'ın kapısı için elinde bir dayanak yoktu.') + ' Bedeli Perihan Hanım\'la kavgaydı.'; },
               /* T27 (ANLATI-2): baba "Perihan Hanım da Remzi Bey diyor" der; pano onunla çelişmez. T28: bedel susmanın değil kapının */
               /* T30 (A15-3): Süha'ya bir gece elini uzatmış kızın panosu */
-              function (S) { return (b(S).p13_gece === 'el' || b(S).p14_kol === 'goster')
+              function (S) { return (b(S).p13_gece === 'el')
                 ? 'Süha Bey\'i babası seçmişti, Feride ona bir gece el vermişti. Bedeli Perihan Hanım\'ın sofrasında oturmaktı.'
-                : 'Süha Bey\'i babası seçmişti; Feride ona bir adım atmamıştı. Bedeli ömür boyu Perihan Hanım\'ın sofrasıydı.'; },
-              function (S) { return 'Remzi Bey\'in kapısı açıktı; Feride o evi ' + REMZI_TANI[hazirSay(S, 'remzi')] + '. Bedeli biçilmiş bir fiyattı.'; },
+                : 'Süha Bey\'i babası seçmişti. Bedeli Perihan Hanım\'ın sofrasında oturmaktı.'; },
+              function (S) { return 'Remzi Bey\'in kapısı açıktı. Bedeli biçilmiş bir fiyattı.'; },
             ] } },
           ], degilse: [
             { anlati: { gorsel: 'mabeyn_kapisi', baslik: 'Üç kapı', satirlar: [
               /* GPT T26 (15 oynanış 10'a): her hazırlığın neyi sağladığı panoda (yazı inkârı, tanık gizlemeyi, düğme şantajı) */
-              function (S) { return 'Süha Bey\'in kapısı için elinde ' + panoElde(S, 'suha') + '. Bedeli Perihan Hanım\'ın öfkesiydi.'; },
+              function (S) { return (hazirSay(S, 'suha') ? 'Feride şartını Süha Bey\'e kabul ettirecek bir dayanak bulmuştu.' : 'Feride\'nin şartını tutacak bir dayanağı yoktu.') + ' Bedeli Perihan Hanım\'ın öfkesiydi.'; },
               function (S) { return b(S).p15_munevver === 'geri' ? 'Kenan\'a giden yolu Feride, Leyla\'yla kendisi kapatmıştı. Bedeli Münevver Hanım\'ın gönlüydü.'
                 /* T28b (GPT O15-1): fikir değiştiren kızın kapısı bu gece tartılmaz; teklif geçmişte kalan umut gibi değil, yolda */
                 : b(S).p15_munevver === 'kenan' ? 'Feride Kenan\'a giden yolu Leyla\'yla yeniden açmıştı. Bedeli Münevver Hanım\'ın bekleyişiydi.'
                 : 'Feride Kenan\'dan çoktan dönmüştü. Bedeli Münevver Hanım\'ın cevapsız kalan teklifiydi.'; },
-              function (S) { return 'Remzi Bey\'in kapısı açıktı; Feride o evi ' + REMZI_TANI[hazirSay(S, 'remzi')] + '. Bedeli biçilmiş bir fiyattı.'; },
+              function (S) { return 'Remzi Bey\'in kapısı açıktı. Bedeli biçilmiş bir fiyattı.'; },
             ] } },
           ] },
           /* GPT T26 (öncelik 8): 14. bölümün dayağı yalnız "sonraki hesap" kalmaz; Feride cevaptan önce bir sınır koyar,
@@ -1616,7 +1616,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['f', 'Cevaptan önce bir şartım var babacığım: o el bir daha bana kalkmayacak.', 'kararli'],
             ['sai', 'Kalkmayacak. Söz.', 'pisman'],
           ], degilse: [
-            'Babamın elindeki lamba titriyor. Benim elim titremiyor.',
+            'Babamın elindeki lamba titriyor.',
           ] }] },
           { eger: muk, ise: [
             'Süha Bey\'in kapısı kapalı, altından ışık sızıyor.',
@@ -1657,7 +1657,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 : b(S).p15_kenan_yol === 'gizli'
                   /* T29 (b13_16 B15 ANLATI-3): diyalogdaki bilgi tekrarlanmaz; Perihan'ın eylemi (16'daki asma kilide köprü) */
                   ? 'Perihan Hanım mabeyndeki lambanın söndüğünü gördü. O gece avlu kapısı için kâhyayı uyandırdı, ne istediğini kimseye söylemedi.'
-                  : 'Perihan Hanım mabeyndeki lambanın söndüğünü gördü. Kız kendi kapısını açmıştı, dokuz yıldır konakta böyle bir gece olmamıştı.'),
+                  : 'Perihan Hanım mabeyndeki lambanın söndüğünü gördü.'),
             'Konak o gece geç uyudu, harem sofasında yanık kalan son lamba Feride\'ninkiydi.',
           ] } },
         ],
@@ -1744,7 +1744,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             'Eteğinin hışırtısı uzaklaşınca lambamı kafesin önüne koydum.',
           ], degilse: [
             { efekt: 'kapi' },
-            ['an', 'Perihan Hanım kapıyı çalmadan açtı. Behiye Hanım\'dan kalma o hakkı kendine çoktan almıştı.'],
+            ['an', 'Perihan Hanım kapıyı çalmadan açtı.'],
             { goster: ['calibe', 'soguk'] },
             { eger: (S) => b(S).p15_sofra === 'yemin' && b(S).p14_yemin === 'perihan', ise: [
               /* Sofrada Süha düğmeyi andı: Perihan'ın gece sözü değişir (Süha yolunun üç kapısında) */
@@ -1840,6 +1840,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['f', 'Bu gece kimseye söz vermedim Kenan. Size de veremem.', 'kararli'],
               { gizle: 'mukaddem' },
             ] },
+            { muzik: 'sessiz', kes: true },
             ['an', 'Herkes sabahın hükmünü bekledi. Feride sabah soracağı soruyu çoktan seçmişti.'],
           ], degilse: [{ eger: (S) => kapi(S) === 'suha', ise: [
             /* T27 (SÜRÜK, SES): kanca B14'ün aynası olmasın; hekimin gecesi tehlike olarak */
@@ -1850,7 +1851,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             /* T28 (b13_16 SES): Remzi kapısının gecesi vals borcunun motifiyle */
             { muzik: 'vals_uzak' },
-            ['an', 'Selamlıktan gelen kahkaha gece yarısına dek sürdü. Pazarlığın öbür yanı kutlanıyordu.'],
+            ['an', 'Selamlıktan gelen kahkaha gece yarısına dek sürdü.'],
           ] }] }] }] },
           /* Kanca kartı: Feride'nin karar cümlesi (yola özel; benzetim çapaları korunur) */
           { eger: (S) => kapi(S) === 'kenan' && b(S).p15_kenan_yol === 'nikah', ise: [

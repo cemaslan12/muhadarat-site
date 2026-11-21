@@ -239,7 +239,7 @@ window.BOLUMLER = window.BOLUMLER || {};
   ];
   // Teslim makbuzu: yalnız kutu gerçekten el değiştirince yazılır ve imzalanır
   // Diyalog T1 (10-9): konuşan o anda yaptığını söyler (geçmiş zaman anlatıcı diliydi)
-  var MAKBUZ = ['munevver', 'Altına yazdım işte: “Gerdanlığı teslim aldım.” Yarın kimse “kızın elinden zorla aldılar” demesin.', 'kararli'];
+  var MAKBUZ = ['munevver', 'Altına yazdım işte: “Gerdanlığı teslim aldım.” Yarın kimse “gerdanlığı vermedi” demesin.', 'kararli'];
   // Açık teslimde şahit önceden söylediği işi yapar
   var SAHIT_YAPAR = { eger: (S) => sahit(S) === 'remzi', ise: [
     ['remzi', 'Teslimi gördüm. Adım notun altında.', 'kararli'],
@@ -289,7 +289,7 @@ window.BOLUMLER = window.BOLUMLER || {};
   /* ---- Kenan yolu: iskelede veda (duygusal doruk) ---- */
   var OPUS = [
     /* Tur 28 (B10 görsel 4): an_veda_opus'ta Kenan küpeştede, Feride iskeleden uzanıyor; metin resme uyar */
-    'Kenan küpeşteye çıkmıştı. Duman iskeleyi örttü; uzanıp yanağını öptüm.',
+    'Kenan küpeştedeydi. Duman iskeleyi örttü; uzanıp yanağını öptüm.',
     /* Tur 27b: öpücük anı (akşam ışığında; sabah iskelesinde gösterilmez) */
     { eger: (S) => !sabah(S), ise: [{ cizim: 'an_veda_opus' }] },
     /* Sürükleyicilik T1 (b10_11_12 (b)): cevaptan önce bir yüz satırı (gecikme); resimsiz kalan an metinde görünür */
@@ -428,7 +428,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     ], degilse: [{ eger: (S) => b(S).p10_not === 'bitir', ise: [
       ['ic', 'Nişanı ben bitirmiştim. Yine de vapur uzaklaşırken gözlerim doldu.', 'aglamakli'],
     ], degilse: [
-      ['ic', 'Gözlerim doldu ama ağlamadım. Gözyaşımı onun döneceği güne sakladım.', 'aglamakli'],
+      ['ic', 'Gözlerim doldu.', 'aglamakli'],
     ] }] },
     /* Anlatı T1: "Onun gözünden" kartı kalktı; Kenan'ın görünmeyen anı iskeleden eve geçen ara sayfanın
        ilk satırı oldu (iki tam ekran art arda gelmesin) */
@@ -768,7 +768,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Planın 1. adımı: teslim notu. Tur 19 (madde 1): önce Feride'nin beyanı imzalanır; "teslim aldım"
              satırını Münevver Hanım ancak kutu gerçekten el değiştirince yazar. */
           { efekt: 'kalem' },
-          ['an', 'Feride telgrafhaneden bir kâğıt istedi. Bu nişanın nasıl bittiği ağızlarda değil, kâğıtta kalacaktı.'],
+          ['an', 'Feride telgrafhaneden bir kâğıt istedi.'],
           /* GPT T23 (Remzi 10b): notun amacı Feride'nin ağzından */
           ['ic', 'İlk satırı yazdım. İkincisi, bu gerdanlığı neden verdiğimi söyleyecek.', 'kararli'],
           /* Diyalog T1 (D3, 10-2): "…anlamına gelmez" çağdaş çeviri kalıbı; dönemin yazı dilinde "demek değildir" */
@@ -864,14 +864,14 @@ window.BOLUMLER = window.BOLUMLER || {};
               { kozYak: SENET },
               ['nabi', 'O kâğıt… Onu nereden buldun?', 'korkmus'],
               ['f', 'Bulunduğu yerden. Leyla\'nın çeyizi sizin borcunuza bağlanmayacak.', 'kararli'],
-              ['an', 'Kahvenin önündeki fincanlar havada kaldı. Borcu ortaya çıkan adamı artık kimse dinlemiyordu.'],
+              ['an', 'Kahvenin önünde konuşanlar sustu.'],
             ] },
             /* GPT T26 (öncelik 2): 6. bölümde senedi Nabi'nin yüzüne söyleyen kızın kozu harcandı, kâğıdı cebinde kaldı.
                O gece yalnız Nabi duymuştu; iskelede herkes görür (koz ikinci kez yakılmaz, bayrak ve etki aynı) */
             { m: 'Senedini çıkar: “Borcunuzu kimin çeyiziyle ödeyecektiniz Nabi Bey?”', kosul: (S) => !var_(S, SENET) && !!(S.kozAcik && S.kozAcik[SENET]), etki: { calibe_suphe: 2, vakar: 1 }, bayrak: { p10_nabi: 'senet' }, iz: 'Nabi Bey\'in senedini bu kez iskelenin önünde açtın; borcu artık herkesin bildiği.', adimlar: [
               ['nabi', 'O kâğıt yine mi? Bir kere gösterdin, sustum.', 'ofkeli'],
               ['f', 'O gece yalnız siz gördünüz, bu kez iskele görsün. Leyla\'nın çeyizi borcunuza bağlanmayacak.', 'kararli'],
-              ['an', 'Kahvenin önündeki fincanlar havada kaldı. Borcu ortaya çıkan adamı artık kimse dinlemiyordu.'],
+              ['an', 'Kahvenin önünde konuşanlar sustu.'],
             ] },
             { m: '“Nabi Bey, bunu Leyla\'nın annesinin önünde de söyler misiniz?”', kosul: (S) => var_(S, LEYLA), kozGerek: LEYLA, etki: { calibe_suphe: 1 }, bayrak: { p10_nabi: 'leyla', p10_leyla: 'acik' }, iz: 'Leyla\'nın tanıklığını açtın; haberleştiğiniz ortaya çıktı.', adimlar: [
               { kozYak: LEYLA },
@@ -930,28 +930,28 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['munevver', 'Sözü kimin taşıdığını amcasına ben söylerim. Bir yılı altı aya indiririm.', 'kararli'],
           ], degilse: [
             /* GPT T23 (Kenan 10a): kararı veren somut — babası ölmüş, evin sözü amcada; Kenan da itiraz etti */
-            ['munevver', 'Bir yıl amcasının yanında kalacak. Babası öldüğünden beri o evde son söz amcasınındır.', 'dolu'], // Tur 30 (t30 B10 diyalog 2)
+            ['munevver', 'Bir yıl amcasının yanında kalacak.', 'dolu'], // Tur 30 (t30 B10 diyalog 2)
           ] },
           /* Sürgün haberinin artçısı (mercek_artci 6). Anlatı T2 (mercek_doz B10-5): art arda iki 'an' yerine artçı
              Feride'nin sesinde (satır payı Leyla yolunda dolu; ekleme değil çevirme) */
           { eger: boyunda, ise: [
-            ['ic', 'Selanik. Elim ensemdeki kilidi buldu; ağlamak bekleyebilir, imza bekleyemez.', 'mahzun'],
+            ['ic', 'Selanik. Elim ensemdeki kilidi buldu.', 'mahzun'],
           ], degilse: [{ eger: babaTasir, ise: [
-            ['ic', 'Selanik. Babamın koltuğunun altındaki kutuya baktım; ağlamak bekleyebilir, imza bekleyemez.', 'mahzun'],
+            ['ic', 'Selanik. Babamın koltuğunun altındaki kutuya baktım.', 'mahzun'],
           ], degilse: [
-            ['ic', 'Selanik. Kutuyu bir kez sıktım; ağlamak bekleyebilir, imza bekleyemez.', 'mahzun'],
+            ['ic', 'Selanik. Kutuyu bir kez sıktım.', 'mahzun'],
           ] }] },
           /* Planın 2. adımı: önce not, kutu kapalı. Okuma ikinci satırda babamın eliyle kesilir (Tur 19 ek, cevap 1).
              Tur 28 (B10 oynanış 2): "Bu kez ben konuşacağım" diyen kızda babam sözü kesmez, eli kapağın üstünde durur;
              kutuyu iskeleye babam getirdiyse (B9 'ver') kutuyu o an kızının avucuna bırakır */
           { eger: (S) => b(S).p10_baba === 'konus', ise: [
             { eger: babaTasir, ise: [
-              ['an', 'Münevver Hanım notu yüksek sesle okumaya başladı. İkinci satırda babam kutuyu avucuma bıraktı; sözümü kesmedi.'],
+              ['an', 'Münevver Hanım notu yüksek sesle okumaya başladı. İkinci satırda Sait Efendi kutuyu kızının avucuna bıraktı; okumayı kesmedi.'],
             ], degilse: [
-              ['an', 'Münevver Hanım notu yüksek sesle okumaya başladı. İkinci satırda babam elini kapağa koydu; kesmedi.'],
+              ['an', 'Münevver Hanım notu yüksek sesle okumaya başladı. Sait Efendi elini kapağa koydu; sözünü kesmedi.'],
             ] },
           ], degilse: [{ eger: babaTasir, ise: [
-            ['an', 'Münevver Hanım notu yüksek sesle okumaya başladı. İkinci satırda babam kutuyu koltuğundan çıkarıp uzattı.'],
+            ['an', 'Münevver Hanım notu yüksek sesle okumaya başladı. İkinci satırda Sait Efendi kutuyu koltuğundan çıkarıp uzattı.'],
           ], degilse: [
             ['an', 'Münevver Hanım notu yüksek sesle okumaya başladı. İkinci satıra gelince Sait Efendi kutuya uzandı.'],
           ] }] },
@@ -970,7 +970,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Planın 3. adımı — tek çatışma anı: açık tanıklık / gizli teslim / vermem (eski teslim kararının yerine).
              Sıra: beyan okunur ve imzalanır → kutu el değiştirir → "Gerdanlığı teslim aldım" yazılıp imzalanır.
              Vermemde teslim satırı boş kalır; imza yalnız beyanındır. */
-          { soru: 'Babamın eli kutunun kapağında; vapur ikinci düdüğü çalmak üzere.', secim: [
+          { soru: 'Babamın eli kutunun kapağında; vapur kalkmak üzere.', secim: [
             { m: 'Şahidine dön: “Gördüğünüzü herkesin önünde söyleyin.”', kosul: (S) => sahit(S) !== 'yok', bayrak: { p10_teslim: 'acik' }, iz: 'Şahidin herkesin önünde konuştu; artık o da açıkta.', adimlar: [
               /* Şahit önceden verilen işi söyler, sonra yapar */
               { eger: (S) => sahit(S) === 'remzi', ise: [
@@ -1325,7 +1325,8 @@ window.BOLUMLER = window.BOLUMLER || {};
             { goster: ['mukaddem_not', 'ana'] }, // Tur 27 (B10 görsel 1): kâğıt ekranda
             /* Tur 29 (GPT O10-1): mektup istemeyen kıza "her hafta" yazılmaz */
             { eger: (S) => b(S).p10_son === 'ayri', ise: [
-              { kart: '—K.', alt: 'Mektup istemediğinizi duydum, yazmayacağım. Yolunuz açık olsun.' },
+              { kart: '—K.', alt: 'Bekleme sözü vermediniz. Yolunuz açık olsun.' },
+              { muzik: 'sessiz', kes: true, durak: 900 },
             ], degilse: [{ eger: (S) => b(S).p10_not === 'bitir', ise: [
               /* Diyalog T1 (10-30): iskeledeki sözünün aynısı değil */
               /* Tur 27b (GPT B10-A2): yeni başlangıç oyuncunun gelecekteki kararı */
@@ -1788,7 +1789,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         }[f.p10_veda] || 'Kenan\'la vedalaştım';
         var son = { opus: ', dumanın içinde öptüm', bekle: ', bekleyeceğim dedim', mektup: ', her hafta yazacak',
           bagir: ', bekleyeceğim diye bağırdım', fisil: ', bekleyeceğimi dudaklarımla söyledim',
-          ayri: ', söz de mektup da istemedim' /* Tur 29 (GPT O10-1/2) */ }[f.p10_son] || '';
+          ayri: ', bekleme sözü vermedim' /* Tur 29 (GPT O10-1/2) */ }[f.p10_son] || '';
         c.push(veda + son + '; ' + (bedel || hatice || ('Selanik ' + (f.p10_nabi === 'leyla' ? 'altı ay' : 'bir yıl') + ' sürecek')) + '.');
         /* Sürükleyicilik T1 (b10_11_12 10-2): gece verilen karar Kenan yolunun defterinde de görünür; soru değil karar */
         c.push({
@@ -1819,6 +1820,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     anRet: {
       an_esik: function (S) { return (S.bayrak || {}).p10_kapi === 'kapali'; },
     },
+    anUygun: { an_veda_uzak: (S) => muk(S) && teslim(S) === 'vermem' },
     anIpuclari: {
       an_veda: 'Kenan yolunda, gerdanlığı teslim eden kız iskelede vedalaşır; vapur kalkarken küpeştedeki yüzü görür.',
       an_veda_uzak: 'Kenan yolunda, gerdanlığı vermeyen kız vedayı babasının elinde, uzaktan yapar.',

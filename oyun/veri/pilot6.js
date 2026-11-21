@@ -165,7 +165,7 @@ window.BOLUMLER = window.BOLUMLER || {};
   /* Tur 28 (B6 anlatı 2): "yalnız" kapıdaki tehdidi siliyordu */
   /* Tur 29 (B6 anlatı 5): mabeyn kapısını kendisi kapayan kıza seçilmemiş özlem yüklenmez */
   var KAPANIS = { eger: (S) => S.bayrak.p6_yakin === 'cik',
-    ise: [['an', 'Süha Bey mabeynde gördüklerini sabah kime söyleyecekti? Mabeyn kapısını Feride kendisi kapamıştı.']],
+    ise: [['an', 'Süha Bey mabeynde gördüklerini sabah kime söyleyecekti? Feride, Kenan\'a yaklaşmadan çıkmıştı.']],
     degilse: [['an', 'Süha Bey mabeynde gördüklerini sabah kime söyleyecekti? Feride gözlerini kapayınca yalnız mabeyn kapısını düşündü.']] };
   /* Tur 29 (B6 görsel 7): kapıyı içeriden tutan / açmayan kızın gece anı (an_kapi_kapali, resmi üretimde) */
   var KAPI_KAPALI = { cizim: 'an_kapi_kapali', ses: false };
@@ -386,10 +386,10 @@ window.BOLUMLER = window.BOLUMLER || {};
           izle: 'Hatice\'nin bahçede uzattığı şişe, o gece kimin bardağına gireceğini henüz söylememişti.',
           senet: 'Senet lafı Nabi Bey\'i ayıltmamış, yalnızca yönünü değiştirmişti.',
           nimet: 'Nimet uyandırıldığında başörtüsünü bağlamaya bile durmamıştı.',
-        }[son5(S)] || 'Nabi Bey o gece de içmişti.'),
+        }[son5(S)] || 'Nabi Bey Feride’nin karşısındaydı.'),
         /* GPT T25 Kenan B6 (sürük 1): açılış 3 satırın altına inemez (benzetim sınırı 3–5); ilk seçim romandaki
            "Kıskanıyorum diyemiyor musun" repliğine bağlı olduğu için öne alınamadı → yapısal not */
-        'Nabi Bey ablasının evinde kapı çalmayı hiç öğrenmemişti. O gece de önce feneri, sonra kendisi geldi.',
+        'Feride geri çekilmedi.',
         /* Doğrulama gece b5-8 (6. anlatı): bahçede başlayan yolda sahne odada değil; kapı satırı bahçeye uyar */
         (S) => (son5(S) === 'indi'
           ? 'Bahçede Feride\'yi koruyacak ne bir kapı vardı ne bir eşik.'
@@ -412,7 +412,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { mekan: 'bahce_gece' },
             'Bahçe kapısı içeriden sürgülü. Fener bana doğru sallanıyor.',
             /* Tur 30 (t30 B6 sürük 3): "Bu gece tek bir şey istiyorum" açılış kalıbı 5–7. bölümlerde yineleniyordu */
-            ['ic', 'Bu bahçeye kendi ayağımla indim. Kendi ayağımla çıkacağım.', 'kararli'],
+            ['ic', 'Bahçe kapısını açtırmalıyım.', 'kararli'],
           ], degilse: [
             { eger: (S) => son5(S) === 'senet', ise: [
               { efekt: 'adim' },
@@ -617,6 +617,8 @@ window.BOLUMLER = window.BOLUMLER || {};
       {
         id: 'p6_nabiz', mekan: 'konak_sofa', tetik: 'giris', kosul: (S) => S.gorev === 1, sahne: [],
         adimlar: [
+          { muzik: 'sessiz', kes: true, durak: 900 },
+          ['an', 'Feride’nin dizleri titriyordu. Lambanın ışığında bir süre soluklandı.'],
           /* Ara sayfa sahneyi temizler; Süha lambasıyla sofada (anlatı denetimi T1) */
           { goster: ['suha', 'notr'] },
           /* 5. bölümde konan kapı/refakat şartı ve hekim saatinin tanığı */
@@ -733,7 +735,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ] },
               { m: '“Perihan Hanım\'ın kalbini de böyle mi dinlerdiniz?”', bayrak: { p6_nabiz: 'calibe' }, iz: 'Süha Bey\'in eski yarasına dokundun. O adı yanında bir daha anma.', adimlar: [
                 /* Tur 29 (B6 oynanış 2): temas olmadığı açık */
-                'Başı göğsüme inmeden durdu. Yüzü bir anda yaşlandı.',
+                'Başı göğsüme inmeden durdu.',
                 ['suha', 'Dinlerdim. Hiç benim için atmadı.', 'mahzun'],
                 /* Tur 30 (t30 B6 anlatı b1): söylenti Süha'nın kendi ağzıyla doğrulandı; koz kaynağı güncellenir */
                 { kozKaynak: [GECMIS, 'Nabi Bey söyledi; Süha Bey kendi ağzıyla doğruladı'] },
@@ -764,6 +766,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['suha', 'Bileğinizi verin. Önce nabız, sonra kalbi dinlemem lazım.', 'notr'],
             { soru: 'Elini uzattı. İzin bekliyor.', secim: [
               { m: 'Bileğini ver; başını göğsüne koymasına da izin ver.', etki: { suha: 7 }, bayrak: { p6_nabiz: 'dinle' }, adimlar: [
+                { muzik: 'suha' },
                 ...NABIZ,
                 { eger: nimetYaninda, ise: [
               /* Tur 31 (t31_b05_08 B6 oynanış 1): tanık önünde temasın bedeli */
@@ -778,6 +781,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ] },
               { m: 'Bileğini ver. Sonra elini al, kalbinin üstüne kendin koy.', etki: { suha: 8 }, bayrak: { p6_nabiz: 'el' }, adimlar: [
                 /* Tur 32 (B6 görsel 4): 'el' dalında an resmi bileği değil, göğüsteki eli gösterir (resmi gelene kadar an_nabiz) */
+                { muzik: 'suha' },
                 NABIZ[0], NABIZ[1],
                 'Elini alıp göğsüme, kalbimin üstüne koydum.',
                 { resimVarsa: true, eger: (S) => resimVar('an_nabiz_el') && anUyar(S, 'an_nabiz_el'), ise: [{ cizim: 'an_nabiz_el' }], degilse: [{ cizim: 'an_nabiz' }] },
@@ -791,6 +795,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['suha', 'Yapın.', 'gulumser'],
               ] },
               { m: 'Yalnız bileğini ver: “Kalbim bana kalsın. Perihan Hanım\'ı anlatın.”', etki: { suha: 4 }, bayrak: { p6_nabiz: 'sor' }, iz: 'Süha Bey Perihan Hanım\'ı kendi ağzıyla anlattı. Hikâyenin yarısı artık sende.', adimlar: [
+                { muzik: 'suha' },
                 ...NABIZ,
                 ['f', 'Bileğimle yetinin. Kalbim bana kalsın, Perihan Hanım\'ı anlatın.', 'kararli'],
               ['suha', 'On yedimdeydim. “Çıplak” dedi, zengin bir dul buldu.', 'mahzun'],
@@ -820,7 +825,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           { gorev: 2 },
           { ara: { mekan: 'fazila_oda', yer: 'Feride\'nin odası · sabaha karşı', satirlar: [
             'Feride odasına döndüğünde ilk horozlar ötüyordu.',
-            'Konakta uyuyanlar uyudu; o gece uyanık kalanlar ise birbirini artık başka gözle görüyordu.',
           ] } },
         ],
       },
@@ -830,7 +834,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         id: 'p6_uykusuz', mekan: 'fazila_oda', tetik: 'giris', kosul: (S) => S.gorev === 2, sahne: [],
         adimlar: [
           /* Feride aktif (mercek_feride; b6 Ö8): titreme eşikte değil, kapı kapanınca */
-          ['an', 'Feride\'nin dizleri ancak kapıyı ardından kapayınca titredi. Eşikte titrememişti.'],
+
           'Annemin resmi karşımda; mum dibine kadar yanmış.',
           /* Sürükleyicilik T1 (b4_5_6 6.4): acındırmadan kavrayışa; iç ses kısaldı, seçimin sorusu gözyaşıyla değil mumla */
           /* Tur 29 (B6 anlatı 1; şüphe ≠ hüküm): Kenan yolunda söylentiyi yalnız Süha'nın "Dinlerdim"i doğrular;
@@ -859,7 +863,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Diyalog T1 (D4): faiz/pahalı Remzi'nin sözlüğü; Feride'nin sesinde bakış */
               ['ic', 'Sabah sofraya gelirse yüzüne bakacağım. Bu geceyi unutmuş gibi yapamayacak.', 'kararli'],
             ] },
-            { m: 'Kapına sürgü taktır. Kendi elinle.', bayrak: { p6_karar: 'surgu' }, iz: 'Sabah kapına içeriden bir sürgü takılacak. Onu yalnız sen çekeceksin.', adimlar: [
+            { m: 'Kapına içeriden sürgü taktır.', bayrak: { p6_karar: 'surgu' }, iz: 'Sabah kapına içeriden bir sürgü takılacak. Onu yalnız sen çekeceksin.', adimlar: [
               ['ic', 'Dışarıdaki mandal onların. Sabah marangoz içeriye benim sürgümü takacak.', 'kararli'],
             ] },
           ] },
@@ -944,7 +948,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { gizle: 'mefharet' },
           ], degilse: [{ eger: (S) => b(S).p6_karar === 'baba', ise: [
             /* Diyalog T1 (b5_8 (b) vurucu an): açıklama yerine somut nesne; suçlu sofrada, herkesin önünde */
-            ['f', 'Babacığım, dün gece karşıma sarhoş bir fener dikildi. Sahibi şimdi kahvesini içiyor.', 'kararli'],
+            ['f', 'Babacığım, Nabi Bey dün gece sarhoştu. Karşıma dikildi.', 'kararli'],
             { goster: ['sai', 'ciddi'] },
             { eger: (S) => b(S).p4_yalan === 'tuttu', ise: [
               /* Diyalog T1 (b5_8 6.6): romandaki "O kadar çıkışma" satırı boşa düşmesin; Sait önce kızına çıkışır */
@@ -1168,13 +1172,13 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 28 (B6 sürük 1, oynanış 2): sandık sahnesi zorunlu; ortadaki düz eğri burada döner ("Ada'da kim, kimin
              bardağına?"). Eskiden VAKIT_IKINDI'nin üç uğrağından biriydi (hak 1, kaçırılabiliyordu). */
           { ara: { mekan: 'konak_sofa', yer: 'Sofa · öğle sonu', satirlar: [
-            'Sandıkların açıldığı o öğle, konakta herkesin bir şey sakladığı öğle oldu.',
+            'Ada sandıkları öğleden sonra açıldı.',
           ] } },
           /* Seçim yok (karar sayısı 13–17 içinde kalsın; eski uğraktaki "görmemiş gibi geç" kalktı): Feride sorar, 7. bölüm
              p6_v_konyak'ı okur. Süha'nın çantası (Tur 27 sürük 2) aynı satırda. */
           { goster: ['reftar', 'somurtkan'] },
           /* Tur 29 (B6 anlatı 4): ara sayfa sahnenin göstereceğini önceden söylemiyor; Hatice ilk kez burada */
-          'Hatice Perihan Hanım\'ın sandığının başında. Yanında Süha Bey\'in çantası, elinde şala sarılı iki konyak.',
+          'Hatice\'nin elindeki şalın arasından iki konyak şişesi görünüyor.',
           ['f', 'Babam içmez Hatice. Kime bunlar?', 'kararli'],
           ['reftar', 'Misafir için küçük hanım. Hekim Bey\'in odasına; hanım kendi eliyle sardı.', 'somurtkan'],
           { etki: { vakar: 1, calibe_suphe: 1 } }, { bayrak: { p6_v_konyak: 'sor' } },
@@ -1474,7 +1478,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: (S) => b(S).p6_yakin === 'cik', ise: [
             ['an', 'Feride mabeyn kapısından adımını hızlandırmadan çıktı. Merdivende durdu, sonra yine yürüdü.'],
           ], degilse: [
-            ['an', 'Feride\'nin dizleri o gün ikinci kez titredi; bu kez korkudan değil.'],
+            ['an', 'Kenan gittikten sonra Feride bir süre mabeyn kapısında kaldı.'],
           ] },
           /* "Onun gözünden": anlatıcının ara sayfası (rehber §2; plan A8). Tur 27 (anlatı b): "Öte yanda" gece kapıdaki
              tehdidi kurar. Tur 30 (t30 B6 sürük b2): doruk ile kapı arasında art arda üç ara sayfa vardı; iki bakış tek
@@ -1524,7 +1528,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ], degilse: [
               ['f', 'Nabi Bey size ablasının talibi dedi.', 'kararli'],
             ] },
-            ['suha', 'Talibi değil; kölesi. Talip reddedilir, köle satılır.', 'mahzun'],
+            ['suha', 'Talibiydim. Beni istemedi.', 'mahzun'],
           ] },
           { soru: 'Romanı kapadı. Gözü bende.', secim: [
             { m: '“Hâlâ onu seviyor musunuz?”', etki: { suha: 6 }, bayrak: { p6_suha: 'sev' }, iz: 'Süha Bey Perihan Hanım\'a senin için yalan söylediğini açtı.', adimlar: [
@@ -1668,7 +1672,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { efekt: 'kapi_tikla' },
             'Kapıma iki kez vuruldu. Yavaşça.',
             /* T2 (mercek_doz B6a2, dil B6-4): anlatıcı Feride'nin satırını yinelemez */
-            ['an', 'Konakta bir kapıyı böyle çalan tek kişi vardı.'],
+            ['an', 'Kapı yeniden tıklandı.'],
             { goster: ['suha', 'notr'] },
             /* Tur 28: penceresine yüzünü tutan kızın lambasını da görmüştür (itibar bedeli görünür).
                Tur 29 (B6 oynanış b1): Ada'da selamlığa gönderilen hekim bu kararı anar */
@@ -1753,7 +1757,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             }[b(S).p6_son] || '') + ({
               adim: 'Yarım kalan adım hâlâ mabeyn kapısında.',
               ada: 'Vadem Ada; o da orada olacak.',
-              cik: 'Mabeyn kapısını ben kapadım; Kenan bekliyor.',
+              cik: 'Kenan\'a yaklaşmadan mabeynden çıktım. Süha Bey bizi görmüş.',
             }[b(S).p6_yakin] || 'Alnımda hâlâ Kenan\'ın alnı.') },
           ], degilse: [
             /* Tur 29 (B6 ses 7): oda gecesi 'gece'; 'suha' vuruştan sonra girer (tehlike yeni müzikle gelir) */
@@ -1766,7 +1770,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               'Kapıma iki kez vuruldu. Yavaşça.',
             ] },
             /* Tur 33 (B6 ses 1): 'suha' kapıda girmez; "Süha." anında doruk zaten var */
-            ['an', 'Konakta bir kapıyı böyle çalan tek kişi vardı.'],
+            ['an', 'Kapı yeniden tıklandı.'],
             { goster: ['suha', 'notr'] },
             /* Tur 27 (oynanış 3): koparılan sayfa kapıda karşılık bulur.
                Tur 29 (B6 sürük b4): topuğu kullanan kızda açılışın topuğu doruğa bağlanır */
@@ -1914,7 +1918,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         : 'Nabi Bey, Süha Bey\'in Perihan Hanım\'ın eski talibi olduğunu söyledi. ') + bedel);
       /* Tur 29 (B6 anlatı 6): defter rotanın romantik basamağını / mesafesini de söyler (oynanan eylem aynen) */
       var rotaEylem = m
-        ? ({ bekle: 'Mabeyn kapısında Kenan alnını alnıma dayadı. ', adim: 'Mabeyn kapısında adımı ben attım. ', ada: 'Kenan\'a vade verdim: Ada. ', cik: 'Mabeyn kapısını ben kapadım. ' }[f.p6_yakin] || '')
+        ? ({ bekle: 'Mabeyn kapısında Kenan alnını alnıma dayadı. ', adim: 'Mabeyn kapısında adımı ben attım. ', ada: 'Kenan\'a vade verdim: Ada. ', cik: 'Kenan\'a yaklaşmadan mabeynden çıktım. ' }[f.p6_yakin] || '')
         : ({ yaklas: 'Çardakta elini ben tuttum. ', cagir: 'Çardakta “Siz gelin” dedim, geldi. ', git: 'Çardaktan arkama bakmadan çıktım. ' }[f.p6_cardak] || '');
       if (m) c.push(rotaEylem + ({
         sor: 'Yarın Ada\'ya gidiyoruz. Kenan\'ı mabeynde gören Süha Bey orada ne isteyecek?',

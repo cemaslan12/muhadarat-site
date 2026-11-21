@@ -5,3 +5,7 @@ window.FIREBASE_AYAR = null;
 
 /* Apple ile giriş, Apple Developer üyeliği ve Firebase'de Apple sağlayıcısı açılınca true yapılır. */
 window.APPLE_ACIK = false;
+
+/* Google Analytics ölçüm kimliği ("G-" ile başlar). Boş kaldıkça ölçüm ve çerez izni kutusu görünmez.
+   Kurulum: site/OLCUM_KURULUMU.md */
+window.GA_KIMLIK = 'G-XHVGQX6RZ0';

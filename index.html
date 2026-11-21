@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="stil.css?v=4">
+<link rel="stylesheet" href="stil.css?v=5">
 </head>
 <body>
 
@@ -168,7 +168,7 @@
 
 <dialog id="gizlilik" class="pencere">
   <h2>Gizlilik</h2>
-  <p>Bu site reklam ya da izleme çerezi kullanmaz.</p>
+  <p>Bu site reklam çerezi kullanmaz. İzin verirseniz, oyunu geliştirmek için kaç kişinin hangi bölüme kadar oynadığını Google Analytics ile ölçeriz; bu ölçüme adınız ya da e-posta adresiniz girmez. İzin vermezseniz hiçbir ölçüm yapılmaz. <button type="button" class="baglanti" onclick="window.cerezIzniniSifirla && window.cerezIzniniSifirla()">Çerez tercihimi değiştir</button></p>
   <p><b>Misafir olarak</b> oynarsanız ilerlemeniz yalnız bu tarayıcıda saklanır; başka bir yere gönderilmez.</p>
   <p><b>Google ya da Apple ile</b> girerseniz adınız, e-posta adresiniz ve oyun kaydınız, ilerlemeniz cihazlar arasında korunsun diye Google Firebase sunucularında saklanır. Bu bilgiler başka bir amaçla kullanılmaz ve kimseyle paylaşılmaz. Hesabınızı ve kaydınızı giriş sayfasındaki "Hesabımı sil" ile istediğiniz an silebilirsiniz.</p>
   <form method="dialog"><button class="dugme">Tamam</button></form>
@@ -182,8 +182,10 @@
   <form method="dialog"><button class="dugme">Tamam</button></form>
 </dialog>
 
-<script src="pwa.js?v=4"></script>
-<script src="veri.js?v=4"></script>
-<script src="site.js?v=4"></script>
+<script src="firebase-ayar.js?v=5"></script>
+<script src="olcum.js?v=5"></script>
+<script src="pwa.js?v=5"></script>
+<script src="veri.js?v=5"></script>
+<script src="site.js?v=5"></script>
 </body>
 </html>

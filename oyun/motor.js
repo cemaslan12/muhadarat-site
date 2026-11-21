@@ -1166,10 +1166,20 @@
     gecmis.push({ ad: '', metin: (metin + (alt ? ' ' + alt : '')).replace(/\n/g, ' ') });
     if (gecmis.length > 80) gecmis.shift();
     ic.innerHTML = bicimle(metin).replace(/\n/g, '<br>') + (alt ? '<div class="kucuk"><br>' + bicimle(alt).replace(/\n/g, '<br>') + '</div>' : '');
+    const devam = document.createElement('button');
+    devam.type = 'button';
+    devam.className = 'dugme';
+    devam.textContent = 'Devam ›';
+    ic.appendChild(devam);
     kart.hidden = false;
     SES.efekt('kart');
     $('#diyalog').hidden = true;
-    await new Promise((coz) => { kart.onclick = () => { kart.onclick = null; coz(); }; });
+    await new Promise((coz) => {
+      const bitir = () => { kart.onclick = null; devam.onclick = null; coz(); };
+      kart.onclick = bitir;
+      devam.onclick = (ev) => { ev.stopPropagation(); bitir(); };
+      devam.focus({ preventScroll: true });
+    });
     kart.hidden = true;
   }
 
@@ -1238,7 +1248,15 @@
     if (!sessiz) SES.efekt(ustYazi ? 'odul' : (/·\s*Süha\b/.test(c.alt || '') ? 'an_koyu' : 'an'));
     $('#diyalog').hidden = true;
     if (yeni) gunlugeYaz('Özel çizim açıldı: ' + c.ad);
-    await new Promise((coz) => { kart.onclick = () => { kart.onclick = null; coz(); }; });
+    const devam = document.createElement('button');
+    devam.type = 'button'; devam.className = 'dugme'; devam.textContent = 'Devam ›';
+    ic.appendChild(devam);
+    await new Promise((coz) => {
+      const bitir = () => { kart.onclick = null; devam.onclick = null; coz(); };
+      kart.onclick = bitir;
+      devam.onclick = (ev) => { ev.stopPropagation(); bitir(); };
+      devam.focus({ preventScroll: true });
+    });
     kart.hidden = true;
     kart.classList.remove('cizim');
   }
@@ -1466,7 +1484,11 @@
     // { ortam: 'o_araba' } o döngüyü çalar, { ortam: 'mekan' } fonun kendi ortamına döner; fon değişince kendiliğinden kalkar
     if (Object.prototype.hasOwnProperty.call(a, 'ortam')) { try { if (SES.ortamZorla) SES.ortamZorla(a.ortam); } catch (e) { /* ses yoksa oyun sürer */ } return; }
     // Sahne içinde müzik değişimi: { muzik: 'gerilim' }; { muzik: null } bölümün ortam müziğine döner
-    if (a.muzik !== undefined) { SES.muzik(a.muzik || SES.ortam(S.bolum, S.faz), true); return; }
+    if (a.muzik !== undefined) {
+      SES.muzik(a.muzik || SES.ortam(S.bolum, S.faz), true, !!a.kes);
+      if (a.durak) await new Promise(r => setTimeout(r, Math.min(2000, Math.max(0, a.durak))));
+      return;
+    }
     // Işık/sarsıntı efektleri görüntüde, öbürleri ses tablosunda
     if (a.efekt) { if (['fisek', 'kandil', 'titre'].includes(a.efekt)) await isikEfekti(a.efekt); else SES.efekt(a.efekt); return; }
     // Eşyanın yeri değişince kozun kaynağını güncelle: { kozKaynak: ['koz adı', 'Çamın dibine gömdüm'] }
@@ -1543,7 +1565,7 @@
       // (keşfin penceresi: kesif adımından bir sonraki seçime ya da olayın sonuna dek). kalici: true olan kalır.
       const oncekiKesifler = kesifler.filter((x) => !x.k.kalici);
       // Koşul ve koz kilidi secimYap'ta süzülür (secenekDurumu); keşiften dönünce yeniden süzülür
-      const sec = await secimYap(a.soru, a.secim);
+      const sec = await secimYap(typeof a.soru === 'function' ? a.soru(S) : a.soru, a.secim);
       oncekiKesifler.forEach((x) => { if (kesifler.includes(x)) kesifKaldir(x); });
       konusanId = null; kisileriCiz();
       // Kararı bölüm sonu özetine yaz
@@ -2746,7 +2768,7 @@
       } catch (e) { /* koşul bozuksa an listelenir */ }
       return true;
     };
-    const kacan = Object.keys(b.anIpuclari || {}).filter((id) => erisilir(id) && !reddetti(id) &&!(S.cizimler || []).some((c) => c === id || c === id + '_sabah') &&
+    const kacan = Object.keys(b.anIpuclari || {}).filter((id) => erisilir(id) && !reddetti(id) &&!(S.cizimler || []).some((c) => c === id || c === id + '_sabah' || (id === 'an_topuk' && /^an_topuk_bahce(?:_|$)/.test(c))) &&
       // Tur 28 (ortak istek B1–4 §2): resmi henüz olmayan dal türü (an_araba_josephine) atlandıysa temel an da yaşanmıştır
       !(S.cizimAtlanan || []).some((c) => c === id || c.indexOf(id + '_') === 0)).map((id) =>
       '<p class="kacan-an">🔒 <b>' + bicimle((V.cizimler[id] || {}).ad || 'Kilitli an') + '</b> — ' + bicimle(b.anIpuclari[id]) + '</p>').join('');
@@ -2812,7 +2834,7 @@
 
   async function bolumSonu() {
     S.bolumBitti = true;
-    SES.muzik('baslik');
+    // Bölümün son sahnesi ve sezonun kendi kapanış parçası sürer. Başlık yalnız başlık ekranında çalar.
     kaydet();
     $('#diyalog').hidden = true;
     const b = bolum();

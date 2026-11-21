@@ -54,14 +54,14 @@
        p10_kapi: Kenan yolunda yaslı gece; suha teması yalnız tıklatmayla (pilot) girer (B10 ses 2)
        p12_kahve: sabah selamlığı müziksiz; suha Süha içeri girince (pilot) (B12 ses 1)
        acilis116: finalin açılışı başlık müziği değil, hüküm gününün gerilimi (t33_b13_16 B16 ses) */
-    acilis101: 'ev', p1_ayna: 'ev', p1_calibe: 'perihan', p1_reftar: 'sessiz', p1_mukaddem: 'romantik', p1_suha: 'vals_uzak', p1_kanca: 'gerilim',
+    acilis101: 'ev', p1_ayna: 'ev', p1_calibe: 'perihan', p1_reftar: 'sessiz', p1_mukaddem: 'romantik', p1_suha: 'vals_uzak', p1_kanca: 'sessiz',
     p2_oda: 'ev', p2_sofra: 'perihan', p2_mefharet: 'ev', p2_piyano: 'ev' /* Tur 28: piyano çalınınca başlar (pilot2 adımı) */, p2_nimet: 'gece', p2_koridor: 'huzun' /* Tur 29 */,
     p3_sabah: 'ev', p3_josephine: 'ev', p3_aksam_muk: 'romantik', p3_aksam_suha: 'suha', p3_giyin: 'ev',
     p3_toren: 'vals', p3_sari: 'perihan', p3_remzi: 'ev', p3_gece: 'gece',
     p4_sabah: 'ev', p4_kahve: 'gerilim', p4_giyin: 'ev', p4_fevkiye: 'sessiz', p4_munevver: 'ev', // Tur 28 (B1–4 ortak istek)
     p4_kapi: 'ev', p4_araba: 'suha', p4_gece: 'gerilim',
     p5_sabah: 'ev', p5_giyin: 'ev', p5_cardak: 'ev', p5_remzi: 'ev', p5_aksam: 'perihan', p5_gece: 'gece',
-    p6_gece: 'gerilim', p6_nabiz: 'suha', p6_uykusuz: 'gece', p6_kahvalti: 'perihan', p6_fevkiye: 'ev', p6_remzi: 'ev',
+    p6_gece: 'gerilim', p6_nabiz: 'sessiz', p6_uykusuz: 'gece', p6_kahvalti: 'perihan', p6_fevkiye: 'ev', p6_remzi: 'ev',
     p6_mabeyn: 'ev', p6_cardak: 'suha', p6_son: 'gece',
     // 7: açılış daha İstanbul'da (ada değil ev); Hatice'nin hıçkırıklı itirafı hüzün (ses_t1 5-2)
     acilis107: 'ev', p7_sabah: 'ev', p7_vapur: 'ada', p7_iskele: 'ada', p7_itiraf: 'huzun', p7_aksam: 'perihan', p7_gece: 'gece',
@@ -142,7 +142,16 @@
   // olmayan başka ad da susturur (eski davranış), ama dramatik sessizlik için adı 'sessiz'dir (ses_t1 5-7).
   // yeniden (motor: sahne içi { muzik } adımı ya da yeni olayın başı): bitmiş tek seferlik parça açıkça yeniden
   // istenince baştan çalar (Tur 27: aynı olayda ikinci doruk adımı sessiz kalıyordu). uyandir()/ayar isteği bunu vermez.
-  function muzik(ad, yeniden) {
+  function muzik(ad, yeniden, hemen) {
+    if (ad === 'sessiz' && hemen) {
+      clearTimeout(gecisZamani); gecisZamani = null; istenen = null; simdiki = null; tekBitti = null;
+      Object.values(calar).forEach(c => {
+        clearTimeout(c.durdur);
+        if (c.kazanc && ctx) { c.kazanc.gain.cancelScheduledValues(ctx.currentTime); c.kazanc.gain.setValueAtTime(0, ctx.currentTime); }
+        c.el.pause();
+      });
+      return;
+    }
     if (ad === 'sessiz') ad = null;
     if (ad && !PARCALAR.includes(ad)) ad = null;
     if (yeniden && ad && tekBitti === ad) tekBitti = null;

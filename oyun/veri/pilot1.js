@@ -64,12 +64,11 @@ window.BOLUMLER[101] = {
 
   acilis: [
     /* Sezon açılışı: oyuncuyu dünyaya ve aileye yerleştiren anlatı */
-    { anlati: { gorsel: 'anlati_sezon1', baslik: 'Muhadarat · Birinci Sezon', satirlar: [
+    { anlati: { gorsel: 'anlati_sezon1', baslik: 'İstanbul · 1893', satirlar: [
       /* Sürükleyicilik T1 (S4, B1-7): açılış 3 satır; soru "söz ayakta kalır mı" */
-      '1893 İstanbul\'unda, Boğaz\'ın konaklarında her kızın kaderi bir söze bağlıydı. Sait Efendi\'nin kızı {b}Feride{/b}\'ninki, Münevver Hanım\'ın oğlu {b}Kenan{/b}\'a bağlanmıştı.',
+      'Feride bir yıldır sözlü olduğu Kenan\'ı bugün aynı düğünde görecekti.',
       /* GPT T25 Kenan (B1 anlatı 1): madalyon ve elbise burada değil, hazırlıkta tanıtılır; Perihan'ın huyu ara sayfada */
-      'Annesi Behiye Hanım öleli yıllar olmuştu. Konaktaki yerini babasının yeni hanımı {b}Perihan{/b} almıştı.',
-      'Feride on sekizindeydi. Söz bir yıl önce kesilmişti ve o gün bir düğün evinde, yüz hanımın gözü önünde tartılacaktı.',
+      'Düğündeki hanımlar bu karşılaşmayı bekliyordu.',
     ] } },
     /* Anlatı rehberi (notlar/anlati_rehberi.md): sahneler arası anlatıcının ara sayfası */
     { ara: { mekan: 'fazila_oda', yer: 'Sait Efendi\'nin konağı · sabah', satirlar: [
@@ -92,7 +91,7 @@ window.BOLUMLER[101] = {
         'Araba kapıda bekliyor. Bugün her yelpaze aynı şeyi soracak: sözlün nerede?',
         /* Tur 32 (B1 diyalog 1): tema cümlesi yerine Feride'nin kendi sorusu */
         ['ic', 'Akşam döndüğümde sözüm hakkında başkaları mı karar vermiş olacak?', 'endiseli'],
-        { soru: 'Aynadaki kıza ne diyeceğim?', secim: [
+        { soru: 'Düğüne hangi tavırla gideceğim?', secim: [
           { m: '“Bugün kimse beni acındırmasın.”', bayrak: { p_tavir: 'dik' }, adimlar: [
             ['ic', 'Çenemi kaldırdım; Nimet girerse yüzümü böyle bulsun.', 'kararli'],
           ] },
@@ -106,7 +105,7 @@ window.BOLUMLER[101] = {
         ] },
         { gizle: 'ayna' },
         { efekt: 'kapi' }, // Tur 27 (B1 ses 4): kapı çalınmadan açılır; gıcırtı
-        ['an', 'Nimet kapıyı çalmadan girdi. Behiye Hanım\'ın çocuklarını o büyütmüştü; bu odaya kapı çalarak girmezdi.'],
+        ['an', 'Behiye Hanım\'ın çocuklarını büyüten Nimet, kapıyı çalmadan girdi.'],
         { goster: ['mehves', 'notr'] },
         ['mehves', 'Perihan Hanım iki kere sordurdu hanımcığım.', 'notr'],
         ['ic', 'İki kere sordurduysa, üçüncüsünde kendisi gelir.', 'tebessum'],
@@ -242,7 +241,6 @@ window.BOLUMLER[101] = {
         'Yabancılardan biri beni baştan ayağa süzdü, öteki yalnız bileziğime baktı.',
         ['ic', 'Kumaş tartar gibi tartıyorlar beni. Sözlü olduğumu bilmiyorlar mı?', 'endiseli'],
         ['calibe', 'Feride kızım, tülüm söküldü, iğne de Hatice\'de. Git bul şu kızı.', 'gulumser'],
-        ['ic', 'Hanımların gözü önünde beni hizmetçi aramaya yolluyor.', 'ofkeli'],
         { soru: 'Perihan Hanım gülümseyerek bekliyor.', secim: [
           { m: '“Peki efendim.”', bayrak: { p_boz: false }, iz: 'Perihan Hanım\'ın yolladığı yere gidiyorsun, gözün açık.', adimlar: [
             ['f', 'Peki efendim.', 'kararli'],
@@ -332,7 +330,7 @@ window.BOLUMLER[101] = {
         ['an', 'Yelpazelerin sesi arkada kaldı; Feride hizmetçilerin kullandığı arka bahçeye geçti.'],
         /* Tur 27 (B1 anlatı 3): konum raporu değil, sahnenin gösteremediği bilgi */
         /* Tur 28 (B1 anlatı 3; GPT A2): özne açık; ilişkinin sırrı sahnede, anlatıcıda değil */
-        ['an', 'Çeşmenin başında Hatice ile Nabi Bey konuşuyordu. Biri Perihan Hanım\'ın hizmetçisi, öbürü kardeşiydi.'],
+        ['an', 'Çeşmenin başında Hatice ile Nabi Bey konuşuyordu.'],
         ['nabi', 'Akşam arka kapı açık kalsın.', 'notr'],
         ['reftar', 'Hanım duyarsa beni kapı dışarı eder.', 'korkmus'],
         /* Tur 28 (B1 sürük 1): ifşanın yarısı ortada duyulur; arabada öbür yarısı (kime, iki gün) */
@@ -417,11 +415,11 @@ window.BOLUMLER[101] = {
         ['sefik', 'Abla! Bak kim gelmiş!', 'sevincli'],
         /* Tur 27 (B1 anlatı 10'a): Kenan'ın girişine sahnenin gösteremediği bir geçmiş */
         /* Tur 28 (B1 anlatı 4): "o günden beri" tek anlamlı; Şefik'e giden kitap sitemi önceden hazırlar */
-        ['an', 'Söz bir yıl önce ikisine sorulmadan kesilmişti. Kenan o günden beri yalnız Şefik\'e kitap yollardı.'],
+        ['an', 'Kenan söz kesildiğinden beri kitaplarını yalnız Şefik\'e yollardı.'],
         /* Tur 32 (B1 görsel 6): ana portre sırıtıyor; merdivendeki çekingen adam elinde kitapla */
         { goster: ['mukaddem', 'utangac'] },
         /* Tur 30 (GPT B1 A1): karşılaşma istek değildir; seçimden önceki iç ses nötr, utanma seçilen flörtten sonra */
-        ['ic', 'Aramızda dört basamak var.', 'dusunceli'],
+        ['ic', 'Aramızda merdiven var.', 'dusunceli'],
         { soru: 'Göz göze geldik.', secim: [
           { m: 'Gözlerimi kaçır.', etki: { mukaddem: 4 }, bayrak: { p_bakis: 'kacirdi' }, adimlar: [
             'Yere baktım. O da aynı basamağa baktı.',
@@ -549,7 +547,7 @@ window.BOLUMLER[101] = {
           'Limonluk ılık. Cam kapıyı ardımdan kapadım.',
           ['ic', 'Camdaki gölge yok olmuş. Yanıldım mı?', 'saskin'],
         ] },
-        ['an', 'Feride limon kolonyasının kokusunu tanıyordu. Süha Bey, Perihan Hanım\'ın amcazadesi, bir aydır konağın hekimiydi.'],
+        ['an', 'Feride limon kolonyasının kokusunu tanıyordu.'],
         { goster: ['suha', 'notr'] },
         { eger: (S) => !!S.bayrak.p1_rota_ret, ise: [
           ['suha', 'Bahçeye dönüyordunuz. Bir dakika gecikseniz kimse fark etmez.', 'soguk'],
@@ -721,7 +719,6 @@ window.BOLUMLER[101] = {
             ['f', 'Mesut ol.', 'tebessum'],
             ['gelin', 'Herkes öyle diyor.', 'endiseli'],
             /* Tur 33 (B1 sürük 10'a): gelinin "bu gece"sine Feride'nin kendi "iki gün"ü */
-            ['ic', 'Onun bir gecesi var. Benim iki günüm.', 'dusunceli'],
           ] },
           { m: '“Korkuyor musun?”', etki: { itibar: 2 }, bayrak: { p_gelin: 'sordu' }, adimlar: [
             { muzik: 'sessiz' }, // Tur 28 (B1 ses 10'a): bölümün en içten satırı vals'tan ayrılır; Perihan girince onun teması
@@ -848,7 +845,7 @@ window.BOLUMLER[101] = {
         ['an','Yaldızlı bir kupa, Sait Efendi\'nin arabasının önüne yan durmuştu.'],
         'Arabamıza bindim. Perdenin aralığından yalnız yaldız görünüyor.',
         ['arabaci', 'Yol verin beyim, hanımlar bekliyor.'],
-        ['an', 'Kupadan genç bir adam indi. Remzi Bey\'in adı henüz kimsenin dilinde değildi, parası ise çoktan herkesin.'],
+        ['an', 'Kupadan genç bir adam indi.'],
         { goster: ['remzi', 'ana'] },
         /* Tur 29 (B1 diyalog 10'a): gösterişin fiyatı söylenir */
         ['remzi', 'Al şunu, sus. Bir mecidiye, beklemenin parası.', 'ana'],
@@ -1059,7 +1056,7 @@ window.BOLUMLER[101] = {
           { kart: 'Perdeyi o indirdi. Ama camın ardında kimin durduğunu ikimiz de biliyoruz.' },
         ], degilse: [{ eger: (S) => S.bayrak.p_rota === 'mukaddem', ise: [
           /* Tur 29 (B1 sürük 10'a): Kenan dalında kart yolun kendi cümlesi */
-          { kart: 'Merdivende aramızda dört basamak vardı. Şimdi iki gün var; o bunu bilmiyor.' },
+          { kart: 'Merdivende karşılaşmıştık. Gerdanlığa iki gün var; o bunu bilmiyor.' },
         ], degilse: [
           { kart: 'Gülümsedim; perdenin ardındaki konuşmayı duyduğumu anlamasın.' },
         ] }] },

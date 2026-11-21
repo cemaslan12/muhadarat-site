@@ -89,10 +89,12 @@
   }
 
   async function iosTik() {
+    window.olcum && window.olcum('ana_ekran_dugmesi', { cihaz: 'ios' });
     if (uygulamaIci) return rehberGoster('uygulamaIci');
     rehberGoster(iosChrome ? 'iosChrome' : iosDiger ? 'iosDiger' : 'safari');
   }
   async function androidTik() {
+    window.olcum && window.olcum('ana_ekran_dugmesi', { cihaz: 'android' });
     if (istem) {
       istem.prompt();
       const s = await istem.userChoice;

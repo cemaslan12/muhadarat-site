@@ -262,10 +262,9 @@ window.BOLUMLER = window.BOLUMLER || {};
       /* 10. bölümün son satırı hemen karşılanır; anlatıcı sesi (rehber §5): önceki an + bölümün sorusu */
       { anlati: { gorsel: 'ada_sofa', baslik: 'Eşikte', satirlar: [
         /* Tur 33 (t33 B11 anlatı 1): kanca yinelenmez, karşılanır — tıklatılmadan açılan kapının anlamı (çapa korunur) */
-        'Adımlar Perihan Hanım\'ın kapısında durdu. Kapı tıklatılmadan açıldıysa, Perihan Hanım da uyumamış, birini bekliyordu.',
+        'Perihan Hanım kapıyı Süha Bey tıklatmadan açtı.',
         /* Tur 28 (t28_b09_12 B11 anlatı 1): ikinci satır bölümün sorusunu kurar, açıklamaz (GPT B11-S1'in kaldırdığı
            açıklama dönmedi); seçimin sahibi Feride */
-        'Aralıktan göreceğini babasına mı söyleyecekti, yoksa saklayıp kullanacak mıydı?',
         /* Sürükleyicilik T1 (S4): atmosfer satırı kalktı; ilk seçim öne geldi. Tur 27b (GPT B11-S1): bölümün sorusunu
            açıklayan ikinci satır da kalktı; soru sahnede kurulur */
       ] } },
@@ -340,7 +339,8 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['an', 'Koridorun ucundaki kapı yeniden aralandı.'],
                 { goster: ['calibe', 'soguk'] },
                 ['calibe', 'Gece yarısı sofada ne işin var kızım?', 'ofkeli'],
-                ['sai', 'Kızım benim kapımdaydı hanım. Hayırını duydum, sabah konuşuruz.', 'notr'],
+                { muzik: 'sessiz', kes: true, durak: 700 },
+              ['sai', 'Kızım benim kapımdaydı hanım. Hayırını duydum, sabah konuşuruz.', 'notr'],
                 { gizle: 'calibe' }, { gizle: 'sai' },
               ] },
               { m: '“Babamla ben yalnız konuşurum. Siz kapıdan çekilin.”', bayrak: { p11_ilk: 'yalniz' }, iz: 'Babanla yalnız konuşma hakkını korudun; ama Süha ondan önce davranabilir.', adimlar: [
@@ -609,7 +609,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { gorev: 3 },
           /* Sait'in taşlıktaki tek satırlık gir-çıkı ara sayfaya taşındı (b11 Ö12): taşlıkta bir kişi azalır */
           { ara: { mekan: 'taslik', yer: 'Sait Efendi\'nin konağı · ikindi', satirlar: [
-            'Vapur Köprü\'ye yanaştığında öğle sıcağı kırılmıştı; vapurda görülen her şey konağa arabalardan önce varmıştı.',
+            'Vapur Köprü\'ye yanaştığında öğle sıcağı kırılmıştı.',
             /* Sürükleyicilik T1 (S5): düz ortaya "öte yanda" gerilimi; sırrı çözmez (vakitte yağlanmış sürgü) */
             /* Tur 33 (t33 B11 anlatı 4): vakitteki keşif (yağlanmış sürgü) önceden harcanmaz */
             'Perihan Hanım\'ın arabası yokuşu önde çıktı. Sandıklar inmeden kendi odasına değil, sofanın ucundaki sarı odaya çıktı.',
@@ -740,7 +740,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['ic', 'Hatice mutfakta. Babamın sözüyle kaldı; bu akşam bana yardım eder.', 'tebessum'],
           ] }] },
           /* Feride'nin planı: randevuyu biliyor, babanın dönüş saatini de */
-          ['ic', 'Ezan okununca Perihan Hanım sarı odada, babam sofrada olacak. O vakte kadar konak benim.', 'kararli'],
+          ['ic', 'Ezana kadar sarı odaya bakabilirim.', 'kararli'],
           { vakit: VAKIT_EZAN },
           /* Tur 28 (B11 sürükleyicilik 1): ezandan önce hiçbir iş yapılmadıysa tek seçimlik köprü (12 kararlı yollar).
              Kapıya bakan kız eşikteki keşfin bilgisini (sürgü sesi) önceden alır; sofrada 'surgu' seçeneği açılır. */
@@ -822,7 +822,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             ['ic', 'Dün gece kapımda bekleyen adam, şimdi Perihan Hanım\'ın eşiğinde.', 'mahzun'],
           ] }] },
-          ['an', 'Feride elini kapıdan çekmedi; geri dönmek, hiç duymamış olmak demekti.'],
+          ['an', 'Feride elini kapıdan çekmedi.'],
           /* Planın 2. adımı: kapıyı nasıl açacağım. Tur 27b (ortak istek; GPT B11 ses 10'a 2): kapıdan önce müzik çekilir,
              açılınca Perihan'ın teması girer */
           { muzik: 'sessiz' },
@@ -1006,7 +1006,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['calibe', 'Nabız saymayı nereden öğrendin?', 'ofkeli'],
               ['f', 'Süha Bey\'den.', 'tebessum'],
               /* GPT T24b 11 (10'a): iğnenin bedeli — Süha, Feride'nin onu artık hangi gözle gördüğünü anlar */
-              ['an', 'Süha Bey\'in suyu boğazına kaçtı; Feride\'nin gözünde artık ne olduğunu anlamıştı.'],
+              ['an', 'Süha Bey’in suyu boğazına kaçtı.'],
             ] },
             /* GPT Tur 21 ek, cevap 1: tepsiyi Hatice'den alıp eşikte "İki fincanınız" diyen kızın sofradaki karşılığı.
                Kazanç: Perihan hekimi beklediğini babanın önünde kendi ağzıyla kabul eder. Bedel: sabah kahvesi
@@ -1080,7 +1080,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { gizle: 'calibe' }, { gizle: 'suha' }, { gizle: 'sai' },
           { gorev: 6 },
           { ara: { mekan: 'fazila_oda', yer: 'Feride\'nin odası · gece', satirlar: [
-            'Yemek sessiz bitti. Feride merdiveni çıkarken ardından bakan gözleri saymadı; kaç çift olduğunu biliyordu.',
+            'Yemek sessiz bitti. Feride merdiveni çıktı.',
             /* Kenan yolu: öte yanda aşk ekseni (sırrı çözmez; 12. bölüm ikindi telgrafına köprü) */
             (S) => (muk(S) ? 'Selanik vapuru o saatte Ege\'nin karanlığındaydı. Güvertede uyumayan bir yolcu, Selanik\'ten yazacağı satırı ezberliyordu.' : null),
           ] } },
@@ -1092,7 +1092,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         id: 'p11_oda', mekan: 'fazila_oda', tetik: 'giris', kosul: (S) => S.gorev === 6, sahne: [],
         adimlar: [
           { muzik: 'gece' }, // Tur 28 (B11 ses 1): oda Süha'nın temasıyla açılmaz; Süha'nın teması kâğıtta gelir
-          'Her seste lambanın alevi eğildi. Elim yerinde durdu.', // Tur 33 (t33 B11 diyalog 7): "titre" yığılması
+          'Lambanın alevi eğildi.', // Tur 33 (t33 B11 diyalog 7): "titre" yığılması
           { eger: surguVar, ise: [
             { efekt: 'surgu' },
             /* Süreklilik: 7. bölümde Ada'ya taşınan sürgü sabah söküldü; İstanbul kapısına yeniden girer */
@@ -1111,10 +1111,10 @@ window.BOLUMLER = window.BOLUMLER || {};
             { muzik: 'romantik' },
             'Pencerenin önünde bir kandil duruyor. Kenan bu saatte Ege\'nin karanlığında olmalı.',
             { soru: 'Kandilin fitili parmağımın ucunda.', secim: [
-              { m: 'Kandili pencereye koy: “Selanik\'e kadar yansın.”', etki: { mukaddem: 6, calibe_suphe: 1 }, bayrak: { p11_kandil: 'yak' }, iz: 'Kandilin pencerende yanıyor; karşı kanattan da görünür.', adimlar: [
+              { m: 'Kandili pencereye koy: “Selanik\'e kadar yansın.”', etki: { calibe_suphe: 1 }, bayrak: { p11_kandil: 'yak' }, iz: 'Kandilin pencerende yanıyor; karşı kanattan da görünür.', adimlar: [
                 ['ic', 'Işığı buradan göremeyecek. Yine de kandili pencereye koydum.', 'mahzun'],
               ] },
-              { m: 'Kandili söndür; telgrafın satırını karanlıkta ezberden say.', etki: { mukaddem: 4 }, bayrak: { p11_kandil: 'ezber' }, adimlar: [
+              { m: 'Kandili söndür; telgrafın satırını karanlıkta ezberden say.', bayrak: { p11_kandil: 'ezber' }, adimlar: [
                 ['ic', '“Çanakkale\'deyim.” Karanlıkta da okunuyor.', 'mahzun'],
               ] },
               /* Tur 29 üçüncü dalga (GPT O11-1): özleme bağlanmayan bağımsız gece — koz/puan şartı yok, ilgi etkisi yok */
@@ -1134,7 +1134,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           'Kapıma iki kez, hafifçe vuruldu.',
           /* Oynanış T1 B6: Perihan'ın kuşkusu (eşik 8) kapıdaki tavrını değiştirir */
           { eger: (S) => (S.v.calibe_suphe || 0) >= 8, ise: [
-            ['an', 'Vuran Perihan Hanım\'dı. Sesinde artık kuşku yoktu; kızın neyi bildiğini biliyordu.'],
+            ['an', 'Vuran Perihan Hanım\'dı.'],
           ], degilse: [
             ['an', 'Vuran Perihan Hanım\'dı; kızın kapıyı açmasını beklemeden konuşmaya başladı.'],
           ] },
@@ -1223,14 +1223,17 @@ window.BOLUMLER = window.BOLUMLER || {};
           { gizle: 'pusula' },
           /* Tur 27 (B11 sürükleyicilik 3): kart çapa olduğu için değişmez; önündeki anlatıcı gecenin cevabına göre */
           { eger: (S) => b(S).p11_gece === 'sus', ise: [
-            ['an', 'O gece konakta üç kişi uyumadı. Kız fitili kısmış, ne zaman konuşacağını kendine saklamıştı.'],
+            ['an', 'Feride fitili kıstı. Sabah ne söyleyeceğini düşündü.'],
           /* Tur 28 (B11 anlatı 10'a): Kenan yolunda Perihan'ın elindeki "—K." kâğıdı son karede anılır */
           ], degilse: [{ eger: (S) => b(S).p11_not === 'perihan', ise: [
-            ['an', 'O gece konakta üç kişi uyumadı. Perihan Hanım\'ın çekmecesinde Kenan\'ın kâğıdı sırasını bekliyordu.'],
+            ['an', 'Kenan’ın kâğıdı Perihan Hanım’ın çekmecesindeydi. Feride sabah ne söyleyeceğini düşündü.'],
           ], degilse: [
-            ['an', 'O gece konakta üç kişi uyumadı. İkisi Feride\'nin kapısını düşünüyordu; Feride ise sabahı.'],
+            ['an', 'Feride sabah ne söyleyeceğini düşündü.'],
           ] }] },
-          { kart: 'Pusulayı lambanın yanına koydum. Sabah ikisini de dinletecek birini bulmalıyım.' },
+          { kart: function (S) {
+            var yer = { sakla: 'Pusulayı lambanın yanına koydum.', yaz: 'Pusulayı geri verdim.', yirt: 'Pusulası dört parça.' }[b(S).p11_suha_not] || '';
+            return yer + ' Sabah ne söyleyeceğime karar vereceğim.';
+          } },
           { bolumSonu: true },
         ],
       },

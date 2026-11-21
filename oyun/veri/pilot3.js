@@ -212,11 +212,11 @@ window.BOLUMLER = window.BOLUMLER || {};
     ['suha', '{i}O kâğıtla artık beni çağıramazsınız, efendim.{/i}', 'soguk'],
     /* Tur 28b (kök 3–4): koz kartı görgüyü, duyulanı ve çıkarımı ayrı söyler.
        Tur 29 (B3 anlatı 1): kart alıntıladığı söz söylendikten sonra açılır */
-    { koz: KAGIT, kaynak: 'Kendim gördüm', alt: 'Gördüm: Süha Bey eski bir kâğıdı mangalda yaktı. Duydum: “O kâğıtla artık beni çağıramazsınız.” Çıkarımım: Perihan Hanım onu o kâğıtla elinde tutuyordu.' },
+    { koz: KAGIT, kaynak: 'Kendim gördüm', alt: 'Süha Bey kâğıdı yaktı. “Artık beni çağıramazsınız” dediğine göre Perihan Hanım onu bununla elinde tutuyordu.' },
     { eger: yaziGordu, ise: [{ kozKaynak: [KAGIT, 'Kendim gördüm, yazı eğik ve sıktı, imzasız'] }] },
     /* GPT T23 (Süha 3b-2): yanan kâğıt Perihan'ı bitirmedi; Süha'nın özgürlüğü şüpheli kalır */
     /* GPT T24b Süha (B3 10'a-3): soru yerine Feride'nin kurduğu hedef */
-    ['ic', 'Kâğıt yandı ama Perihan Hanım yenilmiş gibi bakmıyor. Elinde başka ne var?', 'endiseli'],
+
     { soru: 'Aynada göz gözeyiz.', secim: [
       { m: 'Gözünü kaçırma. Sonra çekil.', etki: { suha: 5 }, bayrak: { p3_sari_son: 'bakti' }, adimlar: [
         'Bakışımı indirmeden bir adım geri çekildim. Önce o kaçırdı.',
@@ -489,7 +489,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           : (b(S).p2_koridor_kenan
             ? 'Dün gece Feride o aralık kapının önünden durmadan geçmişti. Ardından gelen Perihan Hanım ise orada bir ad duymuştu.'
             : 'Dün gece Feride, Perihan Hanım\'ı o kapıyı dinlerken görmüştü.')),
-        'O sabah konağa Beyoğlu\'ndan yeni bir mürebbiye bekleniyordu: {b}Madam Josephine{/b}. İyi ailelerde Fransız mürebbiye, piyano gibi, bir kızın değerini artırırdı.',
+        'O sabah konağa yeni bir mürebbiye bekleniyordu.',
         /* GPT T25 Kenan (B3 S1): tek soru — taş takılmadan Perihan'ın hamlesi; Behiye adı bu sorunun dönüşü olur */
         /* Tur 27 (B3 sürük 1): soru taş takıldıktan sonra cevap bulduğu için "taş takılmadan" kalktı */
         /* Tur 28 (B3 anlatı 1): 2. bölümün "o adı kimseye söylemedi" hükmüyle çelişmez */
@@ -680,7 +680,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { m: 'Kandili pencereye koy.', etki: { mukaddem: 6 }, bayrak: { p3_aksam: 'kandil', p3_aksam_tanik: true }, adimlar: [
               { efekt: 'kandil' },
               'Kandili pencerenin içine koydum. Karşıdaki ışık titredi, sonra kıpırdamadan yandı.',
-              ['ic', 'Gördü. Bir yıl tek satır yazmayan adam ışıkla cevap veriyor.', 'tebessum'],
+              ['ic', 'Bu kez kâğıt beklememe gerek kalmadı.', 'tebessum'],
               /* Doğrulama gece (B3 #5, 13 satır): "Bir süre öyle kaldık" satırı bu satıra katıldı */
               /* Tur 31: ışık alışverişi tek kez anlatılır (satır kaldırıldı) */
               /* GPT T29 (S3-1): öğretilmemiş bir kelime kesin haber gibi okunmaz; sezgi */
@@ -761,6 +761,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Tur 27b: bölümdeki tek alaysız gülümseme (suha_gulumser nadir) */
               ['suha', 'Demek buymuş. Yıllardır yanlış çalıyorum.', 'gulumser'],
               ['ic', 'Notayı mı diyor, başka bir şeyi mi?', 'endiseli'],
+              { efekt: 'piyano_tus' },
               'Ezgiyi baştan aldık, o sol eliyle, ben sağımla. Bu kez ikimiz de yanılmadık.',
               /* Doğrulama gece (B3): "yarın akşam" sözü ertesi akşam karşılanmıyordu; söz tarihsiz kaldı */
               ['suha', 'İkinci kıtayı artık yalnız çalmayacağım.', 'soguk'],
@@ -773,6 +774,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['f', 'İyi geceler dayı bey. Şarkının sonu sizde kalsın.', 'kararli'],
               ] },
               { muzik: 'piyano' }, // GPT T29 (SES3-1): doğru icra seste ayrışır (ayrı yanlış/doğru ezgi kaydı üretimde)
+              { efekt: 'piyano_tus' },
               'Arkamdan şarkıyı baştan çaldı. Bu kez doğru.',
               ['ic', 'Doğrusunu biliyormuş. Beni durdurmak için yanlış çalmış.', 'ofkeli'],
             ] },
@@ -799,11 +801,9 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Anlatı denetimi T1: anlatıcı sesinde; töreni önceden anlatmaz (ara sayfa yerine tam ekran: gün değişimi) */
             'Ertesi sabah büyük salona minderler dizildi. Konu komşuya ikindi daveti gitti.',
             /* Tur 27 (B3 anlatı 3): satır başına bir bilgi; konağın yerini akşam anlatısı zaten verir */
-            'Âdete göre gerdanlığı oğlan tarafının en büyük hanımı kendi eliyle takacaktı.',
-            'Bu kez o hanım {b}Münevver Hanım{/b}\'dı: Kenan\'ın annesi, Behiye Hanım\'ın can dostu.',
+            'Âdete göre gerdanlığı oğlan tarafının en büyük hanımı Münevver Hanım takacaktı.',
             /* Doğrulama gece (B3 #5, 13 satır): giydiren satırı anlatının son satırına katıldı */
             /* Tur 29 (B3 anlatı 3): satır başına bir cümle */
-            'Feride o sabah kutunun geleceğini biliyordu. Kilide kimin dokunacağını henüz söylememişti.',
             'Gelin olacak kızı kimin giydireceğine bile konakta Perihan Hanım karar verirdi.',
           ] } },
           { islev: (S) => { S.bayrak.p3_onceki = S.giyili; } },
@@ -861,7 +861,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Madalyon ne olacak?', secim: [
             /* Tur 28: madalyon_hal an resmi çeşidini seçer (ortak istek; 'yok' da _sakli gibi madalyonsuz) */
             { m: 'Kalsın. İkisi birlikte dursun.', etki: { vakar: 1 }, bayrak: { p3_madalyon: 'ikisi', madalyon_hal: 'acik' }, adimlar: [
-              ['ic', 'Biri annemden, biri yarından. Boynum ikisini de taşır.', 'kararli'],
+              ['ic', 'Annemin madalyonu da kalsın.', 'kararli'],
             ] },
             { m: 'Yakamın içine sakla.', bayrak: { p3_madalyon: 'gizli', madalyon_hal: 'sakli' }, adimlar: [
               ['ic', 'Zincir tenimde. Gerdanlık üstünde olacak, annem altında.', 'mahzun'],
@@ -875,7 +875,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { gizle: 'reftar' }, { gizle: 'mehves' },
           { efekt: 'adim' },
-          'Merdivenden inerken salonun uğultusu yükseldi; her basamakta biraz daha gelin oldum.',
+          'Merdivenden inerken salonun uğultusu yükseldi.',
           { gorev: 4 },
           { ara: { mekan: 'buyuk_salon', yer: 'Büyük salon · ikindi', satirlar: [
             'İkindi namazından sonra salon doldu. Kızlar gelinin yüzüne, hanımlar boynuna bakıyordu, Perihan Hanım ise herkesin yüzüne.',
@@ -962,7 +962,6 @@ window.BOLUMLER = window.BOLUMLER || {};
                 /* GPT T29 (D3-1): etiket yakınlığın derecesini söyler; teması uzatmadan almak ayrı şık (aynı p3_kutu, yeni bayrak) */
                 { m: 'Kutuyu al. Parmakların değince elini hemen çekme.', etki: { mukaddem: 7 }, bayrak: { p3_kutu: 'el' }, adimlar: [
                   'Kutu ağırdı. Parmaklarımız kadifenin altında değdi, ikimiz de çekmedik.',
-                  ['ic', 'Kutuyu tutuyordum; elimi çekmek için acele etmedim.', 'utanmis'],
                 ] },
                 { m: 'Kutuyu al, elini geri çek.', etki: { mukaddem: 5 }, bayrak: { p3_kutu: 'el', p3_kutu_cek: true }, adimlar: [
                   'Kutuyu aldım. Parmaklarımız değince elimi geri çektim.',
@@ -1062,7 +1061,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { gizle: 'gerdanlik' },
             { efekt: 'kapak' }, // Tur 33 (B3 ses 1): gerdanlık kilidi ince bir metal çıt; kapı anahtarı değil
             /* Tur 32 (B3 anlatı 3): Kenan yolunda da törende Perihan'ın bir hamlesi */
-            ['an', 'Perihan Hanım kalkıp kilidi bir kez yokladı. Parmakları ensede bir an fazla kaldı.'],
+            ['an', 'Perihan Hanım kalkıp kilidi bir kez yokladı.'],
             ['ic', 'Kilit ensemde kapandı. Perihan Hanım elini çekince omuzlarımı düzelttim.', 'mahzun'],
           ], degilse: [
             /* ===== Süha yolu: Perihan'ın iğnesi ve kilit ===== */
@@ -1171,7 +1170,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Sürükleyicilik T1 (S6, B3-9): an_gerdanlik, an_kilit'in hemen ardına düşmesin diye iç sesten sonraya alındı */
           { eger: muk, ise: [
             { eger: (S) => b(S).p3_soz === 'kilit', ise: [
-              ['ic', 'Kilidini o seçmiş. Kolay açılmasın diye.', 'utanmis'],
             ], degilse: [
               /* Tur 27b (GPT P1): kapıya gitmeyen ya da kutuyu dadıya aldıran kızın iç sesi o mesafeyi taşır */
               { eger: (S) => b(S).p3_kapi === 'nimet', ise: [
@@ -1187,7 +1185,9 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['ic', 'Elmaslar soğuk. Ensemde hâlâ onun parmaklarının izi.', 'endiseli'],
             ], degilse: [
               /* Tur 30 (B3 diyalog 9; karşılaşma ≠ istek): teması reddeden kızın iç sesi sıcaklık özlemi ima etmez */
-              ['ic', 'Elmaslar soğuk. Ensemde kimsenin izi yok, iyi.', 'kararli'],
+              { eger: (S) => b(S).p3_kilit === 'kendi', ise: [
+                ['ic', 'Kilidi kendim kapattım. Süha Bey elini sürmedi.', 'kararli'],
+              ], degilse: [ ['ic', 'Münevver Hanım beklediğim gibi taktı. Süha Bey elini sürmedi.', 'kararli'] ] },
             ] },
           ] },
           /* GPT T23 (Kenan 3b-1, Remzi 3b-2): tehlikeden önce yaşanmış bir sahiplenme; miras ile söz yan yana */

@@ -267,7 +267,7 @@
  "fpembe": {
   "gorsel": {
    "ana": "gorsel/karakter/g_fpembe_ana.webp?v=1794736975",
-   "dusunceli_gerdanlik": "gorsel/karakter/g_fpembe_dusunceli_gerdanlik.webp?v=1795177345",
+   "dusunceli_gerdanlik": "gorsel/karakter/g_fpembe_dusunceli_gerdanlik.webp?v=1795177350",
    "endiseli": "gorsel/karakter/g_fpembe_endiseli.webp?v=1795092252",
    "gerdanlik": "gorsel/karakter/g_fpembe_gerdanlik.webp?v=1795079590",
    "gulumseyen": "gorsel/karakter/g_fpembe_gulumseyen.webp?v=1795008080",
@@ -286,11 +286,11 @@
   "gorsel": {
    "aglamakli": "gorsel/karakter/g_fsade_aglamakli.webp?v=1795100982",
    "ana": "gorsel/karakter/g_fsade_ana.webp?v=1794736983",
-   "dusunceli_gerdanlik": "gorsel/karakter/g_fsade_dusunceli_gerdanlik.webp?v=1795177345",
+   "dusunceli_gerdanlik": "gorsel/karakter/g_fsade_dusunceli_gerdanlik.webp?v=1795177358",
    "endiseli": "gorsel/karakter/g_fsade_endiseli.webp?v=1795092265",
    "gerdanlik": "gorsel/karakter/g_fsade_gerdanlik.webp?v=1795100987",
    "gulumseyen": "gorsel/karakter/g_fsade_gulumseyen.webp?v=1795008081",
-   "kararli": "gorsel/karakter/g_fsade_kararli.webp?v=1795176911",
+   "kararli": "gorsel/karakter/g_fsade_kararli.webp?v=1795187358",
    "ofkeli": "gorsel/karakter/g_fsade_ofkeli.webp?v=1795008081",
    "sargili": "gorsel/karakter/g_fsade_sargili.webp?v=1795176247",
    "sargili_sal": "gorsel/karakter/g_fsade_sargili_sal.webp?v=1795176247",
