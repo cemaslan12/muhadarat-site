@@ -333,6 +333,10 @@
     kapi_vurus: () => { nota(70, 0.2, 'sine', 0.6); nota(150, 0.06, 'triangle', 0.35); hisirti(0.1, 700, 0.55, 240); },
     vapur_uzak: () => { nota(146.8, 1.6, 'sawtooth', 0.04); nota(147.6, 1.6, 'sine', 0.08); },
     piyano_yanlis: () => { nota(523.3, 0.55, 'triangle', 0.16); nota(554.4, 0.4, 'triangle', 0.13, 0.02); nota(493.9, 0.3, 'triangle', 0.08, 0.32); },
+    kagit_yirt: () => {
+      hisirti(0.13, 2300, 0.35, 5400);
+      hisirti(0.18, 2500, 0.28, 4800, 0.18);
+    },
     kagit_kivrilma: () => { hisirti(0.9, 2600, 0.12, 1800); for (let i = 0; i < 9; i++) hisirti(0.025, 3200 + Math.random() * 2600, 0.35 + Math.random() * 0.3, 0, 0.05 + Math.random() * 0.8); },
     etek: () => { hisirti(0.5, 3400, 0.22, 2200); hisirti(0.4, 5200, 0.1, 3600, 0.15); },
     sarsinti: () => { nota(55, 0.22, 'sine', 0.55); hisirti(0.18, 380, 0.45, 160); nota(92, 0.08, 'triangle', 0.22, 0.12); hisirti(0.12, 1300, 0.18, 900, 0.16); },

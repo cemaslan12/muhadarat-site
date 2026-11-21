@@ -344,7 +344,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* 12. bölüm: Feride'nin hükümden önceki son hamlesi (p12_son) babanın ilk sözünde karşılanır.
              T27b (GPT B13-A1): açık rıza itirazı sessizlikle birleşmez; babası sözü hatırlar, Feride kendi sesiyle sürdürür */
           { eger: kararHakki, ise: [
-            ['sai', 'Dün kararını o gün vereceğini söyledin. Bugün senden evet istemiyorum.', 'ciddi'],
+            ['sai', 'Dün kararını o gün vereceğini söyledin. Bugün senden evet istemiyorum.', 'mahzun'],
           ] },
           { eger: riza, ise: [
             ['sai', 'Dün imamın soracağı rızadan söz ettin. Cevabını imamdan önce ben istiyorum.', 'ciddi'],

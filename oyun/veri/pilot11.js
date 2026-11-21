@@ -1,7 +1,7 @@
 /* =========================================================================
    PİLOT — YENİ BİÇİMDE 11. BÖLÜM: EŞİKTE  (bölüm no 111)
    İskelet: notlar/bolum1_pilot_iskelet.md (11. bölüm: Eşikte, Perihan ile Süha; kanca: "Gördüğünü
-     biliyorlar"). Ad, 10. bölümün siradaki.ad alanından. Sıradaki: 12. bölüm "Diz Çöken Adam"
+     biliyorlar"). Ad, 10. bölümün siradaki.ad alanından. Sıradaki: 12. bölüm "Sarı Odanın Eşiği"
      ("Süha'ya varacaksın").
    Tek soru: "Gördüğümü bildikleri hâlde bu evde kim susacak, kim konuşacak?"
    Romandan (§1, 23–24; olay haritası 28–31): Ada'dan İstanbul'a dönüş; üvey anne ile hekimin "süt
@@ -406,7 +406,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Talip sabah istenir (ret yollarında gece ya da şafakta istemişti) */
           { eger: (S) => ['acik', 'yalniz'].indexOf(ilk(S)) < 0, ise: [
             ['suha', 'Efendim, kızınızı istiyorum.', 'notr'],
-            ['sai', 'Ne dersin kızım?', 'ciddi'],
+            ['sai', 'Ne dersin kızım?', 'endiseli'],
           ] },
           { eger: kabul, ise: [
             /* Kabul sınırsız onay değildir: gizli evet gündüz geri alınabilir */
@@ -1208,6 +1208,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ] },
             ] },
             { m: 'Yırt.', etki: { suha: -3 }, bayrak: { p11_suha_not: 'yirt' }, iz: 'Süha\'nın kâğıdı dört parça; cevabını kapının altından duydu.', adimlar: [
+              { efekt: 'kagit_yirt' },
               'Kâğıdı dört parçaya yırttım. Kapının öbür yanı sustu.',
             ] },
           ] },
@@ -1253,7 +1254,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       }[f.p11_ilk] || 'Süha Bey beni babamdan istedi.');
       /* Sürükleyicilik T1: defter özet/soru değil, Feride'nin son duruşu */
       /* GPT T28 11-A2: açık hayır bekleyen cevap gibi yazılmaz */
-      c.push(f.p11_acis === 'seslen' ? 'Kapıyı açmadım. Yüzlerini gördüm diyemem.' : m ? 'Kenan Selanik yolunda; onun adını burada ben koruyorum.'
+      c.push(f.p11_acis === 'seslen' ? 'Yüzlerini gördüm diyemem.' : m ? 'Kenan Selanik yolunda; onun adını burada ben koruyorum.'
         : (['hayir', 'gonder', 'geri'].indexOf(f.p11_baba) >= 0 ? 'Süha Bey beni babamdan istedi, hayır dedim; neden hayır dediğimi akşam sarı odanın eşiğinde gördüm.'
           : 'Süha Bey beni babamdan istedi; cevabımı gördüklerimle tartacağım.'));
       return c.join(' ');
@@ -1268,7 +1269,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     /* Sürükleyicilik T1 (S1): KARAR türü (10 ifşa, 12 tehlike arasında); gecenin son iki seçimine göre.
        Kartı ("Gördüğümü biliyorlar…") tekrar etmez; bölüm adını soru gibi yinelemez. 12. bölüm ilk satırlarda
        karşılar: babaya söyleme sözünü Perihan önceden boşa çıkarır; pusula/cevap/yırtık kâğıt anılır. */
-    siradaki: { ad: 'Diz Çöken Adam', kanca: function (S) {
+    siradaki: { ad: 'Sarı Odanın Eşiği', kanca: function (S) {
       var f = S.bayrak;
       /* GPT T28 11-S1: vaat dürüst — 12. bölümde Perihan önce davranır, Feride yine de söyler (p12_v_soyle) */
       if (f.p11_gece === 'baba') return 'Sabah gördüğümü babama anlatacağım. Perihan Hanım önce konuşsa da.';

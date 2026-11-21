@@ -1154,7 +1154,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             { m: '“Şefik kendisi söylesin.”', etki: { sefik: 2 }, bayrak: { p14_sefik: 'mektep' }, iz: 'Şefik mektebi kendisi seçti. Senin için.', adimlar: [
               ['sefik', 'Asker olacağım abla. Döndüğümde sana kimse el kaldıramaz.', 'kararli'],
-              ['ic', 'On bir yaşında bir çocuk… Bunu babamın gözünün içine bakarak söyledi.', 'mahzun'],
+              ['an', 'Sait Efendi cevap vermedi. Şefik gözünü babasından ayırmadı.'],
               /* Gece resim defterine bakıldıysa: askeri o çizmişti */
               { eger: (S) => b(S).p14_k_defter === 'bakti', ise: [
                 ['ic', 'Defterindeki asker kendisiymiş. Kılıcını benim için çizmiş.', 'mahzun'],
@@ -1224,7 +1224,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { kart: 'Kenan\'ın adı sahte bir kâğıtta. Selanik bunu bilmiyor.' },
             ] },
           ], degilse: [{ eger: (S) => yemin(S) === 'sefik', ise: [
-            { kart: 'Süha Bey kardeşim için yemin etti. Bedelini o soracak.' },
+            { kart: 'Süha Bey kardeşim için yemin etti. Şefik’in ateşi düştü.' },
           ], degilse: [{ eger: (S) => yemin(S) === 'perihan', ise: [
             { kart: 'Süha Bey, Perihan Hanım\'ı babama açmaya yemin etti.' },
           ], degilse: [
@@ -1250,10 +1250,10 @@ window.BOLUMLER = window.BOLUMLER || {};
         vazgec: 'beni istemekten vazgeçmeye yemin etti, “siz istemedikçe” diyerek.',
       }[f.p14_yemin] || 'yemin etti.'));
       /* T29b (GPT A14-2): kâğıdın yeri giyilen elbiseye göre */
-      c.push((f.p14_kagit ? (f.p14_gece === 'sakla' ? (S.giyili === 'nisan_yadigar' ? 'Sahte kâğıt üstümdeki mavi ipeklinin astarında' : 'Sahte kâğıt sandığımdaki mavi ipeklinin astarında') : 'Sahte kâğıt sandığımda') : 'Sahte kâğıt yandı') + ', Şefik ' +
-        (f.p14_sefik === 'yanimda' ? 'yanımda kalıyor' : 'mektebe gidiyor') + '; ' +
-        /* Sürükleyicilik T1: soru yerine Feride'nin kararı */
-        (m ? 'Kenan\'ın adını kullanan eli bulacağım.' : 'o eli bulmadan rahat etmeyeceğim.'));
+      const delil = f.p14_kagit
+        ? (f.p14_gece !== 'sakla' ? 'Kâğıdı sandığımda saklarken' : S.giyili === 'nisan_yadigar' ? 'Kâğıdı üstümdeki mavi ipeklinin astarında taşırken' : 'Kâğıdı sandığımdaki mavi ipeklinin astarında saklarken')
+        : (f.p14_gece === 'birak' ? 'Kâğıdın peşini bırakıp' : 'Sahte kâğıt yandıktan sonra');
+      c.push(delil + (f.p14_sefik === 'yanimda' ? ' kardeşimin elini tuttum, bu gece yine yanımda uyuyacak.' : ' kardeşimin elini son defa tuttum, bugün mektebe gitti.'));
       return c.join(' ');
     },
     /* T29b: yeminin iki türü aynı an; biri açıldıysa öbürü "kaçırılan" sayılmaz */

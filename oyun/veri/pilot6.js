@@ -1192,16 +1192,16 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: (S) => b(S).p6_topuk === 'alin', ise: [
             ['remzi', 'Nabi Bey kulübe fesini kaşına kadar indirip gelmiş.', 'gulumser'],
           ], degilse: [
-            ['remzi', 'Nabi Bey bu sabah kulüpte sustu. Bedavaya susan adam değildir.', 'notr'],
+            ['remzi', 'Nabi Bey bu sabah kulüpte sizden söz açılınca sustu. Dün gece aranızda ne geçti?', 'notr'],
           ] },
           /* İkindi vakti: salondaki sepet */
           { eger: (S) => b(S).p6_v_yelpaze === 'al', ise: [
             ['remzi', 'Yelpazemi almışsınız. Her sallayışınız bana bir serinlik borcu.', 'gulumser'],
-            { eger: (S) => b(S).p6_yelpaze_haberi, ise: [{ etki: { remzi: 3 } }, { bayrak: { p6_yelpaze_haberi: false } }] },
           ], degilse: [{ eger: (S) => b(S).p6_v_yelpaze === 'geri', ise: [
-            ['remzi', 'Rüzgâr bolmuş. Ben de rüzgâr satın alırım, köşkümün önünden geçer.', 'notr'],
-            { eger: (S) => b(S).p6_yelpaze_haberi, ise: [{ etki: { remzi: -3 } }, { bayrak: { p6_yelpaze_haberi: false } }] },
+            ['remzi', 'Rüzgâr bolmuş. Ben de rüzgâr satın alırım, köşkümün önünden geçer.', 'mahcup'],
           ] }] },
+          { eger: (S) => b(S).p6_yelpaze_haberi && b(S).p6_v_yelpaze === 'al', ise: [{ etki: { remzi: 3 } }, { bayrak: { p6_yelpaze_haberi: false } }] },
+          { eger: (S) => b(S).p6_yelpaze_haberi && b(S).p6_v_yelpaze === 'geri', ise: [{ etki: { remzi: -3 } }, { bayrak: { p6_yelpaze_haberi: false } }] },
           /* Oynanış T1 (B4): öğlen seçilen kıyafete tepki (6. bölümde ilk kez; Remzi'nin fiyat dili) */
           { eger: (S) => S.giyili === 'nisan_gosterisli', ise: [
             ['remzi', 'Pembe tafta, Beyoğlu işi. Fiyatını bilirim.', 'gulumser'],

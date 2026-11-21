@@ -1876,7 +1876,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ] },
                 { muzik: 'sessiz' },
                 { goster: ['suha', 'notr'] },
-                ['suha', 'Sabah şişeyi bulurlar. Benim aşağıya indiğimi kimse söylemez.', 'soguk'],
+                ['suha', 'Sabah şişeyi bulurlar. Benim aşağıya indiğimi kimse söylemez.', 'alayci'],
                 /* Tur 32 (B7 anlatı 2): Süha'nın konyağı neden döktüğü (Perihan'ın planına boş şişe verir, sonunu kendisi tutar) */
                 /* Tur 33 (B7 anlatı 3): misafir içmedi; doğruyu kimin bileceğini Süha tutar */
                 ['suha', 'Perihan\'ın hikâyesine boş şişe lazımdı, verdim. Misafir bir damla içmedi; bunu kimin bileceğini ben seçerim.', 'soguk'],

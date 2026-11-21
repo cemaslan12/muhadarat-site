@@ -366,7 +366,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         /* GPT T25 Kenan B5 (anlatı 1, sürük 1; S4): akşamın düzenini sahne söyler (Hatice'nin repliği); açılış üç satır */
         /* GPT T27 (B5-A1): "herkes biliyor" kesinliği babanın habersizliğiyle çelişiyordu */
         /* Tur 33 (B5 anlatı 3): ikinci cümle sahnenin planını önden açmaz */
-        'Sabah kapısına bir hekimin ilacı geldi. Perihan Hanım ona bir hastalık bulmuştu.',
+        'Hasta yatağında olmayan Feride’ye sabah ilaç geldi. Şişede ne vardı?',
       ] } },
     ],
 
@@ -1317,9 +1317,9 @@ window.BOLUMLER = window.BOLUMLER || {};
               'Bardağı burnuna götürdü. Önce Hatice\'ye baktı, sonra bana.',
               { eger: (S) => b(S).p5_degis === 'serbet', ise: [
                 /* GPT T25 Kenan B5 (anlatı 3): Hatice odada; sır yalnız Feride'ye duyurulur */
-                'Bir dikişte içti. Kaşı kalktı, sesini yalnız benim duyacağım kadar alçalttı.',
+                'Kaşı kalktı. Bana eğilip fısıldadı.',
                 /* Tur 29 (B5 diyalog 1): "hekim" sahnede bir kez; sabahki Pera eczanesine bağlanır */
-                ['suha', 'Vişne. Bu odada benden iyi bir eczacı var.', 'gulumser'],
+                ['suha', 'Vişne. Bu odada benden iyi bir eczacı var.', 'alayci'],
                 /* GPT T27 (B5 diyalog 10'a 2): akıl oyunu sahte hastalık hedefine bağlanır */
                 ['f', 'Hastanız yok zaten Hekim Bey.', 'gulumseyen'],
               ], degilse: [

@@ -1156,7 +1156,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { muzik: 'suha' }, // Tur 27 (B3 ses 3): bölümün Süha'ya en yakın anı vals'ta kalmaz
             ['an', 'Bir hekimin eli genç bir kızın ensesine ancak hastalıkta değerdi.'],
             ['suha', 'İzin verirseniz ben kapatayım.', 'notr'],
-            { soru: 'Arkamda duruyor. Bekliyor.', secim: [
+            { soru: (S) => gorulen(S) ? 'Gece beni kapıda gördü. Şimdi de hekim elini enseme uzatırken bakıyor. Örgümü kaldıracak mıyım?' : 'Arkamda duruyor. Bekliyor.', secim: [
               { m: 'Örgünü kendin kaldır, izni sen ver.', etki: { suha: 8 }, bayrak: { p3_kilit: 'izin' }, iz: 'İzni sen verdin. Hekim eli ensende oyalandı.', adimlar: [
                 'Örgümü kaldırdım. Parmakları enseme bir kez değdi.',
                 { efekt: 'kapak' },
@@ -1669,7 +1669,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['an', 'Feride lambasını söndürmedi. Yazdığı iki satırın arkasında, sabah da duracaktı.'],
                 { kart: 'Pusulam yola çıktı. Sabah Perihan Hanım’dan önce kime ulaşacak?' },
               ], degilse: [
-                'Nimet yarım saatte döndü. Şalını açtı. Kâğıt yoktu.',
+                'Nimet yarım saat sonra şalını açtı. Kâğıt yoktu.',
                 ['an', 'Feride lambasını söndürmedi. Yazdığı iki satırın arkasında, sabah da duracaktı.'],
                 { kart: 'Pusulam yola çıktı. Sabah Perihan Hanım’dan önce kime ulaşacak?' },
               ] }] },

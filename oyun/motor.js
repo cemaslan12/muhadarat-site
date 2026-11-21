@@ -2484,6 +2484,8 @@
     // Telefonda (kısa ekran) kullanım paragrafı gizlenir, simge ve kural ayrıntısı katlanır (GPT Tur 20 ek, 2)
     const kisa = window.matchMedia && window.matchMedia('(max-height: 500px)').matches;
     return '<div class="harita-gorunum"><h2>Harita · ' + bicimle(p.ad || '') + '</h2><p class="not harita-not">' + bicimle(v.ad || '') + '. Bir yere dokun; “Git” seni en kısa yoldan, aynı kapılardan götürür. Yürümek bedava.</p>' +
+      ((S.bolum === 104 || S.bolum === 105) && S.bayrak.p4_pakt === 'calibe'
+        ? '<p class="not">Leyla’ya sonraki ziyarette onun dadısı refakat edecek.</p>' : '') +
       sekmeler + '<div class="plan-harita">' + svg + '</div>' +
       '<div id="harita-secim" class="harita-secim">Bir yere dokun.</div>' +
       (kisiler.length ? '<div class="harita-kisiler">Az önce: ' + kisiler.join(' · ') + '</div>' : '') +

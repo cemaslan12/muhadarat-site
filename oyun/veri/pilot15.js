@@ -1100,7 +1100,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           if (muk(S) && b(S).p14_kenan === 'yaz') return 'Leyla\'ya giden kâğıt dün sabah yola çıkmıştı. Feride konaktaki kurşun kalemlerin uçlarına baktı.';
           if (muk(S)) return 'Feride sabah konaktaki kurşun kalemleri yokladı. Sahte mektubu yazan kalem bu çatının altındaydı.';
           return {
-            sefik: 'Süha Bey ertesi gün de hiçbir şey istemedi.',
+            sefik: 'Süha Bey yeminini ettiğinden beri benden hiçbir şey istemedi.',
             perihan: 'Süha Bey yeminini ettikten sonraki gün Perihan Hanım\'a tek söz etmedi. Sustukça yemini ağırlaşıyordu.',
           }[b(S).p14_yemin] || 'Süha Bey yeminini ettikten sonraki gün Feride\'nin yüzüne hiç bakmadı. “Siz istemedikçe” demişti.';
         },
@@ -1118,7 +1118,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['an', 'Ateşi düşen Şefik ablasının yatağının ucunda uyuyakalmıştı. Feride\'nin kolu hâlâ askıdaydı.'],
             { goster: ['sefik', 'notr'] },
           ], degilse: [
-            ['an', 'Askerî mektep Şefik\'i dün almıştı. Sofada bu sabah onun ayak sesi yoktu.'],
+            ['an', 'Askerî mektep Şefik\'i dün almıştı. Feride bu sabah postayı kendisi karşılamak için merdivende durdu.'],
           ] },
           /* Sürükleyicilik T1 (S4): özet iç sesler (yemin, sahte mektup) ilk seçimden sonraya alındı */
           { eger: function (S) { return b(S).p14_dayak === true; }, ise: [
@@ -1594,7 +1594,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { anlati: { gorsel: 'mabeyn_kapisi', baslik: 'Üç kapı', satirlar: [
               /* T33 (b13_16 B15 SÜRÜK/DİYALOG): pano puan listesi gibi okunmasın; her satır bir kapı, bir el, bir yük
                  (benzet15 çapası: üç satır, her birinde "Bedeli") */
-              function (S) { return (hazirSay(S, 'kenan') ? 'Feride\'nin elinde Kenan\'ın kapısını açacak bir dayanak vardı.' : 'Kenan\'ın kapısı için elinde bir dayanak yoktu.') + ' Bedeli Perihan Hanım\'la kavgaydı.'; },
+              function (S) { return K_ARAC(S) ? 'Münevver Hanım’ın arabası hazırdı. Feride binerse babası onu evden uğurlamayacaktı.' : K_KANIT(S) ? 'Feride yazıyı tanıyordu. Kenan’ı savunursa babası mektupları nasıl gördüğünü soracaktı.' : K_TANIK(S) ? 'Madam’ın tanıklığını babasına götürebilirdi. Bu kez Perihan onun da adını duyacaktı.' : 'Kenan’la gitmek isterse arabayı kendisi bulacaktı. Babası avludaki sesi duyardı.'; },
               /* T27 (ANLATI-2): baba "Perihan Hanım da Remzi Bey diyor" der; pano onunla çelişmez. T28: bedel susmanın değil kapının */
               /* T30 (A15-3): Süha'ya bir gece elini uzatmış kızın panosu */
               function (S) { return (b(S).p13_gece === 'el')
@@ -1605,12 +1605,17 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             { anlati: { gorsel: 'mabeyn_kapisi', baslik: 'Üç kapı', satirlar: [
               /* GPT T26 (15 oynanış 10'a): her hazırlığın neyi sağladığı panoda (yazı inkârı, tanık gizlemeyi, düğme şantajı) */
-              function (S) { return (hazirSay(S, 'suha') ? 'Feride şartını Süha Bey\'e kabul ettirecek bir dayanak bulmuştu.' : 'Feride\'nin şartını tutacak bir dayanağı yoktu.') + ' Perihan Hanım sandalyesini Sait Efendi’ye biraz daha yaklaştırdı.'; },
+              function (S) {
+                if (S_ARAC(S)) return 'Feride parmaklarını düğmenin çevresinde kapadı. Perihan Hanım sandalyesini Sait Efendi’ye yaklaştırdı.';
+                if (S_KANIT(S)) return 'Süha Bey’in elinden çıkan yazı Feride’deydi. Feride kâğıdı açarsa Perihan da yazıyı görecekti.';
+                if (S_TANIK(S)) return 'Madam mabeyn kapısında duracaktı. Feride onu çağırırsa Perihan da tanığını öğrenecekti.';
+                return 'Feride’nin elinde hekime gösterecek bir şey yoktu. Perihan Hanım sandalyesini Sait Efendi’ye yaklaştırdı.';
+              },
               function (S) { return b(S).p15_munevver === 'geri' ? 'Feride, Leyla’yla Münevver Hanım’a haber göndermişti. Kenan’ı beklemeyecekti.'
                 /* T28b (GPT O15-1): fikir değiştiren kızın kapısı bu gece tartılmaz; teklif geçmişte kalan umut gibi değil, yolda */
                 : b(S).p15_munevver === 'kenan' ? 'Feride Kenan\'a giden yolu Leyla\'yla yeniden açmıştı. Bedeli Münevver Hanım\'ın bekleyişiydi.'
                 : 'Feride Kenan\'dan çoktan dönmüştü. Bedeli Münevver Hanım\'ın cevapsız kalan teklifiydi.'; },
-              function (S) { return 'Remzi Bey\'in kapısı açıktı. Bedeli biçilmiş bir fiyattı.'; },
+              function (S) { return R_KANIT(S) ? 'Remzi Bey’in Beyoğlu’ndaki evini sorarsa haberi kimden aldığını da söylemesi gerekecekti.' : R_ARAC(S) ? 'Remzi Bey’e sözünü hatırlatırsa babası aralarındaki pazarlığı duyacaktı.' : 'Remzi Bey’e bu gece razı olursa kendi şartını ne zaman söyleyecekti?'; },
             ] } },
           ] },
           /* GPT T26 (öncelik 8): 14. bölümün dayağı yalnız "sonraki hesap" kalmaz; Feride cevaptan önce bir sınır koyar,
@@ -1634,7 +1639,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: (S) => b(S).p15_sofra === 'soz', ise: [
             ['sai', 'Sofrada adı ben söyleyeceğim dedin. Remzi Bey bekliyor, söyle kızım.', 'ciddi'],
           ], degilse: [
-            ['sai', 'Remzi Bey selamlıkta cevap bekliyor. Söyle kızım, kime varacaksın?', 'ciddi'],
+            ['sai', 'Remzi Bey selamlıkta cevap bekliyor. Söyle kızım, kime varacaksın?', 'endiseli'],
           ] },
           { muzik: 'gerilim' },
           { eger: muk, ise: [
@@ -1916,7 +1921,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           sakla: 'Süha Bey\'in fısıltısını kendime sakladım, gerekirse ondan dönebilecek miyim?' })[f.p15_v_fisilti] ||
           'Süha Bey\'in fısıltısını babama duyurdum, gerekirse ondan dönebilecek miyim?',
         remzi: 'Remzi Bey\'in evinde gönül mü sayılacak, fiyat mı?',
-        yok: f.p15_v_gece === 'sus' ? 'Lambamı söndürdüm. Babama bir ad vermedim.' : 'Sabaha kaldı. Babama bir ad vermedim.',
+        yok: f.p15_v_gece === 'sus' ? 'Lambamı söndürürken babama hâlâ bir ad vermemiştim.' : 'Sabahı bekliyorum, babama hâlâ bir ad vermedim.',
       }[f.p15_kapi] || 'Sabah kim karar verecek?');
       return c.join(' ');
     },

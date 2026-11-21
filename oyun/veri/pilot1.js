@@ -591,7 +591,7 @@ window.BOLUMLER[101] = {
         ] },
         { goster: ['seker_kutusu', 'ana'] },
         /* Tur 27 (B1 anlatı 5, diyalog 4): dış olay anlatıcıda (bilinen bir huy); şerbet sözünün gerekçesi ve tehlike tohumu */
-        ['an', 'Süha Bey cebinden bir şeker kutusu çıkardı; kapağını açıp Feride\'ye uzattı.'],
+        { eger: (S) => S.bayrak.p_bilek === 'verdi', ise: [['an', 'Süha Bey Feride’nin bileğini bıraktı. Cebinden çıkardığı kutuyu bu kez açık avucunda uzattı.']], degilse: [['an', 'Süha Bey cebinden bir şeker kutusu çıkardı; kapağını açıp Feride\'ye uzattı.']] },
         ['suha', 'Düğün şerbetini içmeyin, kimin elinden geçtiği belli olmaz. Bunu alın.', 'notr'],
         /* Tur 27b (GPT P5): an_limonluk kutunun avuçta uzatıldığı anı gösterir; Feride'nin eli henüz karar vermemiş.
            Seçimden sonra gösterilince "Al"/"Perihan'a götürün" dallarında olmayan anı anlatıyordu; her dalda doğru
@@ -736,7 +736,7 @@ window.BOLUMLER[101] = {
           ] },
         ] },
         { efekt: 'kapi' },
-        ['an', 'Kapıda Perihan Hanım belirdi. Yelpazesi durdu, arkasındaki iki kız sustu.'],
+        { eger: (S) => S.bayrak.p_gelin === 'mesut', ise: [['an', 'Feride sabah için söz verirken kapıda Perihan Hanım belirdi. Gelin arkadaşının elini bıraktı.']], degilse: [['an', 'Kapıda Perihan Hanım belirdi. Yelpazesi durdu, arkasındaki iki kız sustu.']] },
         { goster: ['calibe', 'soguk'] },
         ['calibe', 'Nerede kaldın kızım? İğne geldi, sen gelmedin.', 'soguk'],
         /* Tur 28 (B1 diyalog 10'a): pembe tafta Perihan'ın rengi; iğnesi */

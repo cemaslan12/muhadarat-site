@@ -76,12 +76,12 @@ window.BOLUMLER = window.BOLUMLER || {};
   // Yeni an resmi: kaydı oyun_verisi.js'e eklenene kadar burada (görselsiz an yazılı kart olarak açılır)
   // Tur 27: _aksam çeşidi (11. bölümde leylak akşam elbisesini seçen kız kuşlukta da onu giyer); resmi gelince açılır
   ['an_diz', 'an_diz_nisan_gosterisli', 'an_diz_nisan_yadigar', 'an_diz_aksam'].forEach(function (id) {
-    if (V.cizimler && !V.cizimler[id]) V.cizimler[id] = { ad: 'Sarı odada diz çöken hekim', alt: 'Diz Çöken Adam' };
+    if (V.cizimler && !V.cizimler[id]) V.cizimler[id] = { ad: 'Sarı odada diz çöken hekim', alt: 'Sarı Odanın Eşiği' };
   });
   /* Tur 27 (t27_b09_12 B12 görsel 1): hüküm anı. Resmi gelene kadar { cizim } adımı motorda sessizce atlanır
      (motor.js: resimsiz an S.cizimAtlanan'a yazılır; yer tutucu kart ve "kaçırdığın an" satırı çıkmaz). */
   ['an_hukum', 'an_hukum_nisan_gosterisli', 'an_hukum_nisan_yadigar', 'an_hukum_aksam'].forEach(function (id) {
-    if (V.cizimler && !V.cizimler[id]) V.cizimler[id] = { ad: 'Akşam sofrasında babamın hükmü', alt: 'Diz Çöken Adam' };
+    if (V.cizimler && !V.cizimler[id]) V.cizimler[id] = { ad: 'Akşam sofrasında babamın hükmü', alt: 'Sarı Odanın Eşiği' };
   });
   /* Tur 27b (GPT B12-G1): temel resim geldi. gorseller.js bu dosyadan önce yüklenir ve yalnız oyun_verisi.js'teki kaydı
      bağlar; yol burada verilir (kayıt oyun_verisi.js'e taşınınca ona dokunulmaz). Çeşitleri temel resme düşer. */
@@ -90,7 +90,7 @@ window.BOLUMLER = window.BOLUMLER || {};
      Resmi üretimde (t29_uretim_9_12_ek.md); kayıt resimsiz, motor resmi olmayan anı sessizce atlar (yer tutucu yok). */
   ['an_diz_esik', 'an_diz_esik_nisan_gosterisli', 'an_diz_esik_nisan_yadigar', 'an_diz_esik_aksam',
     'an_diz_esik_yalniz', 'an_diz_esik_yalniz_nisan_gosterisli', 'an_diz_esik_yalniz_nisan_yadigar', 'an_diz_esik_yalniz_aksam'].forEach(function (id) {
-    if (V.cizimler && !V.cizimler[id]) V.cizimler[id] = { ad: 'Sarı odanın eşiğinde diz çöken hekim', alt: 'Diz Çöken Adam' };
+    if (V.cizimler && !V.cizimler[id]) V.cizimler[id] = { ad: 'Sarı odanın eşiğinde diz çöken hekim', alt: 'Sarı Odanın Eşiği' };
   });
 
   var PUSULA = 'Süha Bey\'in pusulası', MUSVEDDE = 'Süha Bey\'in müsveddesi', MADAM = 'Madam\'ın tanıklığı';
@@ -440,7 +440,7 @@ window.BOLUMLER = window.BOLUMLER || {};
 
     acilis: [
       /* 11. bölüm gece kapının altından giren kâğıtla bitti; sabah hemen karşılanır (anlatıcı sesi, doruk söylenmez) */
-      { anlati: { gorsel: 'konak_sofa_gunduz', baslik: 'Diz Çöken Adam', satirlar: [
+      { anlati: { gorsel: 'konak_sofa_gunduz', baslik: 'Sarı Odanın Eşiği', satirlar: [
         /* Tur 33 (t33 B12 diyalog 1, anlatı 1): "sıcak kâğıt" mecazı ve üçüncü kez yinelenen istek sahnesi kalktı */
         'Sait Efendi sabah kahvesini selamlıkta içerdi. Süha Bey’in dünkü isteğine de fincan bitince cevap verecekti.',
         /* Sürükleyicilik T1 (S4): bölümün tek sorusu ilk ekranda. Tur 27 (B12 anlatı 1): vurucu an (diz) söylenmez */
@@ -1158,18 +1158,18 @@ window.BOLUMLER = window.BOLUMLER || {};
               /* Diyalog T1 (b12 #18): kart verilen cevaba göre */
               { eger: function (S) { return b(S).p11_telgraf === 'sefik'; }, ise: [
                 { kart: '—K.', alt: 'Ablana söyle: ben de her gün okuyorum. Bir yıl kısalıyor.' },
-                { eger: (S) => b(S).p11_tel_cevabi_bekliyor, ise: [{ etki: { mukaddem: 7 } }, { bayrak: { p11_tel_cevabi_bekliyor: false } }] },
               ], degilse: [
                 { kart: '—K.', alt: 'Cevabın geldi. Ben de bekliyorum; her gün.' },
-                { eger: (S) => b(S).p11_tel_cevabi_bekliyor, ise: [{ etki: { mukaddem: 6 } }, { bayrak: { p11_tel_cevabi_bekliyor: false } }] },
               ] },
             /* Tur 29 (GPT O10-1/2): 10'da sözsüz, mektupsuz ayrılan kızın susuşu kırgınlık sayılmaz */
             ], degilse: [{ eger: function (S) { return b(S).p10_son === 'ayri'; }, ise: [
               { kart: '—K.', alt: 'Cevap beklemedim; söz istemediniz. Selanik\'e vardım; Şefik\'e yazıyorum.' },
             ], degilse: [
               { kart: '—K.', alt: 'Cevap gelmedi. Sessizliğini de okudum.' },
-              { eger: (S) => b(S).p11_tel_cevabi_bekliyor, ise: [{ etki: { mukaddem: -3 } }, { bayrak: { p11_tel_cevabi_bekliyor: false } }] },
             ] }] },
+            { eger: (S) => b(S).p11_tel_cevabi_bekliyor && !b(S).p12_tel_hesaplandi && b(S).p11_telgraf === 'sefik', ise: [{ etki: { mukaddem: 7 } }, { bayrak: { p12_tel_hesaplandi: true } }] },
+            { eger: (S) => b(S).p11_tel_cevabi_bekliyor && !b(S).p12_tel_hesaplandi && b(S).p11_telgraf === 'bekle', ise: [{ etki: { mukaddem: 6 } }, { bayrak: { p12_tel_hesaplandi: true } }] },
+            { eger: (S) => b(S).p11_tel_cevabi_bekliyor && !b(S).p12_tel_hesaplandi && b(S).p11_telgraf === 'yok' && b(S).p10_son !== 'ayri', ise: [{ etki: { mukaddem: -3 } }, { bayrak: { p12_tel_hesaplandi: true } }] },
             { soru: 'Telgraf avucumda; Şefik bekliyor.', secim: [
               { m: 'Koynuna sakla.', bayrak: { p12_v_telgraf: 'sakla' }, adimlar: [
                 ['ic', 'Kenan\'ın sesi koynumda. Kimse oradan alamaz.', 'tebessum'],
@@ -1256,16 +1256,16 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* GPT T24b 12 (10'a): şeker kararı sonraki karşılaşmanın ilk satırını belirler */
           { eger: function (S) { return b(S).p12_v_seker === 'geri'; }, ise: [
             ['an', 'Süha Bey sofraya oturdu. Geri dönen kutuyu anmadı; Feride\'ye bir kez bile gülümsemedi.'],
-            { eger: (S) => b(S).p12_seker_haberi, ise: [{ etki: { suha: -3 } }, { bayrak: { p12_seker_haberi: false } }] },
           ], degilse: [{ eger: function (S) { return b(S).p12_v_seker === 'al'; }, ise: [
             /* Diyalog T1 (b12 #13): Perihan'ın yığılan suçlamalarına Feride bir kez karşılık verir */
             ['f', 'Menekşe herkesin şekeri Perihan Hanım.', 'tebessum'], // Tur 28 (B12 diyalog 1)
             ['an', 'Süha Bey tam o sırada oturdu; gülümsemesini dudağında sakladı.'],
-            { eger: (S) => b(S).p12_seker_haberi, ise: [{ etki: { suha: 2 } }, { bayrak: { p12_seker_haberi: false } }] },
           ], degilse: [
             ['an', 'Süha Bey sofraya gülümsemeden oturdu.'],
           ] }] },
           { goster: ['suha', 'notr'] },
+          { eger: (S) => b(S).p12_seker_haberi && b(S).p12_v_seker === 'geri', ise: [{ etki: { suha: -3 } }, { bayrak: { p12_seker_haberi: false } }] },
+          { eger: (S) => b(S).p12_seker_haberi && b(S).p12_v_seker === 'al', ise: [{ etki: { suha: 2 } }, { bayrak: { p12_seker_haberi: false } }] },
           /* Oynanış T1 B4: ikindide seçilen kıyafete sofrada tepki */
           { eger: function (S) { return S.giyili === 'nisan_yadigar'; }, ise: [
             ['calibe', 'Behiye Hanım\'ın ipeklisi. Cevabını bu sofraya onunla mı getirdin?', 'soguk'],
@@ -1515,7 +1515,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ], degilse: [{ eger: adlandirdi, ise: [
               ['sai', 'Elindeki düğmeyi sonra ikimiz konuşuruz hanım.', 'ciddi'],
             ], degilse: [
-              ['sai', 'Kızım için yalanı göze alan adama kızımı nasıl emanet edeyim Süha?', 'ciddi'], // Tur 29 (B12 diyalog 3)
+              ['sai', 'Kızım için yalanı göze alan adama kızımı nasıl emanet edeyim Süha?', 'endiseli'], // Tur 29 (B12 diyalog 3)
             ] }] },
           ], degilse: [{ eger: function (S) { return b(S).p12_v_karsi === 'halim'; }, ise: [
             /* Oynanış T1 B1: açılan Halim planı babanın kararını hızlandırır (Perihan'ın planı Halim'di, Süha değil) */

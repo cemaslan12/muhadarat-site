@@ -1130,8 +1130,9 @@ window.BOLUMLER = window.BOLUMLER || {};
               { m: 'Sakla. Onun eli bende kalsın.', bayrak: { p16_pusula: 'sakla' }, adimlar: [
                 { koz: SON_PUSULA, kaynak: 'Kendi eliyle yazdı', alt: 'Süha Bey\'in bu sabahki pusulası; eğik, aceleci bir el.' },
               ] },
-              { m: 'Altına yaz: “Önce Perihan Hanım\'ın ipini koparın.” Geri it.', etki: { suha: 3 }, bayrak: { p16_pusula: 'yaz' }, iz: 'Şartının ilk yarısını Süha\'ya kendi elinle yazdın.', adimlar: [
-                'Kâğıdı kapının altından geri ittim. Öbür yanda biri hemen aldı.',
+              { m: 'Altına yaz: “Önce Perihan Hanım\'ın ipini koparın.” Geri it.', bayrak: { p16_pusula: 'yaz' }, iz: 'Şartının ilk yarısını Süha\'ya kendi elinle yazdın.', adimlar: [
+                'Kâğıdı geri ittim. Süha Bey kapının ardından seslendi: “Peki, önce Perihan Hanım.”',
+                { etki: { suha: 3 } },
               ] },
             ] },
           ] },
@@ -1142,7 +1143,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] } },
             ['ic', 'Her kalemin yanında fiyatı yazılı. Gönlün yanı boş.', 'mahzun'],
             { soru: 'Liste dizimde, kalem elimde.', secim: [
-              { m: 'Listenin altına yaz: “Gönül: fiyatı yok.” Geri yolla.', etki: { remzi: 2, vakar: 1 }, bayrak: { p16_liste: 'yaz' }, iz: 'Remzi\'nin annesine listenin altından cevap yazdın.', adimlar: [
+              { m: 'Listenin altına yaz: “Gönül: fiyatı yok.” Geri yolla.', etki: { vakar: 1 }, bayrak: { p16_liste: 'yaz', p16_liste_haber: true }, iz: 'Remzi\'nin annesine listenin altından cevap yazdın.', adimlar: [
                 ['ic', 'Okusun. Oğlu da okusun.', 'tebessum'],
               ] },
               /* B3: Remzi'nin evi listenin babaya gitmesini hakaret sayar (gönül −3). GPT T26 (öncelik 6): kırgınlık
@@ -1791,7 +1792,7 @@ window.BOLUMLER = window.BOLUMLER || {};
              kararlar: söz babanın ağzından bağlanmadan önce kız kendisi söyler. "Kimseyle" diyen kız bağımsız hayıra gider
              (p16_son 'son_hayir', p16_hayir 'bagimsiz'); Beyrut'a kendi işi için, kimsenin gelini olmadan */
           { soru: 'Babam söz bağlamak üzere. Bu kez önce ben söyleyeceğim.', secim: [
-            { m: '“Kenan\'la sözümü yeniden bağlamak isterim babacığım.”', etki: { mukaddem: 3 }, bayrak: { p16_bag: 'kenan' }, iz: 'Kenan\'la sözü yeniden bağlamayı sen istedin.', adimlar: [
+            { m: '“Kenan\'la sözümü yeniden bağlamak isterim babacığım.”', bayrak: { p16_bag: 'kenan', p16_soz_haber: true }, iz: 'Kenan\'la sözü yeniden bağlamayı sen istedin.', adimlar: [
               /* D7: bozulan söz yerinde değildir; baba onu yeniden bağlar */
               ['sai', 'Bozduğum sözü geri bağlarım. Bir yıl, sonra yine konuşuruz.', 'mahzun'],
             ] },
@@ -1890,6 +1891,10 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Dönüşünü Feride 15. bölümde duydu; burada yeni haber gibi söylenmez */
             'Kenan orada, fesi elinde. Sözün yeniden bağlandığını duymuş, yaklaşmadı.',
           ] }] },
+          { eger: (S) => b(S).p16_soz_haber, ise: [
+            ['an', 'Münevver Hanım, “O da sözünü tazeledi kızım,” dedi. Kenan başını kaldırdı.'],
+            { etki: { mukaddem: 3 } }, { bayrak: { p16_soz_haber: false } },
+          ] },
           /* 10. bölümün vedası: Kenan'da kalan emanet */
           { eger: (S) => b(S).p10_veda === 'saat', ise: [
             ['ic', 'Elinde durmuş saat. Kurmamış, beni bekliyor.', 'mahzun'],
@@ -2335,7 +2340,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['ic', 'Madalyonu değil, yazısını götürüyorum. O evde de okurum.', 'mahzun'],
             ] },
             { m: 'Hiçbir şey götürme. O ev benden bir şey almasın.', etki: { vakar: 1 }, bayrak: { p16_esya: 'hic' }, adimlar: [
-              ['ic', 'Sandığı kapadım. Boş gidiyorum, boş dönmem.', 'kararli'],
+              ['ic', 'Sandığı kapadım. Yarın imam sorunca cevabımı koynumdan çıkaracak değilim.', 'kararli'],
             ] },
             /* T28b (GPT O16-1, A16-2; kök bulgu 1): güçsüz "hiçbiri" de, Remzi kapısını seçen de açık ret söyleyebilir.
                Sonuç rızayı değiştirmez; yalnız korunmayı ve babanın desteğini (HAYIR_GECE) */
@@ -2368,6 +2373,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { goster: ['remzi', 'ana'] },
           { eger: (S) => b(S).p16_liste === 'yaz', ise: [
             ['remzi', 'Annem “Gönül: fiyatı yok” satırını okudu. Fiyatı olmayan bir şey… Hiç düşünmemiştim.', 'mahcup'],
+            { eger: (S) => b(S).p16_liste_haber, yakKoruma: true, ise: [{ etki: { remzi: 2 } }, { bayrak: { p16_liste_haber: false } }] },
             /* Doğrulama v65 (Remzi sırası): içten cümle ile "Of, aman!" arasına eylem; ton bir anda zıplamaz */
             ['an', 'Remzi Bey kendi sözünden ürkmüş gibi saatini çıkardı.'],
           ], degilse: [{ eger: (S) => b(S).p16_liste === 'baba', ise: [

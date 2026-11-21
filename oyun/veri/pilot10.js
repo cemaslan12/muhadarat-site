@@ -1029,7 +1029,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 'Kimse görmesin diye iskelenin ucunu seçtim; Nabi Bey\'i hesaba katmamıştım.',
               ] }] }] }] },
             ].concat(OKUNDU, VER, [
-              ['munevver', 'Altına yazdım: “Gerdanlığı teslim aldım.” Kimse görmedi ama kendi elinden aldım.', 'notr'],
+              ['munevver', 'Altına yazdım: “Gerdanlığı teslim aldım.” Kimse görmedi ama kendi elinden aldım.', 'dolu'],
               { goster: ['nabi', 'ana'] },
               ['nabi', 'Gizlice verdi. Suçunu bilen gizli verir.', 'ana'],
               { gizle: 'nabi' },

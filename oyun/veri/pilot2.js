@@ -1009,7 +1009,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { goster: ['suha', 'notr'] },
           /* GPT T23 (Süha 2b-3): Süha, Feride'nin önce kardeşini koruduğunu görmüştür */
           { eger: (S) => S.bayrak.p2_mefharet === 'sefik', ise: [
-            ['suha', 'Mürekkep dökülünce herkes size baktı, siz de kardeşinize. Gördüm.', 'notr'],
+            ['suha', 'Mürekkep dökülünce herkes size baktı, siz de kardeşinize. Gördüm.', 'endiseli'],
           ] },
           ['suha', 'Sayfaları ben çevireyim mi? İzin verirseniz.', 'notr'],
           'Sayfanın köşesi kalktı.',

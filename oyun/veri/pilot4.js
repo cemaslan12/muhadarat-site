@@ -819,7 +819,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['nabi', 'Küçük hanım, Leyla Hanım\'a gidiyormuşsunuz. Bir ricam var.', 'ana'],
           ] },
           /* Anlatı T2b (GPT T24b Süha B4): seçeneklerden önce kızın adı Nabi'nin ağzından */
-          ['nabi', 'Leyla Hanım\'a benim için iki tatlı söz söyleyin. Zengin diye Leyla Hanım’ı kimse sevmesin mi?', 'gulumser'],
+          ['nabi', 'Leyla Hanım\'a benden iki tatlı söz söyleyin. Zengin diye onu kimse sevmesin mi?', 'gulumser'],
           /* Tur 31: ritim (13 satır) için 817 ile birleşti */
           { soru: 'Nabi Bey merdivenin başını tutmuş.', secim: [
             { m: '“Siz parayı seviyorsunuz Nabi Bey. Leyla\'yı değil.”', etki: { vakar: 1 }, bayrak: { p4_nabi: 'igne' }, iz: 'Nabi Bey\'in aşkını adıyla andın: para.', adimlar: [
@@ -1250,7 +1250,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           { eger: (S) => b(S).p3_remzi === 'duello', ise: [
             /* Diyalog T1 (4.1): Remzi alacaklının kendisi; kendi senedini satın alamaz, getirir */
-            ['remzi', 'Sekiz yüz demiştim. Bugün kırk liralık bir kâğıt getirdim, daha işe yarar.', 'gulumser'],
+            ['remzi', 'Sekiz yüz demiştim. Bugün kırk liralık bir kâğıt getirdim, daha işe yarar.', 'kararli'],
           ], degilse: [{ eger: (S) => b(S).p3_remzi === 'bilgi', ise: [
             ['remzi', 'Nabi\'nin yalanını size ben söylemiştim. Bugün kâğıdını getirdim.', 'kararli'],
           ], degilse: [

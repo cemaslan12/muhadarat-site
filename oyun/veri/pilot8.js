@@ -1952,7 +1952,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* İkinci yalan: Hatice (gecenin hamlelerine göre biçim değiştirir) */
           { goster: ['calibe', 'soguk'] },
           { eger: (S) => b(S).p8_kapi === 'tiklat', ise: [
-            ['calibe', 'Gece kızımız da uyumamış efendi. Ben de bir şey gördüm.', 'sinsi'],
+            ['calibe', 'Gece kızımız da uyumamış efendi. Ben de bir şey gördüm.', 'soguk'],
           ], degilse: [
             ['calibe', 'Ben de bir şey gördüm efendi. Gece misafirin odasında lamba yanıyordu.', 'soguk'],
           ] },

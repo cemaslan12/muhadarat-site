@@ -719,7 +719,6 @@ window.BOLUMLER = window.BOLUMLER || {};
       {
         id: 'p9_hukum', mekan: 'ada_bahce', tetik: 'giris', kosul: (S) => S.gorev === 0, sahne: [],
         adimlar: [
-          ['an', 'Kimse sofradan kalkmadı. Perihan Hanım, Sait Efendi\'nin sözünü bekledi.'],
           { goster: ['sai', 'ciddi'] },
           { eger: (S) => son8(S) === 'dogru', ise: [
             ['sai', 'Akşama kadar odandasın kızım. Bir daha söyletme.', 'ciddi'],
@@ -1745,7 +1744,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ], degilse: [{ eger: karsila, ise: [
               ['sai', 'Her şeyi duydum kızım. İlk sözü sen söyledin, Perihan sonra.', 'notr'],
             ], degilse: [
-              ['sai', 'Ne söylendiğini duydum kızım. Ama seni Ada\'nın dilinden nasıl koruyacağımı bilmiyorum.', 'mahzun'],
+              ['sai', 'Ne söylendiğini duydum kızım. Ama seni Ada\'nın dilinden nasıl koruyacağımı bilmiyorum.', 'endiseli'],
             ] }] },
             /* Tur 27b: öğlen eşikte konan şart ("Akşam yüzümü de göreceksiniz") */
             /* Tur 29 (t29 B9 oynanış 1): ödenen şart aşağıda geri alınmaz (an satırı ve Feride'nin sözü bu dala özel).
