@@ -6,7 +6,9 @@
        "Destek ol" → ödeme sayfası (odemeAdresi) → tesekkur.html destek kaydını yazar.
        "Beklemeyi tercih ederim" → her yeni bölüm beklemeSaati sonra açılır.
    - Kilit tarayıcıdadır; aşılması kabul edildi (Cemil, 20 Kasım 2026).
-   - Destek kaydı: localStorage 'muhadarat_destek' = '1'. Hesaplı oyuncuda Firestore 'sezon1' de okunur (hesap-oyun.js). */
+   - Destek kaydı: localStorage 'muhadarat_destek' = '1'. Ödeme hesaba da işlenir: ödeme adresine hesabın kimliği (uid)
+     eklenir, ödeme katmanı bildirimi alınca kaydeder, hesap-oyun.js başka cihazda /durum'dan okur.
+   - Misafir oyuncudan ödemeden önce giriş istenir (destek hesaba bağlansın diye). */
 (function () {
   'use strict';
   const A = Object.assign({ sonUcretsizBolum: 8, enAz: 194, oneriler: [194, 250, 400], odemeAdresi: null, beklemeSaati: 48 }, window.DESTEK || {});
@@ -25,7 +27,7 @@
   const bekleme = () => { try { return JSON.parse(oku(BEKLE) || 'null'); } catch (e) { return null; } };
 
   /* ---- görünüm ---- */
-  let kutu = null, sayacZaman = null;
+  let kutu = null, sayacZaman = null, girisAcik = false;
   function stil() {
     if (document.getElementById('destek-stil')) return;
     const s = document.createElement('style');
@@ -48,7 +50,7 @@
       '.destek-sayac{font:600 22px/1.2 "Cormorant Garamond",Georgia,serif;color:#2f5a4e;text-align:center;margin:6px 0 2px}',
       '.destek-kucuk{font-size:14px;color:#6b5a4c;text-align:center;margin:0}',
       '.destek-mektup button:focus-visible,.destek-mektup a:focus-visible{outline:3px solid #c9a45c;outline-offset:3px}',
-      '.destek-mektup a{color:#7d2638}',
+      '.destek-mektup a{color:#7d2638}','.destek-mektup a.destek-ode{color:#f4ecdc}',
       '.destek-tutarlar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px}',
       '.destek-tutar{font:600 17px/1 "Cormorant Garamond",Georgia,serif;padding:10px 16px;border-radius:999px;border:1px solid #8a6a2e;background:#fffaf0;color:#2b1f1a;cursor:pointer}',
       '.destek-tutar.secili{background:#2f5a4e;border-color:#2f5a4e;color:#f4ecdc}',
@@ -68,6 +70,7 @@
     kapat();
     kutu = document.createElement('div');
     kutu.className = 'destek-perde';
+    kutu.lang = 'tr'; // büyük harfe çevirmede İ/ı doğru çıksın
     kutu.setAttribute('role', 'dialog');
     kutu.setAttribute('aria-modal', 'true');
     kutu.innerHTML = '<div class="destek-mektup">' + icerik + '</div>';
@@ -117,9 +120,26 @@
     if (!d) return;
     d.addEventListener('click', () => {
       if (tutar < A.enAz) return;
+      const tur = oku('muhadarat_hesap_tur');
+      // Misafir: destek bir hesaba bağlansın diye önce giriş istenir (hesap ayarı yoksa eski akış)
+      if (window.FIREBASE_AYAR && (!tur || tur === 'misafir')) { olc('odeme_giris_istendi', { bolum: bolumNo() }); girisKarti(); return; }
       olc('odeme_tikladi', { bolum: bolumNo(), value: tutar, currency: 'TRY' });
-      location.href = A.odemeAdresi + (A.odemeAdresi.includes('?') ? '&' : '?') + 'tutar=' + tutar;
+      const uid = window.HESAP_UID ? '&uid=' + encodeURIComponent(window.HESAP_UID) : '';
+      location.href = A.odemeAdresi + (A.odemeAdresi.includes('?') ? '&' : '?') + 'tutar=' + tutar + uid;
     });
+  }
+
+  function girisKarti() {
+    girisAcik = true;
+    goster(
+      '<h2>Önce sizi tanıyalım</h2>'
+      + '<p>Desteğiniz adınıza kaydedilsin diye sizden önce giriş yapmanızı rica ediyorum. '
+      + 'Böylece telefonunuzu değiştirseniz de bölümleriniz sizinle birlikte gelir.</p>'
+      + '<p>Buraya kadarki ilerlemeniz kaybolmaz; giriş yaptıktan sonra kaldığınız yerden, bu sayfaya dönersiniz.</p>'
+      + '<div class="destek-dugmeler"><a class="destek-ode" href="../giris.html" style="text-decoration:none;display:inline-block">Giriş yap ya da hesap aç</a>'
+      + '<button class="destek-bekle" type="button" data-is="geri">Geri dön</button></div>'
+    );
+    kutu.querySelector('[data-is="geri"]').addEventListener('click', () => { girisAcik = false; kapat(); denetle(); });
   }
 
   function mektup(bolum) {
@@ -181,7 +201,8 @@
   /* ---- karar ---- */
   function denetle() {
     const b0 = bolumNo();
-    if (!b0 || b0 <= A.sonUcretsizBolum || destekli()) { kapat(); return; }
+    if (!b0 || b0 <= A.sonUcretsizBolum || destekli()) { girisAcik = false; kapat(); return; }
+    if (girisAcik) return;
     let b = bekleme();
     if (!b) { if (!kutu || !kutu.querySelector('[data-is="bekle"]')) mektup(b0); return; }
     if (b0 > b.bolum) {

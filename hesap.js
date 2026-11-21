@@ -100,6 +100,7 @@ function yerelKayit() {
   } catch (e) { /* yok */ }
   return k;
 }
+const bolumu = (m) => { try { return (JSON.parse(m || 'null') || {}).bolum || 0; } catch (e) { return 0; } };
 const yerelZaman = () => { try { return +localStorage.getItem(ZAMAN_ANAHTARI) || 0; } catch (e) { return 0; } };
 
 /* Buluttaki kayıt yereldekinden yeniyse (ya da yerelde kayıt yoksa) yerele yazar. */
@@ -109,8 +110,13 @@ export async function buluttanCek(u) {
   const s = await f.F.getDoc(f.F.doc(f.db, 'oyuncular', u.uid));
   if (!s.exists()) return false;
   const d = s.data();
-  const yerelBos = !localStorage.getItem('muhadarat_pilot_v1');
-  if (!d.kayit || (!yerelBos && (d.zaman || 0) <= yerelZaman())) return false;
+  if (!d.kayit) return false;
+  const yerel = localStorage.getItem('muhadarat_pilot_v1');
+  if (yerel) {
+    if (yerelZaman()) { if ((d.zaman || 0) <= yerelZaman()) return false; }
+    // Bu tarayıcı hiç buluta yazmamış (misafir oynanmış): ilerlemesi buluttakinden geride değilse korunur
+    else if (bolumu(yerel) >= bolumu(d.kayit.muhadarat_pilot_v1)) return false;
+  }
   Object.keys(yerelKayit()).forEach((ad) => localStorage.removeItem(ad));
   Object.entries(d.kayit).forEach(([ad, deger]) => localStorage.setItem(ad, deger));
   localStorage.setItem(ZAMAN_ANAHTARI, String(d.zaman || Date.now()));

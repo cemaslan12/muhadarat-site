@@ -12,10 +12,19 @@ if (!t) {
     H.kullanici().then((u) => {
       if (!u) { H.turYaz(null); location.replace('../giris.html'); return; }
       H.esitlemeyiBaslat(u);
-      // Ödeme sunucusu hesaba "sezon1" yazdıysa bu cihazda da kilidi aç
-      H.sezonAcik(u).then((acik) => {
+      window.HESAP_UID = u.uid; // destek.js ödeme adresine ekler; ödeme bu hesaba işlenir
+      // Ödeme bu hesaba işlendiyse (ödeme katmanı /durum ya da Firestore "sezon1") bu cihazda da kilidi aç
+      const ac = (acik) => {
         if (acik) { try { localStorage.setItem('muhadarat_destek', '1'); } catch (e) { /* yok */ } if (window.destekDenetle) window.destekDenetle(); }
-      }).catch(() => {});
+      };
+      const adres = window.DESTEK && window.DESTEK.odemeAdresi;
+      let yerelde = false;
+      try { yerelde = localStorage.getItem('muhadarat_destek') === '1'; } catch (e) { /* yok */ }
+      if (adres && !yerelde) {
+        fetch(adres.split('/odeme')[0] + '/durum?uid=' + encodeURIComponent(u.uid))
+          .then((r) => r.json()).then((d) => ac(d && d.sezon1 === true)).catch(() => {});
+      }
+      H.sezonAcik(u).then(ac).catch(() => {});
     }).catch(() => { /* çevrimdışı: oyun yerel kayıtla sürer */ });
   }
   bolumleriIzle();
