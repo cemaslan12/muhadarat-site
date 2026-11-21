@@ -74,11 +74,22 @@
     };
   }
   function kaydet() { try { localStorage.setItem(KAYIT_ANAHTARI, JSON.stringify(S)); } catch (e) { /* kayıt yapılamadı */ } }
+  // Sürüm 106 kayıtlarında kozun eski adı hem listede hem de kaynak anahtarı olarak bulunur.
+  function kayitCoz(metin) {
+    return JSON.parse(metin, (anahtar, deger) => {
+      if (deger === 'Sabah takılan yüzük') return 'Ada’da takılan yüzük';
+      if ((anahtar === 'kozKaynak' || anahtar === 'kozAcik') && deger && Object.hasOwn(deger, 'Sabah takılan yüzük')) {
+        deger['Ada’da takılan yüzük'] = deger['Sabah takılan yüzük'];
+        delete deger['Sabah takılan yüzük'];
+      }
+      return deger;
+    });
+  }
   function yukle() {
     try {
       const t = localStorage.getItem(KAYIT_ANAHTARI);
       if (!t) return null;
-      const d = JSON.parse(t);
+      const d = kayitCoz(t);
       // Eski kayıtlarda olmayan alanları tamamla
       const y = yeniDurum();
       d.bag = Object.assign({}, y.bag, d.bag || {});
@@ -1207,7 +1218,9 @@
     const C = V.cizimler || {};
     const var_ = (a) => C[a] && C[a].gorsel ? { gorsel: C[a].gorsel, anahtar: a } : null;
     if (S && C[id] && C[id].cesitSec) {
-      const secilen = var_(C[id].cesitSec(S, giyili));
+      const idSecim = C[id].cesitSec(S, giyili, hal);
+      if (idSecim === null) return null;
+      const secilen = var_(idSecim);
       if (secilen) return secilen;
     }
     const bul = (aid) => {
@@ -1555,7 +1568,11 @@
       if (r.anahtar !== a.cizim) S.cizimCesit[a.cizim] = r.anahtar; else delete S.cizimCesit[a.cizim];
       const c = Object.assign({}, c0, { gorsel: r.gorsel, yakin: r.yakin || null });
       await gorselHazir(c.gorsel, 2000);
-      await cizimGoster(c, yeni, undefined, a.ses === false);
+      if (a.secimZemini) {
+        $('#secimler').style.setProperty('--secim-resmi', 'url(' + JSON.stringify(c.gorsel) + ')');
+      } else {
+        await cizimGoster(c, yeni, undefined, a.ses === false);
+      }
       return;
     }
     if (a.islev) { a.islev(S); return; }
@@ -1570,6 +1587,7 @@
       const oncekiKesifler = kesifler.filter((x) => !x.k.kalici);
       // Koşul ve koz kilidi secimYap'ta süzülür (secenekDurumu); keşiften dönünce yeniden süzülür
       const sec = await secimYap(typeof a.soru === 'function' ? a.soru(S) : a.soru, a.secim);
+      $('#secimler').style.removeProperty('--secim-resmi');
       oncekiKesifler.forEach((x) => { if (kesifler.includes(x)) kesifKaldir(x); });
       konusanId = null; kisileriCiz();
       // Kararı bölüm sonu özetine yaz
@@ -2707,9 +2725,15 @@
     const k = S && S.cizimCesit && S.cizimCesit[id];
     // Eski kayıtlarda yalnız kıyafet yazılıdır. O günkü seçimi ve kayıtlı kıyafeti birlikte çöz.
     if (S && c0.cesitSec) {
-      const giyili = k && k.startsWith(id + '_') ? k.slice(id.length + 1) : null;
-      const r = anResmi(id, giyili);
+      let giyili = k && k.startsWith(id + '_') ? k.slice(id.length + 1).replace(/_sakli$/, '') : null;
+      if (id === 'an_gerdanlik_kenan' && (!giyili || giyili === 'sakli')) {
+        const kararlar = (S.kararlar || {})[103] || [];
+        giyili = ['nisan_yadigar', 'nisan_gosterisli', 'nisan_sade'].find(elbise =>
+          kararlar.some(karar => karar.m === 'Giydiğin: ' + V.kiyafetler[elbise].ad));
+      }
+      const r = anResmi(id, giyili, k && k.endsWith('_sakli') ? 'sakli' : null);
       if (r) return Object.assign({}, c0, { gorsel: r.gorsel });
+      if (id === 'an_gerdanlik_kenan') return Object.assign({}, c0, { gorsel: null });
     }
     const c = k && V.cizimler[k];
     const kendi = k && (k === id || k.indexOf(id + '_') === 0);
@@ -2735,7 +2759,7 @@
     };
     // Bölüm başı durumu: bu bölümde neyin değiştiğini bulmak için (GPT Tur 21, düzeltme 4 + ek 3)
     let bas = null;
-    try { bas = S.basDurum ? JSON.parse(S.basDurum) : null; } catch (e) { bas = null; }
+    try { bas = S.basDurum ? kayitCoz(S.basDurum) : null; } catch (e) { bas = null; }
     const basKoz = (bas && bas.kozlar) || [], basKK = (bas && bas.kozKaynak) || {}, basCiz = (bas && bas.cizimler) || [];
     const tumAnlar = (S.cizimler || []).filter((id) => V.cizimler[id] && /^an_/.test(id) && cizimAl(id).gorsel);
     const buAnlar = bas ? tumAnlar.filter((id) => basCiz.indexOf(id) < 0) : tumAnlar;
@@ -2752,36 +2776,6 @@
     const degisenHtml = degisen.length
       ? '<ul class="karar-listesi koz-listesi degisen">' + degisen.map((x) => '<li><b>' + bicimle(x.k) + '</b> <small>· ' + bicimle(x.durum) + '</small></li>').join('') + '</ul>'
       : '<p class="not">Bu bölümde kozlarında değişiklik olmadı.</p>';
-    // Kaçırılan anlar: bölüm verisindeki ipucuyla kilitli gösterilir (öbür yoldan oynamaya kanca)
-    // Aynı anın sabah çeşidi (id + '_sabah') açıldıysa an kaçırılmış sayılmaz
-    // Resmi olmadığı için atlanan an da (S.cizimAtlanan) oyuncu o anı yaşadığı için kaçırılmış sayılmaz
-    // Tur 28b (kök 8): teması açıkça reddeden kıza o an "kaçırdığın an" diye gösterilmez; ret bir ceza değildir.
-    // Bölüm verisi `anRet: { an_x: (S) => bool }` verirse oradan, yoksa bilinen ret bayraklarından okunur.
-    const bf = S.bayrak || {};
-    const AN_RET = Object.assign({
-      an_limonluk: () => !!bf.p1_suha_sinir,
-      an_araba: () => bf.p4_suha === 'ret',
-      an_bedel: () => bf.p4_bedel === 'ret',
-    }, b.anRet || {});
-    const reddetti = (id) => { try { return !!(AN_RET[id] && AN_RET[id](S)); } catch (e) { return false; } };
-    /* Tur 29 (GPT O5-2 / O7-2 / O8-3; ORTAK onayı): erişilebilirlik. Oynanan yolda hiç sunulmayan an "kaçırdığın" sayılmaz.
-       Bölüm `anUygun: { an_x: (S) => bool }` verirse o geçerli; `anYol: true` ise an adının alt yazısındaki rota
-       (" · Kenan" / " · Süha") oyuncunun p_rota'sıyla uyuşmayan an listelenmez. */
-    const erisilir = (id) => {
-      try {
-        if (b.anUygun && b.anUygun[id]) return !!b.anUygun[id](S);
-        if (b.anYol) {
-          const alt = ((V.cizimler || {})[id] || {}).alt || '';
-          if (/· Kenan$/.test(alt) && bf.p_rota !== 'mukaddem') return false;
-          if (/· Süha$/.test(alt) && bf.p_rota !== 'suha') return false;
-        }
-      } catch (e) { /* koşul bozuksa an listelenir */ }
-      return true;
-    };
-    const kacan = Object.keys(b.anIpuclari || {}).filter((id) => erisilir(id) && !reddetti(id) &&!(S.cizimler || []).some((c) => c === id || c === id + '_sabah' || (id === 'an_topuk' && /^an_topuk_bahce(?:_|$)/.test(c))) &&
-      // Tur 28 (ortak istek B1–4 §2): resmi henüz olmayan dal türü (an_araba_josephine) atlandıysa temel an da yaşanmıştır
-      !(S.cizimAtlanan || []).some((c) => c === id || c.indexOf(id + '_') === 0)).map((id) =>
-      '<p class="kacan-an">🔒 <b>' + bicimle((V.cizimler[id] || {}).ad || 'Kilitli an') + '</b> — ' + bicimle(b.anIpuclari[id]) + '</p>').join('');
     const kararlar = (S.kararlar && S.kararlar[S.bolum]) || [];
     const s = b.siradaki || {};
     const sonraki = BOLUMLER[S.bolum + 1];
@@ -2800,7 +2794,7 @@
       '<h3>Sırada</h3><p class="merak">' + (s.kanca ? bicimle(typeof s.kanca === 'function' ? s.kanca(S) : s.kanca) : '') + '</p>' +
       devam +
       '<h3>Onların gönlü</h3><p class="not kucuk">Adayların sana ilgisi; senin seçimin değil. Kime yaklaşacağına sen karar verirsin.</p>' + (b.adaylar || []).filter((id) => !gonulEsigi(id) || gonulGorunur(id)).map(cubuk).join('') +
-      (kacan ? '<h3>Kaçırdığın an</h3>' + kacan : '') +
+      '<details class="kararlar arsiv" id="son-galeri"><summary>Çizim galerisi</summary><div class="galeri-icerik"></div></details>' +
       '<div class="sirada-satir"><button class="dugme" id="pilot-tekrar">Bu bölümü öbür yoldan oyna ›</button><button class="dugme" id="pilot-cik">Başlık ekranı</button></div>' +
       // Sezon arşivi katlanır: eski ödüller silinmez
       '<details class="kararlar arsiv"><summary>Tüm kozlarım (' + (S.kozlar || []).length + ')</summary>' + kozlar + '</details>' +
@@ -2818,13 +2812,18 @@
     const sd = $('#pilot-sonraki');
     if (sd) sd.onclick = () => { panelKapat(); S.bolumBitti = false; bolumBaslat(S.bolum + 1); };
     $('#pilot-cik').onclick = () => { panelKapat(); baslikEkrani(); };
+    const galeri = $('#son-galeri');
+    galeri.ontoggle = () => {
+      const icerik = galeri.querySelector('.galeri-icerik');
+      if (galeri.open && !icerik.childElementCount) icerik.innerHTML = cizimlerHtml(b);
+    };
   }
   // Bu oyunun bölüm başı: önce kaydın içindeki kopya, yoksa (eski kayıt) tarayıcıdaki
   function bolumBasi(no) {
     try {
       // basDurum her bolumBaslat'ta o bölüm için yeniden yazılır; şimdiki bölüme aittir
-      if (S.basDurum) return JSON.parse(S.basDurum);
-      return JSON.parse(localStorage.getItem(KAYIT_ANAHTARI + '_b' + no) || 'null');
+      if (S.basDurum) return kayitCoz(S.basDurum);
+      return kayitCoz(localStorage.getItem(KAYIT_ANAHTARI + '_b' + no) || 'null');
     } catch (e) { return null; }
   }
   function pilotBaslat(bastan) {
@@ -3072,14 +3071,47 @@
       '<button class="dugme" data-menu="kodyukle">Kayıt kodu yükle</button>' +
       '<button class="dugme" data-menu="bastan">Bölümü baştan başlat</button>' +
       '<button class="dugme" data-menu="baslik">Başlık ekranına dön</button>' +
-      '</div>' + cizimlerHtml() + '<div id="kod-alani"></div>';
+      '</div>' + cizimlerHtml(S && S.bolumBitti ? bolum() : null) + '<div id="kod-alani"></div>';
+  }
+  function kilitliAnlarHtml(b) {
+    // Kaçırılan anlar: bölüm verisindeki ipucuyla kilitli gösterilir (öbür yoldan oynamaya kanca)
+    // Aynı anın sabah çeşidi (id + '_sabah') açıldıysa an kaçırılmış sayılmaz
+    // Resmi olmadığı için atlanan an da (S.cizimAtlanan) oyuncu o anı yaşadığı için kaçırılmış sayılmaz
+    // Tur 28b (kök 8): teması açıkça reddeden kıza o an "kaçırdığın an" diye gösterilmez; ret bir ceza değildir.
+    // Bölüm verisi `anRet: { an_x: (S) => bool }` verirse oradan, yoksa bilinen ret bayraklarından okunur.
+    const bf = S.bayrak || {};
+    const AN_RET = Object.assign({
+      an_limonluk: () => !!bf.p1_suha_sinir,
+      an_araba: () => bf.p4_suha === 'ret',
+      an_bedel: () => bf.p4_bedel === 'ret',
+    }, b.anRet || {});
+    const reddetti = (id) => { try { return !!(AN_RET[id] && AN_RET[id](S)); } catch (e) { return false; } };
+    /* Tur 29 (GPT O5-2 / O7-2 / O8-3; ORTAK onayı): erişilebilirlik. Oynanan yolda hiç sunulmayan an "kaçırdığın" sayılmaz.
+       Bölüm `anUygun: { an_x: (S) => bool }` verirse o geçerli; `anYol: true` ise an adının alt yazısındaki rota
+       (" · Kenan" / " · Süha") oyuncunun p_rota'sıyla uyuşmayan an listelenmez. */
+    const erisilir = (id) => {
+      try {
+        if (b.anUygun && b.anUygun[id]) return !!b.anUygun[id](S);
+        if (b.anYol) {
+          const alt = ((V.cizimler || {})[id] || {}).alt || '';
+          if (/· Kenan$/.test(alt) && bf.p_rota !== 'mukaddem') return false;
+          if (/· Süha$/.test(alt) && bf.p_rota !== 'suha') return false;
+        }
+      } catch (e) { /* koşul bozuksa an listelenir */ }
+      return true;
+    };
+    return Object.keys(b.anIpuclari || {}).filter((id) => erisilir(id) && !reddetti(id) &&!(S.cizimler || []).some((c) => c === id || c === id + '_sabah' || (id === 'an_topuk' && /^an_topuk_bahce(?:_|$)/.test(c))) &&
+      // Tur 28 (ortak istek B1–4 §2): resmi henüz olmayan dal türü (an_araba_josephine) atlandıysa temel an da yaşanmıştır
+      !(S.cizimAtlanan || []).some((c) => c === id || c.indexOf(id + '_') === 0)).map((id) =>
+      '<p class="kacan-an">🔒 <b>' + bicimle((V.cizimler[id] || {}).ad || 'Kilitli an') + '</b> — ' + bicimle(b.anIpuclari[id]) + '</p>').join('');
   }
   // Açılan ödül çizimleri galerisi
-  function cizimlerHtml() {
+  function cizimlerHtml(tamamlananBolum) {
     const acik = (S && S.cizimler || []).filter((id) => V.cizimler && V.cizimler[id] && cizimAl(id).gorsel);
-    if (!acik.length) return '';
+    const ipuclari = tamamlananBolum ? kilitliAnlarHtml(tamamlananBolum) : '';
+    if (!acik.length && !ipuclari) return tamamlananBolum ? '<p class="not">Henüz çizim açılmadı.</p>' : '';
     return '<h3>Özel çizimlerin</h3><div class="cizim-galeri">' + acik.map((id) =>
-      '<figure data-cizim="' + id + '">' + yakinImg(cizimAl(id)) + '<figcaption>' + bicimle(V.cizimler[id].ad) + '</figcaption></figure>').join('') + '</div>';
+      '<figure data-cizim="' + id + '">' + yakinImg(cizimAl(id)) + '<figcaption>' + bicimle(V.cizimler[id].ad) + '</figcaption></figure>').join('') + '</div>' + (ipuclari ? '<h3>Kilitli çizimler</h3>' + ipuclari : '');
   }
 
   // Tarayıcının confirm() penceresi her yerde çalışmadığı için oyunun kendi onay kutusu
@@ -3132,7 +3164,7 @@
     }
     if (m === 'kodonayla') {
       let d = null;
-      try { d = JSON.parse(decodeURIComponent(escape(atob($('#kod-gir').value.trim())))); } catch (e) { d = null; }
+      try { d = kayitCoz(decodeURIComponent(escape(atob($('#kod-gir').value.trim())))); } catch (e) { d = null; }
       if (!d || !BOLUMLER[d.bolum]) { bildir('Kod okunamadı.'); return; }
       // Kod hangi oyuna aitse onun kaydına yazılır ve doğrudan oradan sürer (Tur 20 C3):
       // deneme bölümü kodu başlık ekranındaki "Denemeye devam et" ile aynı kaydı kullanır.
@@ -3177,7 +3209,7 @@
     const pd = $('#pilot-oyna'), pb = $('#pilot-bastan');
     if (pd && BOLUMLER[PILOT_NO]) {
       let k = null;
-      try { k = JSON.parse(localStorage.getItem(PILOT_KAYIT) || 'null'); } catch (e) { k = null; }
+      try { k = kayitCoz(localStorage.getItem(PILOT_KAYIT) || 'null'); } catch (e) { k = null; }
       const b = k && BOLUMLER[k.bolum];
       pd.hidden = false;
       // Cemil (17 Kasım 2026): başlıkta yalnız yeni sezon; eski 7 bölümlük oyun (bolum1–7.js, arşiv) açılmaz

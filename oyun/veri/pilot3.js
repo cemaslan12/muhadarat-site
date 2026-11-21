@@ -77,9 +77,19 @@ window.BOLUMLER = window.BOLUMLER || {};
         if (!V.cizimler[id + c]) V.cizimler[id + c] = { ad: ANLAR27[id].ad, alt: ANLAR27[id].alt };
       });
     });
-    // Törenin kendi kararı galeride de geçerlidir. Pembe ve mavi tören resimlerinde madalyon açıktır.
-    V.cizimler.an_gerdanlik_kenan.cesitSec = function (S, giyili) {
-      if ((S.bayrak || {}).p3_madalyon !== 'ikisi') return 'an_gerdanlik_kenan_sakli';
+    // Törende seçilen elbise ve madalyon birlikte eşleşmeli.
+    for (const elbise of ['nisan_yadigar', 'nisan_gosterisli']) {
+      const id = 'an_gerdanlik_kenan_' + elbise + '_sakli';
+      V.cizimler[id] = Object.assign({}, V.cizimler.an_gerdanlik_kenan, { temelAn: 'an_gerdanlik_kenan', gorsel: (V.cizimResimleri || {})[id] || null });
+    }
+    V.cizimler.an_gerdanlik_kenan.cesitSec = function (S, giyili, hal) {
+      const karar = (S.bayrak || {}).p3_madalyon;
+      const sakli = karar ? karar !== 'ikisi' : hal === 'sakli' || hal === 'yok';
+      if (sakli && (giyili === 'nisan_yadigar' || giyili === 'nisan_gosterisli')) {
+        const id = 'an_gerdanlik_kenan_' + giyili + '_sakli';
+        return V.cizimler[id].gorsel ? id : null;
+      }
+      if (sakli) return 'an_gerdanlik_kenan_sakli';
       if (giyili === 'nisan_yadigar' || giyili === 'nisan_gosterisli') return 'an_gerdanlik_kenan_' + giyili;
       return 'an_gerdanlik_kenan';
     };
@@ -495,13 +505,12 @@ window.BOLUMLER = window.BOLUMLER || {};
           : (b(S).p2_koridor_kenan
             ? 'Dün gece Feride o aralık kapının önünden durmadan geçmişti. Ardından gelen Perihan Hanım ise orada bir ad duymuştu.'
             : 'Dün gece Feride, Perihan Hanım\'ı o kapıyı dinlerken görmüştü.')),
-        'O sabah konağa yeni bir mürebbiye bekleniyordu.',
         /* GPT T25 Kenan (B3 S1): tek soru — taş takılmadan Perihan'ın hamlesi; Behiye adı bu sorunun dönüşü olur */
         /* Tur 27 (B3 sürük 1): soru taş takıldıktan sonra cevap bulduğu için "taş takılmadan" kalktı */
         /* Tur 28 (B3 anlatı 1): 2. bölümün "o adı kimseye söylemedi" hükmüyle çelişmez */
         /* Tur 33 (B3 sürük 1): iki fikir iki satıra bölündü */
-        'Ertesi gün ikindi nişan gerdanlığı Feride\'nin boynuna takılacaktı. Perihan Hanım duyduğunu söylemez, kullanırdı.',
-        'Feride bu kez onun hamlesini önceden görmek istiyordu.',
+        'Perihan Hanım duyduğunu söylemez, kullanırdı.',
+        'Gerdanlık ertesi ikindi takılacaktı. Feride bu kez onun hamlesini önceden görmek istiyordu.',
       ] } },
     ],
 
@@ -805,9 +814,9 @@ window.BOLUMLER = window.BOLUMLER || {};
           { anlati: { gorsel: 'buyuk_salon_gunduz', baslik: 'Gerdanlık Günü', satirlar: [
             /* Tur 18 ek (öneri 9): ikinci bir bölüm başı gibi uzamasın; yalnız zaman, yeni kişi ve anın ağırlığı */
             /* Anlatı denetimi T1: anlatıcı sesinde; töreni önceden anlatmaz (ara sayfa yerine tam ekran: gün değişimi) */
-            'Ertesi sabah büyük salona minderler dizildi. Konu komşuya ikindi daveti gitti.',
+            'Ertesi sabah büyük salona minderler dizildi, konu komşuya ikindi daveti gitti.',
             /* Tur 27 (B3 anlatı 3): satır başına bir bilgi; konağın yerini akşam anlatısı zaten verir */
-            'Âdete göre gerdanlığı oğlan tarafının en büyük hanımı Münevver Hanım takacaktı.',
+            'Gerdanlığı oğlan tarafının en büyük hanımı takardı. Bugün o sıra Münevver Hanım’ındı.',
             /* Doğrulama gece (B3 #5, 13 satır): giydiren satırı anlatının son satırına katıldı */
             /* Tur 29 (B3 anlatı 3): satır başına bir cümle */
             'Gelin olacak kızı kimin giydireceğine bile konakta Perihan Hanım karar verirdi.',
@@ -884,7 +893,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           'Merdivenden inerken salonun uğultusu yükseldi.',
           { gorev: 4 },
           { ara: { mekan: 'buyuk_salon', yer: 'Büyük salon · ikindi', satirlar: [
-            'İkindi namazından sonra salon doldu. Kızlar gelinin yüzüne, hanımlar boynuna bakıyordu, Perihan Hanım ise herkesin yüzüne.',
+            'İkindiden sonra salon doldu. Hanımlar gerdanlığı görmek için beklerken Perihan Hanım onların yüzlerine bakıyordu.',
             /* Tur 27 (B3 sürük 10'a): Perihan'ın alıcısı ortada kurulur; bahçedeki Remzi ani bir yüz olmaz */
             'Pencerenin önünden bir atlı geçti. Perihan Hanım başını çevirip uzun uzun baktı.',
           ] } },
@@ -952,7 +961,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { ara: { mekan: 'mabeyn_kapisi', yer: 'Mabeyn kapısı · o sırada', satirlar: [
                 'Mabeyn kapısı haremle selamlığın arasındaydı. Feride oraya Münevver Hanım\'ın izniyle, dadısının gözü önünde gitti.',
               ] } },
-              ['an', 'Kenan eşiğin öbür yanında bekliyordu. Merdivendeki dört basamak bugün bir eşiğe inmişti.'],
+              ['an', 'Kenan eşiğin öbür yanında bekliyordu. Düğünde aralarında dört basamak vardı, bugün tek bir eşik.'],
               { goster: ['mukaddem', 'kutu'] },
               { eger: (S) => b(S).p3_giydiren === 'reftar', ise: [
                 'Nimet mutfaktan kaçıp gelmiş, üç adım arkamda.',
@@ -1068,7 +1077,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             { efekt: 'kapak' }, // Tur 33 (B3 ses 1): gerdanlık kilidi ince bir metal çıt; kapı anahtarı değil
             /* Tur 32 (B3 anlatı 3): Kenan yolunda da törende Perihan'ın bir hamlesi */
             ['an', 'Perihan Hanım kalkıp kilidi bir kez yokladı.'],
-            ['ic', 'Kilit ensemde kapandı. Perihan Hanım elini çekince omuzlarımı düzelttim.', 'mahzun'],
           ], degilse: [
             /* ===== Süha yolu: Perihan'ın iğnesi ve kilit ===== */
             ['an', 'Kâhya kutuyu hanımının kucağına bıraktı.'],
@@ -1132,7 +1140,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['ic', 'Evvelki akşam ona “yanında durmayacaksın” dedi. Bugün herkesin önünde enseme onu çağırıyor.', 'endiseli'],
             ] },
             { muzik: 'suha' }, // Tur 27 (B3 ses 3): bölümün Süha'ya en yakın anı vals'ta kalmaz
-            ['an', 'Salonda herkes biliyordu: bir hekimin eli genç bir kızın ensesine ancak hastalıkta değerdi.'],
+            ['an', 'Bir hekimin eli genç bir kızın ensesine ancak hastalıkta değerdi.'],
             ['suha', 'İzin verirseniz ben kapatayım.', 'notr'],
             { soru: 'Arkamda duruyor. Bekliyor.', secim: [
               { m: 'Örgünü kendin kaldır, izni sen ver.', etki: { suha: 8 }, bayrak: { p3_kilit: 'izin' }, iz: 'İzni sen verdin. Hekim eli ensende oyalandı.', adimlar: [
@@ -1179,7 +1187,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ], degilse: [
               /* Tur 27b (GPT P1): kapıya gitmeyen ya da kutuyu dadıya aldıran kızın iç sesi o mesafeyi taşır */
               { eger: (S) => b(S).p3_kapi === 'nimet', ise: [
-                ['ic', 'Kilit kapandı. Mabeyn kapısına gitmedim, o bir dakika hâlâ onda.', 'mahzun'],
+                ['ic', 'Kilit kapandı. Mabeyne gitseydim onu görecektim.', 'mahzun'],
               ], degilse: [{ eger: (S) => b(S).p3_kutu === 'nimet', ise: [
                 ['ic', 'Kilit kapandı. Kutuyu ona değil Nimet\'e aldırmıştım, elleri boş kaldı.', 'mahzun'],
               ], degilse: [
@@ -1198,7 +1206,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* GPT T23 (Kenan 3b-1, Remzi 3b-2): tehlikeden önce yaşanmış bir sahiplenme; miras ile söz yan yana */
           { eger: (S) => b(S).p3_madalyon === 'ikisi', ise: [
-            ['ic', 'Elmas gerdanlığı onlar getirdi. Annemin madalyonunu ben çıkarmadım.', 'kararli'],
+            ['ic', 'Kilit ensemde kapandı. Elmasları onlar getirdi, annemin madalyonunu ben çıkarmadım.', 'kararli'],
           ], degilse: [{ eger: (S) => b(S).p3_madalyon === 'gizli', ise: [
             ['ic', 'Gerdanlık yakamın üstünde, annem altında. Hangisini taşıdığımı yalnız ben bilirim.', 'mahzun'],
           ] }] },
@@ -1383,9 +1391,9 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Sürükleyicilik T1 (S5): doruk sonrası sahne sıkılaştı; anlatıcı satırı sahneyi açar */
           /* Tur 28 (B3 anlatı 4): emri çiğneyip gerdanlığı boynunda tutan kızın bedeli görünür */
           { eger: (S) => b(S).p3_gerdanlik === 'boyun', ise: [
-            ['an', 'Perihan Hanım sandığı boş bulmuştu. Merdivende Feride\'nin boynuna bir kez baktı, ağzını açmadı.'],
+            ['an', 'Perihan Hanım sandığı boş bulmuştu. Merdivende gözü Feride’nin boynuna takıldı.'],
           ] },
-          ['an', 'Bahçe çitinin ardındaki atlı, düğün dönüşü yolu kesen Remzi Bey\'di. Beklemektense satın almayı severdi.'],
+          ['an', 'Feride bahçeye çıktığında Remzi Bey çitin ardında bekliyordu.'],
           { goster: ['remzi', 'notr'] },
           /* Tur 27 (GPT B3-S1): sarı odadan sonra aciliyet düşmesin; laf kulüpte dolaşıyor */
           ['remzi', 'Hanımefendi, sabahı beklemeyin. Kulüpte sizin evden bir laf dolaşıyor, yarın babanızın kahvesine iner.', 'kararli'],
@@ -1399,10 +1407,9 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             ['remzi', 'Bu kez bekleyen benim. Utanmadım, tuhaf.', 'mahcup'],
           ] }] },
-          ['remzi', 'Nabi Bey\'den kırk lira alacağım var, kumar borcu. Adamımı üç gündür kapıda bekletiyor.', 'kararli'],
+          ['remzi', 'Nabi Bey’den alacağım var. Adamımı üç gündür kapıda bekletiyor.', 'kararli'],
           /* Önceki serbest vakitlerden: Nimet'in arka kapıdaki uşağı, sofada duyulan Perihan planı */
           { eger: (S) => !!b(S).p3_v_borc, ise: [
-            ['ic', 'Nimet\'in dediği kırk lira. Uşağı yollayan buymuş.', 'saskin'],
           ], degilse: [{ eger: (S) => b(S).p2_v_sofa === 'sakladi', ise: [
             ['ic', 'Rıfkı\'nın oğlu. Perihan Hanım\'ın beni satacağı alıcı bu.', 'ofkeli'],
           ] }] },
@@ -1576,7 +1583,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Tur 33 (B3 diyalog 9): "annemin adını pazarlığa koydular" ara sayfada söylendi; Kenan dallarında yinelenmez */
             ['ic', 'Kenan\'ın adı sabah Hacı Kâmil\'in kahvesinden babamın önüne gelecek.', 'endiseli'],
           ], degilse: [
-            ['ic', 'Sabah Kenan\'ın adını babamın kahvesine koyacaklar. Ondan önce bir şey yapmalıyım.', 'kararli'],
+            ['ic', 'Sabah babam kahvesini içerken Kenan’ın adı açılacak. Ondan önce davranmalıyım.', 'kararli'],
           ] }], degilse: [
             ['ic', 'Annemin adını pazarlığa koydular. Pazarlığın öbür ucu üst katta, uyumuyor.', 'ofkeli'],
           ] },
@@ -1781,7 +1788,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       } else c.push({
         izin: 'Gerdanlığın kilidini Süha Bey kapadı. İzni ben verdim, zinciri o düzeltti.',
         kendi: 'Kilidi kendim kapadım. Süha Bey nabzımı da kendim mi tutacağımı sordu.',
-      }[f.p3_kilit] || 'Gerdanlığı Münevver Hanım taktı, Süha Bey geri çekildi.');
+      }[f.p3_kilit] || 'Münevver Hanım gerdanlığımı takarken Süha Bey geri çekildi.');
       /* GPT T26 Süha (öncelik 5): törende harcanan koz ve sarı odada görülen yazı özetten düşmesin */
       if (f.p3_koz_toren) c[0] = c[0].replace(/\.$/, '') + '. Törende ' + ((S.kozAcik || {})[YUZUK] === S.bolum ? 'yüzüğü' : 'gece açılan kapıyı') + ' salonun önünde andım.';
       c.push({
@@ -1804,7 +1811,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         suha: f.p3_kagit_suha
           ? 'Gece Süha Bey\'in kapısını çaldım. Yaktığı kâğıdın bir daha yazılıp yazılamayacağını yüzüne sordum.'
           : 'Gece Süha Bey\'in kapısını çaldım. Affı ölülerin değil, benim vereceğimi yüzüne söyledim.',
-      }[f.p3_son] || 'Nabi Bey\'in yalanı yarın babamın kahvesinde. Ona karşı ben de hazırım.');
+      }[f.p3_son] || 'Nabi Bey yarın kahvede yalanını söyleyecek. Bu kez hazırım.');
       return c.join(' ');
     },
     /* Tur 29 (GPT B2-O2 kalıbı; ORTAK motor anRet): kilidi hekime vermeyen, kutuyu elden almayan kıza o an

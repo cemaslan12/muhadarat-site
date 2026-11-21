@@ -262,7 +262,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       /* 10. bölümün son satırı hemen karşılanır; anlatıcı sesi (rehber §5): önceki an + bölümün sorusu */
       { anlati: { gorsel: 'ada_sofa', baslik: 'Eşikte', satirlar: [
         /* Tur 33 (t33 B11 anlatı 1): kanca yinelenmez, karşılanır — tıklatılmadan açılan kapının anlamı (çapa korunur) */
-        'Perihan Hanım kapıyı Süha Bey tıklatmadan açtı.',
+        'Adımlar Perihan Hanım’ın kapısında durdu. Kapı tıklatılmadan açıldı.',
         /* Tur 28 (t28_b09_12 B11 anlatı 1): ikinci satır bölümün sorusunu kurar, açıklamaz (GPT B11-S1'in kaldırdığı
            açıklama dönmedi); seçimin sahibi Feride */
         /* Sürükleyicilik T1 (S4): atmosfer satırı kalktı; ilk seçim öne geldi. Tur 27b (GPT B11-S1): bölümün sorusunu
@@ -331,7 +331,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { m: '“Çalın. Babamın önünde de hayır derim.”', etki: { vakar: 1, baba_guven: -1 }, bayrak: { p11_ilk: 'acik' }, iz: 'Babanın önünde hayır dedin; ama gece sofada olduğunu herkes duydu.', adimlar: [
                 { efekt: 'kapi_tik' }, // Tur 32 (t32 B11 ses 2)
                 { efekt: 'kapi' },
-                ['an', 'Sait Efendi\'nin kapısı ikinci tıklamayı beklemedi; o gece uyuyan bir baba değildi.'],
+                ['an', 'Sait Efendi ikinci tıklamayı beklemeden kapıyı açtı.'],
                 { goster: ['sai', 'ciddi'] },
                 ['sai', 'Bu saatte ne var?', 'ciddi'],
                 ['suha', 'Kızınızı istiyorum efendim. Gece sofada bana hayır dedi; bir de size desin.', 'soguk'],
@@ -372,7 +372,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 32 (t32 B11 ses 3): Süha'nın kızı istediği gergin sabah evin huzurlu temasıyla çalmaz; gerilim de eşiğe
              saklı kalır — selamlık sessizlikte */
           { muzik: 'sessiz' },
-          ['an', 'Sait Efendi kahvesini ayakta içiyordu. Süha Bey\'in tıraşı tazeydi; yüzü, geceyi uykuda geçirmiş gibiydi.'],
+          ['an', 'Sait Efendi kahvesini ayakta içiyordu. Süha Bey yeni tıraş olmuştu.'],
           { goster: ['sai', 'ciddi'] }, { goster: ['suha', 'notr'] },
           { eger: (S) => ilk(S) === 'sun', ise: [
             'Müsveddeyi babamın önüne koydum.',
@@ -446,7 +446,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             /* Ret döngüye girmez: iki ayrı ret */
             { soru: 'Babam son sözü bekliyor.', secim: [
               { m: '“Hayırım değişmez babacığım.”', bayrak: { p11_baba: 'hayir' }, adimlar: [
-                ['sai', 'Duydum. Ama son söz bu evindir.', 'ciddi'],
+                ['sai', 'Duydum. Son sözü ben vereceğim.', 'ciddi'],
               ] },
               { m: '“Süha Bey\'i evimizden gönderin babacığım.”', etki: { vakar: 1, baba_guven: -1 }, bayrak: { p11_baba: 'gonder' }, adimlar: [
                 ['sai', 'Perihan\'ın akrabasını kapımdan kovarsam Perihan\'ı da kovmuş olurum. Gönderemem kızım.', 'pisman'],
@@ -485,7 +485,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { soru: 'Nazlı kâğıdı annesine doğru sallıyor.', secim: [
               { m: 'Elinden kap: “O benim.”', etki: { itibar: -1, calibe_suphe: 1, mukaddem: 2 }, bayrak: { p11_not: 'kurtardi' }, iz: 'Kenan\'ın kâğıdını kurtardın; ama Perihan imzayı gördü.', adimlar: [
                 'Kâğıdı Nazlı\'nın elinden çektim; koynuma soktum.',
-                ['an', 'Perihan Hanım sandıkların ardından çıktı; imzayı görmek için kâğıdı okuması gerekmemişti.'],
+                ['an', 'Perihan Hanım sandıkların ardından çıktı. İmzayı görmüştü.'],
                 { goster: ['calibe', 'soguk'] },
                 ['calibe', 'Demek “—K.” ile mektuplaşıyorsunuz; babana şimdilik söylemem.', 'soguk'],
               ] },
@@ -681,7 +681,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['sefik', 'Abla, benim adıma telgraf geldi! İçinde senin adın var.', 'sevincli'],
             ] }] },
             /* Tur 28 (B11 anlatı 2): Selanik yolcusunun telgrafı neden Çanakkale'den geliyor */
-            ['an', 'Selanik vapuru Çanakkale\'de kömür almak için durmuştu. Kenan iskelenin telgrafhanesine koşmuştu.'],
+            ['an', 'Vapur Çanakkale’de kömür alırken Kenan iskeleye inmiş, telgrafhaneye koşmuştu.'],
             /* 10. bölümün vedası telgrafta karşılık bulur (an resmi telgrafın satırından sonra: sürükleyicilik T1 S6) */
             /* Tur 29 (GPT O10-1/2): sözsüz, mektupsuz vedada telgraf söz ya da mektup vaat etmez */
             { eger: (S) => b(S).p10_son === 'ayri', ise: [
@@ -708,7 +708,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               ] },
               /* GPT T26 öncelik 6: Kenan'ın kırgınlığı ulaşan şeye (cevapsızlığa) bağlı; 12. bölüm ikindi kartı okur */
               { m: 'Yazma. Perihan Hanım okur.', etki: { mukaddem: -3 }, bayrak: { p11_telgraf: 'yok' }, iz: 'Selanik\'e cevap gitmiyor; Kenan sessizliğini de okuyacak.', adimlar: [
-                ['ic', 'Cevabım bende kalsın. Kenan sessizliğimi de okur.', 'mahzun'],
+                ['ic', 'Cevabım bende kalsın.', 'mahzun'],
               ] },
             ] },
             { eger: (S) => leylaAcik(S) && b(S).p11_telgraf !== 'yok', ise: [
@@ -809,7 +809,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: (S) => b(S).p11_cagri === 'bahane' && !tepsi(S), ise: [
             ['ic', 'Fincan bahanem dilimde; kapıyı çalarsam elim boş olmayacak.', 'kararli'],
           ] },
-          'İçeriden iki ses geliyordu, kapının hemen ardından.',
+          'İçeride iki ses var. Kapının hemen ardında.',
           ['calibe', 'Gece kızın kapısı, sabah babası. Benden izin aldın mı?', 'ofkeli'],
           ['suha', 'Hocam sizsiniz. İzin sormamayı sizden öğrendim.', 'alayci'],
           /* GPT T28 11-D1: genel kötülük bildirisi yerine somut tehdit (romandaki "uymazsa ezerim" çapası kalır) */
@@ -995,7 +995,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] }] },
           ['sai', 'Hanım, Süha Bey kızımızı benden istedi.', 'notr'],
           /* Anlatıcının "ilk kez" mutlak hükmü kalktı (davranışla uyumlu) */
-          ['an', 'Perihan Hanım\'ın çatalı tabağa değdi. Bu haberi herkesin önünde duymak istememişti.'],
+          ['an', 'Perihan Hanım’ın çatalı tabağa değdi.'],
           ['calibe', 'Ne güzel. Bunu sofrada değil, yalnız konuşalım efendim.', 'saskin'],
           { eger: (S) => ilk(S) === 'sun', ise: [
             ['sai', 'Kenan\'a dair yazdığı kâğıt da çekmecemde.', 'notr'],
@@ -1034,7 +1034,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { eger: tepsi, ise: [
                 ['ic', 'Tepsiyi yukarı ben taşıdım ama ikinci fincanın kimin olduğunu ona söyletemedim.', 'mahzun'],
               ], degilse: [
-                ['ic', 'Kabul etmedi, inkâr da edemedi. Tepsi elimde olsaydı kendi ağzından alırdım.', 'mahzun'],
+                ['ic', 'Ne kabul etti ne inkâr etti. Tepsiyi kendim götürmeliydim.', 'mahzun'],
               ] },
             ] },
             /* Oynanış T1 B5: eşikte kapıya kulak veren kız (keşif p11_k_kapi) sürgünün sesini sofraya taşır */
@@ -1223,12 +1223,10 @@ window.BOLUMLER = window.BOLUMLER || {};
           { gizle: 'pusula' },
           /* Tur 27 (B11 sürükleyicilik 3): kart çapa olduğu için değişmez; önündeki anlatıcı gecenin cevabına göre */
           { eger: (S) => b(S).p11_gece === 'sus', ise: [
-            ['an', 'Feride fitili kıstı. Sabah ne söyleyeceğini düşündü.'],
           /* Tur 28 (B11 anlatı 10'a): Kenan yolunda Perihan'ın elindeki "—K." kâğıdı son karede anılır */
           ], degilse: [{ eger: (S) => b(S).p11_not === 'perihan', ise: [
-            ['an', 'Kenan’ın kâğıdı Perihan Hanım’ın çekmecesindeydi. Feride sabah ne söyleyeceğini düşündü.'],
+            ['an', 'Kenan’ın kâğıdı Perihan Hanım’ın çekmecesindeydi.'],
           ], degilse: [
-            ['an', 'Feride sabah ne söyleyeceğini düşündü.'],
           ] }] },
           { kart: function (S) {
             var yer = { sakla: 'Pusulayı lambanın yanına koydum.', yaz: 'Pusulayı geri verdim.', yirt: 'Pusulası dört parça.' }[b(S).p11_suha_not] || '';
@@ -1254,7 +1252,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         fincan: 'iki fincanı ellerine verdim.',
         madam: 'Madam da gördü.',
       }[f.p11_soz] || 'ikisi de gördüğümü biliyor.'));
-      c.push({
+      c.unshift({
         sun: 'Müsveddeyi babama okuttum; Süha Bey gece kapımda olduğunu ona söyledi.',
         zorla: 'Süha Bey Kenan\'ı yarım ağızla düzeltti; müsvedde hâlâ bende.',
         sina: 'Sırrını Perihan Hanım\'ın önünde sınadım; Süha Bey inkâr etti, Perihan Hanım sarardı.',
@@ -1264,7 +1262,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       }[f.p11_ilk] || 'Süha Bey beni babamdan istedi.');
       /* Sürükleyicilik T1: defter özet/soru değil, Feride'nin son duruşu */
       /* GPT T28 11-A2: açık hayır bekleyen cevap gibi yazılmaz */
-      c.push(f.p11_acis === 'seslen' ? 'Kapıyı açmadım; duyduğumu gördüğümden ayırarak konuşacağım.' : m ? 'Kenan Selanik yolunda; onun adını burada ben koruyorum.'
+      c.push(f.p11_acis === 'seslen' ? 'Duyduğumu gördüğümden ayırarak konuşacağım.' : m ? 'Kenan Selanik yolunda; onun adını burada ben koruyorum.'
         : (['hayir', 'gonder', 'geri'].indexOf(f.p11_baba) >= 0 ? 'Süha Bey beni babamdan istedi, hayır dedim; neden hayır dediğimi akşam sarı odanın eşiğinde gördüm.'
           : 'Süha Bey beni babamdan istedi; cevabımı gördüklerimle tartacağım.'));
       return c.join(' ');
@@ -1284,7 +1282,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       /* GPT T28 11-S1: vaat dürüst — 12. bölümde Perihan önce davranır, Feride yine de söyler (p12_v_soyle) */
       if (f.p11_gece === 'baba') return 'Sabah gördüğümü babama anlatacağım. Perihan Hanım önce konuşsa da.';
       if (f.p11_gece === 'halim') return 'Halim Efendi\'nin adını kapısında söyledim. Sabah babama da söyleyeceğim.';
-      if (f.p_rota === 'mukaddem') return 'Kenan\'ın adını yakmakla tehdit etti. Sabah o adı onun ağzından temizleteceğim.';
+      if (f.p_rota === 'mukaddem') return 'Süha Bey Kenan’ı tehdit etti. Sabah adını kendi ağzıyla temizlesin.';
       return {
         /* Tur 29 üçüncü dalga (GPT S11-1): kanca oynanabilir bir eylemi vaat eder (12'de yer seçimi Süha'nın dayatmasına açık) */
         yaz: '“Yazmayın, anlatın” yazdım. Sabah karşıma çıkarsa, hangi sözünü geri alacağını biliyorum.',
