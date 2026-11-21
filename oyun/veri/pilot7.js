@@ -165,11 +165,9 @@ window.BOLUMLER = window.BOLUMLER || {};
       ? (kapida ? ad + ' kapımda dursun, Şefik Kenan Bey\'in yanında yatsın.' : 'Şefik Kenan Bey\'in odasında yatsın; ' + ad + ' benimle gelsin.')
       : (kapida ? ad + ' kapımı beklesin; Şefik yanımda kalsın.' : 'Kapıları boş bırakıp geçeni ben yakalayayım; Şefik de ' + ad + ek + ' yanımda olsun.');
     var adimlar = sefikKenan ? [
-      ['f', 'Şefik bu gece Kenan Bey\'in odasında yatsın, yanından ayrılmasın.', 'kararli'],
-      ['sai', 'Olur. Erkek erkeğe.', 'gulumser'],
       { goster: ['calibe', 'soguk'] },
       ['calibe', 'Çocuk rahatsız eder…', 'soguk'],
-      ['sai', 'Etmez.', 'notr'],
+      ['sai', 'Etmez. Şefik bu gece Kenan Bey’in odasında yatacak.', 'notr'],
     ] : [
       { goster: ['sefik', 'sevincli'] },
       ['sefik', 'Ben de mi geliyorum abla? Sessiz olurum!', 'sevincli'],
@@ -178,24 +176,19 @@ window.BOLUMLER = window.BOLUMLER || {};
       ['ic', 'Kenan Bey\'in kapısını Hatice\'ye bıraktım. Gözüm onda.', 'endiseli'],
     ];
     adimlar = adimlar.concat(kadin === 'nimet' ? [
-      'Nimet\'in kulağına eğildim.',
       { goster: ['mehves', 'kararli'] },
       kapida ? ['mehves', 'Kapınızın önünden kıpırdamam. Perihan Hanım geçse bile.', 'kararli']
         : ['mehves', 'Peşinizden ayrılmam hanımcığım. Ama odanız boş kalır.', 'endiseli'],
       { gizle: 'mehves' },
     ] : [
-      'Madam\'ın kulağına eğildim.',
       { goster: ['josephine', 'ana'] },
       kapida ? ['josephine', 'Kapınızda otururum. {i}Personne n\'entre.{/i}', 'kararli']
         : ['josephine', 'Sizinle gelirim, {i}ma chère{/i}. Odanız boş kalır ama.', 'endiseli'],
       { gizle: 'josephine' },
     ]);
-    if (sefikKenan && kapida) adimlar.push(['ic', 'İki kapı tutuldu.', 'kararli']);
-    /* Tur 29 (B7 sürük (b)2): planın ilanı her düzende (Şefik benimleyse 151. satırdaki iç ses aynı işi görür) */
-    if (sefikKenan && !kapida) adimlar.push(['ic', 'Kenan\'ın kapısı Şefik\'te, benimki boş kalacak.', 'kararli']);
     var etki = { sefik: 1 }; etki[kadin === 'nimet' ? 'mehves' : 'josephine'] = 1;
     /* Oynanış T1 B2: görev düzeninin bedeli iz satırında açık (kim nerede, oda korunuyor mu) */
-    var iz = (sefikKenan ? 'Şefik Kenan\'ın yanında' : 'Şefik seninle') + ', ' + ad + (kapida ? ' kapında: odan korunuyor.' : ' seninle: odan boş kalacak.');
+    var iz = (sefikKenan ? 'Şefik Kenan\'ın yanında' : 'Şefik seninle') + ', ' + ad + (kapida ? ' kapında.' : ' seninle.');
     return {
       m: m, etki: etki, iz: iz,
       bayrak: { p7_hizmet: sefikKenan ? 'sefik' : 'sus', p7_v_bekci: kapida ? 'kapi' : 'benle' },
@@ -521,7 +514,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ada: 'Feride Kenan\'a bir vade vermişti: “Ada\'da.” Vade o sabah başlıyordu.',
             sohbet: 'Dün mabeynde Ada’yı konuşmuşlardı. Kenan şimdi ona iskeleyi gösterebilirdi.',
             /* Tur 27b (GPT B6-O3): mabeyn kapısında yakınlığı kesen kıza alın yakınlığı yazılmaz */
-            cik: 'Feride mabeynden Kenan\'a yaklaşmadan çıkmıştı. Kenan yolunu tutmamıştı.',
+            cik: 'Kenan mabeynde yolunu kesmemişti.',
           }[b(S).p6_yakin] || 'Mabeyn kapısında Kenan alnını Feride\'nin alnına dayamış, öpmemişti. Feride bunu bir eksiklik değil, bir söz gibi saklamıştı.')
           : ({
             yaklas: 'Çardakta Feride\'nin tuttuğu el, o sabah aynı vapura binecekti.',
@@ -826,7 +819,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             { soru: 'Ada iskelesi göründü. Kalırsa bu gece aynı çatının altındayız; Perihan Hanım da.', secim: [
               { m: '“Son vapuru kaçırın.”', etki: { mukaddem: 5 }, bayrak: { p7_davet: 'kacir' },
                 iz: 'Kenan son vapuru kaçıracak. Bu gece aynı çatı altındasınız.', adimlar: [
-                ['f', 'Son vapuru kaçırın.', 'gulumseyen'],
                 ['mukaddem', 'Annem…', 'endiseli'],
                 ['f', 'Anneniz bir gece bekler. Ben bir yıl bekledim.', 'utanmis'],
               ] },
@@ -1134,7 +1126,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { goster: ['remzi', 'ana'] },
           /* Tur 33 (B7 sürük 1): Remzi'nin iskelesi bölümün sorusuna (misafir ve Perihan'ın planı) bağlanır */
           { eger: (S) => !muk(S), ise: [
-            ['remzi', 'Bir faytonu tutamadım. Akşam misafiri iskeleden alacakmış; Perihan Hanım kiralamış.', 'notr'],
+            ['remzi', 'Parasını peşin saydım, faytonu alamadım. Perihan Hanım misafirine ayırtmış.', 'mahcup'],
           ] },
           /* Tur 27 (6. bölüm oynanış (b)3): 6. bölümün yelpazesi (p6_v_yelpaze) Ada'da anılır (Tur 29: fayton seçiminden sonra) */
           { eger: (S) => b(S).p6_v_yelpaze === 'al', ise: [
@@ -1186,7 +1178,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 30 (t30_b05_08 B7 anlatı 2, şüphe ≠ hüküm): kapı aralığından duyulan iki cümle hüküm değil, olasılık */
           ['ic', '“Hanım yaparım” demiş. Hatice şişeleri taşırken buna mı inanıyordu?', 'mahzun'],
           { soru: 'Kapı aralık. Sesler alçaldı.', secim: [
-            { m: 'Dinle. Sonuna kadar.', bayrak: { p7_itiraf: 'dinle' }, iz: 'Sonuna kadar dinledin. Perihan Hanım\'ın vaadi artık senin kozun.', adimlar: [
+            { m: 'Kapı aralığında kal.', bayrak: { p7_itiraf: 'dinle' }, iz: 'Sonuna kadar dinledin. Perihan Hanım\'ın vaadi artık senin kozun.', adimlar: [
               ['calibe', 'Ağla bakalım. Suçu bir başkasının üstüne atarız; sen de kurtulursun.', 'sinsi'],
               ['reftar', 'Ne derseniz harfi harfine yaparım.', 'korkmus'],
               { koz: ITIRAF, kaynak: 'Kapı aralığından duydum', alt: 'Hatice Nabi Bey\'e kanmış. Perihan Hanım suçu bir başkasının üstüne atmayı vaat etti.' },
@@ -1397,7 +1389,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           { gizle: 'sai' }, { gizle: 'calibe' }, { gizle: 'mukaddem' },
           /* Serbest vakit: yemekten sonra, beyler sahildeyken; hedef oda. Önceden kısa ipucu (GPT öneri 3). */
           ['an', 'Yemekten sonra beyler sahile indi, Hatice de misafir yatağına koyuldu.'],
-          ['ic', 'Beyler sahilde. Dönmelerine bir saat var, belki daha az.', 'kararli'],
           { gorev: 5 }, { vakit: VAKIT_GECE },
         ],
       },
@@ -1414,7 +1405,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             (S) => (ilk(S)
               ? 'Beyler sahilden erkenden döndü, Ada evi sustu. Deniz susmadı, ince kapılar da.'
             : 'Erkekler geç saate kadar sahilde gezdi. Sonra Ada evi sustu. Deniz susmadı, ince kapılar da.'),
-            'Biri yatağında dönse, duvarın öbür yanı duyardı.',
           ] } },
           /* Tur 27 (anlatı 3): romantik sahneden önceki durum satırları azaldı; misafir sofrası yolunda köşk satırı yok */
           { eger: (S) => b(S).p7_sofra === 'vals', ise: [
@@ -1569,40 +1559,28 @@ window.BOLUMLER = window.BOLUMLER || {};
               { mekan: 'ada_sofa' },
               { goster: ['reftar', 'korkmus'] },
                 /* Tur 29 (t29_b05_08 B7 görsel 5): metin an_tepsi resmine uydu (tepside şişe ve kadeh) */
-                'Tepsiyi elinden aldım: bir şişe, bir kadeh. “Ben götürürüm.”',
+                'Tepsiyi aldım. Şişenin mührü sağlamdı.',
                 /* Tur 28 (B7 görsel 1): an_tepsi'de kristal bir şişe; delilin mührü tıpada (yeniden çizim üretim listesinde) */
                 /* ORTAK: an_tepsi mühürlü şişeyle yeniden çiziliyor; satır iki resme de uyar */
-                'Şişenin tıpası mumla mühürlüydü; kimse açmamıştı.',
                 /* Diyalog T1 (7.14): Hatice Feride'ye "küçük hanım" der */
-                ['reftar', 'Küçük hanım… Perihan Hanım…', 'korkmus'],
-                ['f', 'Perihan Hanım\'a ben söylerim. Git yat.', 'kararli'],
                 { gizle: 'reftar' },
                 /* Misafir odası alt katta, selamlığın yanında: tepsiyle merdiveni inerim */
                 /* Anlatı T2 (mercek_doz §2b): genel "gece yarısı kız" kuralı yerine bu gecenin kendi tehlikesi */
                 { ara: { mekan: 'ada_selamlik', yer: 'Ada evi · alt kat, gece', satirlar: [
-                  'Yukarıda Perihan Hanım\'ın kapısı, aşağıda misafirin kapısı vardı. Feride ikisinin arasındaki basamakları elinde konyakla indi.',
+                  'Feride tepsiyi arka verandaya indirdi. Şişenin tıkırtısıyla kapı açıldı.',
                   /* Tur 29 (B7 görsel 5): an_tepsi'de kapı arka verandaya açılıyor; metin resme uyduruldu */
-                  'Misafir odasının kapısı, selamlığın yanında arka verandaya açılıyordu.',
                 ] } },
                 /* 7.10: Şefik Kenan'ın yanında yatıyorsa kapı açılırken o da anılır */
                 /* GPT T25 Kenan (B7 anlatı 3): vurmadan nasıl duyduğu küçük bir sesle bağlanır */
                 /* Tur 27 (ses 3): şişenin tıkırtısı ve doruk; tek seferlik doruk bölüm sonu başlığını bekler */
                 { efekt: 'sise' },
-                { eger: (S) => b(S).p7_hizmet === 'sefik', ise: [
-                  'Kapıya vurmadım, şişe tepside bir kez tıkırdadı. Şefik uyanmadan kapıyı o açtı.',
-            ], degilse: [
-              'Kapıya vurmadım, şişe tepside bir kez tıkırdadı. Kapıyı o açtı.',
-                ] },
                 /* Tur 32 (B7 ses 2): kapı aralığındaki fısıltılı an için 'doruk' fazla gürültülü; romantik parça kapı kapanınca */
                 { muzik: 'sessiz' },
                 { goster: ['mukaddem', 'endiseli'] },
                 /* Sürükleyicilik T1: kesik romantik satır (b7_8_9 (b)3); an resmi vurucu cümleden sonra (S6);
                    kapanış: tek kısa anlatıcı satırı, kart en sonda (S2); kart ifşa (S1).
                    Tur 27 (sürük. (b)3): kapı aralığında yarım cümleyle biter */
-                ['mukaddem', 'Ben içmem. Siz… bu saatte—', 'endiseli'],
-                ['f', 'Biliyorum. Sabah “içti” diyecekleri sizsiniz.', 'kararli'],
                 /* Tur 29 (t29_b05_08 B7 anlatı 7): konyak misafire teslim edilmez; kartın "delil elimde"si ekranda görünür */
-                'Tepsiyi uzatmadım; şişe elimde kaldı.',
                 { cizim: 'an_tepsi' },
                 /* Tur 28 (B7 diyalog 1): çıplak "Feride" sonraki bölümlere saklı; yarıda kesilen hitap */
                 ['mukaddem', 'Feride Ha—', 'utangac'],
@@ -1619,7 +1597,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                   ['an', 'Yukarıda bir lamba yandı.'],
                 ] },
                 /* Tur 32 (B7 sürük 3): kart envanter değil his taşır */
-                { kart: 'Kenan’ın kapısı kapandı. Elimde mühürlü şişe, kulağımda adımı yarım bırakan sesi.' },
+                { kart: 'Kenan’ın kapısı kapandı. Şişeyi vermedim.' },
               ] },
               { m: 'Nimet\'i uyandır: merdivende otursun.', kosul: nimetVar, etki: { mehves: 1 }, bayrak: { p7_son: 'bekci' },
                 iz: 'Ön merdiveni tuttun. Konyak başka yoldan inecek.', adimlar: [
@@ -1725,7 +1703,6 @@ window.BOLUMLER = window.BOLUMLER || {};
               ] }] },
             ] },
             /* Tur 33 (B7 ses b): Süha teması bu bölümde vapurda girdi; gece kapısında yalnız ortam ve vuruş */
-            ['an', 'Süha Bey o gece kapıyı zorlamadı. Feride’nin cevabını bekledi.'],
             { goster: ['suha', 'notr'] },
             { eger: (S) => b(S).p7_kapi === 'acik', ise: [
               ['suha', 'Kapınız açık. Girmeyeceğim, bilin diye söylüyorum.', 'notr'],

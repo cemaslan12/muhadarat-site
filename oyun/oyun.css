@@ -474,7 +474,16 @@ body.dogrusal #cikislar.vakit { display: flex !important; }
   #vakit-bant .vakit-yer, #vakit-bant .vakit-hedef { display: inline; margin: 0 0 0 8px; }
   #vakit-bant .vakit-ipucu { margin-top: 2px; font-size: 12px; }
   #vakit-bant .vakit-kural { margin-top: 2px; font-size: 11px; }
-  .ust-sag .dugme-ince { min-width: 32px; min-height: 30px; }
+  #ust-cubuk { gap: 4px; }
+  #ust-cubuk .ust-sol { flex: 0 1 auto; min-width: 0; overflow-wrap: anywhere; }
+  #ust-cubuk .ust-sag { flex: 0 1 auto; min-width: 0; gap: 3px; }
+  #ust-cubuk .dugme { box-sizing: border-box; min-width: 44px; min-height: 44px; padding: 4px 6px; }
+  @media (min-width: 640px) and (orientation: landscape) {
+    #ust-cubuk .ust-sag { flex: 0 0 auto; flex-wrap: nowrap; }
+    #ust-cubuk #gostergeler { gap: 4px; padding-inline: 4px; }
+    #ust-cubuk .gosterge { gap: 2px; }
+    #ust-cubuk .cubuk { width: 22px; }
+  }
   #anlati .anlati-gec { min-height: 32px; }
   #panel-icerik p, #panel-icerik li { font-size: 13px; }
   #panel-kapat { min-width: 32px; min-height: 32px; }
@@ -619,7 +628,6 @@ body.plan-modu #ust-cubuk > * { pointer-events: auto; }
   /* Seçim yapılmadan boş şerit planı örtmesin; bir yer seçilince "Git" panelin altına yapışır */
   .harita-secim:has(.dugme) { position: sticky; bottom: 0; z-index: 2; box-shadow: 0 -4px 8px -4px rgba(0,0,0,.25); }
   /* Gezinirken üst çubuğun düğmeleri de parmakla basılır (44 px); bant onların altına iner */
-  body.plan-modu #ust-cubuk .dugme { min-height: 44px; min-width: 44px; }
   #vakit-bant.plan { top: 50px; }
   /* GPT Tur 20 ek 2 — telefonda ekranda görünen en küçük yazı: kapı/iş/geri 16 px, bant 14 px (hedef 16),
      harita oda adı 14 px. Sahne küçülse de bu boyutlar sabit (px); harita sığmazsa yazı değil plan kayar. */

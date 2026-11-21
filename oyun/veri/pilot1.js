@@ -90,7 +90,7 @@ window.BOLUMLER[101] = {
         { goster: ['ayna', 'ana'] },
         'Araba kapıda bekliyor. Bugün yine sözlümü soracaklar.',
         /* Tur 32 (B1 diyalog 1): tema cümlesi yerine Feride'nin kendi sorusu */
-        ['ic', 'Akşam döndüğümde sözüm hakkında başkaları mı karar vermiş olacak?', 'endiseli'],
+        ['ic', 'Akşama benim sözümü kimden soracaklar?', 'endiseli'],
         { soru: 'Düğüne hangi tavırla gideceğim?', secim: [
           { m: '“Bugün kimse beni acındırmasın.”', bayrak: { p_tavir: 'dik' }, adimlar: [
             ['ic', 'Çenemi kaldırdım; Nimet girerse yüzümü böyle bulsun.', 'kararli'],
@@ -279,7 +279,7 @@ window.BOLUMLER[101] = {
                 /* Tur 28 (GPT B1 D1): kesin hüküm finalde Perihan'ın; dedikodu somut soru sorar */
                 ['hanimlar', 'Münevver Hanım da gelmiş. Gerdanlığı soran oldu mu?'],
                 { soru: 'Yelpazeler sallanıyor.', secim: [
-                  { m: 'Yanlarına git, gülümse: “Kenan Bey\'e merakınızı söylerim.”', etki: { itibar: 3 }, bayrak: { p1_v_sofa: 'gulumse' }, iz: 'Dedikoduyu yüzlerine gülümseyerek geri verdin.', adimlar: [
+                  { m: 'Kenan Bey’e ileteceğini söyle.', etki: { itibar: 3 }, bayrak: { p1_v_sofa: 'gulumse' }, iz: 'Dedikoduyu yüzlerine gülümseyerek geri verdin.', adimlar: [
                     /* Tur 27 (B1 diyalog 3): iki hanıma tekil "hanımefendi" denmez */
                     ['f', 'Kenan Bey\'e onu bu kadar merak ettiğinizi söylerim efendim. Pek sevinir.', 'tebessum'],
                     'Yelpazeler havada kaldı. İkisi birden kızardı, yakalanmış gibi gülümsediler.',
@@ -338,8 +338,8 @@ window.BOLUMLER[101] = {
         ['nabi', 'Ablam mı? Ablam bugün iki yabancı hanımdan başkasını görmüyor.', 'gulumser'],
         ['ic', 'Beni görmediler. Hatice neden arka kapıyı açık bırakacak?', 'saskin'],
         { soru: 'Ne yapacağım?', secim: [
-          { m: 'Sessizce dinle.', bayrak: { p_reftar: 'izledi' }, iz: 'Arka bahçenin sırrını gördün, seni gören olmadı.', adimlar: [
-            ['nabi', 'Bu da senin. Sakla.', 'ana'],
+          { m: 'Sessizce dinle.', bayrak: { p_reftar: 'izledi' }, iz: 'Hatice dönmeden geri çekildin.', adimlar: [
+            ['nabi', 'Al bakalım, bu da senin payın. Ablamın gözüne görünmesin.', 'sinsi'],
             'Hatice\'nin avucunda bir şey parladı. Bir yüzük.',
             { koz: 'Hatice ile Nabi Bey', kaynak: 'Kendim gördüm', alt:'Gece açık kalan arka kapı, avuçta bir yüzük. Perihan Hanım bilmiyor. Yüzüne açarsan sır olmaktan çıkar, ama bildiğin sende kalır.' },
           ] },
@@ -436,7 +436,7 @@ window.BOLUMLER[101] = {
           ['mukaddem', 'Bu mavi… Hatırlıyorum. Annenizindi.', 'utangac'],
         ], degilse: [{ eger: (S) => S.bayrak.p_madalyon === 'acik', ise: [
           'Gözü göğsümdeki madalyona gitti, hemen çekildi.',
-          ['mukaddem', 'Behiye Hanım\'ın madalyonu. Yakışmış.', 'gulumser'],
+          ['mukaddem', 'Behiye Hanım\'ın madalyonu. Yakışmış.', 'utangac'],
         ], degilse: [
           ['mukaddem', 'Feride Hanım.', 'utangac'],
           ['ic', 'Yalnız adımı söyledi. Bir yıldır biriktirmiş gibi.', 'utanmis'],
@@ -449,7 +449,7 @@ window.BOLUMLER[101] = {
           { m: '“Yazınız güzelleşmiş. İthafı gördüm.”', etki: { mukaddem: 8 }, bayrak: { p1_kenan_istek: true }, adimlar: [
             ['f', 'Yazınız güzelleşmiş. İthafı gördüm.', 'tebessum'],
             ['mukaddem', 'Güzel yazmaya çalıştım. Kimin okuyacağını bildiğim için.', 'utangac'],
-            ['ic', 'Şefik\'in adını okurken bana baktı. İthafı bir daha okumak istedim.', 'utanmis'],
+            ['ic', 'Parmağım Şefik\'in adında kaldı.', 'utanmis'],
           ] },
           { m: '“Kardeşimi şımartıyorsunuz Kenan Bey.”', etki: { mukaddem: 7 }, adimlar: [
             ['f', 'Kardeşimi şımartıyorsunuz Kenan Bey.', 'tebessum'],
@@ -482,9 +482,9 @@ window.BOLUMLER[101] = {
         { efekt: 'kagit' },
         ['an', 'Kenan sayfayı çevirirken arasından kurumuş bir yasemin düştü. Feride eğilip onu avucuna aldı.'],
         ['ic', 'Bizim bahçenin yasemini bu, geçen yazdan kalma.', 'utanmis'],
-        { cizim: 'an_merdiven' },
         { soru: 'Yasemin avucumda.', secim: [
           { m: 'Avucunda sakla.', etki: { mukaddem: 7 }, bayrak: { p_yasemin: 'sakla', p1_kenan_istek: true }, adimlar: [
+            { cizim: 'an_merdiven' },
             ['mukaddem', 'Onu… orada unutmuşum.', 'utangac'],
             ['f', 'Öyleyse bende kalsın. Siz yine unutursunuz.', 'tebessum'],
           ] },
@@ -542,7 +542,6 @@ window.BOLUMLER[101] = {
         /* Tur 32 (B1 oynanış 1): ret dalında kapıyı açan Süha'dır; Feride içeri kendi isteğiyle girmez, yolu kesilir */
         { eger: (S) => !!S.bayrak.p1_rota_ret, ise: [
           'Eşiği geçerken önüme dikildi. Cam kapıyı arkamdan o kapattı.',
-          ['ic', 'Bahçeye dönüyordum. Şimdi limon kokusunun içindeyim.', 'endiseli'],
         ], degilse: [
           'Limonluk ılık. Cam kapıyı ardımdan kapadım.',
           ['ic', 'Camdaki gölge yok olmuş. Yanıldım mı?', 'saskin'],
@@ -920,7 +919,6 @@ window.BOLUMLER[101] = {
         { muzik: 'sessiz' },
         /* Tur 32 (B1 anlatı 6): tedbirli Perihan'ın perde dibinde konuşmasının gerekçesi */
         'Perdenin öbür yanında iki ses. Gözlerimi kapadım, uyur gibi yaptım.',
-        ['an', 'Perihan Hanım perdenin ardındaki kızın uyuduğunu sandı. Sesini alçaltmadı.'],
         /* Anlatı T2 (b1_2_3 #4; karar A2): perde ardındaki hanım bahçedeki yabancıya bağlanır (Remzi'nin annesi; B15'te tanınır) */
         /* GPT T26 Süha (B1 anlatı 10'a-1): sabah "Perihan'ı izleyeceğim" diyen Feride sesleri kendisi tanır */
         { eger: (S) => S.bayrak.p_tavir === 'tetik', ise: [
@@ -947,7 +945,7 @@ window.BOLUMLER[101] = {
         /* GPT T23 (Kenan 1b-1/3): sabah aynaya söylenen söz, akşamki bilgiyle karşılanır */
         { eger: (S) => S.bayrak.p_tavir === 'umut', ise: [
           { eger: (S) => S.bayrak.p_rota === 'mukaddem', ise: [
-            ['ic', 'Sabah onu bir kez görmek yeter sanmıştım. Gördüm; bu sözü artık kimseye aldırtmam.', 'kararli'],
+            { eger: (S) => S.bayrak.p_yasemin === 'sakla', ise: [['ic', 'Yasemin hâlâ avucumda.', 'kararli']], degilse: [['ic', 'Bir kez gördüm. Bu akşam babam sorarsa ben söyleyeceğim.', 'kararli']] },
           ], degilse: [
             ['ic', 'Sabah onu bir kez göreyim demiştim. Göremedim, ama söz hâlâ benim.', 'mahzun'],
           ] },
@@ -968,7 +966,6 @@ window.BOLUMLER[101] = {
         /* Tur 29 (B1 sürük 10'a, ses 10'a): süre bir nesnede ve seste. Tur 32 (B1 ses 2): kupa gelişindeki teker
            sesi burada yinelenmez; nalın çakılı eşelemesi */
         { efekt: 'nal' },
-        'Atlar çakılı eşeledi. Söyleyeceksem şimdi söylemeliyim.',
         /* Tur 28 (B1 sürük 2): vurucu an sorusu kısa; süre ve bedel kalır. Tur 32 (B1 diyalog 11): sözdizimi */
         /* Tur 33 (B1 sürük 1): soruda susmanın da bir karşılığı var; seçenekler Perihan'ın elinden bir şey alır ya da verir */
         { soru: 'Susarsam akşam sofrada yalnız onun sözü konuşulur. Konuşursam benimki de.', secim: [
@@ -1034,7 +1031,6 @@ window.BOLUMLER[101] = {
         { eger: (S) => !!S.bayrak.p_koz_yandi, ise: [
           ['calibe', 'Gelin odasında Nabi\'yi andın kızım. Akşam babana ben anlatırım, sen de dinlersin.', 'sinsi'],
           /* GPT T29 (B1-D2): "harp" hükmü ikinci kez kurulmaz; somut sonraki hamle */
-          ['ic', 'Babamın önünde de söyleyeceğim. Bu kez o da dinleyecek.', 'kararli'],
         ] },
         /* Tur 28 (B1 görsel 4; GPT G2): an resmi araba hareket etmeden, Perihan karşıdayken. Perdeyi indirdiği dalda
            açık perdeli resim gösterilmez; an_perde_kapali (kayıt başta) çizilene dek o dalda resim atlanır */
@@ -1043,11 +1039,6 @@ window.BOLUMLER[101] = {
         { eger: (S) => S.bayrak.p_defter === 'suha', ise: [{ cizim: 'an_perde_kapali' }], degilse: [{ cizim: 'an_perde' }] },
         { gizle: 'calibe' },
         /* Tur 28 (B1 sürük 4): doruktan sonra Feride'nin kendi planı (kanca yola özel kalır) */
-        { eger: (S) => S.bayrak.p_rota === 'mukaddem', ise: [
-          ['ic', 'Kenan\'a bu akşamı nasıl anlatacağım?', 'mahzun'],
-        ], degilse: [
-          ['ic', 'Camın ardından beni gördü. Ama ben de onu gördüm.', 'kararli'],
-        ] },
         { ortam: 'o_araba' }, // Tur 30 (t30 ORTAK B1–4 §1): öbür dallarda araba burada yola çıkar
         ['an', 'Araba yokuşu tırmandı. Perihan Hanım yol boyunca üvey kızına gülümsedi.'],
         /* Tur 27 (B1 sürük 10'a): Süha yolunda kart yolun kendi duygusuyla biter */
@@ -1103,7 +1094,7 @@ window.BOLUMLER[101] = {
     an_merdiven: function (S) { return S.bayrak.p_rota !== 'mukaddem'; },
     an_limonluk: function (S) { return S.bayrak.p_rota !== 'suha' || !!S.bayrak.p1_suha_sinir; },
   },
-  anIpuclari: { an_merdiven: 'Kalabalıktan kaçarken merdivene çıkan, orada sessiz birini bulur.', an_limonluk: 'Limonluğa giden, menekşe şekeri uzatan bir el bulur.' },
+  anIpuclari: { an_merdiven: 'Merdivende kitabın arasından düşen yasemini avucunda tut.', an_limonluk: 'Limonluğa giden, menekşe şekeri uzatan bir el bulur.' },
   /* Sürükleyicilik T1 (S1): ifşa; yola özel. Oyuncu bilir, karşı taraf bilmez.
      GPT T26 Süha: Süha yolunda tehlike türüne kayar (yaklaşan sofra); 2. bölümün karar kancasıyla aynı türde değil. */
   siradaki: { ad: 'Konak Akşamı', kanca: function (S) {

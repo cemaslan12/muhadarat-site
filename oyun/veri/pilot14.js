@@ -218,7 +218,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { eger: madamDost, ise: [
             { eger: function (S) { return b(S).p12_sabah === 'madam'; }, ise: [
               /* Diyalog T1 (14-8): 13. bölümdeki "İkincisi kolay" sözünün tekrarı değil */
-              ['josephine', 'Kahvede söyledim, dersim kesildi. Artık kesecek ders kalmadı.', 'notr'],
+              ['josephine', 'Kahvede söyledim, dersim kesildi. Artık kesecek ders kalmadı.', 'mahzun'],
             ] },
             /* T27 (DİYALOG): Madam'ın kırık Türkçesi */
             ['josephine', 'Ezandan beri pencere açık. Avlu kapısından kimse… {i}personne{/i}.', 'kararli'],
@@ -290,7 +290,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         (S) => (b(S).p13_mektup === 'oda'
           ? ((b(S).p6_karar === 'surgu' || b(S).p7_kapi === 'surgu') ? 'Çağrıldığında Feride sürgüyü kendi eliyle çekti.'
             : 'Çağrıldığında Feride kapıya dayadığı sandalyeyi çekti.')
-          : 'Salona çağrılınca hemen kalktı. Kendi adına geleni kimsenin elinde bırakmayacaktı.'),
+          : 'Feride eşikte elini açtı. Zarfı kendisine uzatacaklarını sanıyordu.'),
       ] } },
     ],
 
@@ -390,7 +390,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* Diyalog T1 (14-1): Perihan'ın yalancı yalvarışı elin kalkmasından sonra.
              T29 (b13_16 B14 SÜRÜK-2): dayak Feride'nin seçimi değil; gerilim sürer, doruk yeminde (Feride'nin anı) */
-          ['calibe', 'Yapmayın efendi! Kız daha çocuk.', 'endiseli'],
+          ['calibe', 'Aman efendi, daha çocuk! Sonra üvey anası sesini çıkarmadı derler.', 'endiseli'],
           { goster: ['sefik', 'aglamakli'] },
           /* 11. bölüm: "Gölgem ol" */
           { eger: (S) => b(S).p11_sefik === 'yanimda', ise: [
@@ -522,7 +522,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Kadın bezi dişiyle yırtıyor.', secim: [
             { m: '“Şefik, elimi tut.”', etki: { sefik: 1 }, bayrak: { p14_cikikci: 'el' }, adimlar: [
               { goster: ['sefik', 'aglamakli'] },
-              ['sefik', 'Tuttum abla. Sıkabilirsin.', 'notr'],
+              ['sefik', 'Tuttum abla. Sıkabilirsin.', 'kararli'],
               'Elini sıktım. Şefik yorganın kenarına baktı, ben sesimi yuttum.',
             ] },
             { m: '“Süha Bey neden içeri girmedi?”', bayrak: { p14_cikikci: 'sor' }, adimlar: [
@@ -561,7 +561,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['josephine', 'Odama dönerim. Uyuyamazsınız, biliyorum… uyuyun yine de.', 'endiseli'],
           ] },
           /* Anlatı T2b (GPT okur 14-4): kapıların gerçek durumu soruşturulurken genelleme yok */
-          ['an', 'Madam eteğini toplayıp çıktı, kapıyı aralık bıraktı. Feride o aralığı kapatmadı.'],
           { gizle: 'josephine' }, { gizle: 'sefik' },
           { eger: kagit, ise: [
             /* GPT T23 okur B14 10/1: Şefik'in küçük isteği; ateşte yarım döner */
@@ -571,10 +570,9 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* T27b (GPT B14-A2): sahte teslim yazarı kanıtlamaz; araştırma yönü */
           /* T32 (b13_16 O5, B14 DİYALOG-5): 13. bölümde yapılmış çıkarım tekrarlanmaz */
-          ['ic', '“Kapıdan verdiler” dedi. Nimet tokmağın inmediğini duymuş.', 'kararli'],
           { ara: { mekan: 'konak_sofa', yer: 'Konağın sofası · gece yarısına doğru', satirlar: [
             'Gece yarısına az kalmıştı. Sofadaki kapıların altından ışık sızıyordu.',
-            'Feride yorganı düzeltti ve lambayı söndürmeden kapıya yürüdü.',
+            'Feride Şefik’in lambasını yanık bırakıp kapıya yürüdü.',
           ] } },
           { vakit: VAKIT_GECE },
           { gorev: 2 },
@@ -588,7 +586,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           { muzik: 'huzun' },
           'Şefik\'in alnı elimi yakıyor. Dudakları kurumuş, sayıklıyor.',
           /* T28b (GPT A14-2): anlatıcı teşhis ve cinsiyet genellemesi koymaz; gözlenen davranış */
-          ['an', 'Şefik uykusunda babasını sayıkladı. Feride alnındaki bezi değiştirdi, ateşin ne zamandır yükseldiğini bilmiyordu.'],
           { goster: ['sefik', 'aglamakli'] },
           ['sefik', 'Lambayı söndürme abla… Babamı tutamadım… Kolun…', 'aglamakli'],
           ['ic', 'Konakta bir tek hekim var. Kapısını çalarsam ne derler, sonra düşünürüm.', 'endiseli'],
@@ -616,7 +613,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* T27 (SES): hekimin imzası */
           { efekt: 'nabiz' },
           ['an', 'Süha Bey Şefik\'in nabzını tuttu. Saydıkça yüzü karardı.'],
-          ['suha', 'Korkudan ateş. Gece ağır geçer.', 'endiseli'],
+          ['suha', 'Ateşi var. Bu gece başından ayrılmayın.', 'endiseli'],
           { soru: 'Süha Bey çantasını açtı. Bana bakmıyor.', secim: [
             /* Diyalog T1 (B1, D2): Feride Süha'ya her zaman "siz" der */
             { m: '“Kardeşimi kurtarın. Her şeyi biliyorum.”', etki: { vakar: 1 }, bayrak: { p14_hasta: 'bil' }, adimlar: [
@@ -866,7 +863,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Şafak: kâğıt ya da hatıra (16. bölüm için iz: alafranga "gece saat on iki"; burada çözülmez) */
           { eger: kagit, ise: [
             { goster: ['sahte_mektup'] },
-            'Şafak sökerken kâğıdı lambanın altında açtım.',
+            'Şafakta gözümü Şefik’ten ayırıp kâğıdı lambaya tuttum.',
             { eger: muk, ise: [
               /* Selanik teli 12. bölümde yakılmış olabilir; Çanakkale teli her dalda Feride'de */
               'Kenan\'ın Çanakkale telgrafı yanımda, altında “—K.”.',
@@ -919,7 +916,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                   ['ic', 'Saati böyle sayan birini tanır gibiyim. Adı dilimin ucunda, söyleyemiyorum.', 'dusunceli'],
                 ] },
               ] },
-              { m: 'Bu gece delil arama. Şefik\'in yanına dön.', etki: { vakar: 1 }, bayrak: { p14_gece: 'birak' }, adimlar: [
+              { m: 'Kâğıdı bırak. Şefik’in yanına dön.', etki: { vakar: 1 }, bayrak: { p14_gece: 'birak' }, adimlar: [
                 'Şefik\'in yanına uzandım. Uyku gelmedi.',
               ] },
             ] },
@@ -1120,7 +1117,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [{ eger: (S) => b(S).p14_cagri === 'kendi', ise: [
             ['calibe', 'Gece yarısı hekimin kapısını kendin çalmışsın. Konak duydu.', 'sinsi'],
           ], degilse: [{ eger: (S) => b(S).p13_gece === 'el', ise: [
-            ['calibe', 'Dün gece de taşlıkta hekimin avucundaydın. Konak sayar kızım.', 'sinsi'],
+            ['calibe', 'Dün gece de elini tuttu, kızım. Bu evde kaç kere olduğunu sayarlar.', 'sinsi'],
           ], degilse: [{ eger: (S) => b(S).p14_kagit_suha === 'vermem', ise: [
             ['calibe', 'Hekim gece senden bir kâğıt istemiş, vermemişsin. Sandığında ne saklıyorsun?', 'sinsi'],
           ] }] }] }] },
@@ -1129,7 +1126,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* 15. bölümün görücüsü burada haber olur (kanca ve iç ses "görücü" der) */
           ['calibe', 'Yarın ikindi görücü gelecek efendi, iç güveysinden iyisi. Kızın askısı o vakte şalın altında dursun.', 'soguk'],
-          ['ic', 'Görücü. Kimin adına geldiğini yine söylemedi; kapıyı yine o seçti.', 'ofkeli'],
           ['calibe', 'Efendi, bu çocuk konağın havasında hasta oluyor. Leyli askerî mektebe verin.', 'soguk'],
           /* Anlatı T2b (GPT okur 14-3): kararın nedeni babanın gecesinde; "Bugün gidiyor" takvim kararı (A3) */
           /* T27 (SÜRÜK 10'a): vedanın süresi aynı satırda (seçim arası 13 satır) */
@@ -1191,7 +1187,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ], degilse: [
             ['an', 'Perihan Hanım tek başına çıktı. Şefik ablasının eteğini bırakmadı.'],
             /* T32 (ifade envanteri 2a-18): yemin tonu */
-            ['ic', 'Kaldı. Bu kez onu ben korurum.', 'kararli'],
+            ['ic', 'Şefik yanımda. Şimdi o kâğıdı kimin yazdığını bulmalıyım.', 'kararli'],
           ] },
           { gizle: 'calibe' }, { gizle: 'sefik' }, { gizle: 'sai' },
           { eger: (S) => b(S).p14_sefik === 'mektep', ise: [
@@ -1286,7 +1282,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         return {
           /* T27 (SÜRÜK-3): 15. bölümde baba çarşıda; kanca yerine getirilebilir olsun */
           kanit: 'Babam o kâğıda bir daha bakmak istemiyor. Görücü ise yarın geliyor.',
-          supheli: 'Sahte kâğıdı kim yazdı? Görücü gelmeden bilmeliyim.',
+          supheli: 'Görücü gelmeden o yazıyı bir daha görmeliyim.',
           inandi: 'Babam o kâğıda inandı. Yarın ikindi görücü geliyor.',
         }[f.p14_mektup] || 'Babam o kâğıda inandı. Yarın ikindi görücü geliyor.';
       }

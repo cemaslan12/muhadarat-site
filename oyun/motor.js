@@ -960,9 +960,14 @@
     ipucuZamani = setTimeout(() => { if (!mesgul && !acikPanel) bildir('İpucu: ' + g.ipucu); }, 25000);
   }
 
+  function gecmiseYolEkle(no) {
+    gecmis.push({ ayirac: true, metin: BOLUMLER[no].ad + ' · yeni oynayış' });
+    if (gecmis.length > 80) gecmis.shift();
+  }
   function gecmisHtml() {
     if (!gecmis.length) return '<h2>Geçmiş</h2><p class="not">Henüz bir şey okunmadı.</p>';
     return '<h2>Geçmiş</h2><div class="gecmis">' + gecmis.map((s) =>
+      s.ayirac ? '<h3>' + bicimle(s.metin) + '</h3>' :
       '<p>' + (s.ad ? '<b>' + s.ad + ':</b> ' : '') + bicimle(s.metin) + '</p>').join('') + '</div>';
   }
 
@@ -1438,8 +1443,8 @@
       if (satirlar.length || simgeSatiri.length) {
         const tum = satirlar.concat(simgeSatiri);
         const son = gecmis.length ? gecmis[gecmis.length - 1] : null;
-        const baslik = son ? '«' + kisalt(son.metin.replace(/\{\/?[ib]\}/g, ''), 70) + '»' : tum[0];
-        gunlugeYaz(baslik, son ? tum : tum.slice(1));
+        const baslik = son && !son.ayirac ? '«' + kisalt(son.metin.replace(/\{\/?[ib]\}/g, ''), 70) + '»' : tum[0];
+        gunlugeYaz(baslik, son && !son.ayirac ? tum : tum.slice(1));
         if (satirlar.length) kuyrugaKoy(satirlar);
       }
       return;
@@ -2816,6 +2821,7 @@
     $('#pilot-tekrar').onclick = () => {
       panelKapat();
       const no = S.bolum; const bas = bolumBasi(no);
+      gecmiseYolEkle(no);
       if (!bas) { pilotBaslat(true); return; }
       S = bas; S.biten = (S.biten || []).filter((x) => x !== 'acilis' + no); S.bolumBitti = false;
       bolumBaslat(no);
@@ -3191,6 +3197,7 @@
       onay('Bu bölüm baştan başlasın mı? Yalnız bu bölümdeki ilerlemeniz silinir; önceki bölümlerdeki kararlarınız kalır.').then((evet) => {
         if (evet) {
           const no = S.bolum; const bas = bolumBasi(no);
+          gecmiseYolEkle(no);
           S = bas || yeniDurum(); S.biten = (S.biten || []).filter((x) => x !== 'acilis' + no); S.bolumBitti = false; S.taki = null; S.gorunumBekliyor = false;
           bolumBaslat(no);
         }

@@ -179,7 +179,7 @@ window.BOLUMLER = window.BOLUMLER || {};
   // 2) Yemekten sonra: sofada kulak misafiri ya da odayı kilitlemek (Nazlı'nın salona getireceği şey)
   var VAKIT_KAHVE = {
     ad: 'Yemekten sonra', hak: 1,
-    hedef: { mekan: 'buyuk_salon', metin: 'Kahve salonda içilecek. Babam seni bekler.' },
+    hedef: { mekan: 'buyuk_salon', metin: '• İşe uğramak bir vakit alır. ★ Salona girince kahve başlar.' },
     mekanlar: ['konak_sofa', 'fazila_oda', 'buyuk_salon'],
     yerler: {
       konak_sofa: { kisi: 'nabi', ifade: 'notr', eylem: 'gölgede dinle', ipucu: 'Sofada iki erkek sesi var, biri adını andı (kulak misafiri).',
@@ -187,11 +187,11 @@ window.BOLUMLER = window.BOLUMLER || {};
           { muzik: 'sessiz' }, // Tur 33 (B2 ses 1): sofradaki gerilimin hemen ardından ikinci kez gerilim açılmaz; duman ve sessizlik
           ['an', 'Yemekten sonra erkekler üst kat sofasına sigara içmeye çıktı. Sesleri merdiven boşluğundan aşağıya kadar geliyordu.'],
           'Merdivenin gölgesinde durdum. Duman buraya kadar geliyor.',
-          ['nabi', 'Kız sana bakıyor Süha. Sofrada gördüm.', 'gulumser'],
+          ['nabi', 'Süha, bu akşam kızın gözü sendeydi. Kadehim üstüne yemin ederim.', 'sinsi'],
           { goster: ['suha', 'alayci'] },
           ['suha', 'Bakmasın. Bana bakan yanar.', 'soguk'],
           /* Tur 28 (B2 diyalog 1): sofradaki kahve daveti açıktı; kulak misafirliği yeni bilgi (zaman) taşır */
-          ['nabi', 'Ablam gerdanlık sabahı Rıfkı\'nın karısına haber yollayacak, kahve bahane. Para paraya gider.', 'ana'],
+          ['nabi', 'Ablam gerdanlık sabahı Rıfkı\'nın karısına haber yollayacak, kahve bahane. Para paraya gider.', 'notr'],
           /* Tur 30 (B2 ses 1): soru "gıcırdamak üzere" diyor; gıcırtı seçimden önce çalmaz, geçişin bedeli olur */
           { soru: 'Ayağımı oynatırsam döşeme gıcırdayacak.', secim: [
             { m: 'Öksür. Duyduğunu bilsinler.', etki: { suha: 6 }, bayrak: { p2_v_sofa: 'oksurdu' }, adimlar: [
@@ -260,7 +260,7 @@ window.BOLUMLER = window.BOLUMLER || {};
            Bir yer/zaman (konak akşamı) ve bir hedef (sofra) kalır. */
         /* Anlatı denetimi T1 (rehber §1): açılış anlatıcı sesinde; Nazlı kendi girişine, Nabi ile Süha sofraya dağıtıldı */
         /* Anlatı T2 (b1_2_3 #3, yay B2 a1, GPT 2.1): B1'in son anını karşılar; dal hatası ve irade damgası kalktı */
-        'Düğün evinden dönüldüğünde konağın lambaları yakılmıştı. Feride, Perihan Hanım’ın arabada söylediğini unutamıyordu: “Gerdanlık henüz takılmadı hanımefendi.”',
+        'Konakta lambalar yanmıştı. Perihan Hanım’ın “henüz” deyişi Feride’nin kulağındaydı.',
         /* GPT T25 Kenan (B2 anlatı 1): Kenan yolunda Şefik 1. bölümde tanındı, Süha ilk girişinde tanıtılır;
            Süha yolunda Şefik ilk kez burada anılır (1. bölümde yalnız sesi duyuldu) */
         /* Tur 27 (B2 anlatı 1): açılışın tek sorusu bir tanıtım cümlesiyle bölünmez; Şefik salonda tanıtılır */
@@ -509,13 +509,9 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['ic', '“Süha Bey” diyeceğim. Aramızdaki mesafeyi yanlış anlamasın.', 'kararli'],
               ] },
               { m: '“Anlat bana Nimet. O kimdir?”', etki: { mehves: 1 }, bayrak: { p2_hitap: 'sordu' }, iz: 'Süha Bey\'in eski bir sırrını Nimet\'ten öğrendin.', adimlar: [
-                ['f', 'Anlat bana Nimet. O kimdir?', 'endiseli'],
                 /* GPT T26 Süha (B2 diyalog 10'a-2): Nimet önce direnir; Feride sorarak öğrenir */
-                ['mehves', 'Sormayın hanımcığım.', 'endiseli'],
-                ['f', 'Soruyorum Nimet.', 'kararli'],
                 /* Tur 33 (B2 anlatı 1): reddedilen talip sırrı 6. bölümün ifşası; burada yalnız bir "eski hesap" */
-                ['mehves', 'Perihan Hanım\'la aralarında eski bir hesap var derler. Hangi hesap, bilmem.', 'endiseli'],
-                ['ic', 'Nimet gerisini söylemedi. Süha Bey\'le Perihan Hanım\'a bu akşam daha dikkatli bakacağım.', 'dusunceli'],
+                ['mehves', 'Sormayın, hanımcığım. Perihan Hanım’la aralarında eski bir hesap var derler.', 'endiseli'],
               ] },
               /* Tur 28b (kök 1): Nimet'in uyarısına açık ret (gönül değişmez; Süha burada değil). p2_hitap 'sinir' sonraki
                  bölümlerde "dayı" hitabının varsayılanına düşer (pilot3/6 yalnız 'bey'/'sordu' okur) */
@@ -548,9 +544,8 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 27 (B2 anlatı 10'a): gezinmeden sahneye geçişte tek satırlık ara sayfa */
           { ara: { mekan: 'yemek_salonu', yer: 'Yemek odası · akşam', satirlar: [
             /* Tur 29 (B2 anlatı 10'a): kuralın somut örneği */
-            'Perihan Hanım o akşam yerleri kendisi gösterdi. Kardeşi Nabi\'yi Süha Bey\'in yanına oturttu.',
+            'Sait Efendi sofranın başına geçince Perihan Hanım kardeşi Nabi’yi karşı uçta Süha Bey’in yanına oturttu.',
           ] } },
-          ['an', 'Sait Efendi sofranın başına geçti. Az konuşur, son sözü kendine saklardı. Süha Bey masanın öbür ucundaydı.'],
           { eger: muk, ise: [
             /* Kenan yolu: Süha ilk girişinde tanıtılır (salonda görüldüyse orada); salonda konuşulduysa o an hatırlanır.
                GPT T25 Kenan (B2 anlatı 2): "dayı" dipnot gibi değil, sofradaki gerilimle */
@@ -661,7 +656,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             ['calibe', 'Efendi, Nimet bugün mutfakta Hatice\'yle Nabi\'yi dile düşürmüş.', 'soguk'],
             { goster: ['nabi', 'mahcup'] },
             { efekt: 'oksuruk' }, // Tur 29 (B2 ses 1)
-            'Nabi Bey öksürdü.',
             ['sai', 'Hizmetçi sözü bu sofraya girmez. Nimet dilini tutsun.', 'ciddi'],
             ['ic', 'Sözü ben söyledim, azarı Nimet yiyor.', 'mahzun'],
             { soru: 'Perihan Hanım tabağına bakıp gülümsüyor.', secim: [
@@ -692,7 +686,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['f', 'Şefik de yanımızdaydı babacığım. Kitabı ona getirmiş, ben yalnız selam aldım.', 'kararli'],
                 ['sai', 'Kitap. İyi çocuktur Kenan.', 'gulumser'],
               ] },
-              { m: '“Bir yıl sonra gördüm. Selam verdim.”', etki: { mukaddem: 6, baba_guven: 2 }, bayrak: { p2_tanik: 'sahiplendi' }, iz: 'Kenan\'la karşılaşmanı babanın önünde sahiplendin.', adimlar: [
+              { m: '“Bir yıl sonra gördüm. Selam verdim.”', etki: { baba_guven: 2 }, bayrak: { p2_tanik: 'sahiplendi', p2_selam_haberi: true }, iz: 'Kenan\'la karşılaşmanı babanın önünde sahiplendin.', adimlar: [
                 ['f', 'Bir yıl sonra gördüm babacığım. Selam verdim.', 'utanmis'],
                 ['sai', 'Selam vermişsin. Annen de selamı esirgemezdi, iyi etmişsin.', 'gulumser'], // Tur 29 (B2 diyalog 10'a): Sait'in "Annen" imzası
                 'Babam gülümsedi. Perihan Hanım ekmeğini ufaladı.',
@@ -774,7 +768,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                görünür (gönül kuralı). Tur 28 (GPT O2; kural 2): açık ret her dalda erişilebilir (kosul kalktı); açık sınır
                bayrağı p2_suha_sinir piyano, gerdanlık iç sesi, "Onun gözünden" ve defterde okunur. */
             /* Tur 29 (B2 diyalog 2): ret cümlesi teklif gibi okunmaz */
-            { m: '“Benim sözüm verildi. Kibar hanımı başka sofrada arayın.”', etki: { mukaddem: 4, baba_guven: 1 }, bayrak: { p2_sofra: 'soz', p2_suha_sinir: true }, iz: 'Sofrada sözlü olduğunu söyledin. Süha Bey gülümsedi ama bardağını indirdi.', adimlar: [
+            { m: '“Benim sözüm verildi. Kibar hanımı başka sofrada arayın.”', etki: { baba_guven: 1 }, bayrak: { p2_sofra: 'soz', p2_soz_haberi: true, p2_suha_sinir: true }, iz: 'Sofrada sözlü olduğunu söyledin. Süha Bey gülümsedi ama bardağını indirdi.', adimlar: [
               ['f', 'Benim sözüm verildi Süha Bey. Kibar hanımı başka sofrada arayın.', 'kararli'],
               ['suha', 'Duydum Feride Hanım. Sofrada bir daha söylemenize gerek yok.', 'soguk'],
               'Bardağını indirdi. Babam ekmeğini yavaşça bitirdi.',
@@ -790,7 +784,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['an', 'Nabi Bey kulüpten bir dedikodu getirmişti. Ablası ayıplar gibi dinledi ama tek kelimesini kaçırmadı.'],
           ['nabi', 'Kapıdaki yaldızlı kupayı soran olursa: Tüccar Rıfkı\'nın oğlu Remzi\'ninmiş. Babası Galata\'nın yarısını alır.', 'gulumser'],
           { eger: (S) => S.bayrak.p_remzi === 'laf', ise: [
-            ['nabi', 'Kulüpte anlatıyormuş: “Bir perdenin ardından yendiler beni, kendi lafımla.” Gülerek!', 'gulumser'],
+            ['nabi', 'Kulüpte kendi ağzıyla anlatmış, enişte. “Kendi lafımla yendiler beni,” demiş.', 'gulumser'],
           ], degilse: [{ eger: (S) => S.bayrak.p_remzi === 'yurudu', ise: [
             ['nabi', 'Kulüpte anlatıyormuş: “Bir hanım çamura bastı da kupama basmadı.” Gülerek!', 'gulumser'],
           ], degilse: [
@@ -1031,7 +1025,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Tur 28 (GPT B2 O2): sofrada konan açık sınır sonraki iç seste okunur */
           { eger: (S) => !!S.bayrak.p2_suha_sinir, ise: [
             /* Tur 30 (B2 diyalog 2): sınır iç sesi seçimi önceden bağlamaz ("Buyurun" da seçilebilir; karar oyuncunun) */
-            ['ic', 'Sofrada “sözüm verildi” dedim. Şimdi sayfalarımın başında bekliyor.', 'endiseli'],
+            ['ic', 'Sayfalarımın başında hâlâ o bekliyor.', 'endiseli'],
           ], degilse: [{ eger: sinir, ise: [
             /* Tur 28b (kök 1–2): limonlukta ya da Nimet'e konan sınır da piyanoda geçerli */
             ['ic', 'Sayfa çevirmek için bile izin istiyor.', 'kararli'],
@@ -1223,7 +1217,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ['mehves', 'Gerdanlık takılacak. Sevinçli misiniz hanımcığım?', 'ana'],
           { soru: 'Nimet aynada yüzüme bakıyor.', secim: [
             { m: '“Sevinçliyim.”', kosul: muk, bayrak: { p2_gerdanlik: 'sevinc' }, adimlar: [
-              ['f', 'Sevinçliyim.', 'gulumseyen'],
+              ['mehves', 'Öyleyse yüzünüzü benden niye saklarsınız küçük hanım?', 'duygulu'],
               ['ic', 'Bunu söylerken pusula aklımdaydı.', 'utanmis'],
             ] },
             /* Tur 27 (B2 oynanış 4): Süha yolunda gerdanlık sorusu boşa düşmesin.
@@ -1602,7 +1596,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         if (b.p2_pusula === 'sustu') return 'Bu gece Kenan Bey’e susarak cevap verdim. Yarın gerdanlıkla birlikte onun satırı da gelecek mi?';
         /* Tur 27 (B2 sürük 10'a; GPT S3): kart ile kanca aynı yöne; Perihan'ın "önce bana getirirler" tehdidine cevap */
         if (b.p2_koridor_goruldu) return 'Perihan Hanım yarın bu eve ne gelirse önce ona getirileceğini söyledi. Kenan Bey’in cevabı gerdanlıkla gelirse kutuyu ondan önce açmalıyım.';
-        return 'Kenan Bey’e cevabımı yolladım. Onunki gerdanlıkla gelirse kutuyu Perihan Hanım\'dan önce açmalıyım.';
+        return 'Gerdanlık gelince kutuyu Perihan Hanım\'dan önce açmalıyım.';
       }
       return b.p2_koridor_goruldu
         /* GPT T24b Süha (B2-2): fısıldayan belli (Süha); açık olan, hecenin kime söylendiği */

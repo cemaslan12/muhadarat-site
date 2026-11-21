@@ -444,7 +444,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         /* Tur 33 (t33 B12 diyalog 1, anlatı 1): "sıcak kâğıt" mecazı ve üçüncü kez yinelenen istek sahnesi kalktı */
         'Sait Efendi sabah kahvesini selamlıkta içerdi. Süha Bey’in dünkü isteğine de fincan bitince cevap verecekti.',
         /* Sürükleyicilik T1 (S4): bölümün tek sorusu ilk ekranda. Tur 27 (B12 anlatı 1): vurucu an (diz) söylenmez */
-        'Feride o fincan bitmeden aşağı inmek istiyordu.',
+        'Feride babasının yanına yetişmek için merdivene yöneldi.',
       ] } },
     ],
 
@@ -739,7 +739,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             { m: '“Babamın önünde söylenmeyecek sözü dinlemem Süha Bey.”', etki: { vakar: 1 }, bayrak: { p12_yer: 'ret' }, iz: 'Gizli görüşmeye evet demedin; Süha Bey yine de yolunu kesecek.', adimlar: [
               ['suha', 'Dinlemeyin. Kuşlukta sarı odanın önünden geçeceksiniz; ben orada söylerim.', 'soguk'],
-              ['ic', 'Evet demedim. Yolumu keserse kapıyı ben aralık tutarım.', 'kararli'],
+              ['ic', 'Kapı aralık kalacak.', 'kararli'],
             ] },
           ] },
           { gizle: 'suha' },
@@ -813,7 +813,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] }] }] },
           { eger: (S) => b(S).p12_yer === 'ret', ise: [
             { soru: 'Eşikte yolumu kesiyor. Onu dinlemek zorunda değilim.', secim: [
-              { m: '“Yolumdan çekilin.” Dinlemeden sofaya geç.', bayrak: { p12_v_on: 'ayril', p12_tepki: 'cik', p12_diz: 'geri', p12_kayit: false }, iz: 'Diz çökmesini ve itirafını görmeden ayrıldın; tanıklık kazanmadın.', adimlar: [
+              { m: 'Dinlemeden sofaya geç.', bayrak: { p12_v_on: 'ayril', p12_tepki: 'cik', p12_diz: 'geri', p12_kayit: false }, iz: 'Diz çökmesini ve itirafını görmeden ayrıldın; tanıklık kazanmadın.', adimlar: [
                 ['f', 'Yolumdan çekilin Süha Bey. Dinlemeyeceğim.', 'kararli'],
                 ['an', 'Feride sofaya çekildi. Kapıda durmadı; Süha Bey’i arkasında bıraktı.'],
               ] },
@@ -893,11 +893,11 @@ window.BOLUMLER = window.BOLUMLER || {};
             ] },
             /* Tur 28b (kök 1): görüşmeyi reddeden kız "dinlerim" demez; aynı açık sınır, aynı karşılık */
             { m: '“Dinlemem dedim. Kalkın ve gidin.”', kosul: function (S) { return b(S).p12_yer === 'ret'; }, bayrak: { p12_tepki: 'kalk' }, adimlar: [
-              ['suha', 'Ayakta yalan söylerim. Dizimde söyleyemem.', 'mahzun'],
+              ['suha', 'Ayakta yalan söylerim. Dizimde söyleyemem.', 'soguk'],
               ['ic', 'Kalkmadı. Gitmesini istediğimi duymamış gibi yüzüme baktı.', 'ofkeli'],
             ] },
             { m: '“Kalkın. Ayakta da dinlerim.”', kosul: function (S) { return b(S).p12_yer !== 'ret'; }, bayrak: { p12_tepki: 'kalk' }, adimlar: [
-              ['suha', 'Ayakta yalan söylerim. Dizimde söyleyemem.', 'mahzun'],
+              ['suha', 'Ayakta yalan söylerim. Dizimde söyleyemem.', 'soguk'],
               /* GPT T23 Süha B12: reddedilen istek karşılıksız kalmaz */
               ['ic', 'Kalkmadı. Hâlâ dizlerinin üstünden yüzüme bakıyordu.', 'ofkeli'],
             ] },
@@ -930,7 +930,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           /* Tur 33 (t33 B12 anlatı 3, B11 anlatı 2): 11. bölümde kapı içeriden sürgülüydü — "açık bırakır" çelişkisi kalktı;
              saatin Feride'ye duyurulmasının tek açıklaması burada */
-          ['suha', 'Gösteriydi: o kadın sürgüyü çeker, görülsün diye birini kapıya çağırır. Saati size ben duyurdum.', 'soguk'],
+          ['suha', 'Sürgüyü o çekti. Saati size ben duyurdum.', 'soguk'],
           /* Günahın itirafı (roman S15; 6. bölüm ifşası: "çıplak" diye reddedilen genç) */
           /* GPT T24b 12.4: geçmişi bilen kız eski öyküyü yeniden dinlemez; dünkü ele somut soru sorar
              (diz çöküşü hesap vermeye döner). Eski öykü yalnız bilmeyen dalda. */
@@ -1080,8 +1080,8 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ['suha', 'Duvarları da konuşturuyorsunuz.', 'alayci'],
               ] },
               { m: 'Kapıya seslen: “Şefik, duydun mu?”', kosul: sefikYanimda, bayrak: { p12_kayit: true, p12_v_sahit: 'sefik' }, adimlar: [
-                { goster: ['sefik', 'sevincli'] },
-                ['sefik', 'Duydum abla! Hepsini.', 'sevincli'],
+                { goster: ['sefik', 'kararli'] },
+                ['sefik', 'Duydum abla! Hepsini.', 'kararli'],
                 { kozKaynak: [DIZ, 'Kendim gördüm; Şefik kapıda duydu'] },
                 ['suha', 'Çocuğu da şahit yaptınız.', 'notr'],
                 { gizle: 'sefik' },
@@ -1218,7 +1218,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           { ara: { mekan: 'yemek_salonu', yer: 'Yemek salonu · akşam', satirlar: [
             'Akşam serinliği o gün erken indi; yemek salonuna mangal kondu. Sait Efendi döndüğünde sofra kurulmuştu.',
             /* Tur 27 (B12 anlatı 10'a): ara sayfa Feride'nin iradesini söyler; hükmü ele vermez */
-            'Feride akşam sofrasına ne söyleyeceğini bilerek indi.',
           ] } },
         ],
       },
@@ -1307,7 +1306,6 @@ window.BOLUMLER = window.BOLUMLER || {};
               ['ic', 'Postacıyı soran kadın sonunda ağzını açtı. Bekliyordum.', 'kararli'], // Tur 32 (t32 B12 diyalog 5)
             ], degilse: [
               /* GPT T28 12-D1: mekanik ölçü yerine beden */
-              ['ic', 'Soru dilimin ucunda. Babam bakıyor, yutkunuyorum.', 'endiseli'],
             ] },
           ], degilse: [
             { eger: function (S) { return (S.v.vakar || 0) >= VAKAR_ESIK; }, ise: [
@@ -1739,7 +1737,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               var f = b(S);
               if (f.p12_riza) return 'Rızasını imama saklayan bir kız o güne kadar susturulmalıydı. Mumu söndürmeden önce bunun yolunu düşündü.';
               if (f.p12_son === 'sart') return 'Mumu söndürmeden önce nikâh kâğıdını kimin yazacağını düşündü; kalem onun elinde olacaktı.';
-              if (f.p12_son === 'vade') return 'Nikâh şimdilik durmuştu. Perihan Hanım beklemeyi hiç sevmezdi.';
+              if (f.p12_son === 'vade') return 'Perihan Hanım kapıyı ardından usulca çekti.';
               if (f.p12_son === 'kenan') return 'Selanik\'e kapanan kapı ona yetmezdi. Mumu söndürmeden önce Kenan\'dan konakta kalan son şeyi düşündü.';
               if (f.p12_kayit) return 'Mumu söndürmeden önce sarı odadaki sözü kimin duyduğunu, kimin yazdırdığını bir bir saydı.';
               return 'Mumu söndürmeden önce, kızın kulağına kimin fısıldadığını bir bir saydı.';
@@ -1809,6 +1807,11 @@ window.BOLUMLER = window.BOLUMLER || {};
        tehdit 13. bölümde söner değil, gerçekleşir: sabah Perihan Nimet'i kovar, Kenan'dan kalan resim ortaya çıkar. */
     siradaki: { ad: 'Yanan Resim', kanca: function (S) {
       var f = S.bayrak;
+      if (f.p12_v_karsi === 'sefik') return 'Şefik bu akşam babama duyduğunu söyledi. Sabah Perihan Hanım’la yalnız kalmasın.';
+      if (f.p12_v_karsi === 'acik') return 'Şefik’in adına gelen teli babam biliyor. Yarın kapıya kim bakacak?';
+      if (f.p12_v_karsi === 'kabul') return 'Gönlümü sofrada saklamadım. Sabah sandığımı açarlarsa Kenan’dan ne bulacaklar?';
+      if (f.p12_v_karsi === 'yazi') return 'Sabah Perihan Hanım o yazının nerede yazıldığını soracak.';
+      if (f.p12_v_sahit === 'yazi') return 'Perihan Hanım uyanmadan hekimin yazdığı kâğıdı saklamalıyım.';
       if (f.p12_nikah_ertelendi) return 'Perihan Hanım sabah beni susturmak için kimi uzaklaştıracak?';
       /* Cemil 18 Kasım: son hamlenin (p12_son) kazancı kancada da görünür; tür yine TEHLİKE */
       if (f.p12_karar === 'karar_hakki') return 'Nikâh durdu. Kararımı o gün vereceğim; önce yalanın gerisini bulmalıyım.';

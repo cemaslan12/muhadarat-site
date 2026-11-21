@@ -456,7 +456,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { bayrak: { p5_k_muhur: true } },
           ] } },
           { soru: 'Hatice çıkarken kapıyı tam kapatmadı. Şişe masamda, etiketi Fransızca.', secim: [
-{ m: 'Madam’a götür; ilacın adını ona da sor.', etki: { josephine: 1 }, bayrak: { p5_sise: 'madam' }, iz: 'Şişenin adını Madam okudu. Sır onun odasında kaldı.', adimlar: [
+{ m: 'Madam’a götür; ilacın adını ona da sor.', etki: { josephine: 1 }, bayrak: { p5_sise: 'madam' }, iz: 'Şişenin adını Madam okudu.', adimlar: [
               { ara: { mekan: 'josephine_oda', yer: 'Madam\'ın odası · sabah', satirlar: [
                 'Madam Josephine\'in odası konağın en ücra köşesindeydi; Perihan Hanım\'ın kulağı oraya kolay uzanmazdı.',
               ] } },
@@ -556,7 +556,7 @@ window.BOLUMLER = window.BOLUMLER || {};
              kadarını yaz (lala götürür; sabah Hatice seni izlediyse taşlıkta ele geçer), haber değil sır bırak.
              Şurup sabah öğrenildi; B4'te bilinmeyen bilgi yazılmaz. Paktsız yolda eski üç seçenek. */
           { soru: 'Lala kapıda cevap bekliyor.', secim: [
-            { m: '“Şurubu yaz. Annen de duysun.”', etki: { fevkiye: 1, itibar: 1 }, bayrak: { p5_fev: 'surup' }, iz: 'Şurup haberi Leyla\'nın annesine gidiyor. Bütün yokuş duyacak.', adimlar: [
+            { m: '“Şurubu yaz. Annen de duysun.”', etki: { fevkiye: 1, itibar: 1 }, bayrak: { p5_fev: 'surup' }, iz: 'Leyla kalemini mürekkebe batırdı.', adimlar: [
 ['ic', 'Leyla annesine söyler: “Kız hasta değil, ilaçla hasta gösteriyorlar.” Bütün yokuş duysun.', 'kararli'],
               { eger: postane, ise: [
                 ['ic', 'Annesi duyunca kızının çekmecesine de bakar. Postam kapanır, bunu göze aldım.', 'mahzun'],
@@ -677,14 +677,14 @@ window.BOLUMLER = window.BOLUMLER || {};
             { eger: (S) => S.giyili === 'nisan_gosterisli', ise: [
               ['mukaddem', 'Pembe… Şefik\'in dersi için fazla güzel.', 'utangac'],
             ], degilse: [{ eger: (S) => S.giyili === 'nisan_yadigar', ise: [
-              ['mukaddem', 'Bu maviyi hatırlıyorum. Annenizin üstündeydi; ben çocuktum.', 'mahzun'],
+              ['mukaddem', 'O ipeği annenizin üstünde görürdüm. O vakit de gözümü kaldırıp bakamazdım.', 'mahzun'],
             ], degilse: [
               ['mukaddem', 'Fildişi… Bugün Şefik\'in defterine düz bir çizgi çekemeyeceğim.', 'utangac'],
             ] }] },
             { eger: (S) => b(S).p4_yalan === 'tuttu', ise: [
               ['mukaddem', 'Babanız “düşünülecek” demiş. Düşünsün, ben ayık geldim.', 'kararli'],
             ], degilse: [{ eger: (S) => b(S).p4_munevver === 'inanmadim', ise: [
-              ['mukaddem', 'Annem cümlenizi getirdi. Bir hafta dayanırım sandım, bir gece dayanamadım.', 'gulumser'],
+              ['mukaddem', 'Annem cümlenizi getirdi. Bir hafta dayanırım sandım, bir gece dayanamadım.', 'utangac'],
             ], degilse: [{ eger: gorun, ise: [
               /* Tur 27 (B5 diyalog 8): son cümle belirsizdi */
               ['mukaddem', '“Görünün” dediniz. Bütün sokak gördü; bir siz bakmadınız.', 'utangac'],
@@ -786,7 +786,6 @@ window.BOLUMLER = window.BOLUMLER || {};
                 ], degilse: [
                   ['f', 'Akşam bana haşhaş şurubu içirecekler. Hasta gelin diye.', 'endiseli'],
                 ] },
-                ['an', 'Kenan\'ın yüzünden kan çekildi. Utangaçlığı ilk kez onu bıraktı.'],
 ['mukaddem', 'İçmeyin. Kandilinizi izlerim, bir işaret verin, gelirim.', 'kararli'],
                 ['f', 'Kapıdan mı?', 'tebessum'],
                 ['mukaddem', 'Gerekirse duvardan.', 'kararli'],
@@ -968,7 +967,6 @@ window.BOLUMLER = window.BOLUMLER || {};
             (S) => (muk(S)
               ? 'Kenan bahçe kapısından çıkalı çok olmamıştı. Feride onun bastığı çakıllara basmamaya çalışarak yürüdü, sonra bundan vazgeçti.'
               : 'Feride dizine bırakılan romanın kıvrık sayfasını açmadı; kitabı koltuğunun altına sıkıştırıp çardaktan çıktı.'),
-            'Konağın bahçe kapısı o yaz hiç boş kalmıyordu.',
           ] } }, { gorev: 3 },
         ],
       },
@@ -980,7 +978,6 @@ window.BOLUMLER = window.BOLUMLER || {};
           /* Anlatı denetimi T2 (mercek_doz B5a4, 2c): huy cümlesi yerine o anki eylem; sonucu Feride görür */
           ['an', 'Remzi Bey bahçe kapısından girmeden önce bahçıvanla kısa bir şey konuştu.'],
           { goster: ['remzi', 'ana'] },
-          'Altın bahçıvanın avucunda parladı.',
           { eger: (S) => b(S).p4_remzi === 'baba', ise: [
             ['remzi', 'Senedi babanıza verdim. Nabi Bey kahvesini ayakta içti.', 'gulumser'],
           ], degilse: [{ eger: (S) => b(S).p4_remzi === 'aldi', ise: [
@@ -1281,7 +1278,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { eger: (S) => b(S).p5_degis === 'serbet', ise: [
               ['ic', 'Sürahideki acı koku bu bardakta yok. Vişneyi ben koydum.', 'kararli'],
             ], degilse: [
-              ['ic', 'Perihan Hanım’ın sürahisinde de bu acı koku vardı.', 'endiseli'],
+              ['ic', 'Bardağı burnuma yaklaştırdım.', 'endiseli'],
             ] },
           ], degilse: [
             ['ic', 'Bardağa uzanmadım. Önce onların gözlerine baktım.', 'kararli'],
@@ -1316,7 +1313,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           { soru: 'Bardak tepside. İçmezsem yarın babama “ilacını reddetti” derler.', secim: [
             /* Diyalog T1 (b5_8 5.14, dil Ü5): "siz için" "sizin için" diye okunuyordu; Süha'nın emrini ona geri verir */
             { m: '“Önce siz tadın Hekim Bey.”', bayrak: { p5_bardak: 'suha' }, iz: 'Bardağın ilk yudumu hekimin oldu; Hatice her şeyi gördü.', adimlar: [
-              ['f', 'Önce siz tadın Hekim Bey. Emir hekimin, ilk yudum da onun olsun.', 'gulumseyen'],
+              ['f', 'İlk yudum hekimin olsun.', 'gulumseyen'],
               /* GPT Tur 23 (Kenan/Süha B5): içmeden önceki tek bakış; biliyor muydu, göze mi aldı? */
               'Bardağı burnuna götürdü. Önce Hatice\'ye baktı, sonra bana.',
               { eger: (S) => b(S).p5_degis === 'serbet', ise: [
@@ -1823,7 +1820,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         /* Tur 31 (t31_b05_08 B5 anlatı 5): Süha yolunun pusula cevabı defterde */
         + ({ gonder: ' Pusulasına “Gönderin” yazdım.', ekle: ' Pusulasına kendi elimle “Et elle dort” ekledim.',
           kagit: ' Pusulasına yanan kâğıdı sordum, “Sizin için” yazdı.', yirt: ' Pusulasını yırtıp avucuna bıraktım.' }[f.p5_cevap] || ''));
-      if (f.p5_son === 'indi') c.push('Gece bahçeye indim. Kapıyı arkamdan kim sürgüledi, Nabi Bey çardakta ne arıyordu?');
+      if (f.p5_son === 'indi') c.push('Gece bahçeye indim.');
       else if (f.p5_son === 'izle') c.push('Hatice ikinci şişeyi Nabi Bey\'e verdi, o da penceremi gösterdi. O şişe kimin bardağına gidecek?');
       /* Tur 30 (B5 sürük 1): defter kartın "sürgü yok" cümlesini yinelemez */
       else if (f.p5_son === 'senet') c.push('Nabi Bey\'in senedini pazarlığa koydum, feneri eve döndü. ' + (m ? 'Karşıdaki kandil yetişir mi?' : 'Hekimin lambası nerede?'));

@@ -271,7 +271,6 @@ window.BOLUMLER = window.BOLUMLER || {};
     ] },
     /* Tur 28 (B10 diyalog 2): pişmanlık yerine Feride'nin üstlendiği bedel */
     ['f', 'Adınız lazımdı. Fiyatını ben ödeyeceğim Remzi Bey.', 'kararli'],
-    ['remzi', 'Kendi lafınızla yenilmek böyleymiş.', 'mahcup'],
     { etki: { remzi: 4 } },
     { gizle: 'remzi' },
   ], degilse: [
@@ -382,7 +381,7 @@ window.BOLUMLER = window.BOLUMLER || {};
       { efekt: 'vapur_uzak' },
       { soru: 'Vapur ikinci kez düdük çaldı.', secim: [
         { m: 'Duman iskeleyi örterken bu kez de sen öp.', kosul: (S) => b(S).p8_opus === 'sen', etki: { mukaddem: 6, itibar: -1 }, bayrak: { p10_son: 'opus' }, adimlar: OPUS },
-        { m: 'Dumanın içinde öp: çamlıktaki evetin devamı.', kosul: (S) => b(S).p8_opus === 'evet', etki: { mukaddem: 6, itibar: -1 }, bayrak: { p10_son: 'opus' }, adimlar: OPUS },
+        { m: 'Dumanın içinde öp.', kosul: (S) => b(S).p8_opus === 'evet', etki: { mukaddem: 6, itibar: -1 }, bayrak: { p10_son: 'opus' }, adimlar: OPUS },
         { m: 'Gerisi düğüne kalmıştı. Düğün yok; dumanın içinde öp.', kosul: (S) => b(S).p8_opus === 'kas', etki: { mukaddem: 6, itibar: -1 }, bayrak: { p10_son: 'opus' }, adimlar: OPUS },
         /* Tur 29 (B8 'evde'): gece evden çıkmayan kızda çamlık ve "hayır" yok; ilk öpücük burada */
         { m: 'Dün gece kapılar kapalıydı. Bu kez dumanın içinde sen öp.', kosul: (S) => b(S).p8_cik === 'evde', etki: { mukaddem: 6, itibar: -1 }, bayrak: { p10_son: 'opus' }, adimlar: OPUS },
@@ -703,7 +702,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             : 'Sait Efendi kutuyu koltuğunun altında iskeleye indirdi. Münevver Hanım ona elini uzatmadı: “Kendi eliyle versin.”'),
           /* Anlatı T2 (mercek_doz B10-1, dil B10-6): "söz yayılırdı" kalıbının bölümdeki ikinci tekrarı kalktı */
           /* Sürükleyicilik T1: 9. bölümün kancası (vapurdaki çağrılı) ikinci satırda karşılanır */
-          'Akşam vapuru gelmek üzereydi; o vapurla bir nişan gidecek, Perihan Hanım\'ın çağırdığı biri gelecekti.',
+          'Akşam vapurunun ışıkları göründü.',
           'Bu nişanın son sözünü ailelere bırakmamaya Feride karar vermişti.',
         ] } },
       ] },
@@ -1141,7 +1140,7 @@ window.BOLUMLER = window.BOLUMLER || {};
             { goster: ['reftar', 'kararli'] },
             HATICE_BILDIGI,
             ['reftar', 'Söyleyeceğimi bana Perihan Hanım ezberletti. Gerisini bilmem.', 'korkmus'],
-            ['munevver', 'Bunu söylemek sana ağır gelecek kız. Sağ ol.', 'notr'], // Tur 30 (t30 B10 diyalog 1)
+            ['munevver', 'Oğlum için bunu da mı söyleyeceksin kızım? Sağ ol.', 'dolu'], // Tur 30 (t30 B10 diyalog 1)
             { goster: ['nabi', 'ofkeli'] },
             /* Diyalog T1 (10-13): Nabi aynı sahnede "Ablam duyunca…" kalıbını ikinci kez kurmaz */
             ['nabi', 'Dilini çözen hizmetçi ablamın evinde tutulmaz.', 'ofkeli'],
@@ -1187,7 +1186,7 @@ window.BOLUMLER = window.BOLUMLER || {};
           ] },
           ['sefik', 'Kenan abi gerçekten gitti mi abla? Selamlıktaki odam ne olacak?', 'aglamakli'],
           { soru: 'Şefik cevabımı bekliyor.', secim: [
-            { m: '“Gitti. Oda da gitti Şefik.”', etki: { sefik: 1 }, bayrak: { p10_sefik: 'dogru' }, adimlar: [
+            { m: '“Gitti Şefik. Bu gece yanımda yat.”', etki: { sefik: 1 }, bayrak: { p10_sefik: 'dogru' }, adimlar: [
               ['sefik', 'O zaman kitaplarımı sandıktan çıkarmam.', 'aglamakli'],
             ] },
             /* Tur 27 (B10 sürükleyicilik 2): söz Feride'nin; 11. bölümde telgraf gelince Şefik onu anar */
@@ -1645,7 +1644,7 @@ window.BOLUMLER = window.BOLUMLER || {};
               { koz: MUSVEDDE, kaynak: 'Kendi eliyle yazdı', alt: '“Yanıldım. Misafir bir damla içmedi. —Süha.” Gizli evetimin karşılığı.' },
               ['suha', 'Kenan\'a yazdığınız satırı gördüm. Bana verdiğiniz sözü de unutmayacağım.', 'alayci'],
             ] },
-            { m: '“Sizinle evlenmeye söz veriyorum; şimdilik kimse bilmeyecek.”', kosul: (S) => b(S).p10_not !== 'koru', bayrak: { p10_teklif: 'kabul' }, iz: 'Süha Bey\'e gizlice evlenme sözü verdin.', adimlar: [
+            { m: '“Sizinle evlenmeye söz veriyorum. Aramızda kalacak.”', kosul: (S) => b(S).p10_not !== 'koru', bayrak: { p10_teklif: 'kabul' }, iz: 'Süha Bey\'e gizlice evlenme sözü verdin.', adimlar: [
               { muzik: 'suha' },
               { eger: muk, ise: [{ etki: { suha: 3 } }], degilse: [{ etki: { suha: 7 } }] },
               { eger: (S) => b(S).p10_kapi === 'ac', ise: [
@@ -1654,12 +1653,7 @@ window.BOLUMLER = window.BOLUMLER || {};
                 'Bir telgraf müsveddesi yazdı; katlayıp kapının altından itti.',
               ] },
               { koz: MUSVEDDE, kaynak: 'Kendi eliyle yazdı', alt: '“Yanıldım. Misafir bir damla içmedi. —Süha.” Gizli evetimin karşılığı.' },
-              ['suha', 'Kimse bilmeyecek. Ben bile, gündüzleri.', 'alayci'],
-              { eger: muk, ise: [
-                ['ic', 'Kenan\'ın adı bir kâğıtta kurtuldu. Benim evetim artık bir adamın cebinde.', 'endiseli'],
-              ], degilse: [
-                ['ic', 'Onunla evlenmeye söz verdim. Bunu babamdan saklayacağım.', 'utanmis'],
-              ] },
+              ['suha', 'Kimse bilmeyecek. Ben bile, gündüzleri.', 'soguk'],
             ] },
             { m: '“Önce Perihan Hanım sizi neyle tutuyor, onu söyleyin.”', bayrak: { p10_teklif: 'sart' }, iz: 'Cevaptan önce Süha Bey\'in sırrını istedin; anlattı.', adimlar: [
               { muzik: 'gerilim' },
@@ -1798,7 +1792,7 @@ window.BOLUMLER = window.BOLUMLER || {};
         c.push(veda + son + '.');
         /* Sürükleyicilik T1 (b10_11_12 10-2): gece verilen karar Kenan yolunun defterinde de görünür; soru değil karar */
         c.push({
-          kabul: 'Kenan\'ın adı için Süha Bey\'e gizli bir evet verdim; müsveddesi koynumda, evetim onun cebinde.',
+          kabul: 'Kenan\'ın adı için Süha Bey\'e gizli bir evet verdim; müsveddesi koynumda.',
           sart: 'Süha Bey\'e evet demeden önce sırrını aldım; cevabımı henüz vermedim.',
           ret: (f.p10_not === 'bitir' || f.p10_son === 'ayri') ? 'Süha Bey’in gizli teklifini kendi kararımla reddettim; kimseye söz vermedim.' : 'Süha Bey\'in gizli teklifini reddettim; Kenan\'ın adını başka yoldan temizleyeceğim.',
         }[f.p10_teklif] || 'Kenan Selanik yolunda; gece kapıma Süha Bey geldi.');
