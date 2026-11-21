@@ -316,7 +316,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     /* Cemil T27: Süha yolunun kapısız dalında bağımsız "Hayır" (beşinci son) */
     son_hayir: 'Hayır dediğim adam o mektubu yazdı. Beyrut\'ta onu kim bekliyordu?',
   };
-  var SON_AD = { son_kavusma: 'Kavuşma', son_umutlu_ayrilik: 'Umutlu Ayrılık', son_tehlikeli_evet: 'Tehlikeli Evet', son_remzi: 'Üçüncü Kapı', son_hayir: 'Kendi Cevabım' };
+  var SON_AD = { son_kavusma: 'Kavuşma', son_umutlu_ayrilik: 'Umutlu Ayrılık', son_tehlikeli_evet: 'Tehlikeli Evet', son_remzi: 'Üçüncü Kapı', son_hayir: 'Kendi Hayırı' };
   /* T27 (SÜRÜK-4): sezon kartının Şebib satırı sona göre ("vapur/saat" Kenan'ın kalıbıydı, dört sonda aynıydı) */
   var SEBIB_SATIR = {
     son_kavusma: 'O gece Beyrut\'ta Şebib adında bir adam, Behiye Hanım\'ın emanetini sandıktan çıkardı.',

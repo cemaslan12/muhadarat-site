@@ -1,7 +1,7 @@
 /* =========================================================================
    PİLOT — YENİ BİÇİMDE 11. BÖLÜM: EŞİKTE  (bölüm no 111)
    İskelet: notlar/bolum1_pilot_iskelet.md (11. bölüm: Eşikte, Perihan ile Süha; kanca: "Gördüğünü
-     biliyorlar"). Ad, 10. bölümün siradaki.ad alanından. Sıradaki: 12. bölüm "Sarı Odanın Eşiği"
+     biliyorlar"). Ad, 10. bölümün siradaki.ad alanından. Sıradaki: 12. bölüm "Diz Çöken Adam"
      ("Süha'ya varacaksın").
    Tek soru: "Gördüğümü bildikleri hâlde bu evde kim susacak, kim konuşacak?"
    Romandan (§1, 23–24; olay haritası 28–31): Ada'dan İstanbul'a dönüş; üvey anne ile hekimin "süt
@@ -1269,7 +1269,7 @@ window.BOLUMLER = window.BOLUMLER || {};
     /* Sürükleyicilik T1 (S1): KARAR türü (10 ifşa, 12 tehlike arasında); gecenin son iki seçimine göre.
        Kartı ("Gördüğümü biliyorlar…") tekrar etmez; bölüm adını soru gibi yinelemez. 12. bölüm ilk satırlarda
        karşılar: babaya söyleme sözünü Perihan önceden boşa çıkarır; pusula/cevap/yırtık kâğıt anılır. */
-    siradaki: { ad: 'Sarı Odanın Eşiği', kanca: function (S) {
+    siradaki: { ad: 'Diz Çöken Adam', kanca: function (S) {
       var f = S.bayrak;
       /* GPT T28 11-S1: vaat dürüst — 12. bölümde Perihan önce davranır, Feride yine de söyler (p12_v_soyle) */
       if (f.p11_gece === 'baba') return 'Sabah gördüğümü babama anlatacağım. Perihan Hanım önce konuşsa da.';
