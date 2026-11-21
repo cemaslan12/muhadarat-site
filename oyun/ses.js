@@ -459,7 +459,15 @@
     try { EFEKT[ad](); } catch (e) { /* ses çıkmadıysa oyun sürer */ }
   }
   // Ses açılınca efekt dosyalarını önceden çöz (ilk çalışta gecikme olmasın)
-  function onYukle() { if (ctx) EFEKT_DOSYA.forEach(tamponAl); }
+  // Arayüz sesleri hemen; ötekiler aralıklı (41 dosya ilk dokunuşta toplu inip resimlerin önüne geçmesin)
+  let onYuklendi = false;
+  function onYukle() {
+    if (!ctx || onYuklendi) return;
+    onYuklendi = true;
+    const once = ['tik', 'secim', 'bildirim', 'odul', 'panel', 'gecis', 'kapi', 'piyano_tus'];
+    const sira = EFEKT_DOSYA.filter((d) => once.includes(d)).concat(EFEKT_DOSYA.filter((d) => !once.includes(d)));
+    sira.forEach((d, i) => { if (i < once.length) tamponAl(d); else setTimeout(() => tamponAl(d), 1500 + (i - once.length) * 250); });
+  }
 
   window.SES = {
     muzik, efekt, uyandir, mekan, ortamZorla,

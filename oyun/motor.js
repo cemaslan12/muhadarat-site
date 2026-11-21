@@ -681,21 +681,112 @@
       if (alt && alt.gorsel) for (const k of Object.keys(alt.gorsel)) hemenYukle(saydamla(alt.gorsel[k]));
     }
   }
-  function gorselleriOnYukle() {
-    // Önce Feride'nin bütün ifadeleri (her sahnede var), sonra fonlar, sonra öteki kişiler
-    kisiGorselleriniYukle('f');
-    const liste = [];
-    for (const id of Object.keys(V.mekanlar)) if (V.mekanlar[id].arkaplan) liste.push(V.mekanlar[id].arkaplan);
-    for (const id of Object.keys(V.karakterler)) {
-      const g = V.karakterler[id].gorsel;
-      if (g) for (const k of Object.keys(g)) liste.push(g[k]);
+  /* Öncelikli ön yükleme (21 Kasım 2026). Eskiden her bölüm başında oyunun BÜTÜN fonları ve portreleri (yüzlerce
+     dosya) sekizerli gruplarla istenirdi; telefonda o an gereken resim bu kalabalığın arkasında kalıyordu.
+     Artık yalnız oynanan bölümün kaynakları, sahne sırasıyla ve aynı anda en çok dört indirmeyle gelir.
+     hemenYukle() doğrudan çağrılan (o an gereken) resim kuyruğu beklemez. */
+  let onKuyruk = [], onAktif = 0;
+  function kuyrukIsle() {
+    while (onAktif < 4 && onKuyruk.length) {
+      const s = onKuyruk.shift();
+      if (onYuklenen.has(s)) continue;
+      onAktif++; hemenYukle(s);
+      const im = onYuklenen.get(s);
+      const bitti = () => { onAktif--; kuyrukIsle(); };
+      if (!im || im.complete) bitti();
+      else { im.addEventListener('load', bitti, { once: true }); im.addEventListener('error', bitti, { once: true }); }
     }
-    const sira = liste.filter((s) => s && !onYuklenen.has(s));
-    let i = 0;
-    (function sonraki() {
-      for (let n = 0; n < 8 && i < sira.length; n++, i++) hemenYukle(sira[i]);
-      if (i < sira.length) setTimeout(sonraki, 60);
-    })();
+  }
+  function kuyrugaEkle(liste, one) {
+    const yeni = [...new Set(liste)].filter((s) => s && !onYuklenen.has(s));
+    if (!yeni.length) return;
+    const kalan = onKuyruk.filter((s) => !yeni.includes(s));
+    onKuyruk = one ? yeni.concat(kalan) : kalan.concat(yeni.filter((s) => !onKuyruk.includes(s)));
+    kuyrukIsle();
+  }
+  // Bir bölümün resimleri: ilk = açılış ve ilk sahne için şart olanlar; gerisi = bölümün kalanı, sahne sırasıyla
+  function bolumKaynaklari(no, durum) {
+    const b = BOLUMLER[no], ilk = [], gerisi = [];
+    if (!b) return { ilk, gerisi };
+    const D = durum || S || {};
+    const fon = (id, hedef) => {
+      if (!id) return;
+      if (!V.mekanlar[id]) { if (/\.(webp|png|jpg)/.test(id)) hedef.push(id); return; }
+      let src = null;
+      try { src = fonGorunumu(id, true).src; } catch (e) { src = null; }
+      hedef.push(src || V.mekanlar[id].arkaplan);
+    };
+    const kisi = (id, ifade, hedef) => {
+      const g = V.karakterler[id] && V.karakterler[id].gorsel;
+      if (!g) return;
+      if (g.ana) hedef.push(saydamla(g.ana));
+      if (ifade && g[ifade]) hedef.push(saydamla(g[ifade]));
+    };
+    const yuru = (v, hedef) => {
+      if (!v || typeof v !== 'object') return;
+      if (Array.isArray(v)) {
+        if (typeof v[0] === 'string' && typeof v[1] === 'string') kisi(v[0], v[2], hedef); // replik
+        v.forEach((x) => yuru(x, hedef));
+        return;
+      }
+      if (Array.isArray(v.goster)) kisi(v.goster[0], v.goster[1], hedef);
+      if (Array.isArray(v.sahne)) v.sahne.forEach((x) => kisi(typeof x === 'string' ? x : x && x.id, x && x.ifade, hedef));
+      ['mekan', 'arkaplan', 'mekanaGit'].forEach((k) => { if (typeof v[k] === 'string') fon(v[k], hedef); });
+      if (v.ara && v.ara.mekan) fon(v.ara.mekan, hedef);
+      if (v.anlati && v.anlati.gorsel) fon(v.anlati.gorsel, hedef);
+      if (typeof v.cizim === 'string') {
+        try { const r = anResmi(v.cizim, D.giyili, (D.bayrak || {}).madalyon_hal); if (r && r.gorsel) hedef.push(r.gorsel); } catch (e) { /* çeşit çözülemedi */ }
+      }
+      for (const k of Object.keys(v)) if (v[k] && typeof v[k] === 'object') yuru(v[k], hedef);
+    };
+    const acildi = D.biten && D.biten.includes('acilis' + no);
+    fon(acildi && D.mekan ? D.mekan : b.baslangic, ilk);
+    kisi('f', null, ilk);
+    if (!acildi) yuru(b.acilis, ilk);
+    const olaylar = b.olaylar || [];
+    if (olaylar[0]) { fon(olaylar[0].mekan, ilk); yuru({ sahne: olaylar[0].sahne }, ilk); }
+    Object.keys(b.fazlar || {}).forEach((f) => ((b.fazlar[f] || {}).mekanlar || []).forEach((m) => fon(m, gerisi)));
+    yuru(olaylar, gerisi);
+    return { ilk: [...new Set(ilk)].filter(Boolean), gerisi: [...new Set(gerisi)].filter(Boolean) };
+  }
+  function gorselleriOnYukle() {
+    const k = bolumKaynaklari(S.bolum);
+    kuyrugaEkle(k.gerisi);
+    kuyrugaEkle(k.ilk, true);
+    // Feride'nin öbür ifadeleri her sahnede gerekebilir: bölümün ilk resimlerinden sonra
+    const g = V.karakterler.f && V.karakterler.f.gorsel;
+    if (g) kuyrugaEkle(Object.keys(g).map((x) => saydamla(g[x])));
+    // Sıradaki bölümün açılışı da en sonda hazırlansın (bölüm geçişinde bekleme olmasın)
+    if (BOLUMLER[S.bolum + 1]) kuyrugaEkle(bolumKaynaklari(S.bolum + 1, { giyili: S.giyili, bayrak: S.bayrak, biten: [] }).ilk);
+  }
+  /* Açılış yükleme ekranı: bölümün ilk sahnesi için şart olan resimler inene kadar başlık ekranında ilerleme
+     çubuğu gösterilir (en çok 12 sn; ağ çok yavaşsa oyun yine başlar, resimler geldikçe yerine oturur). */
+  let hazirlaniyor = false;
+  async function hazirlikBekle(no, durum) {
+    let liste;
+    try { liste = bolumKaynaklari(no, durum).ilk.filter((s) => !hazirMi(s)); } catch (e) { liste = []; }
+    if (!liste.length) return;
+    kuyrugaEkle(liste, true);
+    const ic = $('#baslik-ekrani .baslik-ic'), dugmeler = $('#baslik-ekrani .baslik-dugmeler');
+    let kutu = $('#hazirlik');
+    if (!kutu && ic) {
+      kutu = document.createElement('div'); kutu.id = 'hazirlik';
+      kutu.setAttribute('role', 'status');
+      kutu.innerHTML = '<span>Bölüm hazırlanıyor…</span><div class="hazirlik-cubuk"><i></i></div>';
+      ic.insertBefore(kutu, dugmeler ? dugmeler.nextSibling : null);
+    }
+    $('#baslik-ekrani').hidden = false;
+    if (dugmeler) dugmeler.style.visibility = 'hidden';
+    if (kutu) kutu.hidden = false;
+    let biten = 0;
+    const ciz = () => { const i = kutu && kutu.querySelector('i'); if (i) i.style.width = Math.round(100 * biten / liste.length) + '%'; };
+    ciz();
+    await Promise.race([
+      Promise.all(liste.map((s) => gorselHazir(s, 12000).then(() => { biten++; ciz(); }))),
+      new Promise((r) => setTimeout(r, 12000)),
+    ]);
+    if (kutu) kutu.hidden = true;
+    if (dugmeler) dugmeler.style.visibility = '';
   }
 
   /* Tur 33 (envanter M5): boydan setin konuşma portresi yüzün çevresinden büyütülür (PORTRE_KIRP). Ölçek yüzün
@@ -2851,6 +2942,14 @@
     } catch (e) { return null; }
   }
   function pilotBaslat(bastan) {
+    if (hazirlaniyor) return;
+    KAYIT_ANAHTARI = PILOT_KAYIT;
+    const on = bastan ? null : yukle();
+    const no = on && BOLUMLER[on.bolum] && BOLUMLER[on.bolum].dogrusal ? on.bolum : PILOT_NO;
+    hazirlaniyor = true;
+    hazirlikBekle(no, on || { biten: [] }).catch(() => {}).then(() => { hazirlaniyor = false; pilotBaslatSimdi(bastan); });
+  }
+  function pilotBaslatSimdi(bastan) {
     KAYIT_ANAHTARI = PILOT_KAYIT;
     const k = bastan ? null : yukle();
     $('#baslik-ekrani').hidden = true;
@@ -3240,7 +3339,10 @@
       // Cemil (17 Kasım 2026): başlıkta yalnız yeni sezon; eski 7 bölümlük oyun (bolum1–7.js, arşiv) açılmaz
       pd.textContent = b && b.dogrusal ? 'Devam et (' + (b.baslik || '').replace('Yeni ', '') + ')' : 'Yeni oyun';
       if (pb) { pb.hidden = !(b && b.dogrusal); pb.textContent = 'Baştan başla'; }
+      // Oyuncu daha düğmeye basmadan, oynayacağı bölümün ilk sahnesi inmeye başlasın
+      try { kuyrugaEkle(bolumKaynaklari(b && b.dogrusal ? k.bolum : PILOT_NO, k || { biten: [] }).ilk, true); } catch (e) { /* ön yükleme şart değil */ }
     }
+    const ay = $('#acilis-yukleme'); if (ay) ay.hidden = true;
     SES.muzik('baslik');
     $('#yeni-oyun').hidden = true;
     $('#devam-et').hidden = true;

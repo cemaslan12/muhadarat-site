@@ -709,6 +709,14 @@ body.plan-modu #ust-cubuk > * { pointer-events: auto; }
 .cizim-galeri .cizim-yakin { border-width: .2cqw; box-shadow: none; }
 .cizim-galeri .cizim-yakin img { border: 0; transform: scale(1.7); }
 
+/* Açılış yükleme: betikler inene kadar "Yükleniyor…", bölüm resimleri inerken ilerleme çubuğu */
+#acilis-yukleme, #hazirlik { margin-top: 5cqh; font-size: max(13px, 1.7cqw); font-style: italic; color: var(--altin-acik); opacity: .85; }
+#acilis-yukleme { animation: yukleme-nabiz 1.4s ease-in-out infinite; }
+@keyframes yukleme-nabiz { 50% { opacity: .35; } }
+.hazirlik-cubuk { width: min(46cqw, 320px); height: 3px; margin: 1.6cqh auto 0; background: rgba(232, 207, 138, .22); border-radius: 2px; overflow: hidden; }
+.hazirlik-cubuk i { display: block; height: 100%; width: 0; background: var(--altin-acik); transition: width .25s; }
+@media (prefers-reduced-motion: reduce) { #acilis-yukleme { animation: none; } }
+
 /* Geniş ekran (telefon yatay, 19.5:9 vb.): yazı ve düğmeler 16:9 alanda kalır (çentiğe girmez),
    resim katmanları ekranın iki yanına taşar; siyah şerit kalmaz. Üst ve alttan biraz kırpılır.
    Dosyanın sonunda durmalı: önceki inset:0 kurallarını ezer. */
