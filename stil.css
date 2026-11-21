@@ -359,7 +359,7 @@ a.bolum-kart:hover { transform: translateY(-4px); box-shadow: 0 0 0 2px var(--al
 .dugme-hesap svg { width: 22px; height: 22px; flex: 0 0 auto; }
 .dugme-hesap.google { background: #fff; color: #1f1f1f; border: 1px solid #c9c2b5; }
 .dugme-hesap.apple { background: #000; color: #fff; border: 1px solid #000; }
-.dugme-hesap[hidden] { display: none; }
+.dugme-hesap[hidden], .eposta-form[hidden] { display: none; }
 .dugme-hesap.eposta { background: transparent; color: var(--bordo); border: 1px solid var(--bordo); }
 .eposta-form { display: flex; flex-direction: column; gap: 6px; text-align: left; margin: 2px 0 12px; }
 .eposta-form label { font-size: .95rem; color: var(--yazi-soluk); margin-top: 6px; }
