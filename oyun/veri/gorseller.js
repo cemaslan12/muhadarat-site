@@ -657,6 +657,7 @@
  "an_gerdanlik_kenan": "gorsel/odul/g_odul_an_gerdanlik_kenan.webp?v=1795256874",
  "an_gerdanlik_kenan_nisan_gosterisli": "gorsel/odul/g_odul_an_gerdanlik_kenan_nisan_gosterisli.webp?v=1795050515",
  "an_gerdanlik_kenan_nisan_yadigar": "gorsel/odul/g_odul_an_gerdanlik_kenan_nisan_yadigar.webp?v=1795050516",
+ "an_gerdanlik_kenan_nisan_yadigar_sakli": "gorsel/odul/g_odul_an_gerdanlik_kenan_nisan_yadigar_sakli.webp?v=1795265378",
  "an_gerdanlik_kenan_sakli": "gorsel/odul/g_odul_an_gerdanlik_kenan_sakli.webp?v=1795256875",
  "an_gerdanlik_kendi": "gorsel/odul/g_odul_an_gerdanlik_kendi.webp?v=1795026514",
  "an_gerdanlik_kendi_nisan_gosterisli": "gorsel/odul/g_odul_an_gerdanlik_kendi_nisan_gosterisli.webp?v=1795027417",

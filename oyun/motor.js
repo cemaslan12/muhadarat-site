@@ -54,6 +54,8 @@
   // Grup portresinde her hanımın yüzünün yatay konumu (soldan: Meraklı, Bilgiç, Yufka Yürekli, Hüküm Veren)
   const GRUP_YERI = { h1: '26%', h2: '42%', h3: '61%', h4: '84%' };
   let konusanId = null;      // olay sırasında o an konuşan kişi (vurgulamak için)
+  let olayKadrosu = null;    // olayın açılış kadrosu (olay.sahne); olay ara sayfayla açılırsa sayfadan sonra geri konur
+  let olayKadroTaze = false; // olayda henüz satır gösterilmedi, goster/gizle/temizle çalışmadı
   const gecmis = [];         // bu oturumda okunan son satırlar (Geçmiş penceresi)
   let ipucuZamani = null;    // oyuncu bir süre bir şey yapmazsa görev ipucu
 
@@ -1381,6 +1383,7 @@
   }
 
   async function adimCalistir(a) {
+    if (Array.isArray(a) || typeof a === 'string' || a.goster || a.gizle || a.temizle) olayKadroTaze = false;
     if (Array.isArray(a)) return konus(a[0], a[1], a[2]);
     if (typeof a === 'string') return konus(null, a);
     if (a.goster) {
@@ -1617,7 +1620,14 @@
     // Ara sayfa (notlar/anlati_rehberi.md): anlatıcı iki sahne arasını gidilecek yerin bulanık resmi üstünde
     // yazar; { ara: { mekan, yer: 'Aynı saatlerde · selamlık', satirlar: [...] } }. mekan verilirse sahne
     // altta oraya geçer, sayfa kalkınca yeni yer açılır (ani mekân/kişi değişimi olmaz).
-    if (a.ara) return anlatiGoster(Object.assign({ ara: true, baslik: a.ara.yer }, a.ara));
+    if (a.ara) {
+      // Olay ara sayfayla açılıyorsa (henüz satır ya da goster/gizle yok) sayfa olayın kendi kadrosunu silmesin:
+      // sayfa kalkınca olay.sahne kişileri yerine konur (B2 sofrası: Sait Efendi ve Perihan konuşuyor, portre yoktu)
+      const kadro = olayKadroTaze && olayKadrosu ? olayKadrosu.map((x) => Object.assign({}, x)) : null;
+      await anlatiGoster(Object.assign({ ara: true, baslik: a.ara.yer }, a.ara));
+      if (kadro && !sahnedekiler.length) { sahnedekiler = kadro; kisileriCiz(); }
+      return;
+    }
     if (a.kesif) return kesifGoster(a.kesif);
     console.warn('Bilinmeyen adım', a);
   }
@@ -2605,6 +2615,7 @@
     if (olay.id !== '_sohbet') suankiOlay = olay.id; // gece ışığı: ara/vakit bilgisinin tazeliği
     if (olay.id !== '_sohbet') SES.muzik(SES.olayMuzigi(olay.id, S.bolum, S.faz), true);
     sahnedekiler = (olay.sahne || mekandakiler().map((x) => x.id)).map((id) => (typeof id === 'string' ? { id, ifade: null } : id));
+    olayKadrosu = sahnedekiler.map((x) => Object.assign({}, x)); olayKadroTaze = true;
     // Sahnedeki herkesin bütün ifadelerini hemen yükle; ifade değişimi bir replik geç kalmasın
     sahnedekiler.forEach((x) => kisiGorselleriniYukle(x.id));
     kisiGorselleriniYukle('f');
