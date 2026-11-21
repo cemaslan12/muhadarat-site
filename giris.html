@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="stil.css?v=7">
+<link rel="stylesheet" href="stil.css?v=8">
 </head>
 <body class="giris-sayfasi">
 <main class="bolum giris-kapi">
@@ -52,6 +52,7 @@
       </div>
     </div>
 
+    <p class="kapi-durum" id="durum" role="status" hidden></p>
     <p class="kapi-hata" id="hata" role="alert" hidden></p>
       <div class="ekle-kutu" hidden>
         <span class="ekle-baslik">Ana ekrana ekle</span>
@@ -72,15 +73,16 @@
   <form method="dialog"><button class="dugme">Tamam</button></form>
 </dialog>
 
-<script src="firebase-ayar.js?v=7"></script>
-<script src="olcum.js?v=7"></script>
-<script src="pwa.js?v=7"></script>
+<script src="firebase-ayar.js?v=8"></script>
+<script src="olcum.js?v=8"></script>
+<script src="pwa.js?v=8"></script>
 <script type="module">
   import * as H from './hesap.js';
   const $ = (s) => document.querySelector(s);
   const hata = (m) => { const e = $('#hata'); e.textContent = m; e.hidden = !m; };
+  const durum = (m) => { const e = $('#durum'); e.textContent = m; e.hidden = !m; };
   const MESAJ = {
-    'auth/popup-closed-by-user': '',
+    'auth/popup-closed-by-user': 'Giriş penceresi kapandı. Tekrar denemek için düğmeye yeniden basın.',
     'auth/cancelled-popup-request': '',
     'auth/popup-blocked': 'Tarayıcınız giriş penceresini engelledi. Lütfen açılır pencerelere izin verip tekrar deneyin.',
     'auth/network-request-failed': 'İnternet bağlantısı kurulamadı. Lütfen tekrar deneyin.',
@@ -102,13 +104,16 @@
 
   async function gir(saglayici) {
     hata('');
+    durum('Giriş penceresi açılıyor… Pencereyi görmüyorsanız başka bir pencerenin arkasında kalmış olabilir; görev çubuğuna bakın.');
     document.body.classList.add('bekliyor');
     try {
       const u = await H.girisYap(saglayici);
       window.olcum && window.olcum('giris_yapti', { yontem: saglayici });
+      durum('Giriş yapıldı, oyun açılıyor…');
       location.href = 'oyun/';
       goster(u);
     } catch (e) {
+      durum('');
       hata(MESAJ[e.code] ?? 'Giriş yapılamadı. Lütfen tekrar deneyin.');
       console.error(e);
     } finally { document.body.classList.remove('bekliyor'); }
@@ -122,6 +127,9 @@
     try { await H.hesabiSil(); goster(null); hata(''); }
     catch (e) { hata('Hesap silinemedi. Lütfen tekrar giriş yapıp yeniden deneyin.'); console.error(e); }
   });
+
+  // Firebase'i sayfa açılırken hazırla: düğmeye basınca giriş penceresi beklemeden açılsın (Safari gecikmeli pencereyi engeller)
+  if (H.ayarVar()) H.baslat().catch((e) => console.error(e));
 
   if (H.ayarVar() && H.tur() && H.tur() !== 'misafir') {
     H.kullanici().then((u) => { if (!u) H.turYaz(null); goster(u); if (u) H.buluttanCek(u).catch(() => {}); });
