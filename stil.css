@@ -312,13 +312,22 @@ a.bolum-kart:hover { transform: translateY(-4px); box-shadow: 0 0 0 2px var(--al
   .giris-ic { gap: 8px; }
   /* Telefonda ilk ekran: başlık ve "Oyna" en üstte (reklamdan gelen kaydırmadan görsün); uzun tanıtım ve resimler altta */
   .giris { padding-top: 20px; }
-  .levha { order: 1; display: flex; flex-direction: column; padding: 48px 26px 26px; border-radius: 160px 160px 8px 8px / 120px 120px 8px 8px; }
-  .levha > * { order: 1; }
-  .levha > #giris-oyna { order: 2; align-self: center; margin: 4px 0 12px; }
-  .levha > .devam-notu, .levha > .levha-kucuk { order: 2; }
-  .levha > p:not(.levha-alt):not(.kapi-uyari) { order: 3; margin: 16px 0 0; }
-  .levha > .ekle-kutu { order: 4; }
-  .levha-cizgi { width: 100%; }
+  .levha { order: 1; padding: 56px 26px 30px; border-radius: 160px 160px 8px 8px / 120px 120px 8px 8px; }
+  /* yalnız ana sayfanın levhası yeniden sıralanır; giriş ve teşekkür sayfalarının levhası olduğu gibi kalır */
+  #giris .levha { display: flex; flex-direction: column; padding: 48px 26px 26px; }
+  #giris .levha > * { order: 1; }
+  #giris .levha > #giris-oyna { order: 2; align-self: center; margin: 4px 0 12px; }
+  #giris .levha > .devam-notu, #giris .levha > .levha-kucuk { order: 2; }
+  #giris .levha > p:not(.levha-alt):not(.kapi-uyari) { order: 3; margin: 16px 0 0; }
+  #giris .levha > .ekle-kutu { order: 4; }
+  #giris .levha-cizgi { width: 100%; }
+  /* Giriş sayfası telefonda: "Misafir olarak oyna" en üstte (çerez kutusunun altında kalmasın), hesap seçenekleri altında */
+  #secenekler { display: flex; flex-direction: column; }
+  #secenekler > * { order: 5; }
+  #secenekler > #misafir { order: 1; }
+  #secenekler > #misafir + .kapi-kucuk { order: 2; }
+  #secenekler > .kapi-ayrac { order: 3; }
+  #secenekler > .kapi-not { order: 4; }
   .tablolar { order: 2; height: 300px; width: min(520px, 100%); margin: 0 auto; }
   .tablolar figcaption { font-size: .9rem; padding: 3px 10px; }
   .asagi { display: none; }
