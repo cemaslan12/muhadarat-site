@@ -313,6 +313,7 @@ details.kararlar summary { cursor: pointer; font-family: "Cormorant Garamond", s
     display: grid; place-items: center; position: fixed; inset: 0; z-index: 100; background: var(--gece);
     color: var(--altin-acik); font-family: "Cormorant Garamond", serif; font-size: 7vw; text-align: center; padding: 10vw;
   }
+  #dondur-uyarisi small { display: block; margin-top: 5vw; font-size: 4.4vw; line-height: 1.35; color: var(--kagit); opacity: .85; }
 }
 [hidden] { display: none !important; }
 
@@ -471,6 +472,10 @@ body.dogrusal #cikislar.vakit { display: flex !important; }
   #cikislar { bottom: 1cqh; gap: 6px; }
   #cikislar .dugme { min-height: max(44px, 5cqh); padding: 6px 12px; font-size: 14px; }
   #secimler button { min-height: max(44px, 5cqh); flex-shrink: 0; }
+  /* Telefonda okunurluk: seçenek, soru ve diyalog yazısı sahne küçülünce 14-15 px'in altına inmesin */
+  #secimler .dugme { font-size: max(14px, 1.9cqw); }
+  #secimler .soru { font-size: max(15px, 2.05cqw); }
+  #metin { font-size: max(15px, 2.05cqw); }
   #secimler, body.dogrusal #secimler { overflow-y: auto; justify-content: safe center; }
   body.dogrusal #secimler { justify-content: safe flex-end; }
   #secimler .dugme .koz-gerek { white-space: normal; overflow-wrap: anywhere; }

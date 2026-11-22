@@ -36,7 +36,7 @@
       'box-shadow:0 12px 32px rgba(10,5,12,.5),inset 0 0 0 1px rgba(138,106,46,.45)}',
       '.cerez-kutu p{margin:0 0 12px}',
       '.cerez-dugmeler{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}',
-      '.cerez-kutu button{font:600 15px/1 "Cormorant Garamond",Georgia,serif;letter-spacing:.04em;padding:10px 16px;border-radius:999px;cursor:pointer}',
+      '.cerez-kutu button{font:600 15px/1 "Cormorant Garamond",Georgia,serif;letter-spacing:.04em;padding:10px 16px;min-height:44px;border-radius:999px;cursor:pointer}',
       '.cerez-evet{background:#7d2638;color:#f4ecdc;border:1px solid #c9a45c}',
       '.cerez-hayir{background:transparent;color:#6b5a4c;border:1px solid rgba(107,90,76,.5)}',
       '.cerez-kutu button:focus-visible{outline:3px solid #c9a45c;outline-offset:2px}',
