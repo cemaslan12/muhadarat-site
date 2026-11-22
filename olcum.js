@@ -95,6 +95,7 @@
       '.cerez-evet{background:#7d2638;color:#f4ecdc;border:1px solid #c9a45c}',
       '.cerez-hayir{background:transparent;color:#6b5a4c;border:1px solid rgba(107,90,76,.5)}',
       '.cerez-kutu button:focus-visible{outline:3px solid #c9a45c;outline-offset:2px}',
+      '@media (max-width:520px){.cerez-kutu{bottom:8px;padding:11px 14px;font-size:14px;line-height:1.35}.cerez-kutu p{margin-bottom:8px}.cerez-dugmeler{gap:8px}}',
     ].join('');
     document.head.appendChild(css);
     const k = document.createElement('div');
