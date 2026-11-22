@@ -2,6 +2,7 @@
    - window.GA_KIMLIK (firebase-ayar.js) boşsa hiçbir şey yüklenmez, kutu da çıkmaz.
    - Kimlik varsa: oyuncu izin verene kadar Google'a hiçbir şey gönderilmez (KVKK). İzin kutusu bir kez sorulur.
    - Sayfalar olay göndermek için window.olcum('olay_adi', { parametre }) çağırır; izin yoksa olay atılır.
+   - Bundan bağımsız olarak, izin gerektirmeyen çerezsiz bir adım sayacı çalışır (aşağıda).
    Kendi stilini taşır; oyun sayfasında da (stil.css olmadan) çalışır. */
 (function () {
   'use strict';
@@ -11,7 +12,52 @@
   try { izin = localStorage.getItem(IZIN); } catch (e) { /* yok */ }
   let yuklendi = false;
 
+  /* ---- İzin gerektirmeyen sayaç ----
+     Çerez, tarayıcı kaydı ya da kimlik kullanmaz; yalnız "bugün şu adım bir kez daha oldu" diye
+     Firestore'daki sayac/{gün}_{adım} belgesinin n alanını 1 artırır (kural: site/firestore.rules).
+     Reklamdan gelen ziyaret adresteki gclid/gbraid/wbraid ile tanınır ve iç bağlantılara ?r=1 eklenerek
+     izlenir; o ziyaretin adımları ayrıca "_r" ekiyle sayılır. Bir adım sayfa yüklemesi başına bir kez sayılır. */
+  const fb = window.FIREBASE_AYAR;
+  const reklam = /[?&](gclid|gbraid|wbraid|r)=/.test(location.search);
+  window.SAYAC_EK = reklam ? '?r=1' : '';
+  const sayilan = {};
+  function artir(ad) {
+    if (!fb || !fb.projectId || sayilan[ad]) return;
+    sayilan[ad] = 1;
+    try {
+      const gun = new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 10).replace(/-/g, ''); // Türkiye günü
+      const kok = 'projects/' + fb.projectId + '/databases/(default)/documents';
+      fetch('https://firestore.googleapis.com/v1/' + kok + ':commit?key=' + encodeURIComponent(fb.apiKey), {
+        method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ writes: [{ transform: {
+          document: kok + '/sayac/' + gun + '_' + ad,
+          fieldTransforms: [{ fieldPath: 'n', increment: { integerValue: '1' } }],
+        } }] }),
+      }).catch(function () { /* ölçüm oyunu engellemez */ });
+    } catch (e) { /* yok */ }
+  }
+  window.sayac = function (ad) { artir(ad); if (reklam) artir(ad + '_r'); };
+
+  const yol = location.pathname;
+  if (/\/oyun\/(index\.html)?$/.test(yol)) window.sayac('oyun');
+  else if (/giris\.html$/.test(yol)) window.sayac('giris_sayfa');
+  else if (/\/(index\.html)?$/.test(yol)) window.sayac('site');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!reklam) return;
+    document.querySelectorAll('a[href="giris.html"]').forEach(function (a) { a.setAttribute('href', 'giris.html?r=1'); });
+  });
+  document.addEventListener('click', function (e) {
+    const h = e.target && e.target.closest ? e.target : null;
+    if (!h) return;
+    if (h.closest('a[href^="giris.html"]')) window.sayac('oyna');
+    else if (h.closest('#pilot-oyna, #pilot-bastan, #devam-et')) window.sayac('basla');
+    else if (h.closest('#secimler button')) window.sayac('secim');
+  }, true);
+
+  const SAYILAN_OLAY = { giris_yapti: 'giris' };
   window.olcum = function (olay, parametre) {
+    if (SAYILAN_OLAY[olay]) window.sayac(SAYILAN_OLAY[olay]);
+    else if (olay === 'bolum_bitti' && parametre && parametre.bolum === 1) window.sayac('bolum1_bitti');
     if (yuklendi && typeof window.gtag === 'function') window.gtag('event', olay, parametre || {});
   };
 
