@@ -15,7 +15,10 @@ window.APPLE_ACIK = false;
 
 /* Google Analytics ölçüm kimliği ("G-" ile başlar). Boş kaldıkça ölçüm ve çerez izni kutusu görünmez.
    Kurulum: site/OLCUM_KURULUMU.md */
-window.GA_KIMLIK = 'G-XHVGQX6RZ0';
+/* 22 Kasım 2026: geçici olarak kapalı (Cemil'in kararı). Çerez kutusu telefonda reklamdan gelenin önünü kesiyordu,
+   Analytics de izin vermeyeni saymadığı için işe yaramıyordu. Adım sayımı olcum.js'teki çerezsiz sayaçla sürüyor.
+   Yeniden açmak için kimliği geri yazın: 'G-XHVGQX6RZ0' */
+window.GA_KIMLIK = '';
 
 /* Destek kartı (tek seferlik ödeme). Kart, bu bölüm bittikten sonra, sıradaki bölüme geçerken açılır. */
 window.DESTEK = {
