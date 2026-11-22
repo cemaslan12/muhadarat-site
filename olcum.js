@@ -39,7 +39,16 @@
   window.sayac = function (ad) { artir(ad); if (reklam) artir(ad + '_r'); };
 
   const yol = location.pathname;
-  if (/\/oyun\/(index\.html)?$/.test(yol)) window.sayac('oyun');
+  if (/\/oyun\/(index\.html)?$/.test(yol)) {
+    window.sayac('oyun');
+    // 1. bölümün sonu ekranda: oyuncu "Sıradaki bölüm"e basmasa da sayılır (bolum1_bitti yalnız 2. bölüme geçince artar)
+    const bak = setInterval(function () {
+      const ad = document.getElementById('bolum-adi'), gorev = document.getElementById('gorev-satiri');
+      if (ad && gorev && /(^|\D)1\. Bölüm/.test(ad.textContent) && /Bölüm tamamlandı/.test(gorev.textContent)) {
+        window.sayac('bolum1_sonu'); clearInterval(bak);
+      }
+    }, 3000);
+  }
   else if (/giris\.html$/.test(yol)) window.sayac('giris_sayfa');
   else if (/\/(index\.html)?$/.test(yol)) window.sayac('site');
   document.addEventListener('DOMContentLoaded', function () {
