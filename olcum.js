@@ -18,8 +18,11 @@
      Reklamdan gelen ziyaret adresteki gclid/gbraid/wbraid ile tanınır ve iç bağlantılara ?r=1 eklenerek
      izlenir; o ziyaretin adımları ayrıca "_r" ekiyle sayılır. Bir adım sayfa yüklemesi başına bir kez sayılır. */
   const fb = window.FIREBASE_AYAR;
-  const reklam = /[?&](gclid|gbraid|wbraid|r)=/.test(location.search);
-  window.SAYAC_EK = reklam ? '?r=1' : '';
+  /* k: reklam grubunun işareti (Ads'te grubun "Final URL suffix" alanı: k=h, k=m ...). O grubun adımları
+     ayrıca "_r_<k>" ekiyle sayılır; işaret iç bağlantılarda r ile birlikte taşınır. */
+  const grup = (/[?&]k=([a-z0-9]{1,6})(&|$)/.exec(location.search) || [])[1] || '';
+  const reklam = !!grup || /[?&](gclid|gbraid|wbraid|r)=/.test(location.search);
+  window.SAYAC_EK = reklam ? '?r=1' + (grup ? '&k=' + grup : '') : '';
   const sayilan = {};
   function artir(ad) {
     if (!fb || !fb.projectId || sayilan[ad]) return;
@@ -36,7 +39,7 @@
       }).catch(function () { /* ölçüm oyunu engellemez */ });
     } catch (e) { /* yok */ }
   }
-  window.sayac = function (ad) { artir(ad); if (reklam) artir(ad + '_r'); };
+  window.sayac = function (ad) { artir(ad); if (reklam) artir(ad + '_r'); if (grup) artir(ad + '_r_' + grup); };
 
   const yol = location.pathname;
   if (/\/oyun\/(index\.html)?$/.test(yol)) {
@@ -66,7 +69,7 @@
   }
   document.addEventListener('DOMContentLoaded', function () {
     if (!reklam) return;
-    document.querySelectorAll('a[href="giris.html"]').forEach(function (a) { a.setAttribute('href', 'giris.html?r=1'); });
+    document.querySelectorAll('a[href="giris.html"]').forEach(function (a) { a.setAttribute('href', 'giris.html' + window.SAYAC_EK); });
   });
   document.addEventListener('click', function (e) {
     const h = e.target && e.target.closest ? e.target : null;
