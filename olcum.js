@@ -50,7 +50,20 @@
     }, 3000);
   }
   else if (/giris\.html$/.test(yol)) window.sayac('giris_sayfa');
-  else if (/\/(index\.html)?$/.test(yol)) window.sayac('site');
+  else if (/\/(index\.html)?$/.test(yol)) {
+    window.sayac('site');
+    // Yanlışlıkla dokunup çıkanı sayfaya bakandan ayırır: sayfa GÖRÜNÜR hâlde 5 ve 15 saniye kaldı mı, kaydırıldı mı
+    let gorunur = 0;
+    const sure = setInterval(function () {
+      if (document.visibilityState !== 'visible') return;
+      gorunur += 1;
+      if (gorunur === 5) window.sayac('site5');
+      if (gorunur === 15) { window.sayac('site15'); clearInterval(sure); }
+    }, 1000);
+    window.addEventListener('scroll', function kaydi() {
+      if (window.scrollY > 200) { window.sayac('site_kaydir'); window.removeEventListener('scroll', kaydi); }
+    }, { passive: true });
+  }
   document.addEventListener('DOMContentLoaded', function () {
     if (!reklam) return;
     document.querySelectorAll('a[href="giris.html"]').forEach(function (a) { a.setAttribute('href', 'giris.html?r=1'); });
