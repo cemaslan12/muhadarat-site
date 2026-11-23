@@ -55,6 +55,25 @@
   else if (/giris\.html$/.test(yol)) window.sayac('giris_sayfa');
   else if (/\/(index\.html)?$/.test(yol)) {
     window.sayac('site');
+    /* Açılışın türü: reklam kapalıyken de reklam işaretli yüzlerce açılış görüldü (23 Kasım 2026), bu yüzden
+       her açılış ayrıca türüyle sayılır. site_bot: otomatik tarayıcı; site_on: tarayıcının önden yüklemesi;
+       site_yeni / site_geri: eski sekmenin yenilenmesi ya da geri gelinmesi; site_ilk: gerçek yeni geliş.
+       site_gor: sayfa bir kez olsun gerçekten ekranda göründü. */
+    try {
+      const ua = navigator.userAgent || '';
+      const gezinme = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+      let tur = 'ilk';
+      if (navigator.webdriver || /bot|crawl|spider|headless|lighthouse|google-(ads|inspection)|mediapartners/i.test(ua)) tur = 'bot';
+      else if (document.prerendering) tur = 'on';
+      else if (gezinme.type === 'reload') tur = 'yeni';
+      else if (gezinme.type === 'back_forward') tur = 'geri';
+      window.sayac('site_' + tur);
+      const gor = function () {
+        if (document.visibilityState === 'visible' && !document.prerendering) { window.sayac('site_gor'); document.removeEventListener('visibilitychange', gor); return true; }
+        return false;
+      };
+      if (!gor()) document.addEventListener('visibilitychange', gor);
+    } catch (e) { /* yok */ }
     // Yanlışlıkla dokunup çıkanı sayfaya bakandan ayırır: sayfa GÖRÜNÜR hâlde 5 ve 15 saniye kaldı mı, kaydırıldı mı
     let gorunur = 0;
     const sure = setInterval(function () {
