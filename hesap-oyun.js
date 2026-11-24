@@ -4,7 +4,9 @@
    Oyunun kaydını (muhadarat_pilot_v1) izleyip bölüm geçişlerini ölçüme bildirir. */
 import * as H from '../hesap.js';
 
-const t = H.tur();
+let t = H.tur();
+// Reklamdan gelen ziyaretçi giriş sayfasını görmez, misafir olarak oynar (bkz. site_hazirla.py'deki satır içi betik)
+if (!t && /[?&](k|gclid|gbraid|wbraid|r)=/.test(location.search)) { H.turYaz('misafir'); t = 'misafir'; }
 if (!t) {
   location.replace('../giris.html');
 } else {

@@ -44,6 +44,16 @@
   const yol = location.pathname;
   if (/\/oyun\/(index\.html)?$/.test(yol)) {
     window.sayac('oyun');
+    // oyun_gor: oyun sayfası gerçekten ekranda göründü (reklam doğrudan oyuna indiğinde huninin paydası)
+    const oyunGor = function () {
+      if (document.visibilityState === 'visible' && !document.prerendering) { window.sayac('oyun_gor'); document.removeEventListener('visibilitychange', oyunGor); return true; }
+      return false;
+    };
+    if (!oyunGor()) document.addEventListener('visibilitychange', oyunGor);
+    // oyun_yatay: ekran yatay, yani "telefonunuzu yan çevirin" uyarısı aşıldı ve oyun gerçekten görünüyor
+    const yatayBak = setInterval(function () {
+      if (document.visibilityState === 'visible' && window.innerWidth > window.innerHeight) { window.sayac('oyun_yatay'); clearInterval(yatayBak); }
+    }, 1000);
     // 1. bölümün sonu ekranda: oyuncu "Sıradaki bölüm"e basmasa da sayılır (bolum1_bitti yalnız 2. bölüme geçince artar)
     const bak = setInterval(function () {
       const ad = document.getElementById('bolum-adi'), gorev = document.getElementById('gorev-satiri');
