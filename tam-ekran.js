@@ -108,7 +108,8 @@
   }
 
   function hazirla() {
-    if (ios) { cerezBitinceAc(iosKutusu); return; }
+    // Reklamdan gelen (SAYAC_EK dolu) ilk kez oyunu görüyor: önüne "ana ekrana ekleyin" kutusu çıkmasın
+    if (ios) { if (!window.SAYAC_EK) cerezBitinceAc(iosKutusu); return; }
     ['pilot-oyna', 'pilot-bastan', 'devam-et', 'yeni-oyun'].forEach((id) => {
       const d = document.getElementById(id);
       if (d) d.addEventListener('click', tamEkranaAl, { capture: true });
