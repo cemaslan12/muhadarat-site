@@ -20,6 +20,12 @@ window.APPLE_ACIK = false;
    Yeniden açmak için kimliği geri yazın: 'G-XHVGQX6RZ0' */
 window.GA_KIMLIK = '';
 
+/* Google Ads dönüşüm etiketi (24 Kasım 2026, Cemil'in kararı): yalnız reklamdan gelen ziyaretçide ve yalnız çerez
+   kutusunda "Kabul ediyorum" denirse yüklenir. Oyun başladığında (basla adımı) Ads'e "Aşkın Bedeli - oyun başladı"
+   dönüşümünü bildirir; kampanya bu dönüşüme göre teklif verir. Boş bırakılırsa etiket de kutu da çıkmaz. */
+window.ADS_KIMLIK = 'AW-16644062551';
+window.ADS_DONUSUM = 'AW-16644062551/VsbICNOquL4dENf6wIA-';
+
 /* Destek kartı (tek seferlik ödeme). Kart, bu bölüm bittikten sonra, sıradaki bölüme geçerken açılır. */
 window.DESTEK = {
   sonUcretsizBolum: 8,      // 8. bölüm ücretsiz; 9. bölümden itibaren destek ya da bekleme

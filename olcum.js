@@ -10,7 +10,9 @@
   const kimlik = window.GA_KIMLIK;
   let izin = null;
   try { izin = localStorage.getItem(IZIN); } catch (e) { /* yok */ }
-  let yuklendi = false;
+  let yuklendi = false, basladi = false, gonderildi = false;
+  // Ads etiketi yalnız reklamdan gelen ziyaretçide (adreste gclid/gbraid/wbraid ya da reklam grubu işareti) devreye girer
+  const adsKimlik = /[?&](gclid|gbraid|wbraid|k)=/.test(location.search) ? (window.ADS_KIMLIK || '') : '';
 
   /* ---- İzin gerektirmeyen sayaç ----
      Çerez, tarayıcı kaydı ya da kimlik kullanmaz; yalnız "bugün şu adım bir kez daha oldu" diye
@@ -42,6 +44,7 @@
   window.sayac = function (ad) { artir(ad); if (reklam) artir(ad + '_r'); if (grup) artir(ad + '_r_' + grup); };
 
   const yol = location.pathname;
+  const oyunda = /\/oyun\/(index\.html)?$/.test(yol);
   if (/\/oyun\/(index\.html)?$/.test(yol)) {
     window.sayac('oyun');
     // oyun_gor: oyun sayfası gerçekten ekranda göründü (reklam doğrudan oyuna indiğinde huninin paydası)
@@ -104,7 +107,7 @@
     const h = e.target && e.target.closest ? e.target : null;
     if (!h) return;
     if (h.closest('a[href^="giris.html"]')) window.sayac('oyna');
-    else if (h.closest('#pilot-oyna, #pilot-bastan, #devam-et')) window.sayac('basla');
+    else if (h.closest('#pilot-oyna, #pilot-bastan, #devam-et')) { window.sayac('basla'); basladi = true; donusum(); }
     else if (h.closest('#secimler button')) window.sayac('secim');
   }, true);
 
@@ -116,16 +119,27 @@
   };
 
   function yukle() {
-    if (yuklendi || !kimlik) return;
+    if (yuklendi || !(kimlik || adsKimlik)) return;
     yuklendi = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'denied', analytics_storage: 'granted' });
     window.gtag('js', new Date());
-    window.gtag('config', kimlik, { anonymize_ip: true });
+    if (kimlik) window.gtag('config', kimlik, { anonymize_ip: true });
+    if (adsKimlik) window.gtag('config', adsKimlik);
     const s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(kimlik);
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(kimlik || adsKimlik);
     document.head.appendChild(s);
+    donusum();
+  }
+
+  /* Ads dönüşümü: oyun başladı. Oyuncu kutuyu oyuna başladıktan sonra kabul ederse de (sıra fark etmez) bir kez gönderilir. */
+  function donusum() {
+    if (gonderildi || !basladi || !yuklendi || !adsKimlik || !window.ADS_DONUSUM) return;
+    gonderildi = true;
+    window.gtag('event', 'conversion', { send_to: window.ADS_DONUSUM, value: 1.0, currency: 'USD' });
+    window.sayac('ads_donusum');
   }
 
   function kutu() {
@@ -140,15 +154,23 @@
       '.cerez-evet{background:#7d2638;color:#f4ecdc;border:1px solid #c9a45c}',
       '.cerez-hayir{background:transparent;color:#6b5a4c;border:1px solid rgba(107,90,76,.5)}',
       '.cerez-kutu button:focus-visible{outline:3px solid #c9a45c;outline-offset:2px}',
-      '@media (max-width:520px){.cerez-kutu{bottom:8px;padding:11px 14px;font-size:14px;line-height:1.35}.cerez-kutu p{margin-bottom:8px}.cerez-dugmeler{gap:8px}}',
+      // Oyunda kutu üstte durur: altta "Oyna" / "Yeni oyun" düğmelerinin önüne geçmesin
+      '.cerez-kutu.cerez-ust{bottom:auto;top:max(8px,env(safe-area-inset-top))}',
+      '@media (max-height:480px){.cerez-kutu.cerez-ust{padding:8px 14px;font-size:14px;line-height:1.3;display:flex;gap:12px;align-items:center;width:min(720px,calc(100% - 24px))}',
+      '.cerez-kutu.cerez-ust p{margin:0}.cerez-kutu.cerez-ust .cerez-dugmeler{flex-wrap:nowrap;flex:none}}',
+      '@media (max-width:520px){.cerez-kutu:not(.cerez-ust){bottom:8px}.cerez-kutu{padding:11px 14px;font-size:14px;line-height:1.35}.cerez-kutu p{margin-bottom:8px}.cerez-dugmeler{gap:8px}}',
     ].join('');
     document.head.appendChild(css);
     const k = document.createElement('div');
     k.className = 'cerez-kutu';
     k.setAttribute('role', 'dialog');
     k.setAttribute('aria-label', 'Çerez izni');
-    k.innerHTML = '<p>Oyunu daha iyi yapabilmek için kaç kişinin hangi bölüme kadar oynadığını ölçmek istiyoruz. '
-      + 'Bunun için Google Analytics çerezleri kullanılır; adınız ya da e-posta adresiniz gönderilmez.</p>'
+    if (oyunda) k.classList.add('cerez-ust');
+    k.innerHTML = (kimlik
+      ? '<p>Oyunu daha iyi yapabilmek için kaç kişinin hangi bölüme kadar oynadığını ölçmek istiyoruz. '
+        + 'Bunun için Google Analytics çerezleri kullanılır; adınız ya da e-posta adresiniz gönderilmez.</p>'
+      : '<p>Reklamımızın işe yarayıp yaramadığını ölçmek için Google Ads çerezi kullanmak istiyoruz. '
+        + 'Adınız ya da e-posta adresiniz gönderilmez.</p>')
       + '<div class="cerez-dugmeler"><button class="cerez-hayir" type="button">Hayır, teşekkürler</button>'
       + '<button class="cerez-evet" type="button">Kabul ediyorum</button></div>';
     const kapat = (cevap) => {
@@ -161,16 +183,16 @@
     document.body.appendChild(k);
   }
 
-  if (!kimlik) return;
-  if (izin === 'evet') yukle();
-  else if (izin !== 'hayir') {
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', kutu);
-    else kutu();
-  }
-
   /* Gizlilik penceresinden izni değiştirmek için */
   window.cerezIzniniSifirla = function () {
     try { localStorage.removeItem(IZIN); } catch (e) { /* yok */ }
     location.reload();
   };
+
+  if (!kimlik && !adsKimlik) return;
+  if (izin === 'evet') yukle();
+  else if (izin !== 'hayir') {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', kutu);
+    else kutu();
+  }
 })();
