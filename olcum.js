@@ -10,7 +10,7 @@
   const kimlik = window.GA_KIMLIK;
   let izin = null;
   try { izin = localStorage.getItem(IZIN); } catch (e) { /* yok */ }
-  let yuklendi = false, basladi = false, gonderildi = false;
+  let yuklendi = false, basladi = false, secti = false, gonderildi = false, dokunus = 0;
   // Ads etiketi yalnız reklamdan gelen ziyaretçide (adreste gclid/gbraid/wbraid ya da reklam grubu işareti) devreye girer
   const adsKimlik = /[?&](gclid|gbraid|wbraid|k)=/.test(location.search) ? (window.ADS_KIMLIK || '') : '';
 
@@ -107,9 +107,30 @@
     const h = e.target && e.target.closest ? e.target : null;
     if (!h) return;
     if (h.closest('a[href^="giris.html"]')) window.sayac('oyna');
-    else if (h.closest('#pilot-oyna, #pilot-bastan, #devam-et')) { window.sayac('basla'); basladi = true; donusum(); }
-    else if (h.closest('#secimler button')) window.sayac('secim');
+    else if (h.closest('#pilot-oyna, #pilot-bastan, #devam-et')) { window.sayac('basla'); if (!basladi) { basladi = true; araAdimlar(); } }
+    else if (h.closest('#secimler button')) { window.sayac('secim'); secti = true; donusum(); }
+    // Başlatma ile ilk seçim arasındaki dokunuşlar: oyuncu açılışın neresinde bırakıyor
+    else if (basladi && !secti && h.closest('#sahne')) {
+      dokunus += 1;
+      if (dokunus === 1 || dokunus === 4 || dokunus === 8) window.sayac('dok' + dokunus);
+    }
   }, true);
+
+  /* Başlatma ile ilk seçim arası (25 Kasım 2026): telefonu çevirince oyun kendiliğinden başladığı için "basla"
+     oyuncunun isteğini göstermez. basla15: oyun açıkken 15 saniye kaldı; diyalog_gor: açılış anlatısı bitti,
+     ilk konuşma göründü; secim_gor: ilk seçim ekrana geldi (basılmasa da). */
+  function araAdimlar() {
+    const gorunur = function (id) { const e = document.getElementById(id); return !!e && !e.hidden && e.offsetParent !== null; };
+    let sn = 0, diyalog = false;
+    const bak = setInterval(function () {
+      if (document.visibilityState !== 'visible') return;
+      sn += 1;
+      if (sn === 30) window.sayac('basla15');
+      if (!diyalog && gorunur('diyalog')) { diyalog = true; window.sayac('diyalog_gor'); }
+      if (gorunur('secimler') && document.querySelector('#secimler button')) { window.sayac('secim_gor'); clearInterval(bak); }
+      if (sn > 1200) clearInterval(bak);
+    }, 500);
+  }
 
   const SAYILAN_OLAY = { giris_yapti: 'giris' };
   window.olcum = function (olay, parametre) {
@@ -134,9 +155,11 @@
     donusum();
   }
 
-  /* Ads dönüşümü: oyun başladı. Oyuncu kutuyu oyuna başladıktan sonra kabul ederse de (sıra fark etmez) bir kez gönderilir. */
+  /* Ads dönüşümü: oyuncu ilk seçimini yaptı (25 Kasım 2026'ya kadar "oyun başladı" anında gidiyordu; o an telefon
+     çevrilince kendiliğinden oluştuğu için Ads'e yanlış kişiyi öğretiyordu). Oyuncu kutuyu seçimden sonra kabul
+     ederse de (sıra fark etmez) bir kez gönderilir. */
   function donusum() {
-    if (gonderildi || !basladi || !yuklendi || !adsKimlik || !window.ADS_DONUSUM) return;
+    if (gonderildi || !secti || !yuklendi || !adsKimlik || !window.ADS_DONUSUM) return;
     gonderildi = true;
     window.gtag('event', 'conversion', { send_to: window.ADS_DONUSUM, value: 1.0, currency: 'USD' });
     window.sayac('ads_donusum');
