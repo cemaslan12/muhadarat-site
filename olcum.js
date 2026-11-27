@@ -41,7 +41,17 @@
       }).catch(function () { /* ölçüm oyunu engellemez */ });
     } catch (e) { /* yok */ }
   }
-  window.sayac = function (ad) { artir(ad); if (reklam) artir(ad + '_r'); if (grup) artir(ad + '_r_' + grup); };
+  /* Cihaz (27 Kasım 2026): b bilgisayar (fare), t tablet, m telefon. Reklam grubunun adımları ayrıca cihazla da
+     sayılır ("secim_r_a_b"); gorus.js aynı değeri kullanır. */
+  let cihaz = 'b';
+  try {
+    if (window.matchMedia('(pointer: coarse)').matches) cihaz = Math.min(screen.width, screen.height) >= 600 ? 't' : 'm';
+  } catch (e) { /* yok */ }
+  window.SAYAC_CIHAZ = cihaz;
+  window.sayac = function (ad) {
+    artir(ad); if (reklam) artir(ad + '_r');
+    if (grup) { artir(ad + '_r_' + grup); artir(ad + '_r_' + grup + '_' + cihaz); }
+  };
 
   const yol = location.pathname;
   const oyunda = /\/oyun\/(index\.html)?$/.test(yol);
